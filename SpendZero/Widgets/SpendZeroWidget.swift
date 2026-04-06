@@ -51,9 +51,11 @@ struct SavingsWidgetView: View {
     private var smallWidget: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Image(systemName: "dollarsign.circle.fill")
-                    .font(.system(size: 16))
-                    .foregroundColor(Color(hex: "00E676"))
+                Image("BrandIcon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 Text("SpendZero")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(.secondary)
@@ -86,9 +88,11 @@ struct SavingsWidgetView: View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Image(systemName: "dollarsign.circle.fill")
-                        .font(.system(size: 16))
-                        .foregroundColor(Color(hex: "00E676"))
+                    Image("BrandIcon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     Text("SpendZero")
                         .font(.system(size: 12, weight: .bold))
                         .foregroundColor(.secondary)

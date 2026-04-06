@@ -10,9 +10,10 @@ struct OnboardingSpendingQuizView: View {
             Spacer()
 
             VStack(spacing: 16) {
-                Image(systemName: "chart.bar.fill")
-                    .font(.system(size: 48))
-                    .foregroundStyle(AppTheme.primaryGradient)
+                Image("Onboarding-2")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 160)
 
                 Text("How would you describe\nyour spending habits?")
                     .font(AppTheme.titleFont)

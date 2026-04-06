@@ -23,10 +23,10 @@ struct OnboardingLoadingView: View {
             Spacer()
 
             VStack(spacing: 8) {
-                Image(systemName: "gearshape.2.fill")
-                    .font(.system(size: 44))
-                    .foregroundStyle(AppTheme.primaryGradient)
-                    .symbolEffect(.rotate, value: !showComplete)
+                Image("Onboarding-4")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 160)
 
                 Text("Building your \(challengeText)\nNo-Spend Plan")
                     .font(AppTheme.titleFont)

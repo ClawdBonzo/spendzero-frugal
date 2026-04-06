@@ -11,10 +11,12 @@ struct OnboardingNameView: View {
             Spacer()
 
             VStack(spacing: 16) {
-                Image(systemName: "person.crop.circle.badge.checkmark")
-                    .font(.system(size: 56))
-                    .foregroundStyle(AppTheme.accentGold)
-                    .symbolEffect(.bounce, value: showContent)
+                Image("BrandIcon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 80)
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 12, y: 4)
 
                 Text("What should we call your\nwealthy future self?")
                     .font(AppTheme.titleFont)

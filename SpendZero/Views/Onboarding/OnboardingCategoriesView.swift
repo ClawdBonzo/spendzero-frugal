@@ -12,9 +12,10 @@ struct OnboardingCategoriesView: View {
             Spacer().frame(height: 60)
 
             VStack(spacing: 12) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 44))
-                    .foregroundStyle(AppTheme.accentGold)
+                Image("Onboarding-3")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 140)
 
                 Text("Which categories leak\nthe most money?")
                     .font(AppTheme.titleFont)

@@ -31,20 +31,21 @@ struct OnboardingSplashView: View {
             VStack(spacing: 40) {
                 Spacer()
 
-                // Logo / Icon
-                ZStack {
-                    Circle()
-                        .fill(AppTheme.primaryGreen.opacity(0.1))
-                        .frame(width: 140, height: 140)
-
-                    Circle()
-                        .fill(AppTheme.primaryGreen.opacity(0.15))
-                        .frame(width: 110, height: 110)
-
-                    Image(systemName: "dollarsign.circle.fill")
-                        .font(.system(size: 64))
-                        .foregroundStyle(AppTheme.primaryGradient)
+                // Brand icon + onboarding illustration
+                VStack(spacing: 16) {
+                    Image("BrandIcon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120, height: 120)
+                        .clipShape(RoundedRectangle(cornerRadius: 28))
+                        .shadow(color: AppTheme.primaryGreen.opacity(0.4), radius: 16, y: 6)
                         .scaleEffect(iconScale)
+
+                    Image("Onboarding-1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 180)
+                        .opacity(showContent ? 1 : 0)
                 }
 
                 VStack(spacing: 16) {

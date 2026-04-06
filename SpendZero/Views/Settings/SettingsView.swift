@@ -19,15 +19,11 @@ struct SettingsView: View {
                     // Profile Section
                     Section {
                         HStack(spacing: 14) {
-                            ZStack {
-                                Circle()
-                                    .fill(AppTheme.primaryGreen.opacity(0.15))
-                                    .frame(width: 50, height: 50)
-
-                                Text(String(profile?.displayName.prefix(1) ?? "?"))
-                                    .font(.system(size: 22, weight: .bold))
-                                    .foregroundColor(AppTheme.primaryGreen)
-                            }
+                            Image("BrandIcon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
 
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(profile?.displayName ?? "User")

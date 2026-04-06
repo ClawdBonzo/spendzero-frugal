@@ -7,31 +7,56 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             DashboardView()
                 .tabItem {
-                    Label(AppTab.dashboard.title, systemImage: AppTab.dashboard.icon)
+                    Label {
+                        Text(AppTab.dashboard.title)
+                    } icon: {
+                        Image(AppTab.dashboard.assetIcon)
+                            .renderingMode(.template)
+                    }
                 }
                 .tag(AppTab.dashboard)
 
             DailyLoggerView()
                 .tabItem {
-                    Label(AppTab.logger.title, systemImage: AppTab.logger.icon)
+                    Label {
+                        Text(AppTab.logger.title)
+                    } icon: {
+                        Image(AppTab.logger.assetIcon)
+                            .renderingMode(.template)
+                    }
                 }
                 .tag(AppTab.logger)
 
             StreakCalendarView()
                 .tabItem {
-                    Label(AppTab.calendar.title, systemImage: AppTab.calendar.icon)
+                    Label {
+                        Text(AppTab.calendar.title)
+                    } icon: {
+                        Image(AppTab.calendar.assetIcon)
+                            .renderingMode(.template)
+                    }
                 }
                 .tag(AppTab.calendar)
 
             ProgressChartsView()
                 .tabItem {
-                    Label(AppTab.charts.title, systemImage: AppTab.charts.icon)
+                    Label {
+                        Text(AppTab.charts.title)
+                    } icon: {
+                        Image(AppTab.charts.assetIcon)
+                            .renderingMode(.template)
+                    }
                 }
                 .tag(AppTab.charts)
 
             SettingsView()
                 .tabItem {
-                    Label(AppTab.settings.title, systemImage: AppTab.settings.icon)
+                    Label {
+                        Text(AppTab.settings.title)
+                    } icon: {
+                        Image(AppTab.settings.assetIcon)
+                            .renderingMode(.template)
+                    }
                 }
                 .tag(AppTab.settings)
         }
@@ -53,6 +78,16 @@ enum AppTab: String, CaseIterable {
         case .calendar: return "Streak"
         case .charts: return "Progress"
         case .settings: return "Settings"
+        }
+    }
+
+    var assetIcon: String {
+        switch self {
+        case .dashboard: return "Tab-Dashboard"
+        case .logger: return "Tab-DailyLogger"
+        case .calendar: return "Tab-Challenges"
+        case .charts: return "Tab-Progress"
+        case .settings: return "Tab-Settings"
         }
     }
 

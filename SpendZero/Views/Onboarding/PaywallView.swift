@@ -23,11 +23,19 @@ struct PaywallView: View {
                     }
                     .padding(.top, 8)
 
-                    // Transformation header
+                    // Transformation header with brand icon + paywall illustration
                     VStack(spacing: 16) {
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 40))
-                            .foregroundStyle(AppTheme.goldGradient)
+                        Image("BrandIcon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                            .clipShape(RoundedRectangle(cornerRadius: 18))
+                            .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 12, y: 4)
+
+                        Image("Onboarding-5")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxHeight: 140)
 
                         Text("Unlock Your Full\nSavings Potential")
                             .font(AppTheme.displayFont)
