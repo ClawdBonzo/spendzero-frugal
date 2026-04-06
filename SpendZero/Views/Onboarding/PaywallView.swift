@@ -2,9 +2,13 @@ import SwiftUI
 
 struct PaywallView: View {
     let onContinue: () -> Void
-    @State private var selectedOption: String = "annual"
-    @State private var showContent = false
+    @State private var selectedOption: String = SubscriptionService.monthlyID
     @State private var subscriptionService = SubscriptionService.shared
+    @State private var showError = false
+
+    private var selectedHasFreeTrial: Bool {
+        subscriptionService.offerings.first(where: { $0.id == selectedOption })?.hasFreeTrial ?? false
+    }
 
     var body: some View {
         ZStack {
@@ -77,6 +81,34 @@ struct PaywallView: View {
                         FeatureRow(icon: "rectangle.3.group.fill", text: "Home Screen Widgets", color: Color(hex: "9C27B0"))
                     }
 
+                    // 3-day free trial banner
+                    if selectedHasFreeTrial {
+                        HStack(spacing: 8) {
+                            Image(systemName: "gift.fill")
+                                .font(.system(size: 16))
+                                .foregroundColor(AppTheme.primaryGreen)
+
+                            Text("3-DAY FREE TRIAL")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(AppTheme.primaryGreen)
+
+                            Text("Try everything free for 3 days")
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundColor(AppTheme.textSecondary)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                                .fill(AppTheme.primaryGreen.opacity(0.08))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                                        .stroke(AppTheme.primaryGreen.opacity(0.3), lineWidth: 1)
+                                )
+                        )
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
+
                     // Subscription options
                     VStack(spacing: 10) {
                         ForEach(subscriptionService.offerings) { option in
@@ -90,19 +122,29 @@ struct PaywallView: View {
                             }
                         }
                     }
+                    .animation(.spring(response: 0.3), value: selectedOption)
 
                     // CTA
                     PrimaryButton(
-                        title: "Start Free Trial",
-                        icon: "lock.open.fill"
+                        title: selectedHasFreeTrial ? "Start Free Trial" : "Get Pro Access",
+                        icon: selectedHasFreeTrial ? "lock.open.fill" : "crown.fill"
                     ) {
                         Task {
                             if let option = subscriptionService.offerings.first(where: { $0.id == selectedOption }) {
                                 let success = await subscriptionService.purchase(option)
                                 if success {
                                     onContinue()
+                                } else if subscriptionService.errorMessage != nil {
+                                    showError = true
                                 }
                             }
+                        }
+                    }
+                    .disabled(subscriptionService.isLoading)
+                    .overlay {
+                        if subscriptionService.isLoading {
+                            ProgressView()
+                                .tint(AppTheme.background)
                         }
                     }
 
@@ -119,7 +161,9 @@ struct PaywallView: View {
                         .font(AppTheme.captionFont)
                         .foregroundColor(AppTheme.textSecondary)
 
-                        Text("3-day free trial, then auto-renews. Cancel anytime.")
+                        Text(selectedHasFreeTrial
+                            ? "3-day free trial, then auto-renews. Cancel anytime."
+                            : "Payment charged at confirmation. Cancel anytime.")
                             .font(AppTheme.smallFont)
                             .foregroundColor(AppTheme.textTertiary)
                             .multilineTextAlignment(.center)
@@ -137,6 +181,14 @@ struct PaywallView: View {
                 }
                 .padding(.horizontal, AppTheme.paddingLarge)
             }
+        }
+        .alert("Purchase Error", isPresented: $showError) {
+            Button("OK") { subscriptionService.errorMessage = nil }
+        } message: {
+            Text(subscriptionService.errorMessage ?? "Something went wrong. Please try again.")
+        }
+        .task {
+            await subscriptionService.fetchOfferings()
         }
     }
 }
@@ -234,6 +286,16 @@ struct SubscriptionCard: View {
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2)
                                 .background(AppTheme.primaryGreen.opacity(0.15))
+                                .clipShape(Capsule())
+                        }
+
+                        if option.isLifetime {
+                            Text("PAY ONCE")
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundColor(AppTheme.accentGold)
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(AppTheme.accentGold.opacity(0.15))
                                 .clipShape(Capsule())
                         }
                     }

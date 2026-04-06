@@ -26,6 +26,9 @@ struct SpendZeroApp: App {
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }
+
+        // Configure RevenueCat
+        SubscriptionService.shared.configure()
     }
 
     var body: some Scene {
