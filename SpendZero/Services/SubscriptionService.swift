@@ -19,8 +19,8 @@ final class SubscriptionService {
 
     static let entitlementID = "pro"
 
-    // MARK: - Replace with your RevenueCat Public API Key
-    static let apiKey = "appl_YOUR_REVENUECAT_PUBLIC_KEY"
+    // MARK: - RevenueCat Public API Key
+    static let apiKey = "appl_ZBEApxMwqwVAVxOYLtvbaLRXxrt"
 
     private var availablePackages: [RevenueCat.Package] = []
 
