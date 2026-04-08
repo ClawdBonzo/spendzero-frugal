@@ -9,6 +9,9 @@ struct DashboardView: View {
     @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
     @State private var showAddImpulse = false
     @State private var showGamificationHub = false
+    @State private var currentToast: GameEventType?
+    @State private var levelUpEvent: (newLevel: Int, rank: LevelRank, previousLevel: Int)?
+    @State private var badgeUnlockEvent: BadgeInstance?
 
     private var profile: UserProfile? { profiles.first }
     private var gameProfile: GameProfile? { profile?.gameProfile ?? GameProfile() }
@@ -41,48 +44,84 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    // Greeting
-                    greetingSection
+        ZStack {
+            NavigationStack {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        // Greeting
+                        greetingSection
 
-                    // Streak hero card
-                    streakHeroCard
+                        // Level progress hero (PROMINENT)
+                        if let gameProfile = gameProfile {
+                            LevelCard(gameProfile: gameProfile, currentStreak: currentStreak)
+                                .padding(.horizontal, AppTheme.paddingMedium)
+                        }
 
-                    // Quick stats
-                    quickStatsGrid
+                        // Streak hero card
+                        streakHeroCard
 
-                    // Level progress (mini)
-                    if let gameProfile = gameProfile {
-                        LevelCard(gameProfile: gameProfile, currentStreak: currentStreak)
+                        // Money Tree visualization
+                        if let gameProfile = gameProfile {
+                            MoneyTreeView(gameProfile: gameProfile)
+                                .padding(.horizontal, AppTheme.paddingMedium)
+                        }
+
+                        // Quick stats
+                        quickStatsGrid
+
+                        // Quest quick-access
+                        if let gameProfile = gameProfile, !gameProfile.quests.isEmpty {
+                            questQuickLink
+                                .padding(.horizontal, AppTheme.paddingMedium)
+                        }
+
+                        // Today's status
+                        todayStatusCard
+
+                        // Recent impulses
+                        if !impulses.prefix(3).isEmpty {
+                            recentImpulsesSection
+                        }
+
+                        // Quick actions
+                        quickActionsSection
+
+                        Spacer(minLength: 100)
                     }
-
-                    // Quest quick-access
-                    if let gameProfile = gameProfile, !gameProfile.quests.isEmpty {
-                        questQuickLink
-                    }
-
-                    // Today's status
-                    todayStatusCard
-
-                    // Recent impulses
-                    if !impulses.prefix(3).isEmpty {
-                        recentImpulsesSection
-                    }
-
-                    // Quick actions
-                    quickActionsSection
-
-                    Spacer(minLength: 100)
+                    .padding(.horizontal, AppTheme.paddingMedium)
+                    .padding(.top, 8)
                 }
-                .padding(.horizontal, AppTheme.paddingMedium)
-                .padding(.top, 8)
+                .background(AppTheme.background.ignoresSafeArea())
+                .navigationBarTitleDisplayMode(.inline)
+                .sheet(isPresented: $showAddImpulse) {
+                    AddImpulseView(onImpulseLogged: { recordImpulseLogged() })
+                }
             }
-            .background(AppTheme.background.ignoresSafeArea())
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $showAddImpulse) {
-                AddImpulseView()
+
+            // Toast notifications
+            VStack(spacing: 12) {
+                if let toast = currentToast {
+                    GameEventToastView(event: toast, onDismiss: { currentToast = nil })
+                }
+                Spacer()
+            }
+            .padding()
+
+            // Celebration overlays
+            if let (newLevel, rank, previousLevel) = levelUpEvent {
+                LevelUpCelebrationView(
+                    newLevel: newLevel,
+                    rank: rank,
+                    previousLevel: previousLevel,
+                    onDismiss: { levelUpEvent = nil }
+                )
+            }
+
+            if let badge = badgeUnlockEvent {
+                BadgeUnlockCelebrationView(
+                    badge: badge,
+                    onDismiss: { badgeUnlockEvent = nil }
+                )
             }
         }
     }
@@ -400,6 +439,52 @@ struct DashboardView: View {
                     profile.longestStreak = profile.currentStreak
                 }
                 profile.totalSaved += saving.amount
+            }
+
+            try? modelContext.save()
+
+            // Award XP
+            if let gameProfile = gameProfile {
+                let streak = currentStreak
+                let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
+                let result = gameProfile.grantXP(.noSpendDay, streak: streak, multiplier: multiplier)
+
+                // Show toast
+                currentToast = .nospendDayRecorded
+
+                // Check for level up
+                if result.leveledUp {
+                    let previousLevel = result.newLevel - 1
+                    levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
+                }
+
+                // Check for streak badge
+                let newBadges = GameStateManager.shared.checkStreakBadges(
+                    for: gameProfile,
+                    currentStreak: streak
+                )
+                if let firstBadge = newBadges.first,
+                   let badgeInstance = gameProfile.badges.first(where: { $0.badgeID == firstBadge }) {
+                    badgeUnlockEvent = badgeInstance
+                }
+
+                try? modelContext.save()
+            }
+        }
+    }
+
+    private func recordImpulseLogged() {
+        // Award XP when an impulse is logged
+        if let gameProfile = gameProfile {
+            let streak = currentStreak
+            let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
+            let result = gameProfile.grantXP(.impulseResisted, streak: streak, multiplier: multiplier)
+
+            currentToast = .nospendDayRecorded
+
+            if result.leveledUp {
+                let previousLevel = result.newLevel - 1
+                levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
             }
 
             try? modelContext.save()

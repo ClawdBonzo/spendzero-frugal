@@ -38,16 +38,15 @@ struct MainTabView: View {
                 }
                 .tag(AppTab.calendar)
 
-            ProgressChartsView()
+            GamificationHubView()
                 .tabItem {
                     Label {
-                        Text(AppTab.charts.title)
+                        Text(AppTab.gamification.title)
                     } icon: {
-                        Image(AppTab.charts.assetIcon)
-                            .renderingMode(.template)
+                        Image(systemName: AppTab.gamification.icon)
                     }
                 }
-                .tag(AppTab.charts)
+                .tag(AppTab.gamification)
 
             SettingsView()
                 .tabItem {
@@ -68,7 +67,7 @@ enum AppTab: String, CaseIterable {
     case dashboard
     case logger
     case calendar
-    case charts
+    case gamification
     case settings
 
     var title: String {
@@ -76,7 +75,7 @@ enum AppTab: String, CaseIterable {
         case .dashboard: return "Dashboard"
         case .logger: return "Log"
         case .calendar: return "Streak"
-        case .charts: return "Progress"
+        case .gamification: return "Quests"
         case .settings: return "Settings"
         }
     }
@@ -86,7 +85,7 @@ enum AppTab: String, CaseIterable {
         case .dashboard: return "Tab-Dashboard"
         case .logger: return "Tab-DailyLogger"
         case .calendar: return "Tab-Challenges"
-        case .charts: return "Tab-Progress"
+        case .gamification: return "Tab-Quests"
         case .settings: return "Tab-Settings"
         }
     }
@@ -96,7 +95,7 @@ enum AppTab: String, CaseIterable {
         case .dashboard: return "house.fill"
         case .logger: return "plus.circle.fill"
         case .calendar: return "calendar"
-        case .charts: return "chart.bar.fill"
+        case .gamification: return "star.fill"
         case .settings: return "gearshape.fill"
         }
     }

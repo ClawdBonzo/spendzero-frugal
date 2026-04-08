@@ -6,6 +6,8 @@ struct AddImpulseView: View {
     @Environment(\.dismiss) private var dismiss
     @Query private var profiles: [UserProfile]
 
+    var onImpulseLogged: (() -> Void)?
+
     @State private var item = ""
     @State private var estimatedCost = ""
     @State private var selectedCategory: SpendCategory = .shopping
@@ -209,6 +211,12 @@ struct AddImpulseView: View {
         }
 
         try? modelContext.save()
+
+        // Trigger gamification callback if impulse was resisted
+        if wasResisted {
+            onImpulseLogged?()
+        }
+
         dismiss()
     }
 }
