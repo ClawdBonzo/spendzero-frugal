@@ -200,8 +200,8 @@ final class SubscriptionService {
         SubscriptionOption(
             id: monthlyID,
             title: "Monthly",
-            price: "$9.99",
-            pricePerWeek: "$2.31/wk",
+            price: "$7.99",
+            pricePerWeek: "$1.84/wk",
             period: "per month",
             isBestValue: true,
             hasFreeTrial: true,
@@ -223,8 +223,7 @@ final class SubscriptionService {
             pricePerWeek: "$0.96/wk",
             period: "per year",
             isBestValue: false,
-            hasFreeTrial: true,
-            trialDays: 3
+            hasFreeTrial: false
         ),
         SubscriptionOption(
             id: lifetimeID,
