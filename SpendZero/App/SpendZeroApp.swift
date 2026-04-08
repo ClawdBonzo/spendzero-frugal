@@ -13,7 +13,10 @@ struct SpendZeroApp: App {
                 ChallengeEntry.self,
                 SavingsEntry.self,
                 DailyRecord.self,
-                ImpulseLog.self
+                ImpulseLog.self,
+                GameProfile.self,
+                Quest.self,
+                BadgeInstance.self
             ])
             let config = ModelConfiguration(
                 schema: schema,

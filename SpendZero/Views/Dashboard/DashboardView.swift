@@ -8,8 +8,10 @@ struct DashboardView: View {
     @Query(sort: \SavingsEntry.date, order: .reverse) private var savings: [SavingsEntry]
     @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
     @State private var showAddImpulse = false
+    @State private var showGamificationHub = false
 
     private var profile: UserProfile? { profiles.first }
+    private var gameProfile: GameProfile? { profile?.gameProfile ?? GameProfile() }
 
     private var todayRecord: DailyRecord? {
         let today = Calendar.current.startOfDay(for: Date())
@@ -51,6 +53,16 @@ struct DashboardView: View {
                     // Quick stats
                     quickStatsGrid
 
+                    // Level progress (mini)
+                    if let gameProfile = gameProfile {
+                        LevelCard(gameProfile: gameProfile, currentStreak: currentStreak)
+                    }
+
+                    // Quest quick-access
+                    if let gameProfile = gameProfile, !gameProfile.quests.isEmpty {
+                        questQuickLink
+                    }
+
                     // Today's status
                     todayStatusCard
 
@@ -84,9 +96,29 @@ struct DashboardView: View {
                     .font(AppTheme.captionFont)
                     .foregroundColor(AppTheme.textSecondary)
 
-                Text(profile?.displayName ?? "Champion")
-                    .font(AppTheme.titleFont)
-                    .foregroundColor(AppTheme.textPrimary)
+                HStack(spacing: 8) {
+                    Text(profile?.displayName ?? "Champion")
+                        .font(AppTheme.titleFont)
+                        .foregroundColor(AppTheme.textPrimary)
+
+                    if let gameProfile = gameProfile {
+                        NavigationLink {
+                            LevelProgressView(gameProfile: gameProfile)
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text("Lv. \(gameProfile.currentLevel)")
+                                    .font(.system(size: 12, weight: .semibold))
+                                Text(gameProfile.currentRank.title)
+                                    .font(.system(size: 10, weight: .semibold))
+                            }
+                            .foregroundColor(AppTheme.accentGold)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(AppTheme.accentGold.opacity(0.15))
+                            .cornerRadius(6)
+                        }
+                    }
+                }
             }
 
             Spacer()
@@ -132,15 +164,8 @@ struct DashboardView: View {
 
                 Spacer()
 
-                Image(systemName: "flame.fill")
-                    .font(.system(size: 48))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [AppTheme.accentGold, AppTheme.destructive],
-                            startPoint: .bottom,
-                            endPoint: .top
-                        )
-                    )
+                StreakFlamesView(currentStreak: currentStreak)
+                    .font(.system(size: 24))
             }
 
             // Progress bar to goal
@@ -280,6 +305,43 @@ struct DashboardView: View {
                         .fill(AppTheme.cardBackground)
                 )
             }
+        }
+    }
+
+    // MARK: - Quest Quick Link
+
+    private var questQuickLink: some View {
+        NavigationLink {
+            if let gameProfile = gameProfile {
+                QuestPanelView(gameProfile: gameProfile)
+            }
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Daily Quests")
+                        .font(AppTheme.bodyFont)
+                        .foregroundColor(AppTheme.textPrimary)
+
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 10))
+                        Text("Earn XP")
+                            .font(AppTheme.smallFont)
+                    }
+                    .foregroundColor(AppTheme.primaryGreen)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(AppTheme.textTertiary)
+            }
+            .padding(AppTheme.paddingMedium)
+            .background(
+                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                    .fill(AppTheme.cardBackground)
+            )
         }
     }
 

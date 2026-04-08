@@ -15,6 +15,7 @@ final class UserProfile {
     var currentStreak: Int
     var longestStreak: Int
     var isPremium: Bool
+    @Relationship(deleteRule: .cascade) var gameProfile: GameProfile?
 
     init(
         displayName: String = "",
