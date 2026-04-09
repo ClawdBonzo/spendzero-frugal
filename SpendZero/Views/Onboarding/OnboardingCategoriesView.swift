@@ -3,7 +3,10 @@ import SwiftUI
 struct OnboardingCategoriesView: View {
     @Binding var selected: Set<SpendCategory>
     let onNext: () -> Void
-    @State private var showContent = false
+    @State private var showImage = false
+    @State private var showTitle = false
+    @State private var showGrid = false
+    @State private var visibleChips: Set<Int> = []
 
     private let categories = SpendCategory.allCases.map { $0 }
 
@@ -17,7 +20,8 @@ struct OnboardingCategoriesView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 80)
                 .clipShape(RoundedRectangle(cornerRadius: 14))
-                .opacity(showContent ? 1 : 0)
+                .scaleEffect(showImage ? 1 : 0.8)
+                .opacity(showImage ? 1 : 0)
 
             // Title + subtitle
             VStack(spacing: 4) {
@@ -33,14 +37,16 @@ struct OnboardingCategoriesView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, AppTheme.paddingLarge)
+            .offset(y: showTitle ? 0 : 15)
+            .opacity(showTitle ? 1 : 0)
 
-            // Category grid - scrollable
+            // Category grid - scrollable with staggered entry
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: [
                     GridItem(.flexible(), spacing: 8),
                     GridItem(.flexible(), spacing: 8)
                 ], spacing: 8) {
-                    ForEach(categories) { category in
+                    ForEach(Array(categories.enumerated()), id: \.element.id) { index, category in
                         CategoryChip(
                             category: category,
                             isSelected: selected.contains(category)
@@ -53,11 +59,12 @@ struct OnboardingCategoriesView: View {
                                 }
                             }
                         }
+                        .scaleEffect(visibleChips.contains(index) ? 1 : 0.7)
+                        .opacity(visibleChips.contains(index) ? 1 : 0)
                     }
                 }
                 .padding(.horizontal, AppTheme.paddingLarge)
             }
-            .opacity(showContent ? 1 : 0)
 
             // Counter + Button
             VStack(spacing: 6) {
@@ -65,7 +72,7 @@ struct OnboardingCategoriesView: View {
                     Text("\(selected.count) selected")
                         .font(.system(size: 13, weight: .medium))
                         .foregroundColor(AppTheme.primaryGreen)
-                        .transition(.opacity)
+                        .transition(.scale.combined(with: .opacity))
                 }
 
                 PrimaryButton(
@@ -81,8 +88,17 @@ struct OnboardingCategoriesView: View {
         }
         .animation(.spring(response: 0.3), value: selected)
         .onAppear {
-            withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
-                showContent = true
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.1)) {
+                showImage = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.25)) {
+                showTitle = true
+            }
+            // Stagger chips appearing in wave pattern
+            for i in 0..<categories.count {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7).delay(0.35 + Double(i) * 0.05)) {
+                    visibleChips.insert(i)
+                }
             }
         }
     }
@@ -99,6 +115,7 @@ struct CategoryChip: View {
                 Image(systemName: category.icon)
                     .font(.system(size: 18))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : Color(hex: category.color))
+                    .symbolEffect(.bounce, value: isSelected)
 
                 Text(category.rawValue)
                     .font(.system(size: 11, weight: .medium))
@@ -119,8 +136,9 @@ struct CategoryChip: View {
                             )
                     )
             )
-            .scaleEffect(isSelected ? 1.02 : 1.0)
+            .scaleEffect(isSelected ? 1.05 : 1.0)
         }
         .buttonStyle(.plain)
+        .animation(.spring(response: 0.3), value: isSelected)
     }
 }

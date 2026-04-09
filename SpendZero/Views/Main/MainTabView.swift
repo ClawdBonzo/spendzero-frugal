@@ -7,55 +7,31 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             DashboardView()
                 .tabItem {
-                    Label {
-                        Text(AppTab.dashboard.title)
-                    } icon: {
-                        Image(AppTab.dashboard.assetIcon)
-                            .renderingMode(.template)
-                    }
+                    Label(AppTab.dashboard.title, systemImage: AppTab.dashboard.icon)
                 }
                 .tag(AppTab.dashboard)
 
             DailyLoggerView()
                 .tabItem {
-                    Label {
-                        Text(AppTab.logger.title)
-                    } icon: {
-                        Image(AppTab.logger.assetIcon)
-                            .renderingMode(.template)
-                    }
+                    Label(AppTab.logger.title, systemImage: AppTab.logger.icon)
                 }
                 .tag(AppTab.logger)
 
             StreakCalendarView()
                 .tabItem {
-                    Label {
-                        Text(AppTab.calendar.title)
-                    } icon: {
-                        Image(AppTab.calendar.assetIcon)
-                            .renderingMode(.template)
-                    }
+                    Label(AppTab.calendar.title, systemImage: AppTab.calendar.icon)
                 }
                 .tag(AppTab.calendar)
 
             GamificationHubView()
                 .tabItem {
-                    Label {
-                        Text(AppTab.gamification.title)
-                    } icon: {
-                        Image(systemName: AppTab.gamification.icon)
-                    }
+                    Label(AppTab.gamification.title, systemImage: AppTab.gamification.icon)
                 }
                 .tag(AppTab.gamification)
 
             SettingsView()
                 .tabItem {
-                    Label {
-                        Text(AppTab.settings.title)
-                    } icon: {
-                        Image(AppTab.settings.assetIcon)
-                            .renderingMode(.template)
-                    }
+                    Label(AppTab.settings.title, systemImage: AppTab.settings.icon)
                 }
                 .tag(AppTab.settings)
         }
@@ -80,21 +56,11 @@ enum AppTab: String, CaseIterable {
         }
     }
 
-    var assetIcon: String {
-        switch self {
-        case .dashboard: return "Tab-Dashboard"
-        case .logger: return "Tab-DailyLogger"
-        case .calendar: return "Tab-Challenges"
-        case .gamification: return "Tab-Quests"
-        case .settings: return "Tab-Settings"
-        }
-    }
-
     var icon: String {
         switch self {
-        case .dashboard: return "house.fill"
-        case .logger: return "plus.circle.fill"
-        case .calendar: return "calendar"
+        case .dashboard: return "chart.bar.fill"
+        case .logger: return "square.and.pencil"
+        case .calendar: return "flame.fill"
         case .gamification: return "star.fill"
         case .settings: return "gearshape.fill"
         }

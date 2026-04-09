@@ -3,19 +3,23 @@ import SwiftUI
 struct OnboardingSpendingQuizView: View {
     @Binding var level: SpendingLevel
     let onNext: () -> Void
-    @State private var showContent = false
+    @State private var showImage = false
+    @State private var showTitle = false
+    @State private var showCards = false
+    @State private var visibleCards: Set<Int> = []
 
     var body: some View {
         VStack(spacing: 12) {
             Spacer().frame(height: 24)
 
-            // Hero illustration
+            // Hero illustration with scale animation
             Image("Onboarding-2")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 14))
-                .opacity(showContent ? 1 : 0)
+                .scaleEffect(showImage ? 1 : 0.8)
+                .opacity(showImage ? 1 : 0)
 
             // Title + subtitle
             VStack(spacing: 4) {
@@ -32,10 +36,12 @@ struct OnboardingSpendingQuizView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, AppTheme.paddingLarge)
+            .offset(y: showTitle ? 0 : 15)
+            .opacity(showTitle ? 1 : 0)
 
-            // Compact option cards
+            // Staggered option cards
             VStack(spacing: 6) {
-                ForEach(SpendingLevel.allCases, id: \.self) { option in
+                ForEach(Array(SpendingLevel.allCases.enumerated()), id: \.element) { index, option in
                     SpendingLevelCard(
                         level: option,
                         isSelected: level == option
@@ -44,10 +50,11 @@ struct OnboardingSpendingQuizView: View {
                             level = option
                         }
                     }
+                    .offset(x: visibleCards.contains(index) ? 0 : 60)
+                    .opacity(visibleCards.contains(index) ? 1 : 0)
                 }
             }
             .padding(.horizontal, AppTheme.paddingLarge)
-            .opacity(showContent ? 1 : 0)
 
             Spacer()
 
@@ -59,8 +66,17 @@ struct OnboardingSpendingQuizView: View {
             .padding(.bottom, 28)
         }
         .onAppear {
-            withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
-                showContent = true
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.1)) {
+                showImage = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.25)) {
+                showTitle = true
+            }
+            // Stagger each card
+            for i in 0..<SpendingLevel.allCases.count {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.35 + Double(i) * 0.1)) {
+                    visibleCards.insert(i)
+                }
             }
         }
     }
@@ -77,6 +93,7 @@ struct SpendingLevelCard: View {
                 Text(level.emoji)
                     .font(.system(size: 22))
                     .frame(width: 30)
+                    .scaleEffect(isSelected ? 1.2 : 1.0)
 
                 VStack(alignment: .leading, spacing: 1) {
                     Text(level.rawValue)
@@ -110,7 +127,9 @@ struct SpendingLevelCard: View {
                             )
                     )
             )
+            .scaleEffect(isSelected ? 1.02 : 1.0)
         }
         .buttonStyle(.plain)
+        .animation(.spring(response: 0.3), value: isSelected)
     }
 }

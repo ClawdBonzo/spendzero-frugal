@@ -1,0 +1,49 @@
+name: SpendZero
+options:
+  bundleIdPrefix: com.clawdbonzo
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+packages:
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios-spm.git
+    from: 5.0.0
+targets:
+  SpendZero:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: SpendZero
+        includes:
+          - "**/*.swift"
+    resources:
+      - path: SpendZero/Assets.xcassets
+        type: folder
+    info:
+      path: SpendZero/Info.plist
+      useBaseLocalizationAsSource: true
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZero
+      PRODUCT_NAME: SpendZero
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: ""
+    dependencies:
+      - package: RevenueCat
+        product: RevenueCat
+schemes:
+  SpendZero:
+    build:
+      targets:
+        SpendZero: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

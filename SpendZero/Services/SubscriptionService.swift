@@ -12,20 +12,17 @@ final class SubscriptionService {
     var errorMessage: String?
 
     // RevenueCat product identifiers
-    static let weeklyID = "spendzero_weekly"
-    static let monthlyID = "spendzero_monthly"
-    static let yearlyID = "spendzero_yearly"
-    static let lifetimeID = "spendzero_lifetime"
+    static let weeklyID  = "com.clawdbonzo.spendzero.weekly"
+    static let monthlyID = "com.clawdbonzo.spendzero.monthly"
+    static let yearlyID  = "com.clawdbonzo.spendzero.yearly"
+    static let lifetimeID = "com.clawdbonzo.spendzero.lifetime"
 
     static let entitlementID = "pro"
-
-    // MARK: - RevenueCat Public API Key
     static let apiKey = "appl_ZBEApxMwqwVAVxOYLtvbaLRXxrt"
 
     private var availablePackages: [RevenueCat.Package] = []
 
     private init() {
-        // Fallback offerings shown before RevenueCat loads
         offerings = Self.fallbackOfferings
     }
 
@@ -34,7 +31,6 @@ final class SubscriptionService {
     func configure() {
         Purchases.logLevel = .warn
         Purchases.configure(withAPIKey: Self.apiKey)
-
         Task {
             await checkEntitlementStatus()
             await fetchOfferings()
@@ -56,27 +52,32 @@ final class SubscriptionService {
 
             for package in current.availablePackages {
                 let product = package.storeProduct
+                let productID = product.productIdentifier
+                let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
                 let option = SubscriptionOption(
-                    id: product.productIdentifier,
+                    id: productID,
                     title: titleForPackage(package),
                     price: product.localizedPriceString,
                     pricePerWeek: pricePerWeekFor(package),
                     period: periodLabel(for: package),
-                    isBestValue: product.productIdentifier == Self.monthlyID,
-                    hasFreeTrial: product.introductoryDiscount?.paymentMode == .freeTrial,
-                    trialDays: trialDaysFor(product),
-                    isLifetime: package.packageType == .lifetime || product.productIdentifier == Self.lifetimeID
+                    isBestValue: productID == Self.monthlyID,
+                    hasFreeTrial: hasTrial,
+                    trialDays: hasTrial ? trialDaysFor(product) : 0,
+                    isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID
                 )
                 options.append(option)
             }
 
-            // Sort: monthly (best value) first, then weekly, yearly, lifetime
+            // Sort: monthly first (best value), then weekly, yearly, lifetime
             let sortOrder = [Self.monthlyID, Self.weeklyID, Self.yearlyID, Self.lifetimeID]
             offerings = options.sorted { a, b in
                 let ai = sortOrder.firstIndex(of: a.id) ?? 99
                 let bi = sortOrder.firstIndex(of: b.id) ?? 99
                 return ai < bi
             }
+
+            // If RC didn't give us our expected products, fall back
+            if offerings.isEmpty { offerings = Self.fallbackOfferings }
         } catch {
             errorMessage = error.localizedDescription
             offerings = Self.fallbackOfferings
@@ -114,7 +115,6 @@ final class SubscriptionService {
     func restorePurchases() async -> Bool {
         isLoading = true
         defer { isLoading = false }
-
         do {
             let customerInfo = try await Purchases.shared.restorePurchases()
             isPremium = customerInfo.entitlements[Self.entitlementID]?.isActive == true
@@ -131,34 +131,39 @@ final class SubscriptionService {
         do {
             let customerInfo = try await Purchases.shared.customerInfo()
             isPremium = customerInfo.entitlements[Self.entitlementID]?.isActive == true
-        } catch {
-            // Silently fail — will check again later
-        }
+        } catch {}
     }
 
     // MARK: - Helpers
 
     private func titleForPackage(_ package: RevenueCat.Package) -> String {
         switch package.packageType {
-        case .weekly: return "Weekly"
-        case .monthly: return "Monthly"
-        case .annual: return "Yearly"
+        case .weekly:   return "Weekly"
+        case .monthly:  return "Monthly"
+        case .annual:   return "Yearly"
         case .lifetime: return "Lifetime"
         default:
             let id = package.storeProduct.productIdentifier
             if id.contains("lifetime") { return "Lifetime" }
+            if id.contains("yearly") || id.contains("annual") { return "Yearly" }
+            if id.contains("monthly") { return "Monthly" }
+            if id.contains("weekly") { return "Weekly" }
             return package.storeProduct.localizedTitle
         }
     }
 
     private func periodLabel(for package: RevenueCat.Package) -> String {
         switch package.packageType {
-        case .weekly: return "per week"
-        case .monthly: return "per month"
-        case .annual: return "per year"
+        case .weekly:   return "per week"
+        case .monthly:  return "per month"
+        case .annual:   return "per year"
         case .lifetime: return "one-time"
         default:
-            if package.storeProduct.productIdentifier.contains("lifetime") { return "one-time" }
+            let id = package.storeProduct.productIdentifier
+            if id.contains("lifetime") { return "one-time" }
+            if id.contains("yearly") || id.contains("annual") { return "per year" }
+            if id.contains("monthly") { return "per month" }
+            if id.contains("weekly") { return "per week" }
             return ""
         }
     }
@@ -167,16 +172,20 @@ final class SubscriptionService {
         let price = package.storeProduct.price as Decimal
         let weekly: Decimal
         switch package.packageType {
-        case .weekly: weekly = price
-        case .monthly: weekly = price / 4.33
-        case .annual: weekly = price / 52
+        case .weekly:   weekly = price
+        case .monthly:  weekly = price / 4.33
+        case .annual:   weekly = price / 52
         case .lifetime: return "forever"
         default:
-            if package.storeProduct.productIdentifier.contains("lifetime") { return "forever" }
-            return ""
+            let id = package.storeProduct.productIdentifier
+            if id.contains("lifetime") { return "forever" }
+            if id.contains("yearly") || id.contains("annual") { weekly = price / 52 }
+            else if id.contains("monthly") { weekly = price / 4.33 }
+            else { weekly = price }
         }
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
+        formatter.currencyCode = package.storeProduct.currencyCode ?? "USD"
         formatter.maximumFractionDigits = 2
         let formatted = formatter.string(from: weekly as NSDecimalNumber) ?? "$0"
         return "\(formatted)/wk"
@@ -186,15 +195,16 @@ final class SubscriptionService {
         guard let intro = product.introductoryDiscount,
               intro.paymentMode == .freeTrial else { return 0 }
         switch intro.subscriptionPeriod.unit {
-        case .day: return intro.subscriptionPeriod.value
-        case .week: return intro.subscriptionPeriod.value * 7
+        case .day:   return intro.subscriptionPeriod.value
+        case .week:  return intro.subscriptionPeriod.value * 7
         case .month: return intro.subscriptionPeriod.value * 30
-        case .year: return intro.subscriptionPeriod.value * 365
+        case .year:  return intro.subscriptionPeriod.value * 365
         @unknown default: return 0
         }
     }
 
     // MARK: - Fallback Offerings
+    // Shown while RevenueCat loads. Matches exact pricing & trial config.
 
     private static let fallbackOfferings: [SubscriptionOption] = [
         SubscriptionOption(
@@ -214,7 +224,8 @@ final class SubscriptionService {
             pricePerWeek: "$4.99/wk",
             period: "per week",
             isBestValue: false,
-            hasFreeTrial: false
+            hasFreeTrial: false,
+            trialDays: 0
         ),
         SubscriptionOption(
             id: yearlyID,
@@ -223,7 +234,8 @@ final class SubscriptionService {
             pricePerWeek: "$0.96/wk",
             period: "per year",
             isBestValue: false,
-            hasFreeTrial: false
+            hasFreeTrial: true,
+            trialDays: 3
         ),
         SubscriptionOption(
             id: lifetimeID,
@@ -233,6 +245,7 @@ final class SubscriptionService {
             period: "one-time",
             isBestValue: false,
             hasFreeTrial: false,
+            trialDays: 0,
             isLifetime: true
         ),
     ]

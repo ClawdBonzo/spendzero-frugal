@@ -4,15 +4,25 @@ struct OnboardingNameView: View {
     @Binding var name: String
     let onNext: () -> Void
     @FocusState private var isFocused: Bool
-    @State private var showContent = false
+    @State private var showIcon = false
+    @State private var showTitle = false
+    @State private var showField = false
+    @State private var ringPulse = false
 
     var body: some View {
         VStack(spacing: 0) {
             Spacer().frame(height: 24)
 
-            // Hero section
+            // Hero section with animated ring
             VStack(spacing: 12) {
                 ZStack {
+                    // Pulsing ring
+                    Circle()
+                        .stroke(AppTheme.primaryGreen.opacity(0.15), lineWidth: 1.5)
+                        .frame(width: 130, height: 130)
+                        .scaleEffect(ringPulse ? 1.08 : 0.95)
+                        .opacity(showIcon ? 0.6 : 0)
+
                     Circle()
                         .fill(
                             RadialGradient(
@@ -30,6 +40,8 @@ struct OnboardingNameView: View {
                         .frame(width: 64, height: 64)
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                         .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 12, y: 4)
+                        .scaleEffect(showIcon ? 1 : 0.5)
+                        .opacity(showIcon ? 1 : 0)
                 }
 
                 VStack(spacing: 6) {
@@ -45,14 +57,14 @@ struct OnboardingNameView: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+                .offset(y: showTitle ? 0 : 20)
+                .opacity(showTitle ? 1 : 0)
             }
             .padding(.horizontal, AppTheme.paddingLarge)
-            .opacity(showContent ? 1 : 0)
-            .offset(y: showContent ? 0 : 20)
 
             Spacer().frame(height: 24)
 
-            // Input field
+            // Input field with animated entry
             VStack(spacing: 10) {
                 TextField("", text: $name, prompt: Text("Your name").foregroundColor(AppTheme.textTertiary))
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
@@ -78,11 +90,14 @@ struct OnboardingNameView: View {
                             onNext()
                         }
                     }
+                    .scaleEffect(showField ? 1 : 0.9)
+                    .opacity(showField ? 1 : 0)
 
                 if !name.isEmpty {
                     HStack(spacing: 6) {
                         Image(systemName: "sparkles")
                             .font(.system(size: 12, weight: .semibold))
+                            .symbolEffect(.pulse, value: name)
                         Text("Welcome, \(name)! Let's build wealth together.")
                     }
                     .font(.system(size: 13))
@@ -107,11 +122,20 @@ struct OnboardingNameView: View {
         }
         .animation(.spring(response: 0.4), value: name)
         .onAppear {
-            withAnimation(.easeOut(duration: 0.6).delay(0.2)) {
-                showContent = true
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.1)) {
+                showIcon = true
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.3)) {
+                showTitle = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.5)) {
+                showField = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 isFocused = true
+            }
+            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true).delay(0.8)) {
+                ringPulse = true
             }
         }
     }

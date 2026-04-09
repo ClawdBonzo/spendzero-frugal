@@ -3,7 +3,10 @@ import SwiftUI
 struct OnboardingCommitView: View {
     @Binding var days: Int
     let onNext: () -> Void
-    @State private var showContent = false
+    @State private var showFlame = false
+    @State private var showTitle = false
+    @State private var visibleCards: Set<Int> = []
+    @State private var flamePulse = false
 
     private let commitOptions = [7, 14, 21, 30]
 
@@ -11,8 +14,9 @@ struct OnboardingCommitView: View {
         VStack(spacing: 12) {
             Spacer().frame(height: 24)
 
-            // Hero flame icon with glow
+            // Hero flame icon with animated glow
             ZStack {
+                // Pulsing glow
                 Circle()
                     .fill(
                         RadialGradient(
@@ -23,6 +27,7 @@ struct OnboardingCommitView: View {
                         )
                     )
                     .frame(width: 100, height: 100)
+                    .scaleEffect(flamePulse ? 1.15 : 1.0)
 
                 Image(systemName: "flame.fill")
                     .font(.system(size: 40, weight: .bold))
@@ -33,9 +38,10 @@ struct OnboardingCommitView: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                    .symbolEffect(.variableColor.iterative, value: showContent)
+                    .symbolEffect(.variableColor.iterative, value: showFlame)
+                    .scaleEffect(showFlame ? 1 : 0.3)
             }
-            .opacity(showContent ? 1 : 0)
+            .opacity(showFlame ? 1 : 0)
 
             // Title + subtitle
             VStack(spacing: 4) {
@@ -52,10 +58,12 @@ struct OnboardingCommitView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, AppTheme.paddingLarge)
+            .offset(y: showTitle ? 0 : 15)
+            .opacity(showTitle ? 1 : 0)
 
-            // Compact option cards
+            // Staggered option cards
             VStack(spacing: 6) {
-                ForEach(commitOptions, id: \.self) { option in
+                ForEach(Array(commitOptions.enumerated()), id: \.element) { index, option in
                     CommitOptionCard(
                         days: option,
                         isSelected: days == option,
@@ -65,10 +73,11 @@ struct OnboardingCommitView: View {
                             }
                         }
                     )
+                    .offset(x: visibleCards.contains(index) ? 0 : -60)
+                    .opacity(visibleCards.contains(index) ? 1 : 0)
                 }
             }
             .padding(.horizontal, AppTheme.paddingLarge)
-            .opacity(showContent ? 1 : 0)
 
             Spacer()
 
@@ -80,8 +89,21 @@ struct OnboardingCommitView: View {
             .padding(.bottom, 28)
         }
         .onAppear {
-            withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
-                showContent = true
+            withAnimation(.spring(response: 0.7, dampingFraction: 0.6).delay(0.1)) {
+                showFlame = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.3)) {
+                showTitle = true
+            }
+            // Stagger cards from left
+            for i in 0..<commitOptions.count {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.4 + Double(i) * 0.1)) {
+                    visibleCards.insert(i)
+                }
+            }
+            // Flame glow pulse
+            withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true).delay(1.0)) {
+                flamePulse = true
             }
         }
     }
@@ -113,6 +135,7 @@ struct CommitOptionCard: View {
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : AppTheme.textSecondary)
                     .frame(width: 32)
+                    .scaleEffect(isSelected ? 1.15 : 1.0)
 
                 VStack(alignment: .leading, spacing: 1) {
                     HStack(spacing: 5) {
@@ -142,6 +165,7 @@ struct CommitOptionCard: View {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 18))
                         .foregroundColor(AppTheme.primaryGreen)
+                        .transition(.scale.combined(with: .opacity))
                 }
             }
             .padding(.horizontal, 12)
@@ -157,7 +181,9 @@ struct CommitOptionCard: View {
                             )
                     )
             )
+            .scaleEffect(isSelected ? 1.02 : 1.0)
         }
         .buttonStyle(.plain)
+        .animation(.spring(response: 0.3), value: isSelected)
     }
 }
