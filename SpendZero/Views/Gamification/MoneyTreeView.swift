@@ -1,47 +1,76 @@
 import SwiftUI
 
-/// Visual money tree that grows through level progression with Canvas-based drawing and particle effects
+/// Visual money tree that grows through level progression.
+/// Uses Canvas with GeometryReader for adaptive sizing, particle overlay,
+/// and accessibilityReduceMotion support.
 struct MoneyTreeView: View {
     let gameProfile: GameProfile
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var animateGrowth = false
-    @State private var particles: [Particle] = []
+    @State private var bgParticles: [Particle] = []
 
     var treeStage: Int {
-        let level = gameProfile.currentLevel
-        if level <= 5 { return 1 }      // Seedling
-        if level <= 10 { return 2 }     // Sprout
-        if level <= 15 { return 3 }     // Young Tree
-        if level <= 20 { return 4 }     // Tall Tree
-        return 5                          // Full Palm
+        switch gameProfile.currentLevel {
+        case ...5:  return 1   // Seedling
+        case ...10: return 2   // Sprout
+        case ...15: return 3   // Young Tree
+        case ...20: return 4   // Tall Tree
+        default:    return 5   // Full Palm
+        }
+    }
+
+    var stageEmoji: String {
+        switch treeStage {
+        case 1: return "🌱"
+        case 2: return "🌿"
+        case 3: return "🌳"
+        case 4: return "🌲"
+        default: return "🌴"
+        }
     }
 
     var stageTitle: String {
         switch treeStage {
-        case 1: return "🌱 Seedling"
-        case 2: return "🌿 Sprout"
-        case 3: return "🌳 Young Tree"
-        case 4: return "🌲 Tall Tree"
-        case 5: return "🌴 Full Palm"
-        default: return "🌳 Tree"
+        case 1: return "Seedling"
+        case 2: return "Sprout"
+        case 3: return "Young Tree"
+        case 4: return "Tall Tree"
+        default: return "Full Palm"
         }
     }
 
     var body: some View {
         VStack(spacing: 16) {
-            // Title
+            // Header
             VStack(spacing: 4) {
                 Text("Your Wealth Tree")
                     .font(AppTheme.titleFont)
                     .foregroundColor(AppTheme.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
                 Text("Growing with your financial wisdom")
                     .font(AppTheme.bodyFont)
                     .foregroundColor(AppTheme.textSecondary)
             }
 
-            // Tree Canvas
-            Canvas { context, size in
-                drawTree(on: &context, at: CGPoint(x: 150, y: 100), stage: treeStage)
+            // Tree canvas — uses GeometryReader so coordinates scale to container
+            GeometryReader { geo in
+                ZStack {
+                    // Base canvas
+                    Canvas { context, size in
+                        let anchor = CGPoint(x: size.width / 2, y: size.height * 0.90)
+                        drawTree(on: &context, at: anchor, stage: treeStage, canvasSize: size)
+                    }
+                    .animation(reduceMotion ? nil : .easeOut(duration: 0.8), value: treeStage)
+
+                    // Floating coin particles (hidden when reduceMotion)
+                    if !reduceMotion {
+                        ForEach(bgParticles, id: \.id) { particle in
+                            ParticleView(particle: particle)
+                        }
+                    }
+                }
+                .frame(width: geo.size.width, height: geo.size.height)
             }
             .frame(height: 200)
             .background(
@@ -52,31 +81,23 @@ struct MoneyTreeView: View {
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 1)
             )
+            .accessibilityLabel("Wealth tree at stage \(treeStage): \(stageEmoji) \(stageTitle)")
+            .accessibilityValue("Level \(gameProfile.currentLevel)")
 
-            // Particle Effects Overlay
-            ZStack {
-                ForEach(particles, id: \.id) { particle in
-                    ParticleView(particle: particle)
-                }
-            }
-            .frame(height: 200)
-            .offset(y: -200)
-
-            // Stage Info
+            // Stage info
             VStack(spacing: 8) {
                 HStack {
                     Text("Current Stage")
                         .font(AppTheme.bodyFont)
                         .foregroundColor(AppTheme.textSecondary)
                     Spacer()
-                    Text(stageTitle)
+                    Text("\(stageEmoji) \(stageTitle)")
                         .font(AppTheme.headlineFont)
                         .foregroundColor(AppTheme.accentGold)
                 }
 
-                // Progress to next stage
                 if treeStage < 5 {
-                    let nextStageLevel = treeStage * 5
+                    let nextStageLevel = treeStage * 5 + 1
                     VStack(spacing: 6) {
                         HStack {
                             Text("Level \(nextStageLevel) for next stage")
@@ -84,29 +105,28 @@ struct MoneyTreeView: View {
                                 .foregroundColor(AppTheme.textTertiary)
                             Spacer()
                         }
-
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(AppTheme.cardBackgroundLight)
-
-                            let progress = Double(gameProfile.currentLevel) / Double(nextStageLevel)
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [AppTheme.primaryGreen, AppTheme.accentGold]),
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(width: 280 * min(1, progress), height: 8)
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(AppTheme.cardBackgroundLight)
+                                    .frame(height: 8)
+                                let progress = min(1.0, Double(gameProfile.currentLevel) / Double(nextStageLevel))
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(LinearGradient(
+                                        colors: [AppTheme.primaryGreen, AppTheme.accentGold],
+                                        startPoint: .leading, endPoint: .trailing
+                                    ))
+                                    .frame(width: geo.size.width * progress, height: 8)
+                                    .animation(reduceMotion ? nil : .spring(response: 0.6), value: gameProfile.currentLevel)
+                            }
                         }
                         .frame(height: 8)
                     }
                 } else {
                     HStack {
-                        Image(systemName: "star.fill")
+                        Image(systemName: "crown.fill")
                             .foregroundColor(AppTheme.accentGold)
-                        Text("You've reached the ultimate Wealth King status!")
+                        Text("Wealth King — Ultimate status achieved!")
                             .font(AppTheme.smallFont)
                             .foregroundColor(AppTheme.accentGold)
                     }
@@ -123,154 +143,106 @@ struct MoneyTreeView: View {
         )
         .onAppear {
             animateGrowth = true
-            generateParticles()
+            if !reduceMotion { generateParticles() }
         }
-        .onChange(of: treeStage) { _ in
-            generateParticles()
+        .onChange(of: treeStage) { _, _ in
+            if !reduceMotion { generateParticles() }
         }
     }
 
-    private func drawTree(on context: inout GraphicsContext, at position: CGPoint, stage: Int) {
+    // MARK: - Drawing
+
+    private func drawTree(on context: inout GraphicsContext, at anchor: CGPoint, stage: Int, canvasSize: CGSize) {
+        // Scale factor so tree fills the canvas proportionally
+        let scale = min(canvasSize.width, canvasSize.height) / 250.0
+
         switch stage {
-        case 1:
-            drawSeedling(on: &context, at: position)
-        case 2:
-            drawSprout(on: &context, at: position)
-        case 3:
-            drawYoungTree(on: &context, at: position)
-        case 4:
-            drawTallTree(on: &context, at: position)
-        case 5:
-            drawFullPalm(on: &context, at: position)
-        default:
-            drawSeedling(on: &context, at: position)
+        case 1: drawSeedling(on: &context, at: anchor, scale: scale)
+        case 2: drawSprout(on:   &context, at: anchor, scale: scale)
+        case 3: drawYoungTree(on: &context, at: anchor, scale: scale)
+        case 4: drawTallTree(on: &context, at: anchor, scale: scale)
+        default: drawFullPalm(on: &context, at: anchor, scale: scale)
         }
     }
 
-    private func drawSeedling(on context: inout GraphicsContext, at position: CGPoint) {
-        // Simple seedling: small green circle on stem
-        var path = Path()
-        path.move(to: position)
-        path.addLine(to: CGPoint(x: position.x, y: position.y - 20))
+    private func drawSeedling(on ctx: inout GraphicsContext, at p: CGPoint, scale: CGFloat) {
+        var stem = Path()
+        stem.move(to: p)
+        stem.addLine(to: CGPoint(x: p.x, y: p.y - 30 * scale))
+        ctx.stroke(stem, with: .color(AppTheme.primaryGreen), lineWidth: 2 * scale)
 
-        context.stroke(
-            path,
-            with: .color(AppTheme.primaryGreen),
-            lineWidth: 2
-        )
-
-        // Leaf circle
-        let leafPath = Circle()
-            .path(in: CGRect(x: position.x - 8, y: position.y - 35, width: 16, height: 16))
-        context.fill(leafPath, with: .color(AppTheme.primaryGreen))
+        let leaf = Circle().path(in: CGRect(x: p.x - 9 * scale, y: p.y - 48 * scale, width: 18 * scale, height: 18 * scale))
+        ctx.fill(leaf, with: .color(AppTheme.primaryGreen))
     }
 
-    private func drawSprout(on context: inout GraphicsContext, at position: CGPoint) {
-        // Trunk
-        var trunkPath = Path()
-        trunkPath.move(to: position)
-        trunkPath.addLine(to: CGPoint(x: position.x, y: position.y - 30))
+    private func drawSprout(on ctx: inout GraphicsContext, at p: CGPoint, scale: CGFloat) {
+        var trunk = Path()
+        trunk.move(to: p)
+        trunk.addLine(to: CGPoint(x: p.x, y: p.y - 40 * scale))
+        ctx.stroke(trunk, with: .color(Color(hex: "8B6914")), lineWidth: 3 * scale)
 
-        context.stroke(
-            trunkPath,
-            with: .color(Color(hex: "8B6914")),  // Brown
-            lineWidth: 3
-        )
-
-        // Small crown
-        let crownPath = Circle()
-            .path(in: CGRect(x: position.x - 15, y: position.y - 50, width: 30, height: 30))
-        context.fill(crownPath, with: .color(AppTheme.primaryGreen))
+        let crown = Circle().path(in: CGRect(x: p.x - 18 * scale, y: p.y - 65 * scale, width: 36 * scale, height: 36 * scale))
+        ctx.fill(crown, with: .color(AppTheme.primaryGreen))
     }
 
-    private func drawYoungTree(on context: inout GraphicsContext, at position: CGPoint) {
-        // Trunk
-        var trunkPath = Path()
-        trunkPath.move(to: position)
-        trunkPath.addLine(to: CGPoint(x: position.x, y: position.y - 40))
+    private func drawYoungTree(on ctx: inout GraphicsContext, at p: CGPoint, scale: CGFloat) {
+        var trunk = Path()
+        trunk.move(to: p)
+        trunk.addLine(to: CGPoint(x: p.x, y: p.y - 55 * scale))
+        ctx.stroke(trunk, with: .color(Color(hex: "704020")), lineWidth: 5 * scale)
 
-        context.stroke(
-            trunkPath,
-            with: .color(Color(hex: "704020")),  // Darker brown
-            lineWidth: 4
-        )
-
-        // Medium crown
-        let crownPath = Circle()
-            .path(in: CGRect(x: position.x - 25, y: position.y - 70, width: 50, height: 50))
-        context.fill(crownPath, with: .color(AppTheme.primaryGreen))
+        let crown = Circle().path(in: CGRect(x: p.x - 30 * scale, y: p.y - 95 * scale, width: 60 * scale, height: 60 * scale))
+        ctx.fill(crown, with: .color(AppTheme.primaryGreen))
+        let inner = Circle().path(in: CGRect(x: p.x - 20 * scale, y: p.y - 80 * scale, width: 40 * scale, height: 40 * scale))
+        ctx.fill(inner, with: .color(Color(hex: "00D65C")))
     }
 
-    private func drawTallTree(on context: inout GraphicsContext, at position: CGPoint) {
-        // Trunk with taper
-        var trunkPath = Path()
-        trunkPath.move(to: position)
-        trunkPath.addLine(to: CGPoint(x: position.x, y: position.y - 50))
+    private func drawTallTree(on ctx: inout GraphicsContext, at p: CGPoint, scale: CGFloat) {
+        var trunk = Path()
+        trunk.move(to: p)
+        trunk.addLine(to: CGPoint(x: p.x, y: p.y - 70 * scale))
+        ctx.stroke(trunk, with: .color(Color(hex: "5C3D2E")), lineWidth: 6 * scale)
 
-        context.stroke(
-            trunkPath,
-            with: .color(Color(hex: "5C3D2E")),  // Very dark brown
-            lineWidth: 5
-        )
-
-        // Larger crown
-        let crownPath = Circle()
-            .path(in: CGRect(x: position.x - 35, y: position.y - 95, width: 70, height: 70))
-        context.fill(crownPath, with: .color(AppTheme.primaryGreen))
-
-        // Add some depth with second layer
-        let innerCrown = Circle()
-            .path(in: CGRect(x: position.x - 25, y: position.y - 80, width: 50, height: 50))
-        context.fill(innerCrown, with: .color(Color(hex: "00D65C")))  // Lighter green
+        let crown = Circle().path(in: CGRect(x: p.x - 42 * scale, y: p.y - 120 * scale, width: 84 * scale, height: 84 * scale))
+        ctx.fill(crown, with: .color(AppTheme.primaryGreen))
+        let inner = Circle().path(in: CGRect(x: p.x - 28 * scale, y: p.y - 100 * scale, width: 56 * scale, height: 56 * scale))
+        ctx.fill(inner, with: .color(Color(hex: "00D65C")))
     }
 
-    private func drawFullPalm(on context: inout GraphicsContext, at position: CGPoint) {
-        // Large trunk
-        var trunkPath = Path()
-        trunkPath.move(to: position)
-        trunkPath.addLine(to: CGPoint(x: position.x, y: position.y - 60))
+    private func drawFullPalm(on ctx: inout GraphicsContext, at p: CGPoint, scale: CGFloat) {
+        var trunk = Path()
+        trunk.move(to: p)
+        trunk.addLine(to: CGPoint(x: p.x, y: p.y - 80 * scale))
+        ctx.stroke(trunk, with: .color(Color(hex: "4A2E22")), lineWidth: 7 * scale)
 
-        context.stroke(
-            trunkPath,
-            with: .color(Color(hex: "4A2E22")),  // Very dark brown
-            lineWidth: 6
-        )
+        let crown = Circle().path(in: CGRect(x: p.x - 52 * scale, y: p.y - 145 * scale, width: 104 * scale, height: 104 * scale))
+        ctx.fill(crown, with: .color(AppTheme.primaryGreen))
+        let inner = Circle().path(in: CGRect(x: p.x - 34 * scale, y: p.y - 120 * scale, width: 68 * scale, height: 68 * scale))
+        ctx.fill(inner, with: .color(Color(hex: "00E676")))
 
-        // Large crown
-        let crownPath = Circle()
-            .path(in: CGRect(x: position.x - 45, y: position.y - 110, width: 90, height: 90))
-        context.fill(crownPath, with: .color(AppTheme.primaryGreen))
-
-        // Inner lighter green for depth
-        let innerCrown = Circle()
-            .path(in: CGRect(x: position.x - 30, y: position.y - 90, width: 60, height: 60))
-        context.fill(innerCrown, with: .color(Color(hex: "00E676")))  // Bright green
-
-        // Gold accents (fruits)
+        // Gold fruits arranged in a ring
         for angle in stride(from: 0, to: CGFloat.pi * 2, by: CGFloat.pi / 6) {
-            let x = position.x - 40 * cos(angle)
-            let y = position.y - 70 - 40 * sin(angle)
-            let fruitPath = Circle()
-                .path(in: CGRect(x: x - 4, y: y - 4, width: 8, height: 8))
-            context.fill(fruitPath, with: .color(AppTheme.accentGold))
+            let radius = 48 * scale
+            let fx = p.x + radius * cos(angle)
+            let fy = p.y - 90 * scale + radius * sin(angle)
+            let fruit = Circle().path(in: CGRect(x: fx - 5 * scale, y: fy - 5 * scale, width: 10 * scale, height: 10 * scale))
+            ctx.fill(fruit, with: .color(AppTheme.accentGold))
         }
     }
+
+    // MARK: - Particles
 
     private func generateParticles() {
-        // Generate floating coin particles
-        particles.removeAll()
-        for _ in 0..<5 {
-            let startX = CGFloat.random(in: 50...250)
-            let startY = CGFloat.random(in: 100...200)
-            let duration = Double.random(in: 2...4)
-            let delay = Double.random(in: 0...0.5)
-
-            particles.append(Particle(
+        bgParticles = (0..<6).map { _ in
+            Particle(
                 id: UUID(),
-                startPosition: CGPoint(x: startX, y: startY),
-                duration: duration,
-                delay: delay
-            ))
+                startPosition: CGPoint(
+                    x: CGFloat.random(in: 30...270),
+                    y: CGFloat.random(in: 120...190)
+                ),
+                duration: Double.random(in: 2...4),
+                delay: Double.random(in: 0...1)
+            )
         }
     }
 }
@@ -284,27 +256,29 @@ struct Particle: Identifiable {
     let delay: Double
 
     var endPosition: CGPoint {
-        CGPoint(x: startPosition.x + CGFloat.random(in: -30...30), y: startPosition.y - 100)
+        CGPoint(
+            x: startPosition.x + CGFloat.random(in: -25...25),
+            y: startPosition.y - CGFloat.random(in: 60...120)
+        )
     }
 }
 
 struct ParticleView: View {
     let particle: Particle
-
     @State private var position: CGPoint = .zero
-    @State private var opacity: Double = 1.0
+    @State private var opacity: Double = 0
 
     var body: some View {
-        Image(systemName: "coin.fill")
-            .font(.system(size: 12))
-            .foregroundColor(AppTheme.accentGold)
+        Text("🪙")
+            .font(.system(size: 11))
             .position(position)
             .opacity(opacity)
             .onAppear {
                 position = particle.startPosition
-                withAnimation(.easeInOut(duration: particle.duration).delay(particle.delay)) {
+                opacity = 0.8
+                withAnimation(.easeOut(duration: particle.duration).delay(particle.delay)) {
                     position = particle.endPosition
-                    opacity = 0.0
+                    opacity = 0
                 }
             }
     }
@@ -313,7 +287,6 @@ struct ParticleView: View {
 #Preview {
     let profile = GameProfile()
     profile.currentLevel = 15
-
     return MoneyTreeView(gameProfile: profile)
         .background(AppTheme.background)
 }

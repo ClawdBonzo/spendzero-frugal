@@ -56,6 +56,8 @@
 		F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */; };
 		FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */; };
 		FD5B6B3DEDC7A50C239359BF /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */; };
+		AA100001SHARED000000000001 /* ParticleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002SHARED000000000002 /* ParticleBackgroundView.swift */; };
+		AA100003SHARED000000000003 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004SHARED000000000004 /* ShareCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +110,9 @@
 		FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeShowcaseView.swift; sourceTree = "<group>"; };
 		FDAC3FE434646F21D046F689 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
 		AA000001ASSETS000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA100002SHARED000000000002 /* ParticleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleBackgroundView.swift; sourceTree = "<group>"; };
+		AA100004SHARED000000000004 /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
+		AA100005SHARED000000000005 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +189,15 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		AA100006SHARED000000000006 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA100002SHARED000000000002 /* ParticleBackgroundView.swift */,
+				AA100004SHARED000000000004 /* ShareCardView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		2EB4BDDA75AA190910B42C29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +210,7 @@
 				B029888A2E24FA90ED6BFAF8 /* Main */,
 				248D4C3E4B1D7EE206C79089 /* Onboarding */,
 				237ACA0AF3BAB16CB86D78ED /* Settings */,
+				AA100006SHARED000000000006 /* Shared */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,6 +459,8 @@
 				D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */,
 				DFF7184CB537987BBDCC172D /* SubscriptionService.swift in Sources */,
 				DF439DCD13736B03246B0B9A /* UserProfile.swift in Sources */,
+				AA100001SHARED000000000001 /* ParticleBackgroundView.swift in Sources */,
+				AA100003SHARED000000000003 /* ShareCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

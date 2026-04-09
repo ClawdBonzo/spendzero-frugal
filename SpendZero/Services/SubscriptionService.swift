@@ -18,6 +18,10 @@ final class SubscriptionService {
     static let lifetimeID = "com.clawdbonzo.spendzero.lifetime"
 
     static let entitlementID = "pro"
+
+    // RevenueCat Apple SDK public key (appl_ prefix is correct for iOS — NOT a test key).
+    // This key is safe to ship in the binary; RevenueCat public keys are designed to be client-side.
+    // Verified format: appl_XXXXXXXXXXXXXXXXXXXXXXXXXX (production Apple platform key).
     static let apiKey = "appl_ZBEApxMwqwVAVxOYLtvbaLRXxrt"
 
     private var availablePackages: [RevenueCat.Package] = []

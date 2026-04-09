@@ -7,203 +7,246 @@ struct LevelUpCelebrationView: View {
     let previousLevel: Int
     let onDismiss: () -> Void
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var cardScale: CGFloat = 0.8
+    @State private var cardOpacity: Double = 0
+    @State private var starPulse = false
     @State private var showConfetti = false
-    @State private var scale: CGFloat = 0.8
-    @State private var opacity: Double = 0
 
     var body: some View {
         ZStack {
             // Dimmed background
-            Color.black.opacity(0.4)
+            Color.black.opacity(0.55)
                 .ignoresSafeArea()
+                .onTapGesture { onDismiss() }
 
-            VStack(spacing: 24) {
-                // Confetti effect
-                if showConfetti {
-                    ConfettiView()
-                        .frame(height: 300)
-                }
+            // Confetti layer (behind card)
+            if showConfetti && !reduceMotion {
+                ConfettiView()
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+            }
 
+            VStack(spacing: 0) {
                 Spacer()
 
                 // Level-up card
-                VStack(spacing: 16) {
-                    // Star animation
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 60, weight: .semibold))
-                        .foregroundColor(AppTheme.accentGold)
-                        .scaleEffect(scale)
+                VStack(spacing: 20) {
+                    // Animated star / crown
+                    ZStack {
+                        Circle()
+                            .fill(AppTheme.accentGold.opacity(0.15))
+                            .frame(width: 100, height: 100)
+                            .scaleEffect(starPulse ? 1.15 : 0.9)
 
-                    // Level text
-                    VStack(spacing: 8) {
-                        Text("LEVEL UP!")
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(AppTheme.accentGold)
+                        Image(systemName: "crown.fill")
+                            .font(.system(size: 52))
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [AppTheme.accentGold, Color(hex: "FF8C00")],
+                                    startPoint: .top, endPoint: .bottom
+                                )
+                            )
+                    }
+                    .animation(
+                        reduceMotion ? nil : .easeInOut(duration: 1.0).repeatForever(autoreverses: true),
+                        value: starPulse
+                    )
 
-                        HStack(spacing: 12) {
-                            VStack(alignment: .trailing, spacing: 4) {
-                                Text("Level \(previousLevel)")
-                                    .font(AppTheme.bodyFont)
-                                    .foregroundColor(AppTheme.textSecondary)
-                                Text("Previous")
-                                    .font(AppTheme.captionFont)
-                                    .foregroundColor(AppTheme.textTertiary)
-                            }
+                    // LEVEL UP text
+                    Text("LEVEL UP!")
+                        .font(.system(size: 34, weight: .black, design: .rounded))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [AppTheme.accentGold, AppTheme.primaryGreen],
+                                startPoint: .leading, endPoint: .trailing
+                            )
+                        )
 
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(AppTheme.primaryGreen)
-
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Level \(newLevel)")
-                                    .font(AppTheme.bodyFont)
-                                    .foregroundColor(AppTheme.accentGold)
-                                Text("Now")
-                                    .font(AppTheme.captionFont)
-                                    .foregroundColor(AppTheme.textTertiary)
-                            }
+                    // Before → After
+                    HStack(spacing: 16) {
+                        VStack(spacing: 4) {
+                            Text("Level \(previousLevel)")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(AppTheme.textSecondary)
+                            Text("Before")
+                                .font(AppTheme.smallFont)
+                                .foregroundColor(AppTheme.textTertiary)
                         }
 
-                        Text(rank.title)
-                            .font(.system(size: 24, weight: .semibold))
+                        Image(systemName: "arrow.right.circle.fill")
+                            .font(.system(size: 28))
                             .foregroundColor(AppTheme.primaryGreen)
-                            .padding(.top, 8)
+
+                        VStack(spacing: 4) {
+                            Text("Level \(newLevel)")
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(AppTheme.accentGold)
+                            Text("Now")
+                                .font(AppTheme.smallFont)
+                                .foregroundColor(AppTheme.textTertiary)
+                        }
                     }
+                    .padding(.vertical, 4)
+
+                    // Rank title
+                    Text(rank.title)
+                        .font(.system(size: 22, weight: .semibold, design: .rounded))
+                        .foregroundColor(AppTheme.primaryGreen)
 
                     // Unlocked features
                     if !rank.unlockedFeatures.isEmpty {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("New Features Unlocked")
-                                .font(AppTheme.smallFont)
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("New Unlocks")
+                                .font(AppTheme.captionFont)
                                 .foregroundColor(AppTheme.textTertiary)
-                                .padding(.horizontal)
 
-                            VStack(spacing: 6) {
-                                ForEach(rank.unlockedFeatures.prefix(3), id: \.self) { feature in
-                                    HStack(spacing: 8) {
-                                        Image(systemName: "sparkles")
-                                            .foregroundColor(AppTheme.primaryGreen)
-                                        Text(feature)
-                                            .font(AppTheme.smallFont)
-                                            .foregroundColor(AppTheme.textPrimary)
-                                        Spacer()
-                                    }
-                                    .padding(.horizontal)
+                            ForEach(rank.unlockedFeatures.prefix(3), id: \.self) { feature in
+                                HStack(spacing: 8) {
+                                    Image(systemName: "sparkles")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(AppTheme.primaryGreen)
+                                    Text(feature)
+                                        .font(AppTheme.captionFont)
+                                        .foregroundColor(AppTheme.textPrimary)
+                                    Spacer()
                                 }
                             }
                         }
+                        .padding(.top, 4)
                     }
                 }
-                .padding(24)
+                .padding(28)
                 .background(
-                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
+                    RoundedRectangle(cornerRadius: 24)
                         .fill(AppTheme.cardBackground)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [
-                                    AppTheme.primaryGreen.opacity(0.5),
-                                    AppTheme.accentGold.opacity(0.5),
-                                ]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 2
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [AppTheme.primaryGreen.opacity(0.5), AppTheme.accentGold.opacity(0.5)],
+                                        startPoint: .topLeading, endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 2
+                                )
                         )
                 )
-                .scaleEffect(scale)
-                .opacity(opacity)
+                .shadow(color: AppTheme.primaryGreen.opacity(0.2), radius: 20, y: 8)
+                .padding(.horizontal, 24)
+                .scaleEffect(cardScale)
+                .opacity(cardOpacity)
 
                 Spacer()
 
                 // Dismiss button
                 Button(action: onDismiss) {
-                    Text("Awesome!")
-                        .font(AppTheme.headlineFont)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(AppTheme.paddingMedium)
-                        .background(AppTheme.primaryGreen)
-                        .cornerRadius(AppTheme.cornerRadiusMedium)
+                    HStack(spacing: 8) {
+                        Image(systemName: "checkmark")
+                        Text("Awesome!")
+                    }
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(AppTheme.primaryGreen)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
-                .padding(.horizontal, AppTheme.paddingLarge)
-                .padding(.bottom, AppTheme.paddingLarge)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
             }
         }
         .onAppear {
             HapticManager.shared.trigger(.levelUp)
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
-                scale = 1.0
-                opacity = 1.0
-                showConfetti = true
+            withAnimation(reduceMotion ? nil : .spring(response: 0.55, dampingFraction: 0.72)) {
+                cardScale = 1.0
+                cardOpacity = 1.0
             }
-        }
-    }
-}
-
-// MARK: - Confetti Particle
-
-struct ConfettiView: View {
-    @State private var particles: [ConfettiParticle] = []
-
-    var body: some View {
-        ZStack {
-            ForEach(particles, id: \.id) { particle in
-                Image(systemName: particle.icon)
-                    .font(.system(size: particle.size, weight: .semibold))
-                    .foregroundColor(particle.color)
-                    .offset(x: particle.offsetX, y: particle.offsetY)
-                    .opacity(particle.opacity)
-            }
-        }
-        .onAppear {
-            generateConfetti()
-        }
-    }
-
-    private func generateConfetti() {
-        for _ in 0..<20 {
-            let particle = ConfettiParticle(
-                x: CGFloat.random(in: -100...100),
-                y: CGFloat.random(in: -50...300)
-            )
-            particles.append(particle)
-
-            withAnimation(.easeInOut(duration: 2.0).delay(Double.random(in: 0...0.3))) {
-                var p = particle
-                p.offsetY = 400
-                p.opacity = 0
-                if let index = particles.firstIndex(where: { $0.id == p.id }) {
-                    particles[index] = p
+            if !reduceMotion {
+                withAnimation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true)) {
+                    starPulse = true
+                }
+                // Slight delay so card appears first
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    showConfetti = true
                 }
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Level up! You reached Level \(newLevel): \(rank.title)")
     }
 }
+
+// MARK: - ConfettiView (fixed)
+// Previously broken: used value-type struct mutation inside withAnimation block.
+// Now: computes start/end positions up front; single `animated` bool drives all transitions.
+
+struct ConfettiView: View {
+    @State private var particles: [ConfettiParticle] = []
+    @State private var animated = false
+
+    var body: some View {
+        ZStack {
+            ForEach(particles) { p in
+                Image(systemName: p.icon)
+                    .font(.system(size: p.size, weight: .semibold))
+                    .foregroundColor(p.color)
+                    .offset(
+                        x: p.startX + (animated ? p.driftX : 0),
+                        y: animated ? p.endY : p.startY
+                    )
+                    .opacity(animated ? 0 : p.opacity)
+                    .rotationEffect(.degrees(animated ? p.finalRotation : 0))
+                    .animation(
+                        .easeOut(duration: p.duration).delay(p.delay),
+                        value: animated
+                    )
+            }
+        }
+        .onAppear {
+            particles = (0..<28).map { _ in ConfettiParticle() }
+            // Tiny delay lets the view appear before animation fires
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                animated = true
+            }
+        }
+    }
+}
+
+// MARK: - ConfettiParticle
 
 struct ConfettiParticle: Identifiable {
     let id = UUID()
     let icon: String
     let color: Color
     let size: Double
-    var offsetX: CGFloat
-    var offsetY: CGFloat
-    var opacity: Double = 1.0
+    // Start
+    let startX: CGFloat
+    let startY: CGFloat
+    // End deltas (applied when animated == true)
+    let driftX: CGFloat
+    let endY: CGFloat
+    // Rotation
+    let finalRotation: Double
+    // Animation timing
+    let duration: Double
+    let delay: Double
+    let opacity: Double
 
-    init(x: CGFloat, y: CGFloat) {
-        self.offsetX = x
-        self.offsetY = y
-        let icons = ["star.fill", "sparkles", "diamond.fill", "heart.fill"]
-        self.icon = icons.randomElement() ?? "star.fill"
-        let colors: [Color] = [
-            AppTheme.accentGold,
-            AppTheme.primaryGreen,
-            Color(hex: "FF6B9D"),
-        ]
-        self.color = colors.randomElement() ?? AppTheme.accentGold
-        self.size = Double.random(in: 12...24)
+    private static let icons  = ["star.fill", "sparkles", "dollarsign.circle.fill", "heart.fill", "crown.fill", "diamond.fill"]
+    private static let colors: [Color] = [AppTheme.accentGold, AppTheme.primaryGreen, Color(hex: "FF6B9D"), Color(hex: "60CFFF"), .white]
+
+    init() {
+        startX = CGFloat.random(in: -180...180)
+        startY = CGFloat.random(in: -100...100)
+        driftX = CGFloat.random(in: -60...60)
+        endY   = startY + CGFloat.random(in: 350...600)
+        finalRotation = Double.random(in: -360...360)
+        icon     = Self.icons.randomElement()!
+        color    = Self.colors.randomElement()!
+        size     = Double.random(in: 14...28)
+        duration = Double.random(in: 1.8...2.8)
+        delay    = Double.random(in: 0...0.6)
+        opacity  = Double.random(in: 0.6...1.0)
     }
 }
 

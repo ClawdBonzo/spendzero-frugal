@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
+@MainActor  // Explicit @MainActor — satisfies Swift 6 strict concurrency for SubscriptionService calls
 struct SpendZeroApp: App {
     let modelContainer: ModelContainer
 
@@ -18,19 +19,13 @@ struct SpendZeroApp: App {
                 Quest.self,
                 BadgeInstance.self
             ])
-            let config = ModelConfiguration(
-                schema: schema,
-                isStoredInMemoryOnly: false
-            )
-            modelContainer = try ModelContainer(
-                for: schema,
-                configurations: [config]
-            )
+            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            modelContainer = try ModelContainer(for: schema, configurations: [config])
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }
 
-        // Configure RevenueCat
+        // Configure RevenueCat on the main actor (SubscriptionService is @MainActor)
         SubscriptionService.shared.configure()
     }
 

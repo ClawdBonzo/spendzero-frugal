@@ -45,6 +45,10 @@ struct DashboardView: View {
 
     var body: some View {
         ZStack {
+            // Ambient money particle background (throttled, respects reduceMotion)
+            ParticleBackgroundView(count: 8)
+                .ignoresSafeArea()
+
             NavigationStack {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
@@ -194,6 +198,7 @@ struct DashboardView: View {
                         Text("\(currentStreak)")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundColor(AppTheme.primaryGreen)
+                            .accessibilityLabel("\(currentStreak) day streak")
 
                         Text("days")
                             .font(AppTheme.headlineFont)
@@ -203,8 +208,19 @@ struct DashboardView: View {
 
                 Spacer()
 
-                StreakFlamesView(currentStreak: currentStreak)
-                    .font(.system(size: 24))
+                VStack(alignment: .trailing, spacing: 8) {
+                    StreakFlamesView(currentStreak: currentStreak)
+                        .font(.system(size: 24))
+
+                    // One-tap viral share button
+                    if currentStreak > 0 {
+                        ShareStreakButton(
+                            streak: currentStreak,
+                            name: profile?.displayName ?? "",
+                            totalSaved: totalSaved
+                        )
+                    }
+                }
             }
 
             // Progress bar to goal
