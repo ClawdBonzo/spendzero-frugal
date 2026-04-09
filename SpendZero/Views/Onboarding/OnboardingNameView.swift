@@ -7,44 +7,66 @@ struct OnboardingNameView: View {
     @State private var showContent = false
 
     var body: some View {
-        VStack(spacing: 32) {
-            Spacer()
+        VStack(spacing: 0) {
+            Spacer().frame(height: 24)
 
-            VStack(spacing: 16) {
-                Image("BrandIcon")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
-                    .clipShape(RoundedRectangle(cornerRadius: 18))
-                    .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 12, y: 4)
+            // Hero section
+            VStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [AppTheme.primaryGreen.opacity(0.25), AppTheme.primaryGreen.opacity(0.03)],
+                                center: .center,
+                                startRadius: 10,
+                                endRadius: 55
+                            )
+                        )
+                        .frame(width: 110, height: 110)
 
-                Text("What should we call your\nwealthy future self?")
-                    .font(AppTheme.titleFont)
-                    .foregroundColor(AppTheme.textPrimary)
-                    .multilineTextAlignment(.center)
+                    Image("BrandIcon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 64, height: 64)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 12, y: 4)
+                }
 
-                Text("This is the beginning of your\nfinancial transformation")
-                    .font(AppTheme.bodyFont)
-                    .foregroundColor(AppTheme.textSecondary)
-                    .multilineTextAlignment(.center)
+                VStack(spacing: 6) {
+                    Text("What should we call your wealthy future self?")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(AppTheme.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Text("This is the beginning of your financial transformation")
+                        .font(.system(size: 14))
+                        .foregroundColor(AppTheme.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
+            .padding(.horizontal, AppTheme.paddingLarge)
             .opacity(showContent ? 1 : 0)
             .offset(y: showContent ? 0 : 20)
 
-            VStack(spacing: 12) {
+            Spacer().frame(height: 24)
+
+            // Input field
+            VStack(spacing: 10) {
                 TextField("", text: $name, prompt: Text("Your name").foregroundColor(AppTheme.textTertiary))
-                    .font(.system(size: 22, weight: .semibold, design: .rounded))
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
-                    .padding()
+                    .padding(14)
                     .background(
-                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                        RoundedRectangle(cornerRadius: 14)
                             .fill(AppTheme.cardBackground)
                             .overlay(
-                                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                                RoundedRectangle(cornerRadius: 14)
                                     .stroke(
                                         isFocused ? AppTheme.primaryGreen : AppTheme.textTertiary.opacity(0.3),
-                                        lineWidth: 1.5
+                                        lineWidth: 2
                                     )
                             )
                     )
@@ -58,16 +80,21 @@ struct OnboardingNameView: View {
                     }
 
                 if !name.isEmpty {
-                    Text("Welcome, \(name)! Let's build wealth together.")
-                        .font(AppTheme.captionFont)
-                        .foregroundColor(AppTheme.primaryGreen)
-                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    HStack(spacing: 6) {
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 12, weight: .semibold))
+                        Text("Welcome, \(name)! Let's build wealth together.")
+                    }
+                    .font(.system(size: 13))
+                    .foregroundColor(AppTheme.primaryGreen)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
-            .padding(.horizontal, AppTheme.paddingMedium)
+            .padding(.horizontal, AppTheme.paddingLarge)
 
             Spacer()
 
+            // Button
             PrimaryButton(
                 title: "Continue",
                 icon: "arrow.right",
@@ -75,9 +102,9 @@ struct OnboardingNameView: View {
             ) {
                 onNext()
             }
-            .padding(.bottom, 40)
+            .padding(.horizontal, AppTheme.paddingLarge)
+            .padding(.bottom, 28)
         }
-        .padding(.horizontal, AppTheme.paddingLarge)
         .animation(.spring(response: 0.4), value: name)
         .onAppear {
             withAnimation(.easeOut(duration: 0.6).delay(0.2)) {

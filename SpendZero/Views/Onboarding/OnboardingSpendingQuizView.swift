@@ -6,28 +6,35 @@ struct OnboardingSpendingQuizView: View {
     @State private var showContent = false
 
     var body: some View {
-        VStack(spacing: 28) {
-            Spacer()
+        VStack(spacing: 12) {
+            Spacer().frame(height: 24)
 
-            VStack(spacing: 16) {
-                Image("Onboarding-2")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxHeight: 160)
+            // Hero illustration
+            Image("Onboarding-2")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .opacity(showContent ? 1 : 0)
 
-                Text("How would you describe\nyour spending habits?")
-                    .font(AppTheme.titleFont)
+            // Title + subtitle
+            VStack(spacing: 4) {
+                Text("Describe your spending habits")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                Text("Be honest — this helps us personalize\nyour saving strategy")
-                    .font(AppTheme.bodyFont)
+                Text("Be honest — we'll personalize your strategy")
+                    .font(.system(size: 13))
                     .foregroundColor(AppTheme.textSecondary)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .opacity(showContent ? 1 : 0)
+            .padding(.horizontal, AppTheme.paddingLarge)
 
-            VStack(spacing: 12) {
+            // Compact option cards
+            VStack(spacing: 6) {
                 ForEach(SpendingLevel.allCases, id: \.self) { option in
                     SpendingLevelCard(
                         level: option,
@@ -39,17 +46,18 @@ struct OnboardingSpendingQuizView: View {
                     }
                 }
             }
-            .padding(.horizontal, 4)
+            .padding(.horizontal, AppTheme.paddingLarge)
             .opacity(showContent ? 1 : 0)
 
             Spacer()
 
+            // Button
             PrimaryButton(title: "Continue", icon: "arrow.right") {
                 onNext()
             }
-            .padding(.bottom, 40)
+            .padding(.horizontal, AppTheme.paddingLarge)
+            .padding(.bottom, 28)
         }
-        .padding(.horizontal, AppTheme.paddingLarge)
         .onAppear {
             withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
                 showContent = true
@@ -65,17 +73,18 @@ struct SpendingLevelCard: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 14) {
+            HStack(spacing: 10) {
                 Text(level.emoji)
-                    .font(.system(size: 28))
+                    .font(.system(size: 22))
+                    .frame(width: 30)
 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: 1) {
                     Text(level.rawValue)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 
                     Text("~$\(Int(level.dailyEstimate))/day on non-essentials")
-                        .font(AppTheme.captionFont)
+                        .font(.system(size: 11))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
@@ -83,17 +92,18 @@ struct SpendingLevelCard: View {
 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 24))
+                        .font(.system(size: 18))
                         .foregroundColor(AppTheme.primaryGreen)
                         .transition(.scale.combined(with: .opacity))
                 }
             }
-            .padding()
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
             .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryGreen.opacity(0.1) : AppTheme.cardBackground)
                     .overlay(
-                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                        RoundedRectangle(cornerRadius: 12)
                             .stroke(
                                 isSelected ? AppTheme.primaryGreen : Color.clear,
                                 lineWidth: 1.5

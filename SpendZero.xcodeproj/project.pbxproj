@@ -6,113 +6,652 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AA000002ASSETS000000000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000001ASSETS000000000001 /* Assets.xcassets */; };
+		0D01AE72809063EA5272C116 /* BadgeInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C990AB56E38331022515E3 /* BadgeInstance.swift */; };
+		11CE4856305A0E5FA1B7220A /* AddSpendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12069D7494E2AF8DC41C0F40 /* AddSpendingView.swift */; };
+		1274D3DAC918D0C3917E1E96 /* SavingsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2D0208F363FCFED8A4471B /* SavingsEntry.swift */; };
+		16DAF1BC62C07E4A827BF4C7 /* OnboardingSpendingQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF669DD286F4C318B33535 /* OnboardingSpendingQuizView.swift */; };
+		1953107F01A6C61BB3A577EF /* GamificationHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95CE6500554DA4C850511C /* GamificationHubView.swift */; };
+		1F6F770C27730E946D12B37E /* DailyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */; };
+		21959A51F1D11F6AD056BA76 /* LevelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */; };
+		294DCFB45E3CB5FB59195916 /* ProgressChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798F74BFEB8A00319214C521 /* ProgressChartsView.swift */; };
+		2B0A87AC67540E4D2393C975 /* OnboardingNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FD9E74409E718431D508A3 /* OnboardingNameView.swift */; };
+		34602FA348BE65DD7501818F /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67E993660666584E727DE4 /* DateExtensions.swift */; };
+		370D33D14331238B809CA22F /* StreakCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E41E299C05946D4C82088 /* StreakCalendarView.swift */; };
+		3FFBDAD001E7002B7CF4DC44 /* MoneyTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC9075089162C7C07D8735B /* MoneyTreeView.swift */; };
+		42ACF10983953128B0C6B1DE /* SpendZeroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F178AAE90B4F1B6B52CB3A2F /* SpendZeroWidget.swift */; };
+		44F16C116EE8220580498033 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18E32B6B346135D3087DDB /* MainTabView.swift */; };
+		4964A955FF2565169213CC6B /* OnboardingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E93DF856241D8F9CF6EB89 /* OnboardingSplashView.swift */; };
+		4E0EC327D0FE0EF1D9076DCB /* LevelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE99FE1149A556888EA6268B /* LevelCard.swift */; };
+		4E7A6A6087F9318415AE88BE /* AddImpulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8465D4B7FB7559349E9886 /* AddImpulseView.swift */; };
+		4E95E905B632D9B08C07C252 /* LevelUpCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23381E0714D705C857E32E4 /* LevelUpCelebrationView.swift */; };
+		4EF1582002FA6C6550C46300 /* OnboardingLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55166217C7909D983BE0EA97 /* OnboardingLoadingView.swift */; };
+		5064DC91EA424CC9E83E6FD5 /* QuestPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2291B7A9F45A1A7CBB74E2 /* QuestPanelView.swift */; };
+		506BEE36A204D50682E980FB /* SpendZeroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FC1297582D632160FA571 /* SpendZeroApp.swift */; };
+		5202C01DA9FCF002D067EF48 /* SpendingLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9215D9713409887916805375 /* SpendingLog.swift */; };
+		53B356A7445094838A516607 /* NumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAC3FE434646F21D046F689 /* NumberExtensions.swift */; };
+		55D9763FA62A3F30E55AD71E /* OnboardingCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D722EA20D19B9654BD86584 /* OnboardingCategoriesView.swift */; };
+		63DD1458181C1680AA8F6B64 /* BadgeUnlockCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */; };
+		6E38CF48116FD8D9ECF71BD7 /* GameStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2310008B785608BC389AC2 /* GameStateManager.swift */; };
+		7F548042B804A6C3510A8435 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */; };
+		847178F6A99BA413D861E6F1 /* GameEventToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */; };
+		84E0AC583078E418D15A2F0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA51FA7E1487501B2D7CB6 /* RootView.swift */; };
+		84FDBE16FF96C50D1F948655 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AAFE24BD3596FB6EF7DFA32E /* RevenueCat */; };
+		957A840F6713C4916DD03F1C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641C60538E847D1BAE4A83D /* SettingsView.swift */; };
+		9834C9CF188A5391E22BEBCE /* BadgeShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */; };
+		A4DE1B6FBF88717310B382D0 /* OnboardingCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CCB4A2B8841ECECADBCFB9 /* OnboardingCommitView.swift */; };
+		BF33031858245BE999DB01E9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF0D248185EBCE6886CF08 /* Quest.swift */; };
+		C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57D6186D37BE5300B245DB /* GameProfile.swift */; };
+		C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */; };
+		D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */; };
+		D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03861222FFCF94496BF9A45D /* StreakFlamesView.swift */; };
+		D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */; };
+		DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EADC2A53B7B0387A0202F /* HapticManager.swift */; };
+		DF439DCD13736B03246B0B9A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D925E506CA9C841A256760 /* UserProfile.swift */; };
+		DFF7184CB537987BBDCC172D /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB104A19FD9EAE752C0CE92 /* SubscriptionService.swift */; };
+		E0B83266C4B0BD85C5623519 /* ChallengeLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EFB8F580D6E1B9FDD792F /* ChallengeLibraryView.swift */; };
+		E28508AF7ECC85430D5FC363 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16601C3F13735DD7156B956 /* ExportView.swift */; };
+		EFC9993A1CE4C503FB377AAE /* DailyLoggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5981CF6F97E316CBD3D744 /* DailyLoggerView.swift */; };
+		F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */; };
+		FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */; };
+		FD5B6B3DEDC7A50C239359BF /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		023EFB8F580D6E1B9FDD792F /* ChallengeLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLibraryView.swift; sourceTree = "<group>"; };
+		03861222FFCF94496BF9A45D /* StreakFlamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakFlamesView.swift; sourceTree = "<group>"; };
+		0B18E32B6B346135D3087DDB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		12069D7494E2AF8DC41C0F40 /* AddSpendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpendingView.swift; sourceTree = "<group>"; };
+		16E93DF856241D8F9CF6EB89 /* OnboardingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSplashView.swift; sourceTree = "<group>"; };
+		1A57D6186D37BE5300B245DB /* GameProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProfile.swift; sourceTree = "<group>"; };
+		1E95CE6500554DA4C850511C /* GamificationHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationHubView.swift; sourceTree = "<group>"; };
+		2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		2EBF0D248185EBCE6886CF08 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		3C6FC1297582D632160FA571 /* SpendZeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroApp.swift; sourceTree = "<group>"; };
+		4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecord.swift; sourceTree = "<group>"; };
+		4D722EA20D19B9654BD86584 /* OnboardingCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCategoriesView.swift; sourceTree = "<group>"; };
+		50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		54FD9E74409E718431D508A3 /* OnboardingNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameView.swift; sourceTree = "<group>"; };
+		55166217C7909D983BE0EA97 /* OnboardingLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoadingView.swift; sourceTree = "<group>"; };
+		5B8465D4B7FB7559349E9886 /* AddImpulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImpulseView.swift; sourceTree = "<group>"; };
+		798F74BFEB8A00319214C521 /* ProgressChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressChartsView.swift; sourceTree = "<group>"; };
+		7B2310008B785608BC389AC2 /* GameStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateManager.swift; sourceTree = "<group>"; };
+		7D5981CF6F97E316CBD3D744 /* DailyLoggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyLoggerView.swift; sourceTree = "<group>"; };
+		7EB104A19FD9EAE752C0CE92 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		8A2291B7A9F45A1A7CBB74E2 /* QuestPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestPanelView.swift; sourceTree = "<group>"; };
+		9215D9713409887916805375 /* SpendingLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingLog.swift; sourceTree = "<group>"; };
+		99CCB4A2B8841ECECADBCFB9 /* OnboardingCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCommitView.swift; sourceTree = "<group>"; };
+		9B67E993660666584E727DE4 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventToastView.swift; sourceTree = "<group>"; };
+		ADDF669DD286F4C318B33535 /* OnboardingSpendingQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSpendingQuizView.swift; sourceTree = "<group>"; };
+		B16601C3F13735DD7156B956 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		B641C60538E847D1BAE4A83D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B83E41E299C05946D4C82088 /* StreakCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCalendarView.swift; sourceTree = "<group>"; };
+		B9C990AB56E38331022515E3 /* BadgeInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeInstance.swift; sourceTree = "<group>"; };
+		BCC9075089162C7C07D8735B /* MoneyTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTreeView.swift; sourceTree = "<group>"; };
+		C23381E0714D705C857E32E4 /* LevelUpCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpCelebrationView.swift; sourceTree = "<group>"; };
+		C8FA51FA7E1487501B2D7CB6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseLog.swift; sourceTree = "<group>"; };
+		DB2C9053F8B0F85922A99FA2 /* SpendZero.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SpendZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3EADC2A53B7B0387A0202F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressView.swift; sourceTree = "<group>"; };
+		E6D925E506CA9C841A256760 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		EE2D0208F363FCFED8A4471B /* SavingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsEntry.swift; sourceTree = "<group>"; };
+		EE99FE1149A556888EA6268B /* LevelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCard.swift; sourceTree = "<group>"; };
+		EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeUnlockCelebrationView.swift; sourceTree = "<group>"; };
+		EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeEntry.swift; sourceTree = "<group>"; };
+		F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		F178AAE90B4F1B6B52CB3A2F /* SpendZeroWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroWidget.swift; sourceTree = "<group>"; };
+		F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
+		FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeShowcaseView.swift; sourceTree = "<group>"; };
+		FDAC3FE434646F21D046F689 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
+		AA000001ASSETS000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6920215B3E2B4CF87A9E3D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84FDBE16FF96C50D1F948655 /* RevenueCat in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA000003RESOURCES00000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000002ASSETS000000000002 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXGroup section */
-		A10000000000000000000001 /* SpendZero */ = {
+		1F1C4E55D1604E6DB2115440 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		237ACA0AF3BAB16CB86D78ED /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B16601C3F13735DD7156B956 /* ExportView.swift */,
+				B641C60538E847D1BAE4A83D /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		248D4C3E4B1D7EE206C79089 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4D722EA20D19B9654BD86584 /* OnboardingCategoriesView.swift */,
+				99CCB4A2B8841ECECADBCFB9 /* OnboardingCommitView.swift */,
+				F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */,
+				55166217C7909D983BE0EA97 /* OnboardingLoadingView.swift */,
+				54FD9E74409E718431D508A3 /* OnboardingNameView.swift */,
+				ADDF669DD286F4C318B33535 /* OnboardingSpendingQuizView.swift */,
+				16E93DF856241D8F9CF6EB89 /* OnboardingSplashView.swift */,
+				894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */,
+				50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		24EE12A67ECE3118953B8438 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7B2310008B785608BC389AC2 /* GameStateManager.swift */,
+				DF3EADC2A53B7B0387A0202F /* HapticManager.swift */,
+				7EB104A19FD9EAE752C0CE92 /* SubscriptionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		24FD9523D85229A43689C84D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				B83E41E299C05946D4C82088 /* StreakCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		2EB4BDDA75AA190910B42C29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24FD9523D85229A43689C84D /* Calendar */,
+				7EE199F20F10210F172F6121 /* Challenges */,
+				421E76770CD796A62EE407F3 /* Charts */,
+				340D73F2E46E7452E9EC48CF /* Dashboard */,
+				91DB0E82F03C75A97468A527 /* Gamification */,
+				9DB899D26ED07ADE5885BEB1 /* Logger */,
+				B029888A2E24FA90ED6BFAF8 /* Main */,
+				248D4C3E4B1D7EE206C79089 /* Onboarding */,
+				237ACA0AF3BAB16CB86D78ED /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		31B9FA0D8733051A54EE652A = {
+			isa = PBXGroup;
+			children = (
+				57496E2C40DB612A0BE24BF6 /* SpendZero */,
+				78A865A74E62A32347122786 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		340D73F2E46E7452E9EC48CF /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		421E76770CD796A62EE407F3 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				798F74BFEB8A00319214C521 /* ProgressChartsView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		57496E2C40DB612A0BE24BF6 /* SpendZero */ = {
+			isa = PBXGroup;
+			children = (
+				7C848FF43322D066E2A3A47E /* App */,
+				AA000001ASSETS000000000001 /* Assets.xcassets */,
+				E188AF2872F456C15A15EC00 /* Extensions */,
+				91D9041ED5EAA7E3B4702C87 /* Models */,
+				24EE12A67ECE3118953B8438 /* Services */,
+				1F1C4E55D1604E6DB2115440 /* Theme */,
+				2EB4BDDA75AA190910B42C29 /* Views */,
+				71A662DD33EEF916FD92E413 /* Widgets */,
 			);
 			path = SpendZero;
 			sourceTree = "<group>";
 		};
-		A10000000000000000000000 /* Root */ = {
+		71A662DD33EEF916FD92E413 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				A10000000000000000000001 /* SpendZero */,
+				F178AAE90B4F1B6B52CB3A2F /* SpendZeroWidget.swift */,
 			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		78A865A74E62A32347122786 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB2C9053F8B0F85922A99FA2 /* SpendZero.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C848FF43322D066E2A3A47E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C8FA51FA7E1487501B2D7CB6 /* RootView.swift */,
+				3C6FC1297582D632160FA571 /* SpendZeroApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7EE199F20F10210F172F6121 /* Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				023EFB8F580D6E1B9FDD792F /* ChallengeLibraryView.swift */,
+			);
+			path = Challenges;
+			sourceTree = "<group>";
+		};
+		91D9041ED5EAA7E3B4702C87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9C990AB56E38331022515E3 /* BadgeInstance.swift */,
+				EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */,
+				4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */,
+				1A57D6186D37BE5300B245DB /* GameProfile.swift */,
+				CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */,
+				2EBF0D248185EBCE6886CF08 /* Quest.swift */,
+				EE2D0208F363FCFED8A4471B /* SavingsEntry.swift */,
+				9215D9713409887916805375 /* SpendingLog.swift */,
+				E6D925E506CA9C841A256760 /* UserProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		91DB0E82F03C75A97468A527 /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */,
+				EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */,
+				AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */,
+				1E95CE6500554DA4C850511C /* GamificationHubView.swift */,
+				EE99FE1149A556888EA6268B /* LevelCard.swift */,
+				E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */,
+				C23381E0714D705C857E32E4 /* LevelUpCelebrationView.swift */,
+				BCC9075089162C7C07D8735B /* MoneyTreeView.swift */,
+				8A2291B7A9F45A1A7CBB74E2 /* QuestPanelView.swift */,
+				03861222FFCF94496BF9A45D /* StreakFlamesView.swift */,
+			);
+			path = Gamification;
+			sourceTree = "<group>";
+		};
+		9DB899D26ED07ADE5885BEB1 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				5B8465D4B7FB7559349E9886 /* AddImpulseView.swift */,
+				12069D7494E2AF8DC41C0F40 /* AddSpendingView.swift */,
+				7D5981CF6F97E316CBD3D744 /* DailyLoggerView.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		B029888A2E24FA90ED6BFAF8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0B18E32B6B346135D3087DDB /* MainTabView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E188AF2872F456C15A15EC00 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9B67E993660666584E727DE4 /* DateExtensions.swift */,
+				FDAC3FE434646F21D046F689 /* NumberExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXNativeTarget section */
+		7FCA5BAFD1C1A917F5E39FB7 /* SpendZero */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8894D96D57ED48315EFC107E /* Build configuration list for PBXNativeTarget "SpendZero" */;
+			buildPhases = (
+				B95785B45F6E949A758CE94A /* Sources */,
+				C6920215B3E2B4CF87A9E3D5 /* Frameworks */,
+				AA000003RESOURCES00000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpendZero;
+			packageProductDependencies = (
+				AAFE24BD3596FB6EF7DFA32E /* RevenueCat */,
+			);
+			productName = SpendZero;
+			productReference = DB2C9053F8B0F85922A99FA2 /* SpendZero.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
-		A10000000000000000000099 /* Project object */ = {
+		EF1AD09ED500E3D76C8F6419 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7FCA5BAFD1C1A917F5E39FB7 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
-			buildConfigurationList = A10000000000000000000098 /* Build configuration list for PBXProject "SpendZero" */;
-			compatibilityVersion = "Xcode 15.0";
+			buildConfigurationList = 69CCDD659B58873204DD8487 /* Build configuration list for PBXProject "SpendZero" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = A10000000000000000000000 /* Root */;
-			productRefGroup = A10000000000000000000001 /* SpendZero */;
+			mainGroup = 31B9FA0D8733051A54EE652A;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2A663F922885890D71A19048 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 78A865A74E62A32347122786 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				7FCA5BAFD1C1A917F5E39FB7 /* SpendZero */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin XCBuildConfiguration section */
-		A10000000000000000000096 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SpendZero;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spendzero.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
+/* Begin PBXSourcesBuildPhase section */
+		B95785B45F6E949A758CE94A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E7A6A6087F9318415AE88BE /* AddImpulseView.swift in Sources */,
+				11CE4856305A0E5FA1B7220A /* AddSpendingView.swift in Sources */,
+				D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */,
+				0D01AE72809063EA5272C116 /* BadgeInstance.swift in Sources */,
+				9834C9CF188A5391E22BEBCE /* BadgeShowcaseView.swift in Sources */,
+				63DD1458181C1680AA8F6B64 /* BadgeUnlockCelebrationView.swift in Sources */,
+				C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */,
+				E0B83266C4B0BD85C5623519 /* ChallengeLibraryView.swift in Sources */,
+				EFC9993A1CE4C503FB377AAE /* DailyLoggerView.swift in Sources */,
+				1F6F770C27730E946D12B37E /* DailyRecord.swift in Sources */,
+				7F548042B804A6C3510A8435 /* DashboardView.swift in Sources */,
+				34602FA348BE65DD7501818F /* DateExtensions.swift in Sources */,
+				E28508AF7ECC85430D5FC363 /* ExportView.swift in Sources */,
+				847178F6A99BA413D861E6F1 /* GameEventToastView.swift in Sources */,
+				C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */,
+				6E38CF48116FD8D9ECF71BD7 /* GameStateManager.swift in Sources */,
+				1953107F01A6C61BB3A577EF /* GamificationHubView.swift in Sources */,
+				DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */,
+				D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */,
+				4E0EC327D0FE0EF1D9076DCB /* LevelCard.swift in Sources */,
+				21959A51F1D11F6AD056BA76 /* LevelProgressView.swift in Sources */,
+				4E95E905B632D9B08C07C252 /* LevelUpCelebrationView.swift in Sources */,
+				44F16C116EE8220580498033 /* MainTabView.swift in Sources */,
+				3FFBDAD001E7002B7CF4DC44 /* MoneyTreeView.swift in Sources */,
+				53B356A7445094838A516607 /* NumberExtensions.swift in Sources */,
+				55D9763FA62A3F30E55AD71E /* OnboardingCategoriesView.swift in Sources */,
+				A4DE1B6FBF88717310B382D0 /* OnboardingCommitView.swift in Sources */,
+				FD5B6B3DEDC7A50C239359BF /* OnboardingFlowView.swift in Sources */,
+				4EF1582002FA6C6550C46300 /* OnboardingLoadingView.swift in Sources */,
+				2B0A87AC67540E4D2393C975 /* OnboardingNameView.swift in Sources */,
+				16DAF1BC62C07E4A827BF4C7 /* OnboardingSpendingQuizView.swift in Sources */,
+				4964A955FF2565169213CC6B /* OnboardingSplashView.swift in Sources */,
+				F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */,
+				FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */,
+				294DCFB45E3CB5FB59195916 /* ProgressChartsView.swift in Sources */,
+				BF33031858245BE999DB01E9 /* Quest.swift in Sources */,
+				5064DC91EA424CC9E83E6FD5 /* QuestPanelView.swift in Sources */,
+				84E0AC583078E418D15A2F0B /* RootView.swift in Sources */,
+				1274D3DAC918D0C3917E1E96 /* SavingsEntry.swift in Sources */,
+				957A840F6713C4916DD03F1C /* SettingsView.swift in Sources */,
+				506BEE36A204D50682E980FB /* SpendZeroApp.swift in Sources */,
+				42ACF10983953128B0C6B1DE /* SpendZeroWidget.swift in Sources */,
+				5202C01DA9FCF002D067EF48 /* SpendingLog.swift in Sources */,
+				370D33D14331238B809CA22F /* StreakCalendarView.swift in Sources */,
+				D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */,
+				DFF7184CB537987BBDCC172D /* SubscriptionService.swift in Sources */,
+				DF439DCD13736B03246B0B9A /* UserProfile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A10000000000000000000097 /* Release */ = {
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2F05C349FEEBBEAAC3E48A65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = SpendZero;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3N9RY9EG8V;
+				INFOPLIST_FILE = SpendZero/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.spendzero.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawdbonzo.SpendZero;
+				PRODUCT_NAME = SpendZero;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
+		679C5E85EBF12773E5EECA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6B319B96C213DC9DFB1283E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		95447F1BD433B3792C7DC3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3N9RY9EG8V;
+				INFOPLIST_FILE = SpendZero/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clawdbonzo.SpendZero;
+				PRODUCT_NAME = SpendZero;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A10000000000000000000098 /* Build configuration list for PBXProject "SpendZero" */ = {
+		69CCDD659B58873204DD8487 /* Build configuration list for PBXProject "SpendZero" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A10000000000000000000096 /* Debug */,
-				A10000000000000000000097 /* Release */,
+				679C5E85EBF12773E5EECA5E /* Debug */,
+				6B319B96C213DC9DFB1283E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		8894D96D57ED48315EFC107E /* Build configuration list for PBXNativeTarget "SpendZero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95447F1BD433B3792C7DC3BF /* Debug */,
+				2F05C349FEEBBEAAC3E48A65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2A663F922885890D71A19048 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AAFE24BD3596FB6EF7DFA32E /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A663F922885890D71A19048 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = A10000000000000000000099 /* Project object */;
+	rootObject = EF1AD09ED500E3D76C8F6419 /* Project object */;
 }

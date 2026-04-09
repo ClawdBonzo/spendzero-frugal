@@ -26,40 +26,49 @@ struct OnboardingSplashView: View {
                     )
                 )
                 .frame(width: 400, height: 400)
+                .offset(y: -60)
                 .opacity(glowOpacity)
 
-            VStack(spacing: 40) {
+            VStack(spacing: 0) {
                 Spacer()
 
-                // Brand icon + onboarding illustration
-                VStack(spacing: 16) {
+                // Brand icon with glow ring
+                ZStack {
+                    Circle()
+                        .stroke(AppTheme.primaryGreen.opacity(0.15), lineWidth: 2)
+                        .frame(width: 160, height: 160)
+                        .opacity(glowOpacity)
+
                     Image("BrandIcon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 120, height: 120)
-                        .clipShape(RoundedRectangle(cornerRadius: 28))
-                        .shadow(color: AppTheme.primaryGreen.opacity(0.4), radius: 16, y: 6)
+                        .frame(width: 110, height: 110)
+                        .clipShape(RoundedRectangle(cornerRadius: 26))
+                        .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 20, y: 6)
                         .scaleEffect(iconScale)
-
-                    Image("Onboarding-1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 180)
-                        .opacity(showContent ? 1 : 0)
                 }
 
-                VStack(spacing: 16) {
+                Spacer().frame(height: 32)
+
+                // App name + tagline
+                VStack(spacing: 12) {
                     Text("SpendZero")
-                        .font(.system(size: 42, weight: .bold, design: .rounded))
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
 
                     Text("Start Your Wealth Journey")
-                        .font(AppTheme.headlineFont)
-                        .foregroundColor(AppTheme.primaryGreen)
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [AppTheme.primaryGreen, AppTheme.primaryGreen.opacity(0.7)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .opacity(showContent ? 1 : 0)
 
                     Text("Track no-spend days, crush impulse buys,\nand watch your savings grow")
-                        .font(AppTheme.bodyFont)
+                        .font(.system(size: 15))
                         .foregroundColor(AppTheme.textSecondary)
                         .multilineTextAlignment(.center)
                         .opacity(showContent ? 1 : 0)
@@ -71,12 +80,12 @@ struct OnboardingSplashView: View {
                     PrimaryButton(title: "Begin Your Journey", icon: "arrow.right") {
                         onNext()
                     }
+                    .padding(.horizontal, AppTheme.paddingLarge)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
 
                 Spacer().frame(height: 40)
             }
-            .padding(.horizontal, AppTheme.paddingLarge)
         }
         .onAppear {
             withAnimation(.spring(response: 0.8, dampingFraction: 0.6)) {

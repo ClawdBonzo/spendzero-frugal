@@ -2,7 +2,6 @@ import Foundation
 import SwiftData
 
 /// Singleton service managing gamification state: XP grants, level-ups, badge unlocks, quest generation
-@MainActor
 final class GameStateManager: @unchecked Sendable {
     static let shared = GameStateManager()
 

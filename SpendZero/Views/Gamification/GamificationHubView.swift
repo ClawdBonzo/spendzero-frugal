@@ -290,7 +290,7 @@ struct BadgeMiniView: View {
                     .stroke(badge.rarity.borderColor, lineWidth: 1.5)
             )
 
-            Text(badge.badgeID.title)
+            Text(badge.badgeID.rawValue)
                 .font(.system(size: 10, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(1)

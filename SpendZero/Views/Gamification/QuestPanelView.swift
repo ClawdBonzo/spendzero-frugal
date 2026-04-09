@@ -180,7 +180,7 @@ struct QuestCardView: View {
                             .cornerRadius(4)
                     }
 
-                    Text(quest.description)
+                    Text(quest.details)
                         .font(AppTheme.smallFont)
                         .foregroundColor(AppTheme.textSecondary)
                         .lineLimit(2)
@@ -243,7 +243,7 @@ struct QuestCardView: View {
 
     let quest1 = Quest(
         title: "Zero-Spend Day",
-        description: "Don't spend any money today",
+        details: "Don't spend any money today",
         type: .noSpendDays,
         difficulty: .medium,
         targetValue: 1,
@@ -251,7 +251,7 @@ struct QuestCardView: View {
     )
     let quest2 = Quest(
         title: "Resist 5 Impulses",
-        description: "Resist at least 5 impulse purchase attempts",
+        details: "Resist at least 5 impulse purchase attempts",
         type: .impulseResist,
         difficulty: .hard,
         targetValue: 5,

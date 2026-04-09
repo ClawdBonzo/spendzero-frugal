@@ -8,7 +8,7 @@ final class Quest {
 
     // MARK: - Quest Definition
     var title: String
-    var description: String
+    var details: String
     var type: QuestType
     var difficulty: QuestDifficulty
 
@@ -28,7 +28,7 @@ final class Quest {
 
     init(
         title: String,
-        description: String,
+        details: String,
         type: QuestType,
         difficulty: QuestDifficulty,
         targetValue: Double,
@@ -36,7 +36,7 @@ final class Quest {
     ) {
         self.id = UUID()
         self.title = title
-        self.description = description
+        self.details = details
         self.type = type
         self.difficulty = difficulty
         self.baseXPReward = difficulty.baseXP
@@ -186,7 +186,7 @@ struct QuestGenerator {
 
         return Quest(
             title: title,
-            description: type.description,
+            details: type.rawValue,
             type: type,
             difficulty: difficulty,
             targetValue: targetValue,
@@ -206,7 +206,7 @@ struct QuestGenerator {
 
         return Quest(
             title: title,
-            description: type.description,
+            details: type.rawValue,
             type: type,
             difficulty: difficulty,
             targetValue: targetValue,

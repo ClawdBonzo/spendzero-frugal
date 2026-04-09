@@ -8,34 +8,53 @@ struct OnboardingCommitView: View {
     private let commitOptions = [7, 14, 21, 30]
 
     var body: some View {
-        VStack(spacing: 32) {
-            Spacer()
+        VStack(spacing: 12) {
+            Spacer().frame(height: 24)
 
-            VStack(spacing: 16) {
+            // Hero flame icon with glow
+            ZStack {
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [AppTheme.accentGold.opacity(0.3), AppTheme.accentGold.opacity(0.03)],
+                            center: .center,
+                            startRadius: 10,
+                            endRadius: 50
+                        )
+                    )
+                    .frame(width: 100, height: 100)
+
                 Image(systemName: "flame.fill")
-                    .font(.system(size: 48))
+                    .font(.system(size: 40, weight: .bold))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [AppTheme.accentGold, AppTheme.destructive],
-                            startPoint: .bottom,
-                            endPoint: .top
+                            colors: [AppTheme.accentGold, Color(hex: "FF6F00")],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
                         )
                     )
                     .symbolEffect(.variableColor.iterative, value: showContent)
-
-                Text("How many days can you\ncommit to a no-spend\nchallenge?")
-                    .font(AppTheme.titleFont)
-                    .foregroundColor(AppTheme.textPrimary)
-                    .multilineTextAlignment(.center)
-
-                Text("Start where you're comfortable —\nyou can always level up")
-                    .font(AppTheme.bodyFont)
-                    .foregroundColor(AppTheme.textSecondary)
-                    .multilineTextAlignment(.center)
             }
             .opacity(showContent ? 1 : 0)
 
-            VStack(spacing: 12) {
+            // Title + subtitle
+            VStack(spacing: 4) {
+                Text("How many days can you go no-spend?")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .foregroundColor(AppTheme.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Text("Start comfortable — you can always level up")
+                    .font(.system(size: 13))
+                    .foregroundColor(AppTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.horizontal, AppTheme.paddingLarge)
+
+            // Compact option cards
+            VStack(spacing: 6) {
                 ForEach(commitOptions, id: \.self) { option in
                     CommitOptionCard(
                         days: option,
@@ -48,16 +67,18 @@ struct OnboardingCommitView: View {
                     )
                 }
             }
+            .padding(.horizontal, AppTheme.paddingLarge)
             .opacity(showContent ? 1 : 0)
 
             Spacer()
 
+            // Button
             PrimaryButton(title: "I'm Committed!", icon: "checkmark") {
                 onNext()
             }
-            .padding(.bottom, 40)
+            .padding(.horizontal, AppTheme.paddingLarge)
+            .padding(.bottom, 28)
         }
-        .padding(.horizontal, AppTheme.paddingLarge)
         .onAppear {
             withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
                 showContent = true
@@ -82,36 +103,36 @@ struct CommitOptionCard: View {
     }
 
     private var badge: String? {
-        days == 30 ? "MOST POPULAR" : nil
+        days == 30 ? "POPULAR" : nil
     }
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 14) {
+            HStack(spacing: 10) {
                 Text("\(days)")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : AppTheme.textSecondary)
-                    .frame(width: 50)
+                    .frame(width: 32)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
+                VStack(alignment: .leading, spacing: 1) {
+                    HStack(spacing: 5) {
                         Text(label)
-                            .font(.system(size: 16, weight: .semibold))
+                            .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(AppTheme.textPrimary)
 
                         if let badge {
                             Text(badge)
-                                .font(.system(size: 9, weight: .bold))
+                                .font(.system(size: 8, weight: .bold))
                                 .foregroundColor(AppTheme.background)
-                                .padding(.horizontal, 6)
+                                .padding(.horizontal, 5)
                                 .padding(.vertical, 2)
                                 .background(AppTheme.accentGold)
                                 .clipShape(Capsule())
                         }
                     }
 
-                    Text("\(days) days of no unnecessary spending")
-                        .font(AppTheme.captionFont)
+                    Text("\(days) days no unnecessary spending")
+                        .font(.system(size: 11))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
@@ -119,16 +140,17 @@ struct CommitOptionCard: View {
 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 24))
+                        .font(.system(size: 18))
                         .foregroundColor(AppTheme.primaryGreen)
                 }
             }
-            .padding()
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
             .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryGreen.opacity(0.1) : AppTheme.cardBackground)
                     .overlay(
-                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                        RoundedRectangle(cornerRadius: 12)
                             .stroke(
                                 isSelected ? AppTheme.primaryGreen : Color.clear,
                                 lineWidth: 1.5

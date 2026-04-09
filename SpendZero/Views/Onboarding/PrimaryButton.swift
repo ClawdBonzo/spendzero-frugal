@@ -8,26 +8,33 @@ struct PrimaryButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 10) {
+            HStack(spacing: 12) {
                 Text(title)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
 
                 if let icon {
                     Image(systemName: icon)
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 16, weight: .semibold))
                 }
             }
-            .foregroundColor(isEnabled ? AppTheme.background : AppTheme.textTertiary)
+            .foregroundColor(isEnabled ? Color.black : AppTheme.textSecondary)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 18)
+            .padding(.vertical, 16)
             .background(
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .fill(isEnabled ? AppTheme.primaryGreen : AppTheme.cardBackgroundLight)
             )
-            .shadow(color: isEnabled ? AppTheme.primaryGreen.opacity(0.3) : .clear, radius: 12, y: 4)
+            .overlay(
+                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
+                    .stroke(
+                        isEnabled ? AppTheme.primaryGreen : AppTheme.textTertiary.opacity(0.2),
+                        lineWidth: isEnabled ? 2 : 1
+                    )
+            )
+            .shadow(color: isEnabled ? AppTheme.primaryGreen.opacity(0.4) : .clear, radius: 8, y: 4)
         }
         .disabled(!isEnabled)
-        .scaleEffect(isEnabled ? 1.0 : 0.98)
+        .opacity(isEnabled ? 1.0 : 0.6)
     }
 }
 

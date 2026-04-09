@@ -5,35 +5,41 @@ struct OnboardingCategoriesView: View {
     let onNext: () -> Void
     @State private var showContent = false
 
-    private let categories: [SpendCategory] = SpendCategory.allCases.filter { $0 != .other }
+    private let categories = SpendCategory.allCases.map { $0 }
 
     var body: some View {
-        VStack(spacing: 24) {
-            Spacer().frame(height: 60)
+        VStack(spacing: 12) {
+            Spacer().frame(height: 24)
 
-            VStack(spacing: 12) {
-                Image("Onboarding-3")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxHeight: 140)
+            // Hero illustration
+            Image("Onboarding-3")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .opacity(showContent ? 1 : 0)
 
-                Text("Which categories leak\nthe most money?")
-                    .font(AppTheme.titleFont)
+            // Title + subtitle
+            VStack(spacing: 4) {
+                Text("Where does your money leak?")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                Text("Select all that apply — we'll help\nyou plug these leaks")
-                    .font(AppTheme.bodyFont)
+                Text("Select all that apply")
+                    .font(.system(size: 13))
                     .foregroundColor(AppTheme.textSecondary)
-                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .opacity(showContent ? 1 : 0)
+            .padding(.horizontal, AppTheme.paddingLarge)
 
+            // Category grid - scrollable
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: [
-                    GridItem(.flexible(), spacing: 10),
-                    GridItem(.flexible(), spacing: 10)
-                ], spacing: 10) {
+                    GridItem(.flexible(), spacing: 8),
+                    GridItem(.flexible(), spacing: 8)
+                ], spacing: 8) {
                     ForEach(categories) { category in
                         CategoryChip(
                             category: category,
@@ -49,27 +55,30 @@ struct OnboardingCategoriesView: View {
                         }
                     }
                 }
+                .padding(.horizontal, AppTheme.paddingLarge)
             }
-            .padding(.horizontal, 4)
             .opacity(showContent ? 1 : 0)
 
-            if !selected.isEmpty {
-                Text("\(selected.count) categories selected")
-                    .font(AppTheme.captionFont)
-                    .foregroundColor(AppTheme.primaryGreen)
-                    .transition(.opacity)
-            }
+            // Counter + Button
+            VStack(spacing: 6) {
+                if !selected.isEmpty {
+                    Text("\(selected.count) selected")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(AppTheme.primaryGreen)
+                        .transition(.opacity)
+                }
 
-            PrimaryButton(
-                title: "Continue",
-                icon: "arrow.right",
-                isEnabled: !selected.isEmpty
-            ) {
-                onNext()
+                PrimaryButton(
+                    title: "Continue",
+                    icon: "arrow.right",
+                    isEnabled: !selected.isEmpty
+                ) {
+                    onNext()
+                }
             }
-            .padding(.bottom, 40)
+            .padding(.horizontal, AppTheme.paddingLarge)
+            .padding(.bottom, 28)
         }
-        .padding(.horizontal, AppTheme.paddingLarge)
         .animation(.spring(response: 0.3), value: selected)
         .onAppear {
             withAnimation(.easeOut(duration: 0.5).delay(0.2)) {
@@ -86,24 +95,24 @@ struct CategoryChip: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 8) {
+            VStack(spacing: 5) {
                 Image(systemName: category.icon)
-                    .font(.system(size: 22))
+                    .font(.system(size: 18))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : Color(hex: category.color))
 
                 Text(category.rawValue)
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.system(size: 11, weight: .medium))
                     .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
+            .padding(.vertical, 12)
             .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryGreen.opacity(0.12) : AppTheme.cardBackground)
                     .overlay(
-                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                        RoundedRectangle(cornerRadius: 12)
                             .stroke(
                                 isSelected ? AppTheme.primaryGreen : AppTheme.textTertiary.opacity(0.2),
                                 lineWidth: isSelected ? 1.5 : 0.5

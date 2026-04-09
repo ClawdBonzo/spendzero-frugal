@@ -40,7 +40,7 @@ struct MoneyTreeView: View {
             }
 
             // Tree Canvas
-            Canvas { context in
+            Canvas { context, size in
                 drawTree(on: &context, at: CGPoint(x: 150, y: 100), stage: treeStage)
             }
             .frame(height: 200)
