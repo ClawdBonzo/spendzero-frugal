@@ -7,6 +7,9 @@ struct StreakCalendarView: View {
     @Query(sort: \SavingsEntry.date) private var savings: [SavingsEntry]
     @State private var selectedMonth = Date()
     @State private var selectedDate: Date?
+    @State private var showSummary = false
+    @State private var showCalendar = false
+    @State private var showTimeline = false
 
     private var calendar: Calendar { Calendar.current }
 
@@ -54,19 +57,36 @@ struct StreakCalendarView: View {
                     // Month navigator
                     monthNavigator
 
-                    // Month summary
+                    // Month summary — slides in
                     monthSummaryCard
+                        .scaleEffect(showSummary ? 1 : 0.92)
+                        .opacity(showSummary ? 1 : 0)
 
-                    // Calendar grid
+                    // Calendar grid — fades in
                     calendarGrid
+                        .offset(y: showCalendar ? 0 : 20)
+                        .opacity(showCalendar ? 1 : 0)
 
-                    // Savings timeline
+                    // Savings timeline — slides up
                     savingsTimeline
+                        .offset(y: showTimeline ? 0 : 25)
+                        .opacity(showTimeline ? 1 : 0)
 
                     Spacer(minLength: 100)
                 }
                 .padding(.horizontal, AppTheme.paddingMedium)
                 .padding(.top, 8)
+                .onAppear {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
+                        showSummary = true
+                    }
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.15)) {
+                        showCalendar = true
+                    }
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.3)) {
+                        showTimeline = true
+                    }
+                }
             }
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle("Streak Calendar")
@@ -79,7 +99,8 @@ struct StreakCalendarView: View {
     private var monthNavigator: some View {
         HStack {
             Button {
-                withAnimation { changeMonth(by: -1) }
+                HapticManager.shared.trigger(.swipe)
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { changeMonth(by: -1) }
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 18, weight: .semibold))
@@ -91,11 +112,13 @@ struct StreakCalendarView: View {
             Text(selectedMonth, format: .dateTime.month(.wide).year())
                 .font(AppTheme.headlineFont)
                 .foregroundColor(AppTheme.textPrimary)
+                .contentTransition(.numericText())
 
             Spacer()
 
             Button {
-                withAnimation { changeMonth(by: 1) }
+                HapticManager.shared.trigger(.swipe)
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { changeMonth(by: 1) }
             } label: {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 18, weight: .semibold))
@@ -113,6 +136,8 @@ struct StreakCalendarView: View {
                 Text("\(streakDaysThisMonth)")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.primaryGreen)
+                    .contentTransition(.numericText())
+                    .animation(.spring(response: 0.4), value: streakDaysThisMonth)
                 Text("No-Spend Days")
                     .font(AppTheme.smallFont)
                     .foregroundColor(AppTheme.textSecondary)
@@ -127,6 +152,8 @@ struct StreakCalendarView: View {
                 Text("$\(Int(monthTotal))")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.accentGold)
+                    .contentTransition(.numericText())
+                    .animation(.spring(response: 0.4), value: monthTotal)
                 Text("Month Saved")
                     .font(AppTheme.smallFont)
                     .foregroundColor(AppTheme.textSecondary)
@@ -257,7 +284,10 @@ struct CalendarDayCell: View {
     private var isFuture: Bool { date > Date() }
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            HapticManager.shared.trigger(.cardSelect)
+            action()
+        } label: {
             VStack(spacing: 2) {
                 Text("\(day)")
                     .font(.system(size: 14, weight: isToday ? .bold : .regular))

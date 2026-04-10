@@ -31,6 +31,15 @@ struct RootView: View {
             }
         }
         .onAppear {
+            // Ensure existing users have a GameProfile (fixes crash for users who
+            // completed onboarding before GameProfile creation was added)
+            if let profile = profiles.first, profile.gameProfile == nil {
+                let gp = GameProfile()
+                modelContext.insert(gp)
+                profile.gameProfile = gp
+                try? modelContext.save()
+            }
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                 withAnimation(.easeOut(duration: 0.5)) {
                     showSplash = false

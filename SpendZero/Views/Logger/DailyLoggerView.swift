@@ -9,6 +9,8 @@ struct DailyLoggerView: View {
     @State private var showAddSpend = false
     @State private var showAddImpulse = false
     @State private var selectedSegment = 0
+    @State private var showHeader = false
+    @State private var showContent = false
 
     private var todaySpending: [SpendingLog] {
         let today = Calendar.current.startOfDay(for: Date())
@@ -28,8 +30,10 @@ struct DailyLoggerView: View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    // Daily summary header
+                    // Daily summary header — slides down
                     dailySummaryHeader
+                        .offset(y: showHeader ? 0 : -20)
+                        .opacity(showHeader ? 1 : 0)
 
                     // Segment picker
                     Picker("View", selection: $selectedSegment) {
@@ -39,21 +43,35 @@ struct DailyLoggerView: View {
                     }
                     .pickerStyle(.segmented)
                     .tint(AppTheme.primaryGreen)
+                    .opacity(showHeader ? 1 : 0)
 
-                    // Content
-                    switch selectedSegment {
-                    case 0:
-                        spendingSection
-                    case 1:
-                        impulseSection
-                    default:
-                        winsSection
+                    // Content — fades in
+                    Group {
+                        switch selectedSegment {
+                        case 0:
+                            spendingSection
+                        case 1:
+                            impulseSection
+                        default:
+                            winsSection
+                        }
                     }
+                    .offset(y: showContent ? 0 : 20)
+                    .opacity(showContent ? 1 : 0)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.8), value: selectedSegment)
 
                     Spacer(minLength: 100)
                 }
                 .padding(.horizontal, AppTheme.paddingMedium)
                 .padding(.top, 8)
+                .onAppear {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
+                        showHeader = true
+                    }
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.2)) {
+                        showContent = true
+                    }
+                }
             }
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle("Daily Log")
@@ -96,6 +114,9 @@ struct DailyLoggerView: View {
                     Text("$\(String(format: "%.2f", totalSpentToday))")
                         .font(.system(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(totalSpentToday == 0 ? AppTheme.primaryGreen : AppTheme.destructive)
+                        .shadow(color: totalSpentToday == 0 ? AppTheme.primaryGreen.opacity(0.5) : .clear, radius: 8)
+                        .contentTransition(.numericText())
+                        .animation(.spring(response: 0.4), value: totalSpentToday)
                 }
 
                 Spacer()
@@ -309,7 +330,8 @@ struct WinChecklistRow: View {
 
     var body: some View {
         Button {
-            withAnimation(.spring(response: 0.3)) {
+            HapticManager.shared.trigger(isChecked ? .toggleOff : .celebrate)
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                 isChecked.toggle()
             }
         } label: {

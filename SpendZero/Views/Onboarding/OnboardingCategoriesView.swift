@@ -51,6 +51,7 @@ struct OnboardingCategoriesView: View {
                             category: category,
                             isSelected: selected.contains(category)
                         ) {
+                            HapticManager.shared.trigger(selected.contains(category) ? .toggleOff : .toggleOn)
                             withAnimation(.spring(response: 0.3)) {
                                 if selected.contains(category) {
                                     selected.remove(category)

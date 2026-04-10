@@ -36,6 +36,9 @@ struct MainTabView: View {
                 .tag(AppTab.settings)
         }
         .tint(AppTheme.primaryGreen)
+        .onChange(of: selectedTab) { _, _ in
+            HapticManager.shared.trigger(.tabSwitch)
+        }
     }
 }
 

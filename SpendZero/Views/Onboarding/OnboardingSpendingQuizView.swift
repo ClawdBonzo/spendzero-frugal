@@ -46,6 +46,7 @@ struct OnboardingSpendingQuizView: View {
                         level: option,
                         isSelected: level == option
                     ) {
+                        HapticManager.shared.trigger(.cardSelect)
                         withAnimation(.spring(response: 0.3)) {
                             level = option
                         }

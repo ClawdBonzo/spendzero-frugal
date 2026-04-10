@@ -71,6 +71,12 @@ struct OnboardingFlowView: View {
             leakCategories: selectedCategories.map(\.rawValue)
         )
         modelContext.insert(profile)
+
+        // Create and attach GameProfile — required for Dashboard, Quests, and gamification
+        let gameProfile = GameProfile()
+        modelContext.insert(gameProfile)
+        profile.gameProfile = gameProfile
+
         try? modelContext.save()
         hasCompletedOnboarding = true
     }

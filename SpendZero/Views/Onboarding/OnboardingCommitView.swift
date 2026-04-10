@@ -68,6 +68,7 @@ struct OnboardingCommitView: View {
                         days: option,
                         isSelected: days == option,
                         action: {
+                            HapticManager.shared.trigger(.cardSelect)
                             withAnimation(.spring(response: 0.3)) {
                                 days = option
                             }

@@ -8,6 +8,9 @@ struct GamificationHubView: View {
 
     private var profile: UserProfile? { profiles.first }
     private var gameProfile: GameProfile? { profile?.gameProfile }
+    @State private var showHero = false
+    @State private var showQuests = false
+    @State private var showBadges = false
 
     var body: some View {
         NavigationStack {
@@ -25,14 +28,20 @@ struct GamificationHubView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, AppTheme.paddingLarge)
+                        .offset(x: showHero ? 0 : -30)
+                        .opacity(showHero ? 1 : 0)
 
-                        // Level Card Hero
+                        // Level Card Hero — scale in
                         LevelCard(gameProfile: gameProfile, currentStreak: profile?.currentStreak ?? 0)
                             .padding(.horizontal, AppTheme.paddingLarge)
+                            .scaleEffect(showHero ? 1 : 0.92)
+                            .opacity(showHero ? 1 : 0)
 
                         // Money Tree
                         MoneyTreeView(gameProfile: gameProfile)
                             .padding(.horizontal, AppTheme.paddingLarge)
+                            .offset(y: showQuests ? 0 : 25)
+                            .opacity(showQuests ? 1 : 0)
 
                         // Quick Stats
                         HStack(spacing: 12) {
@@ -176,6 +185,17 @@ struct GamificationHubView: View {
                         Spacer(minLength: 40)
                     }
                     .padding(.vertical, AppTheme.paddingLarge)
+                    .onAppear {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
+                            showHero = true
+                        }
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.2)) {
+                            showQuests = true
+                        }
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.35)) {
+                            showBadges = true
+                        }
+                    }
                 } else {
                     Text("Loading gamification profile...")
                         .font(AppTheme.bodyFont)

@@ -12,9 +12,16 @@ struct DashboardView: View {
     @State private var currentToast: GameEventType?
     @State private var levelUpEvent: (newLevel: Int, rank: LevelRank, previousLevel: Int)?
     @State private var badgeUnlockEvent: BadgeInstance?
+    // Staggered entrance animation
+    @State private var showGreeting = false
+    @State private var showLevelCard = false
+    @State private var showStreakCard = false
+    @State private var showStats = false
+    @State private var showActions = false
+    @State private var streakBadgePulse = false
 
     private var profile: UserProfile? { profiles.first }
-    private var gameProfile: GameProfile? { profile?.gameProfile ?? GameProfile() }
+    private var gameProfile: GameProfile? { profile?.gameProfile }
 
     private var todayRecord: DailyRecord? {
         let today = Calendar.current.startOfDay(for: Date())
@@ -52,48 +59,67 @@ struct DashboardView: View {
             NavigationStack {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
-                        // Greeting
+                        // Greeting — slides in from left
                         greetingSection
+                            .offset(x: showGreeting ? 0 : -40)
+                            .opacity(showGreeting ? 1 : 0)
 
-                        // Level progress hero (PROMINENT)
+                        // Level progress hero — scales in
                         if let gameProfile = gameProfile {
                             LevelCard(gameProfile: gameProfile, currentStreak: currentStreak)
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .scaleEffect(showLevelCard ? 1 : 0.9)
+                                .opacity(showLevelCard ? 1 : 0)
                         }
 
-                        // Streak hero card
+                        // Streak hero card — slides up
                         streakHeroCard
+                            .offset(y: showStreakCard ? 0 : 30)
+                            .opacity(showStreakCard ? 1 : 0)
 
                         // Money Tree visualization
                         if let gameProfile = gameProfile {
                             MoneyTreeView(gameProfile: gameProfile)
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .offset(y: showStats ? 0 : 25)
+                                .opacity(showStats ? 1 : 0)
                         }
 
-                        // Quick stats
+                        // Quick stats — staggered scale
                         quickStatsGrid
+                            .offset(y: showStats ? 0 : 20)
+                            .opacity(showStats ? 1 : 0)
 
                         // Quest quick-access
                         if let gameProfile = gameProfile, !gameProfile.quests.isEmpty {
                             questQuickLink
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .offset(y: showActions ? 0 : 20)
+                                .opacity(showActions ? 1 : 0)
                         }
 
                         // Today's status
                         todayStatusCard
+                            .offset(y: showActions ? 0 : 20)
+                            .opacity(showActions ? 1 : 0)
 
                         // Recent impulses
                         if !impulses.prefix(3).isEmpty {
                             recentImpulsesSection
+                                .offset(y: showActions ? 0 : 20)
+                                .opacity(showActions ? 1 : 0)
                         }
 
                         // Quick actions
                         quickActionsSection
+                            .offset(y: showActions ? 0 : 20)
+                            .opacity(showActions ? 1 : 0)
 
                         Spacer(minLength: 100)
                     }
                     .padding(.horizontal, AppTheme.paddingMedium)
                     .padding(.top, 8)
+                    .onAppear { triggerEntranceAnimations() }
                 }
                 .background(AppTheme.background.ignoresSafeArea())
                 .navigationBarTitleDisplayMode(.inline)
@@ -166,8 +192,16 @@ struct DashboardView: View {
 
             Spacer()
 
-            // Streak badge
+            // Streak badge — pulsing glow
             ZStack {
+                // Outer pulse ring
+                Circle()
+                    .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 2)
+                    .frame(width: 62, height: 62)
+                    .scaleEffect(streakBadgePulse ? 1.15 : 0.95)
+                    .opacity(streakBadgePulse ? 0.0 : 0.8)
+                    .animation(.easeOut(duration: 1.8).repeatForever(autoreverses: false), value: streakBadgePulse)
+
                 Circle()
                     .fill(AppTheme.primaryGreen.opacity(0.15))
                     .frame(width: 52, height: 52)
@@ -176,6 +210,7 @@ struct DashboardView: View {
                     Text("\(currentStreak)")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.primaryGreen)
+                        .contentTransition(.numericText())
                     Text("days")
                         .font(.system(size: 9, weight: .medium))
                         .foregroundColor(AppTheme.textSecondary)
@@ -198,6 +233,8 @@ struct DashboardView: View {
                         Text("\(currentStreak)")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundColor(AppTheme.primaryGreen)
+                            .contentTransition(.numericText(countsDown: false))
+                            .animation(.spring(response: 0.5), value: currentStreak)
                             .accessibilityLabel("\(currentStreak) day streak")
 
                         Text("days")
@@ -311,10 +348,12 @@ struct DashboardView: View {
 
             HStack(spacing: 12) {
                 TodayActionButton(icon: "bolt.slash.fill", title: "Log Impulse", color: AppTheme.warning) {
+                    HapticManager.shared.trigger(.sheetPresented)
                     showAddImpulse = true
                 }
 
                 TodayActionButton(icon: "checkmark.seal.fill", title: "Mark Win", color: AppTheme.primaryGreen) {
+                    HapticManager.shared.trigger(.celebrate)
                     markNoSpendDay()
                 }
             }
@@ -426,6 +465,28 @@ struct DashboardView: View {
 
     // MARK: - Helpers
 
+    private func triggerEntranceAnimations() {
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
+            showGreeting = true
+        }
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.15)) {
+            showLevelCard = true
+        }
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.25)) {
+            showStreakCard = true
+        }
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.35)) {
+            showStats = true
+        }
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.45)) {
+            showActions = true
+        }
+        // Start streak badge pulse loop
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            streakBadgePulse = true
+        }
+    }
+
     private var greetingText: String {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
@@ -515,16 +576,19 @@ struct StatCard: View {
     let value: String
     let icon: String
     let color: Color
+    @State private var appeared = false
 
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.system(size: 20))
                 .foregroundColor(color)
+                .symbolEffect(.pulse, value: appeared)
 
             Text(value)
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(AppTheme.textPrimary)
+                .contentTransition(.numericText())
 
             Text(title)
                 .font(.system(size: 10, weight: .medium))
@@ -536,6 +600,13 @@ struct StatCard: View {
             RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
                 .fill(AppTheme.cardBackground)
         )
+        .scaleEffect(appeared ? 1.0 : 0.85)
+        .opacity(appeared ? 1.0 : 0)
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7).delay(0.1)) {
+                appeared = true
+            }
+        }
     }
 }
 
@@ -561,6 +632,7 @@ struct TodayActionButton: View {
                     .fill(color.opacity(0.12))
             )
         }
+        .buttonStyle(ScaleButtonStyle())
     }
 }
 

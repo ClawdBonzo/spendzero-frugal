@@ -1,90 +1,136 @@
 import UIKit
 
-/// Singleton service managing haptic feedback for gamification events
-final class HapticManager {
+/// Centralized haptic feedback for all app interactions — gamification, navigation, and UI
+final class HapticManager: @unchecked Sendable {
     static let shared = HapticManager()
 
-    private let impactGenerator = UIImpactFeedbackGenerator(style: .light)
-    private let heavyImpactGenerator = UIImpactFeedbackGenerator(style: .heavy)
-    private let notificationGenerator = UINotificationFeedbackGenerator()
+    private let lightImpact  = UIImpactFeedbackGenerator(style: .light)
+    private let mediumImpact = UIImpactFeedbackGenerator(style: .medium)
+    private let heavyImpact  = UIImpactFeedbackGenerator(style: .heavy)
+    private let softImpact   = UIImpactFeedbackGenerator(style: .soft)
+    private let notification  = UINotificationFeedbackGenerator()
+    private let selection     = UISelectionFeedbackGenerator()
 
-    private init() {}
+    private init() {
+        // Pre-warm all generators
+        lightImpact.prepare()
+        mediumImpact.prepare()
+        heavyImpact.prepare()
+        softImpact.prepare()
+        notification.prepare()
+        selection.prepare()
+    }
 
-    enum GameHapticEvent {
-        /// Light feedback when XP is earned
+    // MARK: - Event Types
+
+    enum HapticEvent {
+        // Gamification
         case xpGained
-        /// Heavy feedback + success notification for level-up
         case levelUp
-        /// Pattern: light-pause-light for quest completion
         case questComplete
-        /// Light taps for 7-day and 30-day streaks
         case streakMilestone7Day
         case streakMilestone30Day
-        /// Success notification + impact for badge earned
         case badgeEarned
-        /// Gentle confirmation for daily no-spend day
         case noSpendDay
+
+        // UI interactions
+        case buttonTap           // Primary/CTA buttons
+        case cardSelect          // Selecting a subscription card, category chip, etc.
+        case tabSwitch           // Tab bar navigation
+        case toggleOn            // Any toggle/checkbox turning on
+        case toggleOff           // Any toggle/checkbox turning off
+        case sheetPresented      // Sheet/modal appearing
+        case success             // Generic success (form submit, save, etc.)
+        case warning             // Budget threshold, overspend warning
+        case error               // Error state
+        case swipe               // Swipe/drag interactions
+        case celebrate           // Lighter celebration (daily win, impulse resisted)
     }
 
-    /// Trigger haptic feedback for a game event
-    func trigger(_ event: GameHapticEvent) {
-        // Check if haptics are enabled in settings
-        guard isHapticsEnabled() else { return }
+    // MARK: - Trigger
 
+    func trigger(_ event: HapticEvent) {
         switch event {
+        // === Gamification ===
         case .xpGained:
-            impactGenerator.impactOccurred()
+            lightImpact.impactOccurred(intensity: 0.6)
 
         case .levelUp:
-            // Heavy impact + success notification
-            heavyImpactGenerator.impactOccurred()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                self?.notificationGenerator.notificationOccurred(.success)
-            }
+            heavyImpact.impactOccurred()
+            after(0.1) { self.notification.notificationOccurred(.success) }
+            after(0.25) { self.mediumImpact.impactOccurred(intensity: 0.8) }
 
         case .questComplete:
-            // Light-pause-light pattern
-            impactGenerator.impactOccurred()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
-                self?.impactGenerator.impactOccurred()
-            }
+            mediumImpact.impactOccurred()
+            after(0.12) { self.lightImpact.impactOccurred() }
 
         case .streakMilestone7Day:
-            // 2 light taps
-            impactGenerator.impactOccurred()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                self?.impactGenerator.impactOccurred()
-            }
+            mediumImpact.impactOccurred(intensity: 0.7)
+            after(0.1) { self.lightImpact.impactOccurred() }
 
         case .streakMilestone30Day:
-            // Success notification + light impact
-            notificationGenerator.notificationOccurred(.success)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
-                self?.impactGenerator.impactOccurred()
-            }
+            notification.notificationOccurred(.success)
+            after(0.15) { self.heavyImpact.impactOccurred(intensity: 0.9) }
+            after(0.3) { self.mediumImpact.impactOccurred(intensity: 0.6) }
 
         case .badgeEarned:
-            // Success notification + light impact
-            notificationGenerator.notificationOccurred(.success)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
-                self?.impactGenerator.impactOccurred()
-            }
+            notification.notificationOccurred(.success)
+            after(0.12) { self.mediumImpact.impactOccurred() }
 
         case .noSpendDay:
-            // Gentle success confirmation
-            notificationGenerator.notificationOccurred(.success)
+            notification.notificationOccurred(.success)
+
+        // === UI Interactions ===
+        case .buttonTap:
+            mediumImpact.impactOccurred(intensity: 0.7)
+
+        case .cardSelect:
+            selection.selectionChanged()
+
+        case .tabSwitch:
+            lightImpact.impactOccurred(intensity: 0.4)
+
+        case .toggleOn:
+            lightImpact.impactOccurred(intensity: 0.6)
+
+        case .toggleOff:
+            softImpact.impactOccurred(intensity: 0.3)
+
+        case .sheetPresented:
+            softImpact.impactOccurred(intensity: 0.5)
+
+        case .success:
+            notification.notificationOccurred(.success)
+
+        case .warning:
+            notification.notificationOccurred(.warning)
+
+        case .error:
+            notification.notificationOccurred(.error)
+
+        case .swipe:
+            lightImpact.impactOccurred(intensity: 0.3)
+
+        case .celebrate:
+            mediumImpact.impactOccurred(intensity: 0.8)
+            after(0.1) { self.lightImpact.impactOccurred(intensity: 0.5) }
         }
 
-        // Prepare for next potential feedback
-        impactGenerator.prepare()
-        heavyImpactGenerator.prepare()
-        notificationGenerator.prepare()
+        prepareAll()
     }
 
-    /// Check if haptic feedback is enabled
-    private func isHapticsEnabled() -> Bool {
-        // Could check UserDefaults for haptics toggle if added to Settings
-        // For now, assume haptics are enabled
-        return UIDevice.current.value(forKey: "_feedbackSupported") as? Bool ?? true
+    // MARK: - Private
+
+    private func after(_ seconds: Double, action: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: action)
+    }
+
+    private func prepareAll() {
+        lightImpact.prepare()
+        mediumImpact.prepare()
+        heavyImpact.prepare()
+        softImpact.prepare()
+        notification.prepare()
+        selection.prepare()
     }
 }

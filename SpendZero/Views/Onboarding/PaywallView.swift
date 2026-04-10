@@ -148,6 +148,7 @@ struct PaywallView: View {
                             option: option,
                             isSelected: selectedOption == option.id
                         ) {
+                            HapticManager.shared.trigger(.cardSelect)
                             withAnimation(.spring(response: 0.25)) {
                                 selectedOption = option.id
                             }
@@ -156,6 +157,23 @@ struct PaywallView: View {
                 }
                 .padding(.horizontal, AppTheme.paddingLarge)
                 .animation(.spring(response: 0.3), value: selectedOption)
+
+                Spacer().frame(height: 14)
+
+                // — SOCIAL PROOF —
+                VStack(spacing: 8) {
+                    TestimonialRow(
+                        text: "Saved $1,200 in my first month. Game changer!",
+                        name: "Sarah K.",
+                        stars: 5
+                    )
+                    TestimonialRow(
+                        text: "Finally broke my impulse buying habit.",
+                        name: "Marcus T.",
+                        stars: 5
+                    )
+                }
+                .padding(.horizontal, AppTheme.paddingLarge)
 
                 Spacer()
 
@@ -388,5 +406,43 @@ private struct CompactFeature: View {
                 .lineLimit(2)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+private struct TestimonialRow: View {
+    let text: String
+    let name: String
+    let stars: Int
+
+    var body: some View {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 2) {
+                    ForEach(0..<stars, id: \.self) { _ in
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 9))
+                            .foregroundColor(AppTheme.accentGold)
+                    }
+                }
+                Text("\"\(text)\"")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(AppTheme.textPrimary)
+                    .italic()
+                    .lineLimit(2)
+                Text("— \(name)")
+                    .font(.system(size: 10))
+                    .foregroundColor(AppTheme.textTertiary)
+            }
+            Spacer()
+        }
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white.opacity(0.03))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(AppTheme.textTertiary.opacity(0.12), lineWidth: 0.5)
+                )
+        )
     }
 }

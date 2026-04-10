@@ -7,7 +7,10 @@ struct PrimaryButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            HapticManager.shared.trigger(.buttonTap)
+            action()
+        } label: {
             HStack(spacing: 12) {
                 Text(title)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -33,6 +36,7 @@ struct PrimaryButton: View {
             )
             .shadow(color: isEnabled ? AppTheme.primaryGreen.opacity(0.4) : .clear, radius: 8, y: 4)
         }
+        .buttonStyle(ScaleButtonStyle())
         .disabled(!isEnabled)
         .opacity(isEnabled ? 1.0 : 0.6)
     }
@@ -44,7 +48,10 @@ struct SecondaryButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            HapticManager.shared.trigger(.buttonTap)
+            action()
+        } label: {
             HStack(spacing: 8) {
                 if let icon {
                     Image(systemName: icon)
@@ -61,5 +68,17 @@ struct SecondaryButton: View {
                     .stroke(AppTheme.primaryGreen, lineWidth: 1.5)
             )
         }
+        .buttonStyle(ScaleButtonStyle())
+    }
+}
+
+// MARK: - Press-scale animation for all tappable elements
+
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
+            .opacity(configuration.isPressed ? 0.9 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: configuration.isPressed)
     }
 }
