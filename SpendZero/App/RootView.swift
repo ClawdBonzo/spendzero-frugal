@@ -3,26 +3,45 @@ import SwiftData
 
 struct RootView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
-    @AppStorage("hasSeenPaywall") private var hasSeenPaywall = false
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
     @State private var showSplash = true
+    @State private var showStrategicPaywall = false
+    @State private var subscriptionService = SubscriptionService.shared
+
+    private var profile: UserProfile? { profiles.first }
 
     var body: some View {
         ZStack {
             Group {
                 if !hasCompletedOnboarding {
+                    // Step 1: Onboarding → ends by setting hasCompletedOnboarding = true
                     OnboardingFlowView()
-                } else if !hasSeenPaywall {
-                    PaywallView(onContinue: {
-                        hasSeenPaywall = true
-                    })
+                } else if let profile, !profile.hasStartedTrial {
+                    // Step 2: First time after onboarding — show soft paywall + start trial
+                    PaywallView(
+                        onContinue: { startTrial(for: profile) },
+                        urgencyMessage: "Start your 3-day free trial — full access, no charge"
+                    )
+                } else if let profile, profile.isTrialExpired, !subscriptionService.isPremium {
+                    // Step 3: Trial expired + not paid — HARD PAYWALL (no X button)
+                    PaywallView(
+                        onContinue: { /* only reachable via successful purchase */ },
+                        isHardPaywall: true,
+                        urgencyMessage: "Your free trial has ended"
+                    )
                 } else {
+                    // Step 4: Trial active OR premium → full app access
                     MainTabView()
+                        .sheet(isPresented: $showStrategicPaywall) {
+                            PaywallView(
+                                onContinue: { showStrategicPaywall = false },
+                                urgencyMessage: strategicPaywallMessage
+                            )
+                        }
                 }
             }
             .animation(.easeInOut(duration: 0.4), value: hasCompletedOnboarding)
-            .animation(.easeInOut(duration: 0.4), value: hasSeenPaywall)
 
             if showSplash {
                 SplashScreenView()
@@ -31,21 +50,59 @@ struct RootView: View {
             }
         }
         .onAppear {
-            // Ensure existing users have a GameProfile (fixes crash for users who
-            // completed onboarding before GameProfile creation was added)
-            if let profile = profiles.first, profile.gameProfile == nil {
+            // Ensure existing users have a GameProfile
+            if let profile, profile.gameProfile == nil {
                 let gp = GameProfile()
                 modelContext.insert(gp)
                 profile.gameProfile = gp
                 try? modelContext.save()
             }
 
+            // Dismiss splash
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                 withAnimation(.easeOut(duration: 0.5)) {
                     showSplash = false
                 }
+                // After splash, check for strategic paywall nudge
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    checkStrategicPaywall()
+                }
             }
         }
+        .task {
+            // Re-check premium status on every app launch
+            await subscriptionService.checkEntitlementStatus()
+        }
+    }
+
+    // MARK: - Trial Management
+
+    private func startTrial(for profile: UserProfile) {
+        profile.trialStartDate = Date()
+        try? modelContext.save()
+    }
+
+    // MARK: - Strategic Paywall (day 2, day 3 nudges)
+
+    private var strategicPaywallMessage: String? {
+        guard let profile else { return nil }
+        if profile.isTrialExpired { return "Your free trial has ended" }
+        let remaining = profile.trialDaysRemaining
+        if remaining <= 1 { return "Trial expires today — don't lose your progress!" }
+        if remaining == 2 { return "Trial ends tomorrow — lock in your savings" }
+        return nil
+    }
+
+    private func checkStrategicPaywall() {
+        guard let profile, !subscriptionService.isPremium else { return }
+        guard profile.hasStartedTrial, profile.isTrialActive else { return }
+        guard profile.shouldShowPaywallNudge else { return }
+
+        // Mark that we showed paywall today
+        profile.lastPaywallShownDate = Date()
+        try? modelContext.save()
+
+        showStrategicPaywall = true
     }
 }
 

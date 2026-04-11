@@ -9,6 +9,7 @@ struct DashboardView: View {
     @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
     @State private var showAddImpulse = false
     @State private var showGamificationHub = false
+    @State private var showUpgradePaywall = false
     @State private var currentToast: GameEventType?
     @State private var levelUpEvent: (newLevel: Int, rank: LevelRank, previousLevel: Int)?
     @State private var badgeUnlockEvent: BadgeInstance?
@@ -63,6 +64,13 @@ struct DashboardView: View {
                         greetingSection
                             .offset(x: showGreeting ? 0 : -40)
                             .opacity(showGreeting ? 1 : 0)
+
+                        // Trial countdown banner
+                        if let profile, profile.isTrialActive, !profile.isPremium {
+                            trialBanner(daysLeft: profile.trialDaysRemaining)
+                                .offset(y: showGreeting ? 0 : -10)
+                                .opacity(showGreeting ? 1 : 0)
+                        }
 
                         // Level progress hero — scales in
                         if let gameProfile = gameProfile {
@@ -464,6 +472,61 @@ struct DashboardView: View {
     }
 
     // MARK: - Helpers
+
+    private func trialBanner(daysLeft: Int) -> some View {
+        Button {
+            HapticManager.shared.trigger(.buttonTap)
+            showUpgradePaywall = true
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: daysLeft <= 1 ? "exclamationmark.triangle.fill" : "clock.fill")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(daysLeft <= 1 ? AppTheme.accentGold : AppTheme.primaryGreen)
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(daysLeft <= 1 ? "Trial ends today!" : "Free trial: \(daysLeft) days left")
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundColor(AppTheme.textPrimary)
+                    Text("Tap to upgrade and keep your progress")
+                        .font(.system(size: 10))
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+
+                Spacer()
+
+                Text("Upgrade")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(AppTheme.primaryGreen)
+                    .clipShape(Capsule())
+            }
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                    .fill(daysLeft <= 1
+                        ? AppTheme.accentGold.opacity(0.1)
+                        : AppTheme.primaryGreen.opacity(0.08))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                            .stroke(daysLeft <= 1
+                                ? AppTheme.accentGold.opacity(0.3)
+                                : AppTheme.primaryGreen.opacity(0.2),
+                                lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(ScaleButtonStyle())
+        .sheet(isPresented: $showUpgradePaywall) {
+            PaywallView(
+                onContinue: { showUpgradePaywall = false },
+                urgencyMessage: daysLeft <= 1
+                    ? "Trial expires today — don't lose your streak!"
+                    : "Lock in your savings before trial ends"
+            )
+        }
+    }
 
     private func triggerEntranceAnimations() {
         withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {

@@ -77,6 +77,9 @@ struct OnboardingFlowView: View {
         modelContext.insert(gameProfile)
         profile.gameProfile = gameProfile
 
+        // Trial not started yet — will start when user dismisses the first paywall
+        // (or purchases). This way onboarding completion doesn't waste trial time.
+
         try? modelContext.save()
         hasCompletedOnboarding = true
     }

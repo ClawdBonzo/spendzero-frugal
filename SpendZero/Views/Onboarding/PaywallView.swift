@@ -2,7 +2,13 @@ import SwiftUI
 
 struct PaywallView: View {
     let onContinue: () -> Void
-    @State private var selectedOption: String = SubscriptionService.monthlyID
+    /// When true, the paywall cannot be dismissed (trial expired / hard gate)
+    var isHardPaywall: Bool = false
+    /// Optional urgency message shown at top
+    var urgencyMessage: String? = nil
+
+    // Default to Yearly — highest LTV, has 3-day trial
+    @State private var selectedOption: String = SubscriptionService.yearlyID
     @State private var subscriptionService = SubscriptionService.shared
     @State private var showError = false
     @State private var showContent = false
@@ -37,6 +43,20 @@ struct PaywallView: View {
                 .offset(y: -280)
 
             VStack(spacing: 0) {
+                // — URGENCY BANNER (trial expiring / expired) —
+                if let message = urgencyMessage {
+                    HStack(spacing: 8) {
+                        Image(systemName: isHardPaywall ? "lock.fill" : "clock.fill")
+                            .font(.system(size: 13, weight: .semibold))
+                        Text(message)
+                            .font(.system(size: 13, weight: .semibold))
+                    }
+                    .foregroundColor(isHardPaywall ? .white : AppTheme.accentGold)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(isHardPaywall ? AppTheme.destructive.opacity(0.9) : AppTheme.accentGold.opacity(0.15))
+                }
+
                 // — COMPACT HEADER —
                 ZStack(alignment: .topTrailing) {
                     // Header content
@@ -56,7 +76,9 @@ struct PaywallView: View {
                                 Text("SpendZero Pro")
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundColor(AppTheme.textPrimary)
-                                Text("Unlock your full savings potential")
+                                Text(isHardPaywall
+                                    ? "Subscribe to continue your journey"
+                                    : "Unlock your full savings potential")
                                     .font(.system(size: 12))
                                     .foregroundColor(AppTheme.textSecondary)
                             }
@@ -80,14 +102,16 @@ struct PaywallView: View {
                         .padding(.bottom, 14)
                     }
 
-                    // Close button
-                    Button(action: onContinue) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 26))
-                            .foregroundColor(AppTheme.textTertiary.opacity(0.7))
+                    // Close button — only shown on soft paywall (during trial)
+                    if !isHardPaywall {
+                        Button(action: onContinue) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 26))
+                                .foregroundColor(AppTheme.textTertiary.opacity(0.7))
+                        }
+                        .padding(.top, 16)
+                        .padding(.trailing, AppTheme.paddingLarge)
                     }
-                    .padding(.top, 16)
-                    .padding(.trailing, AppTheme.paddingLarge)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 0)

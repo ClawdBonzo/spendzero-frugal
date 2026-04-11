@@ -172,7 +172,7 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showPaywall) {
-                PaywallView(onContinue: { showPaywall = false })
+                PaywallView(onContinue: { showPaywall = false }, urgencyMessage: "Upgrade to unlock all features")
             }
             .alert("Reset All Data?", isPresented: $showResetConfirmation) {
                 Button("Cancel", role: .cancel) {}
