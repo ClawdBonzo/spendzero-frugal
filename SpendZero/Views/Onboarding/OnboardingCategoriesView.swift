@@ -11,28 +11,29 @@ struct OnboardingCategoriesView: View {
     private let categories = SpendCategory.allCases.map { $0 }
 
     var body: some View {
-        VStack(spacing: 12) {
-            Spacer().frame(height: 24)
+        VStack(spacing: 16) {
+            Spacer()
 
-            // Hero illustration
+            // Hero illustration — bigger
             Image("Onboarding-3")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 80)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .frame(height: 110)
+                .clipShape(RoundedRectangle(cornerRadius: 18))
+                .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 14, y: 6)
                 .scaleEffect(showImage ? 1 : 0.8)
                 .opacity(showImage ? 1 : 0)
 
             // Title + subtitle
-            VStack(spacing: 4) {
+            VStack(spacing: 6) {
                 Text("Where does your money leak?")
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
 
                 Text("Select all that apply")
-                    .font(.system(size: 13))
+                    .font(.system(size: 14))
                     .foregroundColor(AppTheme.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -40,32 +41,32 @@ struct OnboardingCategoriesView: View {
             .offset(y: showTitle ? 0 : 15)
             .opacity(showTitle ? 1 : 0)
 
-            // Category grid - scrollable with staggered entry
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVGrid(columns: [
-                    GridItem(.flexible(), spacing: 8),
-                    GridItem(.flexible(), spacing: 8)
-                ], spacing: 8) {
-                    ForEach(Array(categories.enumerated()), id: \.element.id) { index, category in
-                        CategoryChip(
-                            category: category,
-                            isSelected: selected.contains(category)
-                        ) {
-                            HapticManager.shared.trigger(selected.contains(category) ? .toggleOff : .toggleOn)
-                            withAnimation(.spring(response: 0.3)) {
-                                if selected.contains(category) {
-                                    selected.remove(category)
-                                } else {
-                                    selected.insert(category)
-                                }
+            // Category grid — larger chips, fills space
+            LazyVGrid(columns: [
+                GridItem(.flexible(), spacing: 10),
+                GridItem(.flexible(), spacing: 10)
+            ], spacing: 10) {
+                ForEach(Array(categories.enumerated()), id: \.element.id) { index, category in
+                    CategoryChip(
+                        category: category,
+                        isSelected: selected.contains(category)
+                    ) {
+                        HapticManager.shared.trigger(selected.contains(category) ? .toggleOff : .toggleOn)
+                        withAnimation(.spring(response: 0.3)) {
+                            if selected.contains(category) {
+                                selected.remove(category)
+                            } else {
+                                selected.insert(category)
                             }
                         }
-                        .scaleEffect(visibleChips.contains(index) ? 1 : 0.7)
-                        .opacity(visibleChips.contains(index) ? 1 : 0)
                     }
+                    .scaleEffect(visibleChips.contains(index) ? 1 : 0.7)
+                    .opacity(visibleChips.contains(index) ? 1 : 0)
                 }
-                .padding(.horizontal, AppTheme.paddingLarge)
             }
+            .padding(.horizontal, AppTheme.paddingLarge)
+
+            Spacer()
 
             // Counter + Button
             VStack(spacing: 6) {
@@ -112,20 +113,20 @@ struct CategoryChip: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 5) {
+            VStack(spacing: 8) {
                 Image(systemName: category.icon)
-                    .font(.system(size: 18))
+                    .font(.system(size: 24))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : Color(hex: category.color))
                     .symbolEffect(.bounce, value: isSelected)
 
                 Text(category.rawValue)
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 13, weight: .medium))
                     .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
+            .padding(.vertical, 18)
             .background(
                 RoundedRectangle(cornerRadius: 12)
                     .fill(isSelected ? AppTheme.primaryGreen.opacity(0.12) : AppTheme.cardBackground)

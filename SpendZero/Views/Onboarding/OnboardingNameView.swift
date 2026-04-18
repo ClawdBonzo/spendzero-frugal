@@ -11,42 +11,51 @@ struct OnboardingNameView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: 24)
+            // Top spacer pushes content toward center
+            Spacer()
 
-            // Hero section with animated ring
-            VStack(spacing: 12) {
+            // Hero section with animated ring — larger logo
+            VStack(spacing: 20) {
                 ZStack {
-                    // Pulsing ring
+                    // Outer pulsing ring (largest)
                     Circle()
-                        .stroke(AppTheme.primaryGreen.opacity(0.15), lineWidth: 1.5)
-                        .frame(width: 130, height: 130)
-                        .scaleEffect(ringPulse ? 1.08 : 0.95)
+                        .stroke(AppTheme.primaryGreen.opacity(0.12), lineWidth: 1.5)
+                        .frame(width: 200, height: 200)
+                        .scaleEffect(ringPulse ? 1.1 : 0.95)
                         .opacity(showIcon ? 0.6 : 0)
 
+                    // Inner glow ring
+                    Circle()
+                        .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 2)
+                        .frame(width: 160, height: 160)
+                        .opacity(showIcon ? 1 : 0)
+
+                    // Radial glow background
                     Circle()
                         .fill(
                             RadialGradient(
-                                colors: [AppTheme.primaryGreen.opacity(0.25), AppTheme.primaryGreen.opacity(0.03)],
+                                colors: [AppTheme.primaryGreen.opacity(0.30), AppTheme.primaryGreen.opacity(0.04)],
                                 center: .center,
-                                startRadius: 10,
-                                endRadius: 55
+                                startRadius: 15,
+                                endRadius: 80
                             )
                         )
-                        .frame(width: 110, height: 110)
+                        .frame(width: 170, height: 170)
 
+                    // Brand icon — much larger now
                     Image("BrandIcon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 64, height: 64)
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
-                        .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 12, y: 4)
+                        .frame(width: 120, height: 120)
+                        .clipShape(RoundedRectangle(cornerRadius: 26))
+                        .shadow(color: AppTheme.primaryGreen.opacity(0.6), radius: 20, y: 6)
                         .scaleEffect(showIcon ? 1 : 0.5)
                         .opacity(showIcon ? 1 : 0)
                 }
 
-                VStack(spacing: 6) {
+                VStack(spacing: 8) {
                     Text("What should we call your wealthy future self?")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -62,10 +71,10 @@ struct OnboardingNameView: View {
             }
             .padding(.horizontal, AppTheme.paddingLarge)
 
-            Spacer().frame(height: 24)
+            Spacer().frame(height: 28)
 
-            // Input field with animated entry
-            VStack(spacing: 10) {
+            // Input field
+            VStack(spacing: 12) {
                 TextField("", text: $name, prompt: Text("Your name").foregroundColor(AppTheme.textTertiary))
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
@@ -107,9 +116,10 @@ struct OnboardingNameView: View {
             }
             .padding(.horizontal, AppTheme.paddingLarge)
 
+            // Bottom spacer balances top — keeps form near vertical center
             Spacer()
 
-            // Button
+            // Button — pinned at bottom
             PrimaryButton(
                 title: "Continue",
                 icon: "arrow.right",
@@ -122,7 +132,7 @@ struct OnboardingNameView: View {
         }
         .animation(.spring(response: 0.4), value: name)
         .onAppear {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.1)) {
+            withAnimation(.spring(response: 0.7, dampingFraction: 0.6).delay(0.1)) {
                 showIcon = true
             }
             withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.3)) {
