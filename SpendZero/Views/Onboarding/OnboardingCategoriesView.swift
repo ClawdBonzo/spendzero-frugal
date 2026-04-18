@@ -11,64 +11,64 @@ struct OnboardingCategoriesView: View {
     private let categories = SpendCategory.allCases.map { $0 }
 
     var body: some View {
-        VStack(spacing: 16) {
-            Spacer()
+        VStack(spacing: 0) {
+            // Fixed header — image + title
+            VStack(spacing: 12) {
+                Image("Onboarding-3")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 90)
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+                    .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 14, y: 6)
+                    .scaleEffect(showImage ? 1 : 0.8)
+                    .opacity(showImage ? 1 : 0)
 
-            // Hero illustration — bigger
-            Image("Onboarding-3")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 110)
-                .clipShape(RoundedRectangle(cornerRadius: 18))
-                .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 14, y: 6)
-                .scaleEffect(showImage ? 1 : 0.8)
-                .opacity(showImage ? 1 : 0)
+                VStack(spacing: 4) {
+                    Text("Where does your money leak?")
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .foregroundColor(AppTheme.textPrimary)
+                        .multilineTextAlignment(.center)
 
-            // Title + subtitle
-            VStack(spacing: 6) {
-                Text("Where does your money leak?")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(AppTheme.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                Text("Select all that apply")
-                    .font(.system(size: 14))
-                    .foregroundColor(AppTheme.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                    Text("Select all that apply")
+                        .font(.system(size: 14))
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+                .offset(y: showTitle ? 0 : 15)
+                .opacity(showTitle ? 1 : 0)
             }
             .padding(.horizontal, AppTheme.paddingLarge)
-            .offset(y: showTitle ? 0 : 15)
-            .opacity(showTitle ? 1 : 0)
+            .padding(.top, 20)
+            .padding(.bottom, 12)
 
-            // Category grid — larger chips, fills space
-            LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 10),
-                GridItem(.flexible(), spacing: 10)
-            ], spacing: 10) {
-                ForEach(Array(categories.enumerated()), id: \.element.id) { index, category in
-                    CategoryChip(
-                        category: category,
-                        isSelected: selected.contains(category)
-                    ) {
-                        HapticManager.shared.trigger(selected.contains(category) ? .toggleOff : .toggleOn)
-                        withAnimation(.spring(response: 0.3)) {
-                            if selected.contains(category) {
-                                selected.remove(category)
-                            } else {
-                                selected.insert(category)
+            // Scrollable category grid
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: [
+                    GridItem(.flexible(), spacing: 10),
+                    GridItem(.flexible(), spacing: 10)
+                ], spacing: 10) {
+                    ForEach(Array(categories.enumerated()), id: \.element.id) { index, category in
+                        CategoryChip(
+                            category: category,
+                            isSelected: selected.contains(category)
+                        ) {
+                            HapticManager.shared.trigger(selected.contains(category) ? .toggleOff : .toggleOn)
+                            withAnimation(.spring(response: 0.3)) {
+                                if selected.contains(category) {
+                                    selected.remove(category)
+                                } else {
+                                    selected.insert(category)
+                                }
                             }
                         }
+                        .scaleEffect(visibleChips.contains(index) ? 1 : 0.7)
+                        .opacity(visibleChips.contains(index) ? 1 : 0)
                     }
-                    .scaleEffect(visibleChips.contains(index) ? 1 : 0.7)
-                    .opacity(visibleChips.contains(index) ? 1 : 0)
                 }
+                .padding(.horizontal, AppTheme.paddingLarge)
+                .padding(.bottom, 8)
             }
-            .padding(.horizontal, AppTheme.paddingLarge)
 
-            Spacer()
-
-            // Counter + Button
+            // Fixed footer — counter + button always visible
             VStack(spacing: 6) {
                 if !selected.isEmpty {
                     Text("\(selected.count) selected")
@@ -86,6 +86,7 @@ struct OnboardingCategoriesView: View {
                 }
             }
             .padding(.horizontal, AppTheme.paddingLarge)
+            .padding(.top, 8)
             .padding(.bottom, 28)
         }
         .animation(.spring(response: 0.3), value: selected)

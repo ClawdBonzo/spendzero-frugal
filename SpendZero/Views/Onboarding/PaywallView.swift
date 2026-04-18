@@ -11,7 +11,6 @@ struct PaywallView: View {
     @State private var selectedOption: String = SubscriptionService.yearlyID
     @State private var subscriptionService = SubscriptionService.shared
     @State private var showError = false
-    @State private var showContent = false
 
     private var selectedPlan: SubscriptionOption? {
         subscriptionService.offerings.first(where: { $0.id == selectedOption })
@@ -57,50 +56,32 @@ struct PaywallView: View {
                     .background(isHardPaywall ? AppTheme.destructive.opacity(0.9) : AppTheme.accentGold.opacity(0.15))
                 }
 
-                // — COMPACT HEADER —
+                // — HEADER —
                 ZStack(alignment: .topTrailing) {
-                    // Header content
-                    VStack(spacing: 6) {
-                        Spacer().frame(height: 16)
+                    VStack(spacing: 12) {
+                        Spacer().frame(height: 20)
 
-                        // Icon + title row
-                        HStack(spacing: 10) {
-                            Image("BrandIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 36, height: 36)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 6, y: 2)
+                        Image("BrandIcon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 64, height: 64)
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                            .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 10, y: 3)
 
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text("SpendZero Pro")
-                                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                                    .foregroundColor(AppTheme.textPrimary)
-                                Text(isHardPaywall
-                                    ? "Subscribe to continue your journey"
-                                    : "Unlock your full savings potential")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(AppTheme.textSecondary)
-                            }
-                            Spacer()
+                        VStack(spacing: 4) {
+                            Text("SpendZero Pro")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .foregroundColor(AppTheme.textPrimary)
+                            Text(isHardPaywall
+                                ? "Subscribe to continue your journey"
+                                : "Unlock the full SpendZero experience")
+                                .font(.system(size: 14))
+                                .foregroundColor(AppTheme.textSecondary)
+                                .multilineTextAlignment(.center)
                         }
                         .padding(.horizontal, AppTheme.paddingLarge)
-
-                        // Stats strip
-                        HStack(spacing: 0) {
-                            StatPill(value: "$847", label: "avg saved/month")
-                            Divider()
-                                .frame(height: 24)
-                                .background(AppTheme.textTertiary.opacity(0.3))
-                            StatPill(value: "92%", label: "less impulse buying")
-                            Divider()
-                                .frame(height: 24)
-                                .background(AppTheme.textTertiary.opacity(0.3))
-                            StatPill(value: "127K+", label: "active users")
-                        }
-                        .padding(.horizontal, AppTheme.paddingLarge)
-                        .padding(.bottom, 14)
                     }
+                    .frame(maxWidth: .infinity)
 
                     // Close button — only shown on soft paywall (during trial)
                     if !isHardPaywall {
@@ -113,26 +94,18 @@ struct PaywallView: View {
                         .padding(.trailing, AppTheme.paddingLarge)
                     }
                 }
-                .background(
-                    RoundedRectangle(cornerRadius: 0)
-                        .fill(Color.white.opacity(0.03))
-                )
-                .overlay(
-                    Rectangle()
-                        .frame(height: 0.5)
-                        .foregroundColor(AppTheme.primaryGreen.opacity(0.2)),
-                    alignment: .bottom
-                )
+                .padding(.bottom, 18)
 
-                // — FEATURES (compact) —
-                HStack(spacing: 0) {
-                    CompactFeature(icon: "flame.fill",             text: "No-Spend Challenges", color: Color(hex: "FF6B35"))
-                    CompactFeature(icon: "chart.bar.fill",         text: "Spending Analytics",  color: AppTheme.info)
-                    CompactFeature(icon: "bell.badge.fill",        text: "Impulse Alerts",      color: AppTheme.accentGold)
-                    CompactFeature(icon: "square.grid.2x2.fill",   text: "Widgets",             color: Color(hex: "9C27B0"))
+                // — FEATURES LIST —
+                VStack(alignment: .leading, spacing: 10) {
+                    FeatureRow(icon: "flame.fill",            color: Color(hex: "FF6B35"), text: "No-spend challenges & streaks")
+                    FeatureRow(icon: "chart.bar.fill",        color: AppTheme.info,        text: "Spending analytics & insights")
+                    FeatureRow(icon: "bell.badge.fill",       color: AppTheme.accentGold,  text: "Impulse-purchase alerts")
+                    FeatureRow(icon: "square.grid.2x2.fill", color: Color(hex: "9C27B0"),  text: "Home Screen widgets")
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, AppTheme.paddingLarge + 4)
+
+                Spacer().frame(height: 16)
 
                 // — FREE TRIAL BANNER (only when selected plan has trial) —
                 if selectedHasFreeTrial {
@@ -182,32 +155,15 @@ struct PaywallView: View {
                 .padding(.horizontal, AppTheme.paddingLarge)
                 .animation(.spring(response: 0.3), value: selectedOption)
 
-                Spacer().frame(height: 14)
-
-                // — SOCIAL PROOF —
-                VStack(spacing: 8) {
-                    TestimonialRow(
-                        text: "Saved $1,200 in my first month. Game changer!",
-                        name: "Sarah K.",
-                        stars: 5
-                    )
-                    TestimonialRow(
-                        text: "Finally broke my impulse buying habit.",
-                        name: "Marcus T.",
-                        stars: 5
-                    )
-                }
-                .padding(.horizontal, AppTheme.paddingLarge)
-
                 Spacer()
 
                 // — CTA BUTTON —
-                VStack(spacing: 6) {
+                VStack(spacing: 8) {
                     PrimaryButton(
                         title: selectedHasFreeTrial
                             ? "Start \(selectedTrialDays)-Day Free Trial"
-                            : "Get Pro Access",
-                        icon: selectedHasFreeTrial ? "lock.open.fill" : "crown.fill"
+                            : "Continue",
+                        icon: selectedHasFreeTrial ? "lock.open.fill" : "arrow.right"
                     ) {
                         Task {
                             if let option = selectedPlan {
@@ -269,18 +225,6 @@ struct PremiumSubscriptionCard: View {
     let isSelected: Bool
     let action: () -> Void
 
-    private var savingsText: String? {
-        // Yearly: ~81% cheaper than weekly ($49.99/yr vs $4.99/wk * 52 = $259.48)
-        if option.id == SubscriptionService.yearlyID {
-            return "Save 81% vs weekly"
-        }
-        // Monthly: ~63% cheaper than weekly ($7.99/mo * 12 = $95.88 vs $259.48/yr)
-        if option.id == SubscriptionService.monthlyID {
-            return "Save 63% vs weekly"
-        }
-        return nil
-    }
-
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
@@ -308,16 +252,6 @@ struct PremiumSubscriptionCard: View {
                             .font(.system(size: 15, weight: .semibold))
                             .foregroundColor(AppTheme.textPrimary)
 
-                        if option.isBestValue {
-                            Text("BEST VALUE")
-                                .font(.system(size: 8, weight: .black))
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2.5)
-                                .background(AppTheme.accentGold)
-                                .clipShape(Capsule())
-                        }
-
                         if option.hasFreeTrial {
                             Text("\(option.trialDays)-DAY FREE")
                                 .font(.system(size: 8, weight: .bold))
@@ -340,15 +274,9 @@ struct PremiumSubscriptionCard: View {
                         }
                     }
 
-                    if let savings = savingsText {
-                        Text(savings)
-                            .font(.system(size: 11))
-                            .foregroundColor(AppTheme.primaryGreen.opacity(0.8))
-                    } else {
-                        Text(option.isLifetime ? "No recurring charges" : option.pricePerWeek)
-                            .font(.system(size: 11))
-                            .foregroundColor(AppTheme.textSecondary)
-                    }
+                    Text(option.isLifetime ? "No recurring charges" : option.pricePerWeek)
+                        .font(.system(size: 11))
+                        .foregroundColor(AppTheme.textSecondary)
                 }
 
                 Spacer()
@@ -374,17 +302,10 @@ struct PremiumSubscriptionCard: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 14)
                             .stroke(
-                                isSelected
-                                    ? (option.isBestValue ? AppTheme.accentGold : AppTheme.primaryGreen)
-                                    : AppTheme.textTertiary.opacity(0.15),
+                                isSelected ? AppTheme.primaryGreen : AppTheme.textTertiary.opacity(0.15),
                                 lineWidth: isSelected ? 1.5 : 0.5
                             )
                     )
-            )
-            // Gold glow for best value when selected
-            .shadow(
-                color: isSelected && option.isBestValue ? AppTheme.accentGold.opacity(0.2) : .clear,
-                radius: 8, y: 2
             )
         }
         .buttonStyle(.plain)
@@ -393,80 +314,28 @@ struct PremiumSubscriptionCard: View {
 
 // MARK: - Supporting Views
 
-private struct StatPill: View {
-    let value: String
-    let label: String
-
-    var body: some View {
-        VStack(spacing: 2) {
-            Text(value)
-                .font(.system(size: 15, weight: .bold, design: .rounded))
-                .foregroundStyle(
-                    LinearGradient(colors: [AppTheme.primaryGreen, AppTheme.accentGold], startPoint: .leading, endPoint: .trailing)
-                )
-            Text(label)
-                .font(.system(size: 10))
-                .foregroundColor(AppTheme.textTertiary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-private struct CompactFeature: View {
+private struct FeatureRow: View {
     let icon: String
-    let text: String
     let color: Color
-
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: icon)
-                .font(.system(size: 16))
-                .foregroundColor(color)
-            Text(text)
-                .font(.system(size: 9, weight: .medium))
-                .foregroundColor(AppTheme.textSecondary)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-        }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-private struct TestimonialRow: View {
     let text: String
-    let name: String
-    let stars: Int
 
     var body: some View {
-        HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 2) {
-                    ForEach(0..<stars, id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 9))
-                            .foregroundColor(AppTheme.accentGold)
-                    }
-                }
-                Text("\"\(text)\"")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(AppTheme.textPrimary)
-                    .italic()
-                    .lineLimit(2)
-                Text("— \(name)")
-                    .font(.system(size: 10))
-                    .foregroundColor(AppTheme.textTertiary)
+        HStack(spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(color.opacity(0.15))
+                    .frame(width: 32, height: 32)
+                Image(systemName: icon)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(color)
             }
+            Text(text)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(AppTheme.textPrimary)
             Spacer()
+            Image(systemName: "checkmark")
+                .font(.system(size: 12, weight: .bold))
+                .foregroundColor(AppTheme.primaryGreen)
         }
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white.opacity(0.03))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(AppTheme.textTertiary.opacity(0.12), lineWidth: 0.5)
-                )
-        )
     }
 }

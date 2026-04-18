@@ -20,13 +20,13 @@ struct MoneyTreeView: View {
         }
     }
 
-    var stageEmoji: String {
+    var stageIcon: String {
         switch treeStage {
-        case 1: return "🌱"
-        case 2: return "🌿"
-        case 3: return "🌳"
-        case 4: return "🌲"
-        default: return "🌴"
+        case 1: return "leaf.fill"
+        case 2: return "leaf.circle.fill"
+        case 3: return "tree.fill"
+        case 4: return "tree.fill"
+        default: return "crown.fill"
         }
     }
 
@@ -81,7 +81,7 @@ struct MoneyTreeView: View {
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 1)
             )
-            .accessibilityLabel("Wealth tree at stage \(treeStage): \(stageEmoji) \(stageTitle)")
+            .accessibilityLabel("Wealth tree at stage \(treeStage): \(stageTitle)")
             .accessibilityValue("Level \(gameProfile.currentLevel)")
 
             // Stage info
@@ -91,9 +91,13 @@ struct MoneyTreeView: View {
                         .font(AppTheme.bodyFont)
                         .foregroundColor(AppTheme.textSecondary)
                     Spacer()
-                    Text("\(stageEmoji) \(stageTitle)")
-                        .font(AppTheme.headlineFont)
-                        .foregroundColor(AppTheme.accentGold)
+                    HStack(spacing: 6) {
+                        Image(systemName: stageIcon)
+                            .font(.system(size: 16, weight: .semibold))
+                        Text(stageTitle)
+                            .font(AppTheme.headlineFont)
+                    }
+                    .foregroundColor(AppTheme.accentGold)
                 }
 
                 if treeStage < 5 {
@@ -269,8 +273,10 @@ struct ParticleView: View {
     @State private var opacity: Double = 0
 
     var body: some View {
-        Text("🪙")
-            .font(.system(size: 11))
+        Image(systemName: "dollarsign.circle.fill")
+            .font(.system(size: 12, weight: .bold))
+            .foregroundColor(AppTheme.accentGold)
+            .shadow(color: AppTheme.accentGold.opacity(0.5), radius: 3)
             .position(position)
             .opacity(opacity)
             .onAppear {

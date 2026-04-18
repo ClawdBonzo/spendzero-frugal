@@ -96,32 +96,42 @@ struct AddImpulseView: View {
                                 .font(AppTheme.captionFont)
                                 .foregroundColor(AppTheme.textSecondary)
 
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 8) {
-                                    ForEach(SpendCategory.allCases) { cat in
-                                        Button {
+                            LazyVGrid(
+                                columns: [
+                                    GridItem(.adaptive(minimum: 110), spacing: 8)
+                                ],
+                                spacing: 8
+                            ) {
+                                ForEach(SpendCategory.allCases) { cat in
+                                    Button {
+                                        HapticManager.shared.trigger(.cardSelect)
+                                        withAnimation(.spring(response: 0.25)) {
                                             selectedCategory = cat
-                                        } label: {
-                                            HStack(spacing: 4) {
-                                                Image(systemName: cat.icon)
-                                                    .font(.system(size: 12))
-                                                Text(cat.rawValue)
-                                                    .font(.system(size: 12, weight: .medium))
-                                            }
-                                            .foregroundColor(selectedCategory == cat ? AppTheme.primaryGreen : AppTheme.textSecondary)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 8)
-                                            .background(
-                                                Capsule()
-                                                    .fill(selectedCategory == cat ? AppTheme.primaryGreen.opacity(0.12) : AppTheme.cardBackground)
-                                                    .overlay(
-                                                        Capsule()
-                                                            .stroke(selectedCategory == cat ? AppTheme.primaryGreen : Color.clear, lineWidth: 1)
-                                                    )
-                                            )
                                         }
-                                        .buttonStyle(.plain)
+                                    } label: {
+                                        HStack(spacing: 6) {
+                                            Image(systemName: cat.icon)
+                                                .font(.system(size: 13))
+                                            Text(cat.rawValue)
+                                                .font(.system(size: 13, weight: .medium))
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
+                                            Spacer(minLength: 0)
+                                        }
+                                        .foregroundColor(selectedCategory == cat ? AppTheme.primaryGreen : AppTheme.textSecondary)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 10)
+                                        .frame(maxWidth: .infinity)
+                                        .background(
+                                            Capsule()
+                                                .fill(selectedCategory == cat ? AppTheme.primaryGreen.opacity(0.12) : AppTheme.cardBackground)
+                                                .overlay(
+                                                    Capsule()
+                                                        .stroke(selectedCategory == cat ? AppTheme.primaryGreen : Color.clear, lineWidth: 1)
+                                                )
+                                        )
                                     }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
