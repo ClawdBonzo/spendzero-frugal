@@ -92,16 +92,20 @@ struct QuestPanelView: View {
 
                     // Empty State
                     if dailyQuests.isEmpty && weeklyQuests.isEmpty {
+                        let allCompleted = !gameProfile.quests.isEmpty
                         VStack(spacing: 12) {
-                            Image(systemName: "checkmark.circle")
+                            Image(systemName: allCompleted ? "checkmark.circle.fill" : "sparkles")
                                 .font(.system(size: 32, weight: .semibold))
                                 .foregroundColor(AppTheme.primaryGreen)
-                            Text("All quests completed!")
+                            Text(allCompleted ? "All quests completed!" : "Fresh quests on the way")
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(AppTheme.textPrimary)
-                            Text("New quests will appear tomorrow")
+                            Text(allCompleted
+                                 ? "New quests will appear tomorrow"
+                                 : "Check back soon — your first quests are loading")
                                 .font(AppTheme.smallFont)
                                 .foregroundColor(AppTheme.textSecondary)
+                                .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(AppTheme.paddingLarge)

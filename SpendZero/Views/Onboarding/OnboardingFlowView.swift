@@ -77,6 +77,12 @@ struct OnboardingFlowView: View {
         modelContext.insert(gameProfile)
         profile.gameProfile = gameProfile
 
+        // Seed initial quests so the Quests tab isn't empty on day one
+        let dailies = GameStateManager.shared.generateDailyQuests(for: gameProfile)
+        let weekly  = GameStateManager.shared.generateWeeklyQuest(for: gameProfile)
+        gameProfile.quests.append(contentsOf: dailies)
+        gameProfile.quests.append(weekly)
+
         // Trial not started yet — will start when user dismisses the first paywall
         // (or purchases). This way onboarding completion doesn't waste trial time.
 

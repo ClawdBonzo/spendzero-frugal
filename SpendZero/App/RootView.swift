@@ -50,11 +50,21 @@ struct RootView: View {
             }
         }
         .onAppear {
-            // Ensure existing users have a GameProfile
+            // Ensure existing users have a GameProfile (with seeded quests)
             if let profile, profile.gameProfile == nil {
                 let gp = GameProfile()
                 modelContext.insert(gp)
                 profile.gameProfile = gp
+                let dailies = GameStateManager.shared.generateDailyQuests(for: gp)
+                let weekly  = GameStateManager.shared.generateWeeklyQuest(for: gp)
+                gp.quests.append(contentsOf: dailies)
+                gp.quests.append(weekly)
+                try? modelContext.save()
+            }
+
+            // Refresh quests for any returning user (handles daily/weekly rollover)
+            if let gp = profile?.gameProfile {
+                GameStateManager.shared.refreshQuestsIfNeeded(for: gp)
                 try? modelContext.save()
             }
 
