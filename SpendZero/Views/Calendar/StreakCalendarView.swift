@@ -149,7 +149,7 @@ struct StreakCalendarView: View {
                 .background(AppTheme.textTertiary.opacity(0.3))
 
             VStack(spacing: 4) {
-                Text("$\(Int(monthTotal))")
+                Text(monthTotal.currencyFormatted)
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.accentGold)
                     .contentTransition(.numericText())
@@ -239,7 +239,7 @@ struct StreakCalendarView: View {
                             )
 
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(entry.source.rawValue)
+                            Text(LocalizedStringKey(entry.source.rawValue))
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(AppTheme.textPrimary)
                             Text(entry.date, format: .dateTime.month().day().hour().minute())

@@ -52,15 +52,15 @@ struct ProgressChartsView: View {
                     // Time range picker
                     Picker("Range", selection: $selectedTimeRange) {
                         ForEach(TimeRange.allCases, id: \.self) { range in
-                            Text(range.rawValue).tag(range)
+                            Text(LocalizedStringKey(range.rawValue)).tag(range)
                         }
                     }
                     .pickerStyle(.segmented)
 
                     // Summary cards
                     HStack(spacing: 12) {
-                        MiniStatCard(title: "Saved", value: "$\(Int(totalSavedInRange))", color: AppTheme.primaryGreen)
-                        MiniStatCard(title: "Spent", value: "$\(Int(totalSpentInRange))", color: AppTheme.destructive)
+                        MiniStatCard(title: "Saved", value: totalSavedInRange.currencyFormatted, color: AppTheme.primaryGreen)
+                        MiniStatCard(title: "Spent", value: totalSpentInRange.currencyFormatted, color: AppTheme.destructive)
                         MiniStatCard(title: "Resisted", value: "\(impulsesResistedCount)", color: AppTheme.info)
                     }
 
@@ -122,7 +122,7 @@ struct ProgressChartsView: View {
                     AxisMarks(position: .leading) { value in
                         AxisValueLabel {
                             if let val = value.as(Double.self) {
-                                Text("$\(Int(val))")
+                                Text(val.currencyFormatted)
                                     .font(.system(size: 10))
                                     .foregroundColor(AppTheme.textTertiary)
                             }
@@ -182,11 +182,11 @@ struct ProgressChartsView: View {
                             Circle()
                                 .fill(Color(hex: item.category.color))
                                 .frame(width: 8, height: 8)
-                            Text(item.category.rawValue)
+                            Text(LocalizedStringKey(item.category.rawValue))
                                 .font(AppTheme.captionFont)
                                 .foregroundColor(AppTheme.textSecondary)
                             Spacer()
-                            Text("$\(Int(item.total))")
+                            Text(item.total.currencyFormatted)
                                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                                 .foregroundColor(AppTheme.textPrimary)
                         }

@@ -85,7 +85,7 @@ struct LevelProgressView: View {
                                             Image(systemName: "star.fill")
                                                 .font(.system(size: 10))
                                                 .foregroundColor(AppTheme.accentGold)
-                                            Text(feature)
+                                            Text(LocalizedStringKey(feature))
                                                 .font(AppTheme.smallFont)
                                                 .foregroundColor(AppTheme.textPrimary)
                                         }

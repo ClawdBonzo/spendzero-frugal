@@ -23,7 +23,7 @@ struct AddSpendingView: View {
                                 .foregroundColor(AppTheme.textPrimary)
 
                             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                                Text("$")
+                                Text(Locale.displayCurrencySymbol)
                                     .font(.system(size: 32, weight: .bold, design: .rounded))
                                     .foregroundColor(AppTheme.textSecondary)
 
@@ -56,7 +56,7 @@ struct AddSpendingView: View {
                                         VStack(spacing: 4) {
                                             Image(systemName: cat.icon)
                                                 .font(.system(size: 18))
-                                            Text(cat.rawValue)
+                                            Text(LocalizedStringKey(cat.rawValue))
                                                 .font(.system(size: 9, weight: .medium))
                                                 .lineLimit(1)
                                         }
@@ -143,6 +143,7 @@ struct AddSpendingView: View {
         )
         modelContext.insert(log)
         try? modelContext.save()
+        WidgetSync.refresh(context: modelContext)
         dismiss()
     }
 }

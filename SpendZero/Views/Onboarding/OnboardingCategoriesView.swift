@@ -120,7 +120,7 @@ struct CategoryChip: View {
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : Color(hex: category.color))
                     .symbolEffect(.bounce, value: isSelected)
 
-                Text(category.rawValue)
+                Text(LocalizedStringKey(category.rawValue))
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)

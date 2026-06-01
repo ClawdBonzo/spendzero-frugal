@@ -227,7 +227,7 @@ struct ChallengeCard: View {
                         .foregroundColor(AppTheme.textPrimary)
 
                     HStack(spacing: 8) {
-                        Text(challenge.difficulty.rawValue)
+                        Text(LocalizedStringKey(challenge.difficulty.rawValue))
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(Color(hex: challenge.difficulty.color))
                             .padding(.horizontal, 6)
@@ -357,14 +357,14 @@ struct CreateChallengeView: View {
 
                         Picker("Category", selection: $category) {
                             ForEach(ChallengeCategory.allCases, id: \.self) { cat in
-                                Text(cat.rawValue).tag(cat)
+                                Text(LocalizedStringKey(cat.rawValue)).tag(cat)
                             }
                         }
                         .pickerStyle(.segmented)
 
                         Picker("Difficulty", selection: $difficulty) {
                             ForEach(ChallengeDifficulty.allCases, id: \.self) { diff in
-                                Text(diff.rawValue).tag(diff)
+                                Text(LocalizedStringKey(diff.rawValue)).tag(diff)
                             }
                         }
                         .pickerStyle(.segmented)

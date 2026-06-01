@@ -91,13 +91,14 @@ struct SpendingLevelCard: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 14) {
-                Text(level.emoji)
-                    .font(.system(size: 30))
+                Image(systemName: level.icon)
+                    .font(.system(size: 26, weight: .semibold))
+                    .foregroundColor(Color(hex: level.iconColorHex))
                     .frame(width: 42)
                     .scaleEffect(isSelected ? 1.2 : 1.0)
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(level.rawValue)
+                    Text(LocalizedStringKey(level.rawValue))
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 

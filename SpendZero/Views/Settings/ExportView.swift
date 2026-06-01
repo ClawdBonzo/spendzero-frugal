@@ -52,15 +52,15 @@ struct ExportView: View {
                 // Range picker
                 Picker("Time Range", selection: $selectedRange) {
                     ForEach(ExportRange.allCases, id: \.self) { range in
-                        Text(range.rawValue).tag(range)
+                        Text(LocalizedStringKey(range.rawValue)).tag(range)
                     }
                 }
                 .pickerStyle(.segmented)
 
                 // Stats preview
                 VStack(spacing: 12) {
-                    ExportPreviewRow(title: "Total Saved", value: "$\(Int(filteredSavingsTotal))", icon: "dollarsign.circle.fill", color: AppTheme.primaryGreen)
-                    ExportPreviewRow(title: "Total Spent", value: "$\(Int(filteredSpendingTotal))", icon: "cart.fill", color: AppTheme.destructive)
+                    ExportPreviewRow(title: "Total Saved", value: filteredSavingsTotal.currencyFormatted, icon: "dollarsign.circle.fill", color: AppTheme.primaryGreen)
+                    ExportPreviewRow(title: "Total Spent", value: filteredSpendingTotal.currencyFormatted, icon: "cart.fill", color: AppTheme.destructive)
                     ExportPreviewRow(title: "No-Spend Days", value: "\(filteredNoSpendDays)", icon: "checkmark.seal.fill", color: AppTheme.primaryGreen)
                     ExportPreviewRow(title: "Impulses Resisted", value: "\(filteredImpulsesResisted)", icon: "bolt.slash.fill", color: AppTheme.info)
                 }

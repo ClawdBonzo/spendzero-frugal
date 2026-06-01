@@ -75,7 +75,7 @@ struct AddImpulseView: View {
                                 .foregroundColor(AppTheme.textSecondary)
 
                             HStack {
-                                Text("$")
+                                Text(Locale.displayCurrencySymbol)
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(AppTheme.textSecondary)
                                 TextField("0", text: $estimatedCost)
@@ -112,7 +112,7 @@ struct AddImpulseView: View {
                                         HStack(spacing: 6) {
                                             Image(systemName: cat.icon)
                                                 .font(.system(size: 13))
-                                            Text(cat.rawValue)
+                                            Text(LocalizedStringKey(cat.rawValue))
                                                 .font(.system(size: 13, weight: .medium))
                                                 .lineLimit(1)
                                                 .minimumScaleFactor(0.8)

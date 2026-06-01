@@ -94,7 +94,7 @@ struct StreakShareCard: View {
                 HStack(spacing: 16) {
                     if totalSaved > 0 {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("$\(Int(totalSaved))")
+                            Text(totalSaved.currencyFormatted)
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.primaryGreen)
                             Text("saved")

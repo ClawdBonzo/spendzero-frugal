@@ -20,6 +20,11 @@ extension Double {
     }
 }
 
+extension Locale {
+    /// The device locale's currency symbol (€, £, R$, ₹, $…), falling back to "$".
+    static var displayCurrencySymbol: String { Locale.current.currencySymbol ?? "$" }
+}
+
 extension Int {
     var ordinal: String {
         let formatter = NumberFormatter()

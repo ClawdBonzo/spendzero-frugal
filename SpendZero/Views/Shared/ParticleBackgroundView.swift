@@ -54,8 +54,11 @@ struct ParticleBackgroundView: View {
 
         var inner = ctx
         inner.opacity = p.opacity * min(alpha, 1.0)
+        // SF Symbol rendered as tinted Text — Canvas-safe (unlike emoji + drawingGroup)
         inner.draw(
-            Text(p.symbol).font(.system(size: p.size)),
+            Text(Image(systemName: p.symbol))
+                .font(.system(size: p.size, weight: .semibold))
+                .foregroundColor(p.tint),
             at: CGPoint(x: x, y: y)
         )
     }
@@ -64,7 +67,8 @@ struct ParticleBackgroundView: View {
 // MARK: - Particle Model
 
 struct BgParticle {
-    let symbol: String
+    let symbol: String      // SF Symbol name
+    let tint: Color         // particle color
     let size: CGFloat
     let xFraction: Double   // normalised 0…1 across screen width
     let timeOffset: Double  // lifecycle stagger (seconds)
@@ -73,16 +77,28 @@ struct BgParticle {
     let phase: Double       // wobble phase offset
     let opacity: Double     // max alpha (kept low for subtlety)
 
-    private static let symbols = ["💰", "✨", "🌿", "💎", "📈", "🍃", "⭐️", "🌱", "💵", "🪙"]
+    /// SF Symbol name + tint color pairs — money/growth themed, render reliably in Canvas
+    private static let palette: [(String, Color)] = [
+        ("dollarsign.circle.fill", AppTheme.accentGold),
+        ("sparkle",                AppTheme.accentGold),
+        ("leaf.fill",              AppTheme.primaryGreen),
+        ("diamond.fill",           Color(hex: "5BC0EB")),
+        ("chart.line.uptrend.xyaxis", AppTheme.primaryGreen),
+        ("star.fill",              AppTheme.accentGold),
+        ("banknote.fill",          AppTheme.primaryGreen),
+        ("circle.hexagongrid.fill", AppTheme.accentGold),
+    ]
 
     init(rng: inout SystemRandomNumberGenerator) {
-        symbol    = Self.symbols.randomElement(using: &rng)!
-        size      = CGFloat.random(in: 10...18, using: &rng)
+        let pick = Self.palette.randomElement(using: &rng)!
+        symbol    = pick.0
+        tint      = pick.1
+        size      = CGFloat.random(in: 12...20, using: &rng)
         xFraction = Double.random(in: 0.05...0.95, using: &rng)
         timeOffset = Double.random(in: 0...20, using: &rng)
         lifetime  = Double.random(in: 10...22, using: &rng)
         wobble    = Double.random(in: 0.20...0.55, using: &rng)
         phase     = Double.random(in: 0...(Double.pi * 2), using: &rng)
-        opacity   = Double.random(in: 0.20...0.45, using: &rng)
+        opacity   = Double.random(in: 0.30...0.55, using: &rng)
     }
 }

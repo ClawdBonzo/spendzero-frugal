@@ -107,12 +107,23 @@ enum SpendingLevel: String, Codable, CaseIterable {
         }
     }
 
-    var emoji: String {
+    /// SF Symbol name representing the spending level
+    var icon: String {
         switch self {
-        case .minimal: return "🌱"
-        case .moderate: return "💰"
-        case .heavy: return "🔥"
-        case .impulsive: return "⚡"
+        case .minimal:   return "leaf.fill"
+        case .moderate:  return "dollarsign.circle.fill"
+        case .heavy:     return "flame.fill"
+        case .impulsive: return "bolt.fill"
+        }
+    }
+
+    /// Tint color for the icon
+    var iconColorHex: String {
+        switch self {
+        case .minimal:   return "00C853"   // green
+        case .moderate:  return "FFB300"   // gold
+        case .heavy:     return "FF6B35"   // orange
+        case .impulsive: return "F44336"   // red
         }
     }
 }

@@ -7,8 +7,25 @@ struct SettingsView: View {
     @State private var showPaywall = false
     @State private var showExport = false
     @State private var showResetConfirmation = false
+    @AppStorage("impulseAlertsEnabled") private var impulseAlertsEnabled = false
+    @AppStorage("impulseAlertHour") private var impulseAlertHour = 18
+    @State private var showNotificationDeniedAlert = false
 
     private var profile: UserProfile? { profiles.first }
+
+    private var impulseAlertTime: Binding<Date> {
+        Binding(
+            get: {
+                Calendar.current.date(bySettingHour: impulseAlertHour, minute: 0, second: 0, of: Date()) ?? Date()
+            },
+            set: { newDate in
+                impulseAlertHour = Calendar.current.component(.hour, from: newDate)
+                if impulseAlertsEnabled {
+                    NotificationManager.shared.scheduleDailyReminder(hour: impulseAlertHour)
+                }
+            }
+        )
+    }
 
     var body: some View {
         NavigationStack {
@@ -42,7 +59,7 @@ struct SettingsView: View {
                     Section("Your Stats") {
                         SettingsRow(icon: "flame.fill", title: "Current Streak", value: "\(profile?.currentStreak ?? 0) days", color: AppTheme.accentGold)
                         SettingsRow(icon: "trophy.fill", title: "Longest Streak", value: "\(profile?.longestStreak ?? 0) days", color: AppTheme.primaryGreen)
-                        SettingsRow(icon: "banknote.fill", title: "Total Saved", value: "$\(Int(profile?.totalSaved ?? 0))", color: AppTheme.primaryGreen)
+                        SettingsRow(icon: "banknote.fill", title: "Total Saved", value: (profile?.totalSaved ?? 0).currencyFormatted, color: AppTheme.primaryGreen)
                     }
                     .listRowBackground(AppTheme.cardBackground)
 
@@ -54,7 +71,7 @@ struct SettingsView: View {
                             Text("Daily Budget")
                                 .foregroundColor(AppTheme.textPrimary)
                             Spacer()
-                            Text("$\(Int(profile?.dailyBudget ?? 50))")
+                            Text((profile?.dailyBudget ?? 50).currencyFormatted)
                                 .foregroundColor(AppTheme.textSecondary)
                         }
 
@@ -100,6 +117,53 @@ struct SettingsView: View {
                                     .foregroundColor(AppTheme.info)
                                 Text("Restore Purchases")
                                     .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                    }
+                    .listRowBackground(AppTheme.cardBackground)
+
+                    // Impulse Alerts Section
+                    Section("Impulse Alerts") {
+                        Toggle(isOn: Binding(
+                            get: { impulseAlertsEnabled },
+                            set: { newValue in
+                                if newValue {
+                                    Task {
+                                        let granted = await NotificationManager.shared.requestAuthorization()
+                                        if granted {
+                                            impulseAlertsEnabled = true
+                                            NotificationManager.shared.scheduleDailyReminder(hour: impulseAlertHour)
+                                        } else {
+                                            impulseAlertsEnabled = false
+                                            showNotificationDeniedAlert = true
+                                        }
+                                    }
+                                } else {
+                                    impulseAlertsEnabled = false
+                                    NotificationManager.shared.cancelReminder()
+                                }
+                            }
+                        )) {
+                            HStack {
+                                Image(systemName: "bell.badge.fill")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("Daily impulse reminder")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                        .tint(AppTheme.primaryGreen)
+
+                        if impulseAlertsEnabled {
+                            DatePicker(
+                                selection: impulseAlertTime,
+                                displayedComponents: .hourAndMinute
+                            ) {
+                                HStack {
+                                    Image(systemName: "clock.fill")
+                                        .foregroundColor(AppTheme.info)
+                                    Text("Reminder time")
+                                        .foregroundColor(AppTheme.textPrimary)
+                                }
                             }
                         }
                     }
@@ -181,6 +245,11 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("This will permanently delete all your data including streaks, savings, and challenge progress. This cannot be undone.")
+            }
+            .alert("Notifications Off", isPresented: $showNotificationDeniedAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Enable notifications for SpendZero in Settings to receive impulse-purchase reminders.")
             }
         }
     }

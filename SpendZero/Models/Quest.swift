@@ -92,7 +92,7 @@ final class Quest {
         case .impulseResist:
             return "\(current)/\(target) impulses"
         case .savingsGoal:
-            return String(format: "$%.0f/$%.0f", currentProgress, targetValue)
+            return "\(currentProgress.currencyFormatted)/\(targetValue.currencyFormatted)"
         case .challengeComplete:
             return "\(current)/\(target) challenges"
         case .streakMaintain:

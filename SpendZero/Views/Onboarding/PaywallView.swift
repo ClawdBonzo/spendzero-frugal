@@ -42,20 +42,6 @@ struct PaywallView: View {
                 .offset(y: -280)
 
             VStack(spacing: 0) {
-                // — URGENCY BANNER (trial expiring / expired) —
-                if let message = urgencyMessage {
-                    HStack(spacing: 8) {
-                        Image(systemName: isHardPaywall ? "lock.fill" : "clock.fill")
-                            .font(.system(size: 13, weight: .semibold))
-                        Text(message)
-                            .font(.system(size: 13, weight: .semibold))
-                    }
-                    .foregroundColor(isHardPaywall ? .white : AppTheme.accentGold)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(isHardPaywall ? AppTheme.destructive.opacity(0.9) : AppTheme.accentGold.opacity(0.15))
-                }
-
                 // — HEADER —
                 ZStack(alignment: .topTrailing) {
                     VStack(spacing: 12) {
@@ -101,42 +87,10 @@ struct PaywallView: View {
                     FeatureRow(icon: "flame.fill",            color: Color(hex: "FF6B35"), text: "No-spend challenges & streaks")
                     FeatureRow(icon: "chart.bar.fill",        color: AppTheme.info,        text: "Spending analytics & insights")
                     FeatureRow(icon: "bell.badge.fill",       color: AppTheme.accentGold,  text: "Impulse-purchase alerts")
-                    FeatureRow(icon: "square.grid.2x2.fill", color: Color(hex: "9C27B0"),  text: "Home Screen widgets")
                 }
                 .padding(.horizontal, AppTheme.paddingLarge + 4)
 
-                Spacer().frame(height: 16)
-
-                // — FREE TRIAL BANNER (only when selected plan has trial) —
-                if selectedHasFreeTrial {
-                    HStack(spacing: 6) {
-                        Image(systemName: "gift.fill")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppTheme.primaryGreen)
-                        Text("\(selectedTrialDays)-DAY FREE TRIAL INCLUDED")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundColor(AppTheme.primaryGreen)
-                        Spacer()
-                        Text("No charge today")
-                            .font(.system(size: 11))
-                            .foregroundColor(AppTheme.textSecondary)
-                    }
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(AppTheme.primaryGreen.opacity(0.08))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(AppTheme.primaryGreen.opacity(0.25), lineWidth: 1)
-                            )
-                    )
-                    .padding(.horizontal, AppTheme.paddingLarge)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                    .animation(.spring(response: 0.3), value: selectedHasFreeTrial)
-                }
-
-                Spacer().frame(height: 10)
+                Spacer().frame(height: 22)
 
                 // — SUBSCRIPTION CARDS —
                 VStack(spacing: 8) {

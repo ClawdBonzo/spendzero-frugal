@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: AppTab = .dashboard
+    @State private var selectedTab: AppTab = AppTab.initialFromLaunchArgs
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -51,12 +51,20 @@ enum AppTab: String, CaseIterable {
 
     var title: String {
         switch self {
-        case .dashboard: return "Dashboard"
-        case .logger: return "Log"
-        case .calendar: return "Streak"
-        case .gamification: return "Quests"
-        case .settings: return "Settings"
+        case .dashboard: return String(localized: "Dashboard")
+        case .logger: return String(localized: "Log")
+        case .calendar: return String(localized: "Streak")
+        case .gamification: return String(localized: "Quests")
+        case .settings: return String(localized: "Settings")
         }
+    }
+
+    static var initialFromLaunchArgs: AppTab {
+        #if DEBUG
+        let a = ProcessInfo.processInfo.arguments
+        if let i = a.firstIndex(of: "-InitialTab"), i + 1 < a.count, let t = AppTab(rawValue: a[i + 1]) { return t }
+        #endif
+        return .dashboard
     }
 
     var icon: String {

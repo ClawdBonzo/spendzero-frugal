@@ -105,31 +105,31 @@ enum LevelRank: Int, Codable, CaseIterable {
 
     var title: String {
         switch self {
-        case .frugalNovice: return "Frugal Novice"
-        case .pennyPincher: return "Penny Pincher"
-        case .budgetWarden: return "Budget Warden"
-        case .moneyMindful: return "Money Mindful"
-        case .financialGuardian: return "Financial Guardian"
-        case .savingsSentinel: return "Savings Sentinel"
-        case .wealthBuilder: return "Wealth Builder"
-        case .fortuneWeaver: return "Fortune Weaver"
-        case .goldGatherer: return "Gold Gatherer"
-        case .treasureHunter: return "Treasure Hunter"
-        case .platinumMaster: return "Platinum Master"
-        case .diamondDefender: return "Diamond Defender"
-        case .wealthKing: return "Wealth King"
-        case .level13: return "Ascendant"
-        case .level14: return "Luminary"
-        case .level15: return "Radiant"
-        case .level16: return "Apex"
-        case .level17: return "Summit"
-        case .level18: return "Monument"
-        case .level19: return "Titan"
-        case .level20: return "Aegis"
-        case .level21: return "Sovereign"
-        case .level22: return "Paramount"
-        case .level23: return "Supreme"
-        case .level24: return "Imperial"
+        case .frugalNovice: return String(localized: "Frugal Novice")
+        case .pennyPincher: return String(localized: "Penny Pincher")
+        case .budgetWarden: return String(localized: "Budget Warden")
+        case .moneyMindful: return String(localized: "Money Mindful")
+        case .financialGuardian: return String(localized: "Financial Guardian")
+        case .savingsSentinel: return String(localized: "Savings Sentinel")
+        case .wealthBuilder: return String(localized: "Wealth Builder")
+        case .fortuneWeaver: return String(localized: "Fortune Weaver")
+        case .goldGatherer: return String(localized: "Gold Gatherer")
+        case .treasureHunter: return String(localized: "Treasure Hunter")
+        case .platinumMaster: return String(localized: "Platinum Master")
+        case .diamondDefender: return String(localized: "Diamond Defender")
+        case .wealthKing: return String(localized: "Wealth King")
+        case .level13: return String(localized: "Ascendant")
+        case .level14: return String(localized: "Luminary")
+        case .level15: return String(localized: "Radiant")
+        case .level16: return String(localized: "Apex")
+        case .level17: return String(localized: "Summit")
+        case .level18: return String(localized: "Monument")
+        case .level19: return String(localized: "Titan")
+        case .level20: return String(localized: "Aegis")
+        case .level21: return String(localized: "Sovereign")
+        case .level22: return String(localized: "Paramount")
+        case .level23: return String(localized: "Supreme")
+        case .level24: return String(localized: "Imperial")
         }
     }
 

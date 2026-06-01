@@ -11,11 +11,13 @@ final class SubscriptionService {
     var isLoading = false
     var errorMessage: String?
 
-    // RevenueCat product identifiers
-    static let weeklyID  = "com.clawdbonzo.spendzero.weekly"
-    static let monthlyID = "com.clawdbonzo.spendzero.monthly"
-    static let yearlyID  = "com.clawdbonzo.spendzero.yearly"
-    static let lifetimeID = "com.clawdbonzo.spendzero.lifetime"
+    // RevenueCat / App Store product identifiers
+    // These must exactly match the product IDs created in App Store Connect
+    // (and mirrored in RevenueCat). Verified live in ASC on 2026-05-31.
+    static let weeklyID  = "spendzero_weekly"
+    static let monthlyID = "spendzero_monthly"
+    static let yearlyID  = "spendzero_yearly"
+    static let lifetimeID = "spendzero_lifetime"
 
     static let entitlementID = "pro"
 

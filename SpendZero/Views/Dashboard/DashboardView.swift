@@ -312,14 +312,14 @@ struct DashboardView: View {
         HStack(spacing: 12) {
             StatCard(
                 title: "Saved Today",
-                value: "$\(Int(todaySaved))",
+                value: todaySaved.currencyFormatted,
                 icon: "dollarsign.circle.fill",
                 color: AppTheme.primaryGreen
             )
 
             StatCard(
                 title: "Total Saved",
-                value: "$\(Int(totalSaved))",
+                value: totalSaved.currencyFormatted,
                 icon: "banknote.fill",
                 color: AppTheme.accentGold
             )
@@ -390,14 +390,14 @@ struct DashboardView: View {
                         Text(impulse.item)
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(AppTheme.textPrimary)
-                        Text(impulse.category.rawValue)
+                        Text(LocalizedStringKey(impulse.category.rawValue))
                             .font(AppTheme.smallFont)
                             .foregroundColor(AppTheme.textSecondary)
                     }
 
                     Spacer()
 
-                    Text("$\(Int(impulse.estimatedCost))")
+                    Text(impulse.estimatedCost.currencyFormatted)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(impulse.wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
                 }
@@ -553,10 +553,10 @@ struct DashboardView: View {
     private var greetingText: String {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
-        case 5..<12: return "Good morning"
-        case 12..<17: return "Good afternoon"
-        case 17..<21: return "Good evening"
-        default: return "Good night"
+        case 5..<12: return String(localized: "Good morning")
+        case 12..<17: return String(localized: "Good afternoon")
+        case 17..<21: return String(localized: "Good evening")
+        default: return String(localized: "Good night")
         }
     }
 

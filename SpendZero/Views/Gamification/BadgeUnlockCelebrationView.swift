@@ -52,7 +52,7 @@ struct BadgeUnlockCelebrationView: View {
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(AppTheme.accentGold)
 
-                        Text(badge.badgeID.rawValue)
+                        Text(LocalizedStringKey(badge.badgeID.rawValue))
                             .font(AppTheme.titleFont)
                             .foregroundColor(AppTheme.textPrimary)
 

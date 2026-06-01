@@ -68,6 +68,9 @@ struct RootView: View {
                 try? modelContext.save()
             }
 
+            // Keep the Home Screen widget in sync with the latest progress
+            WidgetSync.refresh(profile: profile, context: modelContext)
+
             // Dismiss splash
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                 withAnimation(.easeOut(duration: 0.5)) {

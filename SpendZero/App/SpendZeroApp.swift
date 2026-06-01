@@ -27,6 +27,12 @@ struct SpendZeroApp: App {
 
         // Configure RevenueCat on the main actor (SubscriptionService is @MainActor)
         SubscriptionService.shared.configure()
+
+        #if DEBUG
+        if DemoSeeder.isEnabled {
+            DemoSeeder.seed(into: modelContainer.mainContext)
+        }
+        #endif
     }
 
     var body: some Scene {

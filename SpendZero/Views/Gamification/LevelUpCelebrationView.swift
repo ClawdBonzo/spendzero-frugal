@@ -106,7 +106,7 @@ struct LevelUpCelebrationView: View {
                                     Image(systemName: "sparkles")
                                         .font(.system(size: 12))
                                         .foregroundColor(AppTheme.primaryGreen)
-                                    Text(feature)
+                                    Text(LocalizedStringKey(feature))
                                         .font(AppTheme.captionFont)
                                         .foregroundColor(AppTheme.textPrimary)
                                     Spacer()

@@ -122,7 +122,7 @@ struct BadgeItemView: View {
             )
 
             // Badge Name
-            Text(badge.badgeID.rawValue)
+            Text(LocalizedStringKey(badge.badgeID.rawValue))
                 .font(.system(size: 11, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(2)
@@ -187,7 +187,7 @@ struct BadgeDetailView: View {
 
                     // Badge Info
                     VStack(spacing: 12) {
-                        Text(badge.badgeID.rawValue)
+                        Text(LocalizedStringKey(badge.badgeID.rawValue))
                             .font(AppTheme.titleFont)
                             .foregroundColor(AppTheme.textPrimary)
 

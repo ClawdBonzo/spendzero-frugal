@@ -115,7 +115,7 @@ struct LevelCard: View {
                                     (LevelRank(rawValue: gameProfile.currentLevel + 1)?.unlockedFeatures ?? []).prefix(2),
                                     id: \.self
                                 ) { feature in
-                                    Text(feature)
+                                    Text(LocalizedStringKey(feature))
                                         .font(.system(size: 10, weight: .semibold))
                                         .foregroundColor(AppTheme.primaryGreen)
                                         .lineLimit(1)

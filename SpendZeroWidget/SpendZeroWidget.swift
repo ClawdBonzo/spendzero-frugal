@@ -1,6 +1,20 @@
 import WidgetKit
 import SwiftUI
-import SwiftData
+
+// MARK: - Shared App Group store
+
+private enum WidgetStore {
+    static let appGroupID = "group.com.clawdbonzo.SpendZero"
+    static func entry() -> SavingsWidgetEntry {
+        let d = UserDefaults(suiteName: appGroupID)
+        return SavingsWidgetEntry(
+            date: Date(),
+            totalSaved: d?.double(forKey: "widget.totalSaved") ?? 0,
+            currentStreak: d?.integer(forKey: "widget.currentStreak") ?? 0,
+            isNoSpendDay: d?.object(forKey: "widget.isNoSpendDay") as? Bool ?? true
+        )
+    }
+}
 
 // MARK: - Widget Timeline Provider
 
@@ -10,15 +24,19 @@ struct SavingsProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SavingsWidgetEntry) -> Void) {
-        let entry = SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true)
-        completion(entry)
+        // In a gallery/snapshot context, show aspirational sample data.
+        if context.isPreview {
+            completion(SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true))
+        } else {
+            completion(WidgetStore.entry())
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SavingsWidgetEntry>) -> Void) {
-        // In production, read from shared App Group container
-        let entry = SavingsWidgetEntry(date: Date(), totalSaved: 0, currentStreak: 0, isNoSpendDay: true)
-        let timeline = Timeline(entries: [entry], policy: .after(Calendar.current.date(byAdding: .hour, value: 1, to: Date())!))
-        completion(timeline)
+        let entry = WidgetStore.entry()
+        // Refresh ~hourly; the app also force-reloads on data changes.
+        let next = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date().addingTimeInterval(3600)
+        completion(Timeline(entries: [entry], policy: .after(next)))
     }
 
     typealias Entry = SavingsWidgetEntry
@@ -63,7 +81,7 @@ struct SavingsWidgetView: View {
 
             Spacer()
 
-            Text("$\(Int(entry.totalSaved))")
+            Text(entry.totalSaved.widgetCurrency)
                 .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "00E676"))
 
@@ -100,7 +118,7 @@ struct SavingsWidgetView: View {
 
                 Spacer()
 
-                Text("$\(Int(entry.totalSaved))")
+                Text(entry.totalSaved.widgetCurrency)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(Color(hex: "00E676"))
 
@@ -154,5 +172,41 @@ struct SpendZeroSavingsWidget: Widget {
         .configurationDisplayName("Savings Glance")
         .description("See your total savings and current streak at a glance.")
         .supportedFamilies([.systemSmall, .systemMedium])
+    }
+}
+
+// MARK: - Widget Bundle entry point
+
+@main
+struct SpendZeroWidgetBundle: WidgetBundle {
+    var body: some Widget {
+        SpendZeroSavingsWidget()
+    }
+}
+
+// MARK: - Color(hex:) (widget-target copy; app target has its own in AppTheme)
+
+extension Double {
+    /// Locale-aware currency string for the widget (e.g. $847, €847, R$847).
+    var widgetCurrency: String {
+        let f = NumberFormatter()
+        f.numberStyle = .currency
+        f.maximumFractionDigits = 0
+        return f.string(from: NSNumber(value: self)) ?? "\(Locale.current.currencySymbol ?? "$")\(Int(self))"
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let s = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: s).scanHexInt64(&int)
+        let r, g, b: UInt64
+        switch s.count {
+        case 3: (r, g, b) = ((int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: (r, g, b) = (int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        default: (r, g, b) = (0, 0, 0)
+        }
+        self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: 1)
     }
 }

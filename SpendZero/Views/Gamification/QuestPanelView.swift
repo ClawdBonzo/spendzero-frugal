@@ -175,7 +175,7 @@ struct QuestCardView: View {
                         Spacer()
 
                         // Difficulty Badge
-                        Text(quest.difficulty.rawValue)
+                        Text(LocalizedStringKey(quest.difficulty.rawValue))
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)

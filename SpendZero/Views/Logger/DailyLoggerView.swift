@@ -8,7 +8,13 @@ struct DailyLoggerView: View {
     @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
     @State private var showAddSpend = false
     @State private var showAddImpulse = false
-    @State private var selectedSegment = 0
+    @State private var selectedSegment: Int = {
+        #if DEBUG
+        let a = ProcessInfo.processInfo.arguments
+        if let i = a.firstIndex(of: "-LogSegment"), i + 1 < a.count, let v = Int(a[i + 1]) { return v }
+        #endif
+        return 0
+    }()
     @State private var showHeader = false
     @State private var showContent = false
 
@@ -111,7 +117,7 @@ struct DailyLoggerView: View {
                         .font(AppTheme.captionFont)
                         .foregroundColor(AppTheme.textSecondary)
 
-                    Text("$\(String(format: "%.2f", totalSpentToday))")
+                    Text(totalSpentToday.currencyFormattedDecimal)
                         .font(.system(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(totalSpentToday == 0 ? AppTheme.primaryGreen : AppTheme.destructive)
                         .shadow(color: totalSpentToday == 0 ? AppTheme.primaryGreen.opacity(0.5) : .clear, radius: 8)
@@ -126,7 +132,7 @@ struct DailyLoggerView: View {
                         .font(AppTheme.captionFont)
                         .foregroundColor(AppTheme.textSecondary)
 
-                    Text("$\(Int(profiles.first?.dailyBudget ?? 50))")
+                    Text((profiles.first?.dailyBudget ?? 50).currencyFormatted)
                         .font(.system(size: 20, weight: .semibold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                 }
@@ -213,11 +219,11 @@ struct DailyLoggerView: View {
     private var winsSection: some View {
         VStack(spacing: 16) {
             let dailyWins = [
-                WinItem(icon: "cup.and.saucer.fill", title: "Made coffee at home", saved: "$5"),
-                WinItem(icon: "fork.knife", title: "Packed lunch", saved: "$12"),
-                WinItem(icon: "figure.walk", title: "Walked instead of Uber", saved: "$15"),
-                WinItem(icon: "tv.fill", title: "Free entertainment", saved: "$15"),
-                WinItem(icon: "bag.fill", title: "Skipped online shopping", saved: "$30")
+                WinItem(icon: "cup.and.saucer.fill", title: "Made coffee at home", saved: Double(5).currencyFormatted),
+                WinItem(icon: "fork.knife", title: "Packed lunch", saved: Double(12).currencyFormatted),
+                WinItem(icon: "figure.walk", title: "Walked instead of Uber", saved: Double(15).currencyFormatted),
+                WinItem(icon: "tv.fill", title: "Free entertainment", saved: Double(15).currencyFormatted),
+                WinItem(icon: "bag.fill", title: "Skipped online shopping", saved: Double(30).currencyFormatted)
             ]
 
             ForEach(dailyWins, id: \.title) { win in
@@ -244,7 +250,7 @@ struct SpendingLogRow: View {
                 )
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(log.category.rawValue)
+                Text(LocalizedStringKey(log.category.rawValue))
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(AppTheme.textPrimary)
                 if !log.note.isEmpty {
@@ -293,7 +299,7 @@ struct ImpulseLogRow: View {
                 Text(impulse.item)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(AppTheme.textPrimary)
-                Text(impulse.category.rawValue)
+                Text(LocalizedStringKey(impulse.category.rawValue))
                     .font(AppTheme.smallFont)
                     .foregroundColor(AppTheme.textSecondary)
             }
@@ -301,7 +307,7 @@ struct ImpulseLogRow: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: 2) {
-                Text("$\(Int(impulse.estimatedCost))")
+                Text(impulse.estimatedCost.currencyFormatted)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(impulse.wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
 

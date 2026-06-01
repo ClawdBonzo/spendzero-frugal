@@ -21,3 +21,10 @@ Package.resolved
 
 # CocoaPods
 Pods/
+
+# ASC API helper scripts (reference the local AuthKey path; no secrets embedded)
+.asc/
+screenshots/review/
+
+# Local Claude config / locks
+.claude/
