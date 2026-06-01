@@ -146,8 +146,10 @@ struct PaywallView: View {
                         .font(AppTheme.captionFont)
                         .foregroundColor(AppTheme.textSecondary)
 
-                        Button("Terms") {}.font(AppTheme.smallFont).foregroundColor(AppTheme.textTertiary)
-                        Button("Privacy") {}.font(AppTheme.smallFont).foregroundColor(AppTheme.textTertiary)
+                        Link("Terms of Use", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                            .font(AppTheme.smallFont).foregroundColor(AppTheme.textTertiary)
+                        Link("Privacy Policy", destination: URL(string: "https://gwlabs.app/privacy")!)
+                            .font(AppTheme.smallFont).foregroundColor(AppTheme.textTertiary)
                     }
 
                     Text(selectedHasFreeTrial

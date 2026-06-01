@@ -27,6 +27,7 @@ final class SubscriptionService {
     static let apiKey = "appl_ZBEApxMwqwVAVxOYLtvbaLRXxrt"
 
     private var availablePackages: [RevenueCat.Package] = []
+    private var availableProducts: [StoreProduct] = []   // direct StoreKit fallback when RC Offering is empty
 
     private init() {
         offerings = Self.fallbackOfferings
@@ -48,68 +49,121 @@ final class SubscriptionService {
     func fetchOfferings() async {
         do {
             let rcOfferings = try await Purchases.shared.offerings()
-            guard let current = rcOfferings.current else {
-                offerings = Self.fallbackOfferings
-                return
+            if let current = rcOfferings.current, !current.availablePackages.isEmpty {
+                availablePackages = current.availablePackages
+                var options: [SubscriptionOption] = []
+                for package in current.availablePackages {
+                    let product = package.storeProduct
+                    let productID = product.productIdentifier
+                    let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
+                    options.append(SubscriptionOption(
+                        id: productID,
+                        title: titleForPackage(package),
+                        price: product.localizedPriceString,
+                        pricePerWeek: pricePerWeekFor(package),
+                        period: periodLabel(for: package),
+                        isBestValue: productID == Self.monthlyID,
+                        hasFreeTrial: hasTrial,
+                        trialDays: hasTrial ? trialDaysFor(product) : 0,
+                        isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID
+                    ))
+                }
+                applySorted(options)
+                if offerings.isEmpty { await fetchProductsDirectly() }
+            } else {
+                // RC "current" Offering missing or empty — fetch products straight from StoreKit
+                // so the paywall is always purchasable (and reviewable).
+                await fetchProductsDirectly()
             }
-
-            availablePackages = current.availablePackages
-            var options: [SubscriptionOption] = []
-
-            for package in current.availablePackages {
-                let product = package.storeProduct
-                let productID = product.productIdentifier
-                let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
-                let option = SubscriptionOption(
-                    id: productID,
-                    title: titleForPackage(package),
-                    price: product.localizedPriceString,
-                    pricePerWeek: pricePerWeekFor(package),
-                    period: periodLabel(for: package),
-                    isBestValue: productID == Self.monthlyID,
-                    hasFreeTrial: hasTrial,
-                    trialDays: hasTrial ? trialDaysFor(product) : 0,
-                    isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID
-                )
-                options.append(option)
-            }
-
-            // Sort: monthly first (best value), then weekly, yearly, lifetime
-            let sortOrder = [Self.monthlyID, Self.weeklyID, Self.yearlyID, Self.lifetimeID]
-            offerings = options.sorted { a, b in
-                let ai = sortOrder.firstIndex(of: a.id) ?? 99
-                let bi = sortOrder.firstIndex(of: b.id) ?? 99
-                return ai < bi
-            }
-
-            // If RC didn't give us our expected products, fall back
-            if offerings.isEmpty { offerings = Self.fallbackOfferings }
         } catch {
             errorMessage = error.localizedDescription
-            offerings = Self.fallbackOfferings
+            await fetchProductsDirectly()
         }
+    }
+
+    /// Fallback: query StoreKit directly via RevenueCat for the known product IDs. Guarantees the
+    /// paywall shows real, purchasable products even if the RevenueCat Offering isn't configured.
+    private func fetchProductsDirectly() async {
+        let ids = [Self.monthlyID, Self.weeklyID, Self.yearlyID, Self.lifetimeID]
+        let products = await Purchases.shared.products(ids)
+        availableProducts = products
+        guard !products.isEmpty else {
+            if offerings.isEmpty { offerings = Self.fallbackOfferings }
+            return
+        }
+        let options = products.map { product -> SubscriptionOption in
+            let id = product.productIdentifier
+            let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
+            return SubscriptionOption(
+                id: id,
+                title: titleForProductID(id),
+                price: product.localizedPriceString,
+                pricePerWeek: pricePerWeekForProduct(product),
+                period: periodForProductID(id),
+                isBestValue: id == Self.monthlyID,
+                hasFreeTrial: hasTrial,
+                trialDays: hasTrial ? trialDaysFor(product) : 0,
+                isLifetime: id == Self.lifetimeID
+            )
+        }
+        applySorted(options)
+    }
+
+    private func applySorted(_ options: [SubscriptionOption]) {
+        let sortOrder = [Self.monthlyID, Self.weeklyID, Self.yearlyID, Self.lifetimeID]
+        let sorted = options.sorted { a, b in
+            (sortOrder.firstIndex(of: a.id) ?? 99) < (sortOrder.firstIndex(of: b.id) ?? 99)
+        }
+        if !sorted.isEmpty { offerings = sorted }
+    }
+
+    private func titleForProductID(_ id: String) -> String {
+        if id.contains("lifetime") { return "Lifetime" }
+        if id.contains("yearly") || id.contains("annual") { return "Yearly" }
+        if id.contains("monthly") { return "Monthly" }
+        if id.contains("weekly") { return "Weekly" }
+        return "Premium"
+    }
+    private func periodForProductID(_ id: String) -> String {
+        if id.contains("lifetime") { return "one-time" }
+        if id.contains("yearly") || id.contains("annual") { return "per year" }
+        if id.contains("monthly") { return "per month" }
+        if id.contains("weekly") { return "per week" }
+        return ""
+    }
+    private func pricePerWeekForProduct(_ product: StoreProduct) -> String {
+        let id = product.productIdentifier
+        if id.contains("lifetime") { return "forever" }
+        let price = product.price as Decimal
+        let weekly: Decimal
+        if id.contains("yearly") || id.contains("annual") { weekly = price / 52 }
+        else if id.contains("monthly") { weekly = price / 4.33 }
+        else { weekly = price }
+        let f = NumberFormatter(); f.numberStyle = .currency
+        f.currencyCode = product.currencyCode ?? "USD"; f.maximumFractionDigits = 2
+        return (f.string(from: weekly as NSDecimalNumber) ?? "$0") + "/wk"
     }
 
     // MARK: - Purchase
 
     func purchase(_ option: SubscriptionOption) async -> Bool {
-        guard let package = availablePackages.first(where: {
-            $0.storeProduct.productIdentifier == option.id
-        }) else {
-            errorMessage = "Product not available"
-            return false
-        }
-
         isLoading = true
         defer { isLoading = false }
-
         do {
-            let result = try await Purchases.shared.purchase(package: package)
-            if !result.userCancelled {
+            if let package = availablePackages.first(where: { $0.storeProduct.productIdentifier == option.id }) {
+                let result = try await Purchases.shared.purchase(package: package)
+                if result.userCancelled { return false }
                 isPremium = result.customerInfo.entitlements[Self.entitlementID]?.isActive == true
                 return isPremium
+            } else if let product = availableProducts.first(where: { $0.productIdentifier == option.id }) {
+                let result = try await Purchases.shared.purchase(product: product)
+                if result.userCancelled { return false }
+                isPremium = result.customerInfo.entitlements[Self.entitlementID]?.isActive == true
+                return isPremium
+            } else {
+                errorMessage = "Product not available"
+                return false
             }
-            return false
         } catch {
             errorMessage = error.localizedDescription
             return false
