@@ -10,9 +10,10 @@ struct OnboardingNameView: View {
     @State private var ringPulse = false
 
     var body: some View {
+        GeometryReader { geo in
+        ScrollView {
         VStack(spacing: 0) {
-            // Top spacer pushes content toward center
-            Spacer()
+            Spacer(minLength: 24)
 
             // Hero section with animated ring — larger logo
             VStack(spacing: 20) {
@@ -116,10 +117,15 @@ struct OnboardingNameView: View {
             }
             .padding(.horizontal, AppTheme.paddingLarge)
 
-            // Bottom spacer balances top — keeps form near vertical center
-            Spacer()
-
-            // Button — pinned at bottom
+            Spacer(minLength: 24)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: geo.size.height)
+        }
+        .scrollIndicators(.hidden)
+        .scrollDismissesKeyboard(.interactively)
+        }
+        .safeAreaInset(edge: .bottom) {
             PrimaryButton(
                 title: "Continue",
                 icon: "arrow.right",
@@ -128,7 +134,9 @@ struct OnboardingNameView: View {
                 onNext()
             }
             .padding(.horizontal, AppTheme.paddingLarge)
-            .padding(.bottom, 28)
+            .padding(.top, 6)
+            .padding(.bottom, 10)
+            .background(AppTheme.background)
         }
         .animation(.spring(response: 0.4), value: name)
         .onAppear {

@@ -40,6 +40,12 @@ struct OnboardingFlowView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .animation(.easeInOut(duration: 0.5), value: currentStep)
+            .onChange(of: currentStep) { _, _ in
+                // Dismiss the keyboard whenever we move between steps so it never
+                // lingers over a later screen or covers its Continue button.
+                UIApplication.shared.sendAction(
+                    #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
 
             // Progress indicator
             if currentStep > 0 && currentStep < 5 {
