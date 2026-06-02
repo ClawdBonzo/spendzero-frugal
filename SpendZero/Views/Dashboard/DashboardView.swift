@@ -21,6 +21,8 @@ struct DashboardView: View {
     @State private var showActions = false
     @State private var streakBadgePulse = false
 
+    static let maxStreakFreezes = 3
+
     private var profile: UserProfile? { profiles.first }
     private var gameProfile: GameProfile? { profile?.gameProfile }
 
@@ -49,6 +51,12 @@ struct DashboardView: View {
         return impulses
             .filter { Calendar.current.isDate($0.date, inSameDayAs: today) && $0.wasResisted }
             .count
+    }
+
+    /// A user who has never logged anything yet — gets an encouraging first-action
+    /// card instead of a deflating wall of zeros.
+    private var isBrandNewUser: Bool {
+        currentStreak == 0 && totalSaved == 0 && dailyRecords.isEmpty && impulses.isEmpty
     }
 
     var body: some View {
@@ -80,10 +88,16 @@ struct DashboardView: View {
                                 .opacity(showLevelCard ? 1 : 0)
                         }
 
-                        // Streak hero card — slides up
-                        streakHeroCard
-                            .offset(y: showStreakCard ? 0 : 30)
-                            .opacity(showStreakCard ? 1 : 0)
+                        // Streak hero card — slides up (welcome CTA for brand-new users)
+                        Group {
+                            if isBrandNewUser {
+                                welcomeStartCard
+                            } else {
+                                streakHeroCard
+                            }
+                        }
+                        .offset(y: showStreakCard ? 0 : 30)
+                        .opacity(showStreakCard ? 1 : 0)
 
                         // Money Tree visualization
                         if let gameProfile = gameProfile {
@@ -227,6 +241,59 @@ struct DashboardView: View {
         }
     }
 
+    // MARK: - Welcome / Empty State (brand-new user)
+
+    private var welcomeStartCard: some View {
+        VStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(AppTheme.primaryGreen.opacity(0.12))
+                    .frame(width: 72, height: 72)
+                Image(systemName: "flag.checkered")
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundColor(AppTheme.primaryGreen)
+            }
+
+            VStack(spacing: 4) {
+                Text("Your journey starts today")
+                    .font(AppTheme.headlineFont)
+                    .foregroundColor(AppTheme.textPrimary)
+                Text("Log your first no-spend day to start your streak and earn +100 XP.")
+                    .font(AppTheme.captionFont)
+                    .foregroundColor(AppTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Button {
+                HapticManager.shared.trigger(.celebrate)
+                markNoSpendDay()
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "checkmark.seal.fill")
+                    Text("Mark Today a No-Spend Day")
+                        .font(.system(size: 15, weight: .bold))
+                }
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+                .background(AppTheme.primaryGreen)
+                .clipShape(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium))
+            }
+            .buttonStyle(ScaleButtonStyle())
+        }
+        .padding(AppTheme.paddingLarge)
+        .frame(maxWidth: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusXL)
+                .fill(AppTheme.cardBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusXL)
+                        .stroke(AppTheme.primaryGreen.opacity(0.25), lineWidth: 1)
+                )
+        )
+    }
+
     // MARK: - Streak Hero
 
     private var streakHeroCard: some View {
@@ -256,6 +323,22 @@ struct DashboardView: View {
                 VStack(alignment: .trailing, spacing: 8) {
                     StreakFlamesView(currentStreak: currentStreak)
                         .font(.system(size: 24))
+
+                    // Streak freezes — the safety net that protects a missed day.
+                    if let freezes = profile?.streakFreezes, freezes > 0 {
+                        HStack(spacing: 3) {
+                            Image(systemName: "snowflake")
+                                .font(.system(size: 11, weight: .bold))
+                            Text("\(freezes)")
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                        }
+                        .foregroundColor(Color(hex: "60CFFF"))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color(hex: "60CFFF").opacity(0.12))
+                        .clipShape(Capsule())
+                        .accessibilityLabel("\(freezes) streak freezes available")
+                    }
 
                     // One-tap viral share button
                     if currentStreak > 0 {
@@ -548,6 +631,24 @@ struct DashboardView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             streakBadgePulse = true
         }
+        // Surface any streak freeze that was applied at launch (positive moment).
+        consumePendingStreakEvent()
+    }
+
+    private func consumePendingStreakEvent() {
+        let key = "pendingStreakEvent"
+        guard let raw = UserDefaults.standard.string(forKey: key) else { return }
+        UserDefaults.standard.removeObject(forKey: key)
+
+        let parts = raw.split(separator: ":")
+        guard parts.count == 2, let value = Int(parts[1]) else { return }
+        if parts[0] == "frozen" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                currentToast = .streakFrozen(daysUsed: value)
+            }
+        }
+        // "lapsed" intentionally shows no toast — the lapse notification already
+        // nudged the user, and a "you lost your streak" popup on open reads as a scold.
     }
 
     private var greetingText: String {
@@ -561,56 +662,68 @@ struct DashboardView: View {
     }
 
     private func markNoSpendDay() {
-        let today = Calendar.current.startOfDay(for: Date())
+        guard let profile else { return }
+        let now = Date()
+        // No double-logging the same day.
+        guard !profile.hasLoggedToday(asOf: now) else { return }
+
+        let today = Calendar.current.startOfDay(for: now)
         if todayRecord == nil {
             let record = DailyRecord(date: today, isNoSpendDay: true)
             modelContext.insert(record)
+        }
 
-            let saving = SavingsEntry(
-                amount: profile?.dailyBudget ?? 50,
-                source: .noSpendDay,
-                note: "No-spend day completed!"
+        let saving = SavingsEntry(
+            amount: profile.dailyBudget,
+            source: .noSpendDay,
+            note: "No-spend day completed!"
+        )
+        modelContext.insert(saving)
+
+        // Lapse-aware streak advance (breaks the streak if a day was missed, spends
+        // freezes first). Returns the new streak length.
+        let newStreak = profile.registerNoSpendDay(asOf: now) ?? profile.currentStreak
+        profile.totalSaved += saving.amount
+
+        // Earn a streak freeze at each 7-day milestone (capped) as a safety net.
+        if newStreak > 0, newStreak % 7 == 0, profile.streakFreezes < Self.maxStreakFreezes {
+            profile.streakFreezes += 1
+        }
+
+        try? modelContext.save()
+
+        // Award XP
+        if let gameProfile = gameProfile {
+            let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: newStreak)
+            let result = gameProfile.grantXP(.noSpendDay, streak: newStreak, multiplier: multiplier)
+
+            // Lucky double-XP gets its own toast; otherwise the standard one.
+            currentToast = result.luckyBonus ? .luckyBonus(xp: result.xpGranted) : .nospendDayRecorded
+
+            // Check for level up
+            if result.leveledUp {
+                let previousLevel = result.newLevel - 1
+                levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
+            }
+
+            // Check for streak badge
+            let newBadges = GameStateManager.shared.checkStreakBadges(
+                for: gameProfile,
+                currentStreak: newStreak
             )
-            modelContext.insert(saving)
-
-            if let profile {
-                profile.currentStreak += 1
-                if profile.currentStreak > profile.longestStreak {
-                    profile.longestStreak = profile.currentStreak
-                }
-                profile.totalSaved += saving.amount
+            if let firstBadge = newBadges.first,
+               let badgeInstance = gameProfile.badges.first(where: { $0.badgeID == firstBadge }) {
+                badgeUnlockEvent = badgeInstance
             }
 
             try? modelContext.save()
-
-            // Award XP
-            if let gameProfile = gameProfile {
-                let streak = currentStreak
-                let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
-                let result = gameProfile.grantXP(.noSpendDay, streak: streak, multiplier: multiplier)
-
-                // Show toast
-                currentToast = .nospendDayRecorded
-
-                // Check for level up
-                if result.leveledUp {
-                    let previousLevel = result.newLevel - 1
-                    levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
-                }
-
-                // Check for streak badge
-                let newBadges = GameStateManager.shared.checkStreakBadges(
-                    for: gameProfile,
-                    currentStreak: streak
-                )
-                if let firstBadge = newBadges.first,
-                   let badgeInstance = gameProfile.badges.first(where: { $0.badgeID == firstBadge }) {
-                    badgeUnlockEvent = badgeInstance
-                }
-
-                try? modelContext.save()
-            }
         }
+
+        // Re-arm retention notifications now that today is handled.
+        NotificationManager.shared.refreshRetentionNotifications(
+            currentStreak: newStreak,
+            loggedToday: true
+        )
     }
 
     private func recordImpulseLogged() {
@@ -620,7 +733,8 @@ struct DashboardView: View {
             let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
             let result = gameProfile.grantXP(.impulseResisted, streak: streak, multiplier: multiplier)
 
-            currentToast = .nospendDayRecorded
+            // Correct toast for an impulse (was incorrectly the no-spend-day toast).
+            currentToast = result.luckyBonus ? .luckyBonus(xp: result.xpGranted) : .impulseResisted
 
             if result.leveledUp {
                 let previousLevel = result.newLevel - 1

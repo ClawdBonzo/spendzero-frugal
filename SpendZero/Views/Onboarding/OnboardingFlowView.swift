@@ -89,11 +89,27 @@ struct OnboardingFlowView: View {
         gameProfile.quests.append(contentsOf: dailies)
         gameProfile.quests.append(weekly)
 
+        // Welcome bonus: a little starting XP so the level card and money tree show
+        // immediate progress instead of a deflating literal zero on first open.
+        gameProfile.totalXPEarned += 100
+        gameProfile.currentXP += 100
+
         // Trial not started yet — will start when user dismisses the first paywall
         // (or purchases). This way onboarding completion doesn't waste trial time.
 
         try? modelContext.save()
         hasCompletedOnboarding = true
+
+        // Prime notifications at the moment of peak commitment (right after the user
+        // chose their challenge), then arm the streak-protection reminders. Without
+        // this, the only opt-in was buried in Settings, so almost no one enabled them.
+        Task { @MainActor in
+            let granted = await NotificationManager.shared.requestAuthorization()
+            if granted {
+                NotificationManager.shared.scheduleDailyReminder(hour: 19)
+                NotificationManager.shared.refreshRetentionNotifications(currentStreak: 0, loggedToday: false)
+            }
+        }
     }
 }
 

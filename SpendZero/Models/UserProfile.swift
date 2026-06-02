@@ -17,6 +17,12 @@ final class UserProfile {
     var isPremium: Bool
     var trialStartDate: Date?
     var lastPaywallShownDate: Date?
+    /// Start-of-day of the most recent logged no-spend day. Used to detect a lapsed
+    /// streak when the user skips a day. nil means no day has been logged yet.
+    var lastNoSpendDate: Date? = nil
+    /// Streak freezes protect the streak when a day is missed (one freeze = one day).
+    /// Earned at streak milestones; auto-consumed before the streak is allowed to lapse.
+    var streakFreezes: Int = 0
     @Relationship(deleteRule: .cascade) var gameProfile: GameProfile?
 
     // MARK: - Trial Logic
@@ -65,6 +71,63 @@ final class UserProfile {
     var trialDayNumber: Int {
         guard let start = trialStartDate else { return 0 }
         return Int(Date().timeIntervalSince(start) / 86400) + 1
+    }
+
+    // MARK: - Streak Maintenance
+
+    /// Outcome of reconciling the streak against the calendar.
+    enum StreakOutcome: Equatable {
+        case intact                 // logged today or yesterday — nothing to do
+        case frozen(daysUsed: Int)  // a missed day (or days) was covered by freezes
+        case lapsed(lostStreak: Int) // streak broke (no freezes left)
+    }
+
+    /// Whether today's no-spend day has already been logged.
+    func hasLoggedToday(asOf now: Date = Date()) -> Bool {
+        guard let last = lastNoSpendDate else { return false }
+        return Calendar.current.isDate(last, inSameDayAs: now)
+    }
+
+    /// Call on app open (and before logging) to break the streak if a day was missed.
+    /// Spends streak freezes to cover gaps before letting the streak lapse.
+    @discardableResult
+    func reconcileStreak(asOf now: Date = Date()) -> StreakOutcome {
+        let cal = Calendar.current
+        guard currentStreak > 0, let last = lastNoSpendDate else { return .intact }
+
+        let lastDay = cal.startOfDay(for: last)
+        let today = cal.startOfDay(for: now)
+        let daysSince = cal.dateComponents([.day], from: lastDay, to: today).day ?? 0
+
+        // 0 = logged today, 1 = logged yesterday and still alive today → no gap yet.
+        guard daysSince >= 2 else { return .intact }
+
+        let missed = daysSince - 1   // fully-skipped days between last log and today
+        if streakFreezes >= missed {
+            streakFreezes -= missed
+            // Freeze covers the gap: treat the streak as maintained through yesterday,
+            // so today still needs a fresh log to continue.
+            lastNoSpendDate = cal.date(byAdding: .day, value: -1, to: today)
+            return .frozen(daysUsed: missed)
+        } else {
+            let lost = currentStreak
+            currentStreak = 0
+            lastNoSpendDate = nil
+            return .lapsed(lostStreak: lost)
+        }
+    }
+
+    /// Register a fresh no-spend day for today, advancing the streak. Reconciles first
+    /// so a gap is handled correctly even if the app stayed open across midnight.
+    /// Returns the new streak length, or nil if today was already logged.
+    @discardableResult
+    func registerNoSpendDay(asOf now: Date = Date()) -> Int? {
+        reconcileStreak(asOf: now)
+        guard !hasLoggedToday(asOf: now) else { return nil }
+        currentStreak += 1
+        if currentStreak > longestStreak { longestStreak = currentStreak }
+        lastNoSpendDate = Calendar.current.startOfDay(for: now)
+        return currentStreak
     }
 
     init(

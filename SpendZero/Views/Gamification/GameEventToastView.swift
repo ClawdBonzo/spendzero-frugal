@@ -79,8 +79,11 @@ enum GameEventType {
     case questComplete(title: String, xp: Int)
     case streakMilestone(days: Int)
     case nospendDayRecorded
+    case impulseResisted
     case challengeComplete(title: String)
     case savingsRecorded(amount: Double)
+    case luckyBonus(xp: Int)
+    case streakFrozen(daysUsed: Int)
 
     var title: String {
         switch self {
@@ -90,10 +93,16 @@ enum GameEventType {
             return "\(days)-Day Streak! 🔥"
         case .nospendDayRecorded:
             return "No-Spend Day!"
+        case .impulseResisted:
+            return "Impulse Resisted! ⚡️"
         case .challengeComplete(let title):
             return "Challenge Complete!"
         case .savingsRecorded:
             return "Savings Recorded!"
+        case .luckyBonus:
+            return "Lucky Bonus! 🍀"
+        case .streakFrozen:
+            return "Streak Freeze Used 🧊"
         }
     }
 
@@ -105,10 +114,18 @@ enum GameEventType {
             return "Amazing consistency!"
         case .nospendDayRecorded:
             return "Great job staying on track!"
+        case .impulseResisted:
+            return "You beat the urge — money saved!"
         case .challengeComplete(let title):
             return title
         case .savingsRecorded(let amount):
             return String(format: "Saved $%.2f", amount)
+        case .luckyBonus:
+            return "Your XP was doubled!"
+        case .streakFrozen(let days):
+            return days <= 1
+                ? "We saved your streak from a missed day"
+                : "We covered \(days) missed days for you"
         }
     }
 
@@ -120,10 +137,16 @@ enum GameEventType {
             return "flame.fill"
         case .nospendDayRecorded:
             return "checkmark.seal.fill"
+        case .impulseResisted:
+            return "bolt.slash.fill"
         case .challengeComplete:
             return "trophy.fill"
         case .savingsRecorded:
             return "banknote.fill"
+        case .luckyBonus:
+            return "sparkles"
+        case .streakFrozen:
+            return "snowflake"
         }
     }
 
@@ -135,10 +158,16 @@ enum GameEventType {
             return Color(hex: "FF6B4A")
         case .nospendDayRecorded:
             return AppTheme.primaryGreen
+        case .impulseResisted:
+            return AppTheme.info
         case .challengeComplete:
             return AppTheme.accentGold
         case .savingsRecorded:
             return AppTheme.accentGold
+        case .luckyBonus:
+            return AppTheme.accentGold
+        case .streakFrozen:
+            return Color(hex: "60CFFF")
         }
     }
 
@@ -150,9 +179,15 @@ enum GameEventType {
             return 25
         case .nospendDayRecorded:
             return 100
+        case .impulseResisted:
+            return 25
         case .challengeComplete:
             return 30
         case .savingsRecorded:
+            return nil
+        case .luckyBonus(let xp):
+            return xp
+        case .streakFrozen:
             return nil
         }
     }
@@ -169,10 +204,16 @@ enum GameEventType {
             }
         case .nospendDayRecorded:
             HapticManager.shared.trigger(.noSpendDay)
+        case .impulseResisted:
+            HapticManager.shared.trigger(.celebrate)
         case .challengeComplete:
             HapticManager.shared.trigger(.questComplete)
         case .savingsRecorded:
             HapticManager.shared.trigger(.xpGained)
+        case .luckyBonus:
+            HapticManager.shared.trigger(.badgeEarned)
+        case .streakFrozen:
+            HapticManager.shared.trigger(.warning)
         }
     }
 }

@@ -28,7 +28,7 @@ struct RootView: View {
                     PaywallView(
                         onContinue: { /* only reachable via successful purchase */ },
                         isHardPaywall: true,
-                        urgencyMessage: "Your free trial has ended"
+                        urgencyMessage: hardPaywallMessage(for: profile)
                     )
                 } else {
                     // Step 4: Trial active OR premium → full app access
@@ -68,16 +68,35 @@ struct RootView: View {
                 try? modelContext.save()
             }
 
+            // Reconcile the streak against the calendar: break it (or spend a freeze)
+            // if a day was missed. Stash the outcome so the Dashboard can surface it.
+            if let profile {
+                switch profile.reconcileStreak() {
+                case .frozen(let days):
+                    UserDefaults.standard.set("frozen:\(days)", forKey: "pendingStreakEvent")
+                case .lapsed(let lost):
+                    UserDefaults.standard.set("lapsed:\(lost)", forKey: "pendingStreakEvent")
+                case .intact:
+                    break
+                }
+                try? modelContext.save()
+                NotificationManager.shared.refreshRetentionNotifications(
+                    currentStreak: profile.currentStreak,
+                    loggedToday: profile.hasLoggedToday()
+                )
+            }
+
             // Keep the Home Screen widget in sync with the latest progress
             WidgetSync.refresh(profile: profile, context: modelContext)
 
-            // Dismiss splash
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+            // Dismiss splash — kept short so launch feels snappy (was 2.2s dead time
+            // on every cold launch regardless of how fast the app was actually ready).
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                 withAnimation(.easeOut(duration: 0.5)) {
                     showSplash = false
                 }
                 // After splash, check for strategic paywall nudge
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                     checkStrategicPaywall()
                 }
             }
@@ -93,6 +112,21 @@ struct RootView: View {
     private func startTrial(for profile: UserProfile) {
         profile.trialStartDate = Date()
         try? modelContext.save()
+    }
+
+    // MARK: - Hard Paywall Copy
+
+    /// Loss-aversion framing for the post-trial hard paywall, using what the user
+    /// actually built so they feel the cost of walking away.
+    private func hardPaywallMessage(for profile: UserProfile) -> String {
+        if profile.currentStreak > 0 && profile.totalSaved > 0 {
+            return "Your trial ended — don't lose your \(profile.currentStreak)-day streak and \(profile.totalSaved.currencyFormatted) saved."
+        } else if profile.currentStreak > 0 {
+            return "Your trial ended — keep your \(profile.currentStreak)-day streak alive."
+        } else if profile.totalSaved > 0 {
+            return "Your trial ended — keep building on the \(profile.totalSaved.currencyFormatted) you've saved."
+        }
+        return "Your free trial has ended"
     }
 
     // MARK: - Strategic Paywall (day 2, day 3 nudges)

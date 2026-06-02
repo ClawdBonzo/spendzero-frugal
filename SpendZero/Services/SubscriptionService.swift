@@ -62,10 +62,11 @@ final class SubscriptionService {
                         price: product.localizedPriceString,
                         pricePerWeek: pricePerWeekFor(package),
                         period: periodLabel(for: package),
-                        isBestValue: productID == Self.monthlyID,
+                        isBestValue: productID == Self.yearlyID,
                         hasFreeTrial: hasTrial,
                         trialDays: hasTrial ? trialDaysFor(product) : 0,
-                        isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID
+                        isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID,
+                        weeklyEquivalent: weeklyEquivalentFor(productID: productID, price: product.price as Decimal)
                     ))
                 }
                 applySorted(options)
@@ -100,10 +101,11 @@ final class SubscriptionService {
                 price: product.localizedPriceString,
                 pricePerWeek: pricePerWeekForProduct(product),
                 period: periodForProductID(id),
-                isBestValue: id == Self.monthlyID,
+                isBestValue: id == Self.yearlyID,
                 hasFreeTrial: hasTrial,
                 trialDays: hasTrial ? trialDaysFor(product) : 0,
-                isLifetime: id == Self.lifetimeID
+                isLifetime: id == Self.lifetimeID,
+                weeklyEquivalent: weeklyEquivalentFor(productID: id, price: product.price as Decimal)
             )
         }
         applySorted(options)
@@ -131,6 +133,16 @@ final class SubscriptionService {
         if id.contains("weekly") { return "per week" }
         return ""
     }
+    /// Normalized weekly cost for a product, used to compute "Save X%" anchoring.
+    private func weeklyEquivalentFor(productID id: String, price: Decimal) -> Double? {
+        let p = NSDecimalNumber(decimal: price).doubleValue
+        if id.contains("lifetime") { return nil }
+        if id.contains("yearly") || id.contains("annual") { return p / 52.0 }
+        if id.contains("monthly") { return p / 4.33 }
+        if id.contains("weekly") { return p }
+        return nil
+    }
+
     private func pricePerWeekForProduct(_ product: StoreProduct) -> String {
         let id = product.productIdentifier
         if id.contains("lifetime") { return "forever" }
@@ -273,9 +285,10 @@ final class SubscriptionService {
             price: "$7.99",
             pricePerWeek: "$1.84/wk",
             period: "per month",
-            isBestValue: true,
+            isBestValue: false,
             hasFreeTrial: true,
-            trialDays: 3
+            trialDays: 3,
+            weeklyEquivalent: 7.99 / 4.33
         ),
         SubscriptionOption(
             id: weeklyID,
@@ -285,7 +298,8 @@ final class SubscriptionService {
             period: "per week",
             isBestValue: false,
             hasFreeTrial: false,
-            trialDays: 0
+            trialDays: 0,
+            weeklyEquivalent: 4.99
         ),
         SubscriptionOption(
             id: yearlyID,
@@ -293,9 +307,10 @@ final class SubscriptionService {
             price: "$49.99",
             pricePerWeek: "$0.96/wk",
             period: "per year",
-            isBestValue: false,
+            isBestValue: true,
             hasFreeTrial: true,
-            trialDays: 3
+            trialDays: 3,
+            weeklyEquivalent: 49.99 / 52.0
         ),
         SubscriptionOption(
             id: lifetimeID,
@@ -323,4 +338,6 @@ struct SubscriptionOption: Identifiable {
     let hasFreeTrial: Bool
     var trialDays: Int = 0
     var isLifetime: Bool = false
+    /// Normalized cost per week (for computing "Save X%" anchoring vs the weekly plan).
+    var weeklyEquivalent: Double? = nil
 }

@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ParticleBackgroundView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
+    /// Only animate while the host view is actually on screen. SwiftUI keeps
+    /// non-visible TabView pages alive, so without this the canvas keeps redrawing
+    /// ~30 fps on tabs the user can't even see — wasted GPU and battery.
+    @State private var isVisible = false
 
     private let particles: [BgParticle]
     private let startDate = Date.now
@@ -19,9 +24,13 @@ struct ParticleBackgroundView: View {
         particles = (0..<min(count, 12)).map { _ in BgParticle(rng: &rng) }
     }
 
+    private var shouldAnimate: Bool {
+        !reduceMotion && isVisible && scenePhase == .active
+    }
+
     var body: some View {
         Group {
-            if !reduceMotion {
+            if shouldAnimate {
                 TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { timeline in
                     Canvas { ctx, size in
                         guard size.width > 0, size.height > 0 else { return }
@@ -30,12 +39,13 @@ struct ParticleBackgroundView: View {
                             drawParticle(p, in: &ctx, size: size, elapsed: elapsed)
                         }
                     }
-                    .drawingGroup()
                 }
             }
         }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
+        .onAppear { isVisible = true }
+        .onDisappear { isVisible = false }
     }
 
     private func drawParticle(_ p: BgParticle, in ctx: inout GraphicsContext, size: CGSize, elapsed: Double) {

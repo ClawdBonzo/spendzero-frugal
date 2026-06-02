@@ -174,6 +174,40 @@ struct ShareStreakButton: View {
     }
 }
 
+// MARK: - Achievement Share Button
+// Lightweight share prompt for high-emotion moments (level-up, badge unlock) — the
+// exact moment users want to brag. Shares a short text brag + App Store nudge.
+
+struct AchievementShareButton: View {
+    let message: String
+    var tint: Color = AppTheme.primaryGreen
+
+    @State private var showSheet = false
+
+    var body: some View {
+        Button {
+            HapticManager.shared.trigger(.buttonTap)
+            showSheet = true
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 14, weight: .semibold))
+                Text("Share your win")
+                    .font(.system(size: 15, weight: .semibold))
+            }
+            .foregroundColor(tint)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .background(tint.opacity(0.12))
+            .clipShape(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium))
+        }
+        .sheet(isPresented: $showSheet) {
+            ShareSheetView(items: [message])
+                .presentationDetents([.medium, .large])
+        }
+    }
+}
+
 // MARK: - UIActivityViewController wrapper
 
 struct ShareSheetView: UIViewControllerRepresentable {

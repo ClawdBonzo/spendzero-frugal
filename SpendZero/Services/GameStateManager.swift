@@ -17,13 +17,21 @@ final class GameStateManager: @unchecked Sendable {
         streak: Int,
         multiplier: Double = 1.0,
         context: ModelContext? = nil
-    ) -> (xpGranted: Int, leveledUp: Bool, newLevel: Int, badgesUnlocked: [BadgeType]) {
+    ) -> (xpGranted: Int, leveledUp: Bool, newLevel: Int, badgesUnlocked: [BadgeType], luckyBonus: Bool) {
         var baseXP = action.baseXP
         var badgesUnlocked: [BadgeType] = []
 
         // Apply streak multiplier (except for quests which already scale)
         if action != .questCompleted {
             baseXP = Int(Double(baseXP) * multiplier)
+        }
+
+        // Variable reward: an occasional surprise "lucky" double-XP keeps the core
+        // loop from becoming fully predictable (predictable rewards habituate fast).
+        var luckyBonus = false
+        if action == .noSpendDay || action == .impulseResisted, Int.random(in: 1...10) == 1 {
+            baseXP *= 2
+            luckyBonus = true
         }
 
         let oldLevel = gameProfile.currentLevel
@@ -59,7 +67,7 @@ final class GameStateManager: @unchecked Sendable {
 
         gameProfile.lastXPUpdateDate = Date()
 
-        return (xpGranted: baseXP, leveledUp: leveledUp, newLevel: gameProfile.currentLevel, badgesUnlocked: badgesUnlocked)
+        return (xpGranted: baseXP, leveledUp: leveledUp, newLevel: gameProfile.currentLevel, badgesUnlocked: badgesUnlocked, luckyBonus: luckyBonus)
     }
 
     /// Calculate XP multiplier based on current streak
@@ -194,10 +202,14 @@ final class GameStateManager: @unchecked Sendable {
             shouldResetDaily = true
         }
 
-        // Weekly quests reset every Monday
-        let lastResetWeekday = calendar.component(.weekday, from: gameProfile.lastQuestResetDate)
-        let todayWeekday = calendar.component(.weekday, from: Date())
-        if lastResetWeekday != 2 && todayWeekday == 2 {  // 2 = Monday
+        // Weekly quests reset when the calendar week changes — NOT only if the user
+        // happens to open the app on a Monday (which could leave them quest-less for
+        // up to a week).
+        let lastWeek = calendar.component(.weekOfYear, from: gameProfile.lastQuestResetDate)
+        let thisWeek = calendar.component(.weekOfYear, from: Date())
+        let lastWeekYear = calendar.component(.yearForWeekOfYear, from: gameProfile.lastQuestResetDate)
+        let thisWeekYear = calendar.component(.yearForWeekOfYear, from: Date())
+        if thisWeek != lastWeek || thisWeekYear != lastWeekYear {
             shouldResetWeekly = true
         }
 
@@ -212,9 +224,12 @@ final class GameStateManager: @unchecked Sendable {
             }
 
             if shouldResetWeekly {
-                // Generate new weekly quest
-                let weeklyQuest = generateWeeklyQuest(for: gameProfile)
-                gameProfile.quests.append(weeklyQuest)
+                // Generate a new weekly quest only if there isn't an active one already
+                // (avoids stacking duplicates when a week rolls over mid-quest).
+                if !gameProfile.quests.contains(where: { !$0.isDaily && !$0.isExpired }) {
+                    let weeklyQuest = generateWeeklyQuest(for: gameProfile)
+                    gameProfile.quests.append(weeklyQuest)
+                }
             }
 
             gameProfile.lastQuestResetDate = Date()
@@ -252,7 +267,7 @@ extension GameProfile {
         _ action: XPAction,
         streak: Int,
         multiplier: Double = 1.0
-    ) -> (xpGranted: Int, leveledUp: Bool, newLevel: Int, badgesUnlocked: [BadgeType]) {
+    ) -> (xpGranted: Int, leveledUp: Bool, newLevel: Int, badgesUnlocked: [BadgeType], luckyBonus: Bool) {
         GameStateManager.shared.grantXP(action: action, to: self, streak: streak, multiplier: multiplier)
     }
 }

@@ -84,15 +84,23 @@ struct BadgeUnlockCelebrationView: View {
 
                 Spacer()
 
-                // Dismiss button
-                Button(action: onDismiss) {
-                    Text("View Badges")
-                        .font(AppTheme.headlineFont)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(AppTheme.paddingMedium)
-                        .background(badge.rarity.foregroundColor)
-                        .cornerRadius(AppTheme.cornerRadiusMedium)
+                VStack(spacing: 10) {
+                    // Share the badge at the moment of unlock.
+                    AchievementShareButton(
+                        message: "I just unlocked the \"\(badge.badgeID.rawValue)\" badge on SpendZero! 🏆 Crushing my no-spend challenge.",
+                        tint: badge.rarity.foregroundColor
+                    )
+
+                    // Dismiss button
+                    Button(action: onDismiss) {
+                        Text("View Badges")
+                            .font(AppTheme.headlineFont)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(AppTheme.paddingMedium)
+                            .background(badge.rarity.foregroundColor)
+                            .cornerRadius(AppTheme.cornerRadiusMedium)
+                    }
                 }
                 .padding(.horizontal, AppTheme.paddingLarge)
                 .padding(.bottom, AppTheme.paddingLarge)

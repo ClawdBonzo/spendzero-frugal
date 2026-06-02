@@ -19,6 +19,7 @@ struct StreakFlamesView: View {
 
     private let totalSlots = 5
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pulseScale: CGFloat = 1.0
 
     var body: some View {
@@ -29,7 +30,7 @@ struct StreakFlamesView: View {
                     .foregroundColor(flameColor(for: index))
                     .scaleEffect(index < earnedFlames ? pulseScale : 1.0)
                     .animation(
-                        index < earnedFlames
+                        (index < earnedFlames && !reduceMotion)
                             ? .easeInOut(duration: 1.2)
                                 .repeatForever(autoreverses: true)
                                 .delay(Double(index) * 0.1)
@@ -39,7 +40,8 @@ struct StreakFlamesView: View {
             }
         }
         .onAppear {
-            pulseScale = 1.12
+            // Skip the perpetual pulse when Reduce Motion is enabled.
+            pulseScale = reduceMotion ? 1.0 : 1.12
         }
         .accessibilityLabel("\(earnedFlames) of \(totalSlots) streak flames lit")
     }

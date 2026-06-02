@@ -28,14 +28,27 @@ struct StreakCalendarView: View {
         return (calendar.component(.weekday, from: first) - calendar.firstWeekday + 7) % 7
     }
 
-    private func recordFor(_ date: Date) -> DailyRecord? {
-        records.first { calendar.isDate($0.date, inSameDayAs: date) }
+    // Build day-keyed lookup tables ONCE per render instead of scanning the full
+    // records/savings arrays for every visible calendar cell (was O(days × rows)).
+    private var recordsByDay: [Date: DailyRecord] {
+        Dictionary(records.map { (calendar.startOfDay(for: $0.date), $0) },
+                   uniquingKeysWith: { _, new in new })
     }
 
-    private func savingsFor(_ date: Date) -> Double {
-        savings
-            .filter { calendar.isDate($0.date, inSameDayAs: date) }
-            .reduce(0) { $0 + $1.amount }
+    private var savingsByDay: [Date: Double] {
+        var totals: [Date: Double] = [:]
+        for entry in savings {
+            totals[calendar.startOfDay(for: entry.date), default: 0] += entry.amount
+        }
+        return totals
+    }
+
+    private func recordFor(_ date: Date, in table: [Date: DailyRecord]) -> DailyRecord? {
+        table[calendar.startOfDay(for: date)]
+    }
+
+    private func savingsFor(_ date: Date, in table: [Date: Double]) -> Double {
+        table[calendar.startOfDay(for: date)] ?? 0
     }
 
     private var monthTotal: Double {
@@ -47,7 +60,8 @@ struct StreakCalendarView: View {
     }
 
     private var streakDaysThisMonth: Int {
-        monthDays.filter { recordFor($0)?.isNoSpendDay == true }.count
+        let table = recordsByDay
+        return monthDays.filter { recordFor($0, in: table)?.isNoSpendDay == true }.count
     }
 
     var body: some View {
@@ -183,6 +197,8 @@ struct StreakCalendarView: View {
 
             // Day grid
             let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
+            let recordTable = recordsByDay
+            let savingsTable = savingsByDay
             LazyVGrid(columns: columns, spacing: 4) {
                 // Empty cells for offset
                 ForEach(0..<firstWeekday, id: \.self) { _ in
@@ -193,8 +209,8 @@ struct StreakCalendarView: View {
                 ForEach(monthDays, id: \.self) { date in
                     CalendarDayCell(
                         date: date,
-                        record: recordFor(date),
-                        saved: savingsFor(date),
+                        record: recordFor(date, in: recordTable),
+                        saved: savingsFor(date, in: savingsTable),
                         isSelected: selectedDate.map { calendar.isDate($0, inSameDayAs: date) } ?? false,
                         isToday: calendar.isDateInToday(date)
                     ) {

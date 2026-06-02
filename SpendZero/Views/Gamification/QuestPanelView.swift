@@ -130,7 +130,7 @@ struct QuestPanelView: View {
             let streak = calculateCurrentStreak()
             let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
 
-            let result = gameProfile.grantXP(.questCompleted, streak: streak, multiplier: multiplier)
+            _ = gameProfile.grantXP(.questCompleted, streak: streak, multiplier: multiplier)
             HapticManager.shared.trigger(.questComplete)
         }
 

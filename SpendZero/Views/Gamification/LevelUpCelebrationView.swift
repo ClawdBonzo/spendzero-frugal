@@ -138,18 +138,26 @@ struct LevelUpCelebrationView: View {
 
                 Spacer()
 
-                // Dismiss button
-                Button(action: onDismiss) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "checkmark")
-                        Text("Awesome!")
+                VStack(spacing: 10) {
+                    // Share at the peak emotional moment.
+                    AchievementShareButton(
+                        message: "I just hit Level \(newLevel) — \(rank.title) — on my no-spend journey with SpendZero! 💪 Building real savings one day at a time.",
+                        tint: AppTheme.accentGold
+                    )
+
+                    // Dismiss button
+                    Button(action: onDismiss) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "checkmark")
+                            Text("Awesome!")
+                        }
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(AppTheme.primaryGreen)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(AppTheme.primaryGreen)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)

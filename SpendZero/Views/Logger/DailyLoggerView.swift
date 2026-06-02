@@ -6,6 +6,7 @@ struct DailyLoggerView: View {
     @Query private var profiles: [UserProfile]
     @Query(sort: \SpendingLog.date, order: .reverse) private var spendingLogs: [SpendingLog]
     @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
+    @Query(sort: \DailyRecord.date, order: .reverse) private var dailyRecords: [DailyRecord]
     @State private var showAddSpend = false
     @State private var showAddImpulse = false
     @State private var selectedSegment: Int = {
@@ -30,6 +31,13 @@ struct DailyLoggerView: View {
 
     private var totalSpentToday: Double {
         todaySpending.reduce(0) { $0 + $1.amount }
+    }
+
+    private var profile: UserProfile? { profiles.first }
+
+    private var todayRecord: DailyRecord? {
+        let today = Calendar.current.startOfDay(for: Date())
+        return dailyRecords.first { Calendar.current.isDate($0.date, inSameDayAs: today) }
     }
 
     var body: some View {
@@ -216,20 +224,68 @@ struct DailyLoggerView: View {
 
     // MARK: - Wins Section
 
+    private static let dailyWins: [WinItem] = [
+        WinItem(icon: "cup.and.saucer.fill", title: "Made coffee at home", savedAmount: 5),
+        WinItem(icon: "fork.knife", title: "Packed lunch", savedAmount: 12),
+        WinItem(icon: "figure.walk", title: "Walked instead of Uber", savedAmount: 15),
+        WinItem(icon: "tv.fill", title: "Free entertainment", savedAmount: 15),
+        WinItem(icon: "bag.fill", title: "Skipped online shopping", savedAmount: 30)
+    ]
+
     private var winsSection: some View {
         VStack(spacing: 16) {
-            let dailyWins = [
-                WinItem(icon: "cup.and.saucer.fill", title: "Made coffee at home", saved: Double(5).currencyFormatted),
-                WinItem(icon: "fork.knife", title: "Packed lunch", saved: Double(12).currencyFormatted),
-                WinItem(icon: "figure.walk", title: "Walked instead of Uber", saved: Double(15).currencyFormatted),
-                WinItem(icon: "tv.fill", title: "Free entertainment", saved: Double(15).currencyFormatted),
-                WinItem(icon: "bag.fill", title: "Skipped online shopping", saved: Double(30).currencyFormatted)
-            ]
+            // Intro line — these now persist, earn XP, and add to savings.
+            HStack(spacing: 6) {
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundColor(AppTheme.primaryGreen)
+                Text("Check off today's wins to earn XP & log savings")
+                    .font(AppTheme.captionFont)
+                    .foregroundColor(AppTheme.textSecondary)
+                Spacer()
+            }
 
-            ForEach(dailyWins, id: \.title) { win in
-                WinChecklistRow(win: win)
+            ForEach(Self.dailyWins, id: \.title) { win in
+                WinChecklistRow(
+                    win: win,
+                    isChecked: todayRecord?.wins.contains(win.title) ?? false,
+                    onToggle: { toggleWin(win) }
+                )
             }
         }
+    }
+
+    private func ensureTodayRecord() -> DailyRecord {
+        if let record = todayRecord { return record }
+        let record = DailyRecord(date: Date(), isNoSpendDay: true)
+        modelContext.insert(record)
+        return record
+    }
+
+    private func toggleWin(_ win: WinItem) {
+        let record = ensureTodayRecord()
+        if let idx = record.wins.firstIndex(of: win.title) {
+            // Uncheck — roll back the logged savings (XP already earned is kept).
+            record.wins.remove(at: idx)
+            record.totalSaved = max(0, record.totalSaved - win.savedAmount)
+            if let profile { profile.totalSaved = max(0, profile.totalSaved - win.savedAmount) }
+            HapticManager.shared.trigger(.toggleOff)
+        } else {
+            // Check — persist, log a small savings entry, and award XP.
+            record.wins.append(win.title)
+            record.totalSaved += win.savedAmount
+            if let profile { profile.totalSaved += win.savedAmount }
+
+            let saving = SavingsEntry(amount: win.savedAmount, source: .manual, note: win.title)
+            modelContext.insert(saving)
+
+            if let gp = profile?.gameProfile {
+                _ = gp.grantXP(.loginStreak, streak: profile?.currentStreak ?? 0)
+                HapticManager.shared.trigger(.xpGained)
+            } else {
+                HapticManager.shared.trigger(.celebrate)
+            }
+        }
+        try? modelContext.save()
     }
 }
 
@@ -327,18 +383,19 @@ struct ImpulseLogRow: View {
 struct WinItem {
     let icon: String
     let title: String
-    let saved: String
+    let savedAmount: Double
+    var saved: String { savedAmount.currencyFormatted }
 }
 
 struct WinChecklistRow: View {
     let win: WinItem
-    @State private var isChecked = false
+    let isChecked: Bool
+    let onToggle: () -> Void
 
     var body: some View {
         Button {
-            HapticManager.shared.trigger(isChecked ? .toggleOff : .celebrate)
             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                isChecked.toggle()
+                onToggle()
             }
         } label: {
             HStack(spacing: 14) {
