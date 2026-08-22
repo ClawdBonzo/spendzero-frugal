@@ -5,7 +5,6 @@ struct BadgeShowcaseView: View {
     let gameProfile: GameProfile
 
     @State private var selectedBadge: BadgeInstance?
-    @State private var showDetail = false
 
     let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -71,11 +70,14 @@ struct BadgeShowcaseView: View {
             } else {
                 LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(earnedBadges, id: \.id) { badge in
-                        BadgeItemView(badge: badge)
-                            .onTapGesture {
-                                selectedBadge = badge
-                                showDetail = true
-                            }
+                        Button {
+                            selectedBadge = badge
+                        } label: {
+                            BadgeItemView(badge: badge)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text(verbatim: "\(badge.badgeID.localizedName), \(badge.rarity.label)"))
+                        .accessibilityHint(Text("Shows badge details"))
                     }
                 }
                 .padding(.horizontal, AppTheme.paddingLarge)
@@ -85,10 +87,8 @@ struct BadgeShowcaseView: View {
         }
         .padding(.vertical, AppTheme.paddingLarge)
         .background(AppTheme.background)
-        .sheet(isPresented: $showDetail) {
-            if let badge = selectedBadge {
-                BadgeDetailView(badge: badge)
-            }
+        .sheet(item: $selectedBadge) { badge in
+            BadgeDetailView(badge: badge)
         }
     }
 }
@@ -158,6 +158,7 @@ struct BadgeDetailView: View {
                         .font(.app(size: 20, weight: .semibold))
                         .foregroundColor(AppTheme.textTertiary)
                 }
+                .accessibilityLabel(Text("Close"))
             }
             .padding(.horizontal, AppTheme.paddingLarge)
 

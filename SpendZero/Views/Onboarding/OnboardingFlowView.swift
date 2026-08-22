@@ -16,30 +16,34 @@ struct OnboardingFlowView: View {
         ZStack {
             AppTheme.background.ignoresSafeArea()
 
-            TabView(selection: $currentStep) {
-                OnboardingSplashView(onNext: nextStep)
-                    .tag(0)
-
-                OnboardingNameView(name: $userName, onNext: nextStep)
-                    .tag(1)
-
-                OnboardingSpendingQuizView(level: $spendingLevel, onNext: nextStep)
-                    .tag(2)
-
-                OnboardingCategoriesView(selected: $selectedCategories, onNext: nextStep)
-                    .tag(3)
-
-                OnboardingCommitView(days: $challengeDays, onNext: nextStep)
-                    .tag(4)
-
-                OnboardingLoadingView(
-                    userName: userName,
-                    onComplete: nextStep
-                )
-                .tag(5)
+            // Steps are driven only by their Continue buttons: a paging TabView would let the
+            // user swipe past the name / categories gates, so each step is shown on its own
+            // and slides in when `currentStep` advances.
+            Group {
+                switch currentStep {
+                case 0:
+                    OnboardingSplashView(onNext: nextStep)
+                case 1:
+                    OnboardingNameView(name: $userName, onNext: nextStep)
+                case 2:
+                    OnboardingSpendingQuizView(level: $spendingLevel, onNext: nextStep)
+                case 3:
+                    OnboardingCategoriesView(selected: $selectedCategories, onNext: nextStep)
+                case 4:
+                    OnboardingCommitView(days: $challengeDays, onNext: nextStep)
+                default:
+                    OnboardingLoadingView(
+                        userName: userName.trimmingCharacters(in: .whitespacesAndNewlines),
+                        challengeDays: challengeDays,
+                        onComplete: nextStep
+                    )
+                }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .animation(.easeInOut(duration: 0.5), value: currentStep)
+            .id(currentStep)
+            .transition(.asymmetric(
+                insertion: .move(edge: .trailing).combined(with: .opacity),
+                removal: .move(edge: .leading).combined(with: .opacity)))
+            .animation(.easeInOut(duration: 0.4), value: currentStep)
             .onChange(of: currentStep) { _, _ in
                 // Dismiss the keyboard whenever we move between steps so it never
                 // lingers over a later screen or covers its Continue button.
@@ -59,6 +63,8 @@ struct OnboardingFlowView: View {
     }
 
     private func nextStep() {
+        // The name step can't be skipped with an empty name.
+        if currentStep == 1, userName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return }
         if currentStep < 5 {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                 currentStep += 1
@@ -69,8 +75,9 @@ struct OnboardingFlowView: View {
     }
 
     private func completeOnboarding() {
+        let trimmedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
         let profile = UserProfile(
-            displayName: userName,
+            displayName: trimmedName.isEmpty ? String(localized: "Champion") : trimmedName,
             dailyBudget: spendingLevel.dailyEstimate,
             challengeDays: challengeDays,
             spendingLevel: spendingLevel,

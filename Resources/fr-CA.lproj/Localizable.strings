@@ -567,3 +567,25 @@
 "Your XP was doubled!" = "Vos XP ont été doublés!";
 "~%@/day on non-essentials" = "~%@/jour en dépenses non essentielles";
 "🔥 %lld-day streak · %@ saved" = "🔥 Série de %lld jours · %@ économisés";
+
+/* UX audit additions */
+"Add entry" = "Ajouter une entrée";
+"Delete this purchase?" = "Supprimer cet achat?";
+"Delete" = "Supprimer";
+"Today's totals will be updated." = "Les totaux d'aujourd'hui seront mis à jour.";
+"Delete this impulse?" = "Supprimer cette impulsion?";
+"Any savings credited for it will be removed." = "Toute économie créditée pour celle-ci sera retirée.";
+"Purchase deleted" = "Achat supprimé";
+"Impulse deleted" = "Impulsion supprimée";
+"Previous month" = "Mois précédent";
+"Next month" = "Mois suivant";
+"Nothing logged" = "Rien de consigné";
+"No entries were recorded on this day." = "Aucune entrée n'a été consignée ce jour-là.";
+"Done" = "Terminé";
+"Not logged" = "Non consigné";
+"Close" = "Fermer";
+"Shows badge details" = "Affiche les détails du badge";
+"%lld-Day" = "de %lld jours";
+"What triggered it? (optional)" = "Qu'est-ce qui l'a déclenchée? (facultatif)";
+"e.g., Stress, boredom, a sale email" = "p. ex. stress, ennui, un courriel de solde";
+"All data reset" = "Toutes les données réinitialisées";

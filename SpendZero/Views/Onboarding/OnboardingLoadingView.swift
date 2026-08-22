@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OnboardingLoadingView: View {
     let userName: String
+    var challengeDays: Int = 30
     let onComplete: () -> Void
 
     @State private var progress1: CGFloat = 0
@@ -89,16 +90,17 @@ struct OnboardingLoadingView: View {
             }
         }
         .padding(.horizontal, AppTheme.paddingLarge)
-        .onAppear {
-            startLoadingAnimation()
+        .task {
+            await runLoadingSequence()
         }
     }
 
     private var challengeText: String {
-        String(localized: "30-Day")
+        String(localized: "\(challengeDays)-Day")
     }
 
-    private func startLoadingAnimation() {
+    /// Runs the staged animation; cancelled automatically when the view disappears.
+    private func runLoadingSequence() async {
         // Progress bar 1
         withAnimation(.easeInOut(duration: 1.5).delay(0.3)) {
             progress1 = 1.0
@@ -119,20 +121,17 @@ struct OnboardingLoadingView: View {
             showSocialProof = true
         }
 
-        // Rotate social proof facts
+        // Rotate social proof facts (one every 1.5s, starting after 1s), then show the button.
+        var elapsed: Double = 0
         for i in 1..<socialProofFacts.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 1.5 + 1.0) {
-                withAnimation {
-                    currentFact = i
-                }
-            }
+            let target = Double(i) * 1.5 + 1.0
+            guard (try? await Task.sleep(for: .seconds(target - elapsed))) != nil else { return }
+            elapsed = target
+            withAnimation { currentFact = i }
         }
-
-        // Show complete button
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                showComplete = true
-            }
+        guard (try? await Task.sleep(for: .seconds(max(0, 4.5 - elapsed)))) != nil else { return }
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+            showComplete = true
         }
     }
 }

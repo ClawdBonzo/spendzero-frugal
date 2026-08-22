@@ -8,6 +8,7 @@ struct OnboardingNameView: View {
     @State private var showTitle = false
     @State private var showField = false
     @State private var ringPulse = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         GeometryReader { geo in
@@ -152,8 +153,10 @@ struct OnboardingNameView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 isFocused = true
             }
-            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true).delay(0.8)) {
-                ringPulse = true
+            if !reduceMotion {
+                withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true).delay(0.8)) {
+                    ringPulse = true
+                }
             }
         }
     }

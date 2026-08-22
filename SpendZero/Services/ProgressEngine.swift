@@ -237,6 +237,51 @@ final class ProgressEngine {
         return outcome
     }
 
+    /// Delete a spending entry and reverse its bookkeeping. If no non-essential spending remains
+    /// for that day, the day becomes eligible for a no-spend mark again (the streak is NOT
+    /// re-credited automatically). XP is never clawed back.
+    func deleteSpending(_ log: SpendingLog, profile: UserProfile?, context: ModelContext) {
+        let day = log.date
+        let record = dayRecord(for: day, context: context)
+        record?.totalSpent = max(0, (record?.totalSpent ?? 0) - log.amount)
+        context.delete(log)
+        if let record, !hasNonEssentialSpending(on: day, context: context) {
+            record.isNoSpendDay = true
+        }
+        save(context)
+        if let profile {
+            syncWidget(profile: profile, context: context, now: Date())
+            refreshNotifications(profile: profile, now: Date())
+        }
+    }
+
+    /// Delete an impulse and reverse its bookkeeping. A resisted impulse also removes its savings
+    /// credit (matched by day, source and amount). XP is never clawed back.
+    func deleteImpulse(_ impulse: ImpulseLog, profile: UserProfile?, context: ModelContext) {
+        let day = impulse.date
+        let record = dayRecord(for: day, context: context)
+        if impulse.wasResisted {
+            record?.impulsesResisted = max(0, (record?.impulsesResisted ?? 0) - 1)
+            let cal = Calendar.current
+            let start = cal.startOfDay(for: day)
+            let end = cal.date(byAdding: .day, value: 1, to: start) ?? day
+            let amount = impulse.estimatedCost
+            let descriptor = FetchDescriptor<SavingsEntry>(predicate: #Predicate {
+                $0.date >= start && $0.date < end && $0.amount == amount
+            })
+            if let entry = ((try? context.fetch(descriptor)) ?? []).first(where: { $0.source == .impulseResisted }) {
+                profile?.totalSaved = max(0, (profile?.totalSaved ?? 0) - entry.amount)
+                record?.totalSaved = max(0, (record?.totalSaved ?? 0) - entry.amount)
+                context.delete(entry)
+            }
+        } else {
+            record?.impulsesGivenIn = max(0, (record?.impulsesGivenIn ?? 0) - 1)
+        }
+        context.delete(impulse)
+        save(context)
+        if let profile { syncWidget(profile: profile, context: context, now: Date()) }
+    }
+
     /// Start a challenge (deactivating any other). Day 1 counts if today is already a no-spend day.
     func startChallenge(_ challenge: ChallengeEntry, all: [ChallengeEntry], profile: UserProfile?,
                         context: ModelContext, now: Date = Date()) {
@@ -300,6 +345,17 @@ final class ProgressEngine {
         let record = DailyRecord(date: start, isNoSpendDay: true)
         context.insert(record)
         return record
+    }
+
+    /// The existing record for a given day, if any (never creates one).
+    func dayRecord(for day: Date, context: ModelContext) -> DailyRecord? {
+        let cal = Calendar.current
+        let start = cal.startOfDay(for: day)
+        let end = cal.date(byAdding: .day, value: 1, to: start) ?? day
+        var descriptor = FetchDescriptor<DailyRecord>(predicate: #Predicate { $0.date >= start && $0.date < end },
+                                                      sortBy: [SortDescriptor(\.date)])
+        descriptor.fetchLimit = 1
+        return (try? context.fetch(descriptor))?.first
     }
 
     func hasNonEssentialSpending(on day: Date, context: ModelContext) -> Bool {

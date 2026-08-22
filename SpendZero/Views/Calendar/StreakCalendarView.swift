@@ -4,9 +4,16 @@ import SwiftData
 struct StreakCalendarView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \DailyRecord.date) private var records: [DailyRecord]
-    @Query(sort: \SavingsEntry.date) private var savings: [SavingsEntry]
+    @Query(sort: \SavingsEntry.date, order: .reverse) private var savings: [SavingsEntry]
     @State private var selectedMonth = Date()
     @State private var selectedDate: Date?
+    @State private var detailDay: SelectedDay?
+
+    /// Identifiable wrapper so a tapped day can drive `.sheet(item:)`.
+    struct SelectedDay: Identifiable {
+        let date: Date
+        var id: Date { date }
+    }
     @State private var showSummary = false
     @State private var showCalendar = false
     @State private var showTimeline = false
@@ -112,6 +119,9 @@ struct StreakCalendarView: View {
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle("Streak Calendar")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(item: $detailDay) { day in
+                DayDetailSheet(date: day.date, record: recordFor(day.date, in: recordsByDay))
+            }
         }
     }
 
@@ -127,6 +137,7 @@ struct StreakCalendarView: View {
                     .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(AppTheme.textSecondary)
             }
+            .accessibilityLabel(Text("Previous month"))
 
             Spacer()
 
@@ -145,6 +156,7 @@ struct StreakCalendarView: View {
                     .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(AppTheme.textSecondary)
             }
+            .accessibilityLabel(Text("Next month"))
         }
         .padding(.horizontal, 8)
     }
@@ -224,6 +236,7 @@ struct StreakCalendarView: View {
                         withAnimation(.spring(response: 0.3)) {
                             selectedDate = date
                         }
+                        detailDay = SelectedDay(date: date)
                     }
                 }
             }
@@ -354,5 +367,165 @@ struct CalendarDayCell: View {
     private var backgroundColor: Color {
         if isSelected { return AppTheme.primaryGreen.opacity(0.15) }
         return Color.clear
+    }
+}
+
+// MARK: - Day Detail
+
+/// Everything logged on one calendar day. Spending and impulses are fetched with a date-range
+/// predicate so only that day's rows are loaded.
+struct DayDetailSheet: View {
+    let date: Date
+    let record: DailyRecord?
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @State private var spending: [SpendingLog] = []
+    @State private var impulses: [ImpulseLog] = []
+
+    private enum Status { case noSpend, spent, notLogged }
+
+    private var status: Status {
+        guard let record else { return .notLogged }
+        return (record.isNoSpendDay && !hasNonEssential) ? .noSpend : .spent
+    }
+
+    private var hasNonEssential: Bool { spending.contains { !$0.category.isEssential } }
+
+    private var wins: [WinItem] {
+        guard let record else { return [] }
+        return WinItem.all.filter { record.wins.contains($0.title) }
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    statusHeader
+                    totalsRow
+
+                    if !wins.isEmpty {
+                        section(title: Text("Wins")) {
+                            ForEach(wins, id: \.title) { win in
+                                HStack(spacing: 10) {
+                                    Image(systemName: win.icon)
+                                        .foregroundColor(AppTheme.primaryGreen)
+                                        .frame(width: 24)
+                                    Text(win.label)
+                                        .font(.app(size: 14, weight: .medium))
+                                        .foregroundColor(AppTheme.textPrimary)
+                                    Spacer()
+                                    Text(verbatim: "+\(win.saved)")
+                                        .font(.app(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundColor(AppTheme.primaryGreen)
+                                }
+                                .padding(12)
+                                .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
+                            }
+                        }
+                    }
+
+                    if !spending.isEmpty {
+                        section(title: Text("Spending")) {
+                            ForEach(spending) { SpendingLogRow(log: $0) }
+                        }
+                    }
+
+                    if !impulses.isEmpty {
+                        section(title: Text("Impulses")) {
+                            ForEach(impulses) { ImpulseLogRow(impulse: $0) }
+                        }
+                    }
+
+                    if record == nil && spending.isEmpty && impulses.isEmpty {
+                        EmptyStateView(icon: "calendar",
+                                       title: "Nothing logged",
+                                       subtitle: "No entries were recorded on this day.")
+                    }
+
+                    Spacer(minLength: 40)
+                }
+                .padding(AppTheme.paddingMedium)
+            }
+            .background(AppTheme.background.ignoresSafeArea())
+            .navigationTitle(Text(date, format: .dateTime.weekday(.wide).month().day()))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: { Text("Done") }
+                }
+            }
+            .task { load() }
+        }
+        .presentationDetents([.medium, .large])
+    }
+
+    private var statusHeader: some View {
+        HStack(spacing: 10) {
+            Image(systemName: statusIcon)
+                .font(.app(size: 22))
+                .foregroundColor(statusColor)
+            statusTitle
+                .font(AppTheme.headlineFont)
+                .foregroundColor(statusColor)
+            Spacer()
+        }
+        .padding(AppTheme.paddingMedium)
+        .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge).fill(statusColor.opacity(0.1)))
+    }
+
+    private var totalsRow: some View {
+        HStack(spacing: 12) {
+            StatCard(title: "Spent", value: (record?.totalSpent ?? 0).currencyFormattedDecimal,
+                     icon: "creditcard.fill", color: AppTheme.destructive)
+            StatCard(title: "Saved", value: (record?.totalSaved ?? 0).currencyFormatted,
+                     icon: "dollarsign.circle.fill", color: AppTheme.primaryGreen)
+        }
+    }
+
+    private func section<Content: View>(title: Text, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            title
+                .font(AppTheme.headlineFont)
+                .foregroundColor(AppTheme.textPrimary)
+            content()
+        }
+    }
+
+    private var statusIcon: String {
+        switch status {
+        case .noSpend: return "checkmark.seal.fill"
+        case .spent: return "xmark.seal.fill"
+        case .notLogged: return "minus.circle"
+        }
+    }
+
+    private var statusColor: Color {
+        switch status {
+        case .noSpend: return AppTheme.primaryGreen
+        case .spent: return AppTheme.destructive
+        case .notLogged: return AppTheme.textSecondary
+        }
+    }
+
+    private var statusTitle: Text {
+        switch status {
+        case .noSpend: return Text("No-Spend Day")
+        case .spent: return Text("Spent")
+        case .notLogged: return Text("Not logged")
+        }
+    }
+
+    private func load() {
+        let cal = Calendar.current
+        let start = cal.startOfDay(for: date)
+        let end = cal.date(byAdding: .day, value: 1, to: start) ?? date
+        let spendDescriptor = FetchDescriptor<SpendingLog>(
+            predicate: #Predicate { $0.date >= start && $0.date < end },
+            sortBy: [SortDescriptor(\.date, order: .reverse)])
+        let impulseDescriptor = FetchDescriptor<ImpulseLog>(
+            predicate: #Predicate { $0.date >= start && $0.date < end },
+            sortBy: [SortDescriptor(\.date, order: .reverse)])
+        spending = (try? modelContext.fetch(spendDescriptor)) ?? []
+        impulses = (try? modelContext.fetch(impulseDescriptor)) ?? []
     }
 }

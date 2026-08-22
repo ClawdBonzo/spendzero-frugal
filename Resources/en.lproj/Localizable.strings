@@ -567,3 +567,25 @@
 "Your XP was doubled!" = "Your XP was doubled!";
 "~%@/day on non-essentials" = "~%@/day on non-essentials";
 "🔥 %lld-day streak · %@ saved" = "🔥 %lld-day streak · %@ saved";
+
+/* UX audit additions */
+"Add entry" = "Add entry";
+"Delete this purchase?" = "Delete this purchase?";
+"Delete" = "Delete";
+"Today's totals will be updated." = "Today's totals will be updated.";
+"Delete this impulse?" = "Delete this impulse?";
+"Any savings credited for it will be removed." = "Any savings credited for it will be removed.";
+"Purchase deleted" = "Purchase deleted";
+"Impulse deleted" = "Impulse deleted";
+"Previous month" = "Previous month";
+"Next month" = "Next month";
+"Nothing logged" = "Nothing logged";
+"No entries were recorded on this day." = "No entries were recorded on this day.";
+"Done" = "Done";
+"Not logged" = "Not logged";
+"Close" = "Close";
+"Shows badge details" = "Shows badge details";
+"%lld-Day" = "%lld-Day";
+"What triggered it? (optional)" = "What triggered it? (optional)";
+"e.g., Stress, boredom, a sale email" = "e.g., Stress, boredom, a sale email";
+"All data reset" = "All data reset";

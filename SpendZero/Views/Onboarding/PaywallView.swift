@@ -111,6 +111,7 @@ struct PaywallView: View {
                                 .font(.app(size: 26))
                                 .foregroundColor(AppTheme.textTertiary.opacity(0.7))
                         }
+                        .accessibilityLabel(Text("Close"))
                         .padding(.top, 16)
                         .padding(.trailing, AppTheme.paddingLarge)
                     }

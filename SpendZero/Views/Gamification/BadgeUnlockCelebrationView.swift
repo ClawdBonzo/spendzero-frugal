@@ -8,6 +8,7 @@ struct BadgeUnlockCelebrationView: View {
     @State private var scale: CGFloat = 0.5
     @State private var opacity: Double = 0
     @State private var rotate: Double = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack {
@@ -92,7 +93,10 @@ struct BadgeUnlockCelebrationView: View {
                     )
 
                     // Dismiss button
-                    Button(action: onDismiss) {
+                    Button {
+                        onDismiss()
+                        NotificationCenter.default.post(name: .spendZeroSelectTab, object: AppTab.gamification)
+                    } label: {
                         Text("View Badges")
                             .font(AppTheme.headlineFont)
                             .foregroundColor(.white)
@@ -106,12 +110,14 @@ struct BadgeUnlockCelebrationView: View {
                 .padding(.bottom, AppTheme.paddingLarge)
             }
         }
+        .accessibilityAddTraits(.isModal)
         .onAppear {
             HapticManager.shared.trigger(.badgeEarned)
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 scale = 1.0
                 opacity = 1.0
             }
+            guard !reduceMotion else { return }
             withAnimation(
                 Animation.easeInOut(duration: 2.0).repeatForever(autoreverses: true)
             ) {

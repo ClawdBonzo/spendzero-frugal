@@ -319,6 +319,7 @@ struct SettingsView: View {
     private func resetAllData() {
         ProgressEngine.shared.resetAllData(profile: profile, context: modelContext)
         HapticManager.shared.trigger(.warning)
+        EventPresenter.shared.enqueue(.info(String(localized: "All data reset")))
     }
 }
 

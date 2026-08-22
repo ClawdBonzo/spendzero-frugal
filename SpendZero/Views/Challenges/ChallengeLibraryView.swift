@@ -81,6 +81,7 @@ struct ChallengeLibraryView: View {
                             .font(.app(size: 24))
                             .foregroundColor(AppTheme.primaryGreen)
                     }
+                    .accessibilityLabel(Text("Create Challenge"))
                 }
             }
             .sheet(isPresented: $showCreateChallenge) {

@@ -111,3 +111,41 @@ struct ProgressEngineTests {
                                                  triggerNote: "", copingStrategy: "", profile: profile, context: ctx) == nil)
     }
 }
+
+extension ProgressEngineTests {
+    @Test func deletingSpendingReversesTotalsAndReopensTheDay() throws {
+        let store = try makeStore(); let ctx = store.context; let profile = store.profile
+        ProgressEngine.shared.logSpending(amount: 15, category: .coffee, note: "", wasImpulse: false,
+                                          profile: profile, context: ctx)
+        #expect(ProgressEngine.shared.noSpendDayBlocker(profile: profile, context: ctx) == .spentToday)
+        let log = try #require(try ctx.fetch(FetchDescriptor<SpendingLog>()).first)
+        ProgressEngine.shared.deleteSpending(log, profile: profile, context: ctx)
+
+        #expect(try ctx.fetch(FetchDescriptor<SpendingLog>()).isEmpty)
+        let record = ProgressEngine.shared.todayRecord(context: ctx)
+        #expect(record.totalSpent == 0)
+        #expect(record.isNoSpendDay)
+        #expect(profile.currentStreak == 0)   // not re-credited automatically
+        #expect(ProgressEngine.shared.noSpendDayBlocker(profile: profile, context: ctx) == nil)
+    }
+
+    @Test func deletingResistedImpulseRemovesSavingsButKeepsXP() throws {
+        let store = try makeStore(); let ctx = store.context; let profile = store.profile
+        let gp = try #require(profile.gameProfile)
+        gp.quests.removeAll()
+        _ = ProgressEngine.shared.logImpulse(item: "Shoes", cost: 80, category: .shopping, resisted: true,
+                                             triggerNote: "", copingStrategy: "", profile: profile, context: ctx)
+        let xp = gp.totalXPEarned
+        #expect(profile.totalSaved == 80)
+        let impulse = try #require(try ctx.fetch(FetchDescriptor<ImpulseLog>()).first)
+        ProgressEngine.shared.deleteImpulse(impulse, profile: profile, context: ctx)
+
+        #expect(try ctx.fetch(FetchDescriptor<ImpulseLog>()).isEmpty)
+        #expect(try ctx.fetch(FetchDescriptor<SavingsEntry>()).isEmpty)
+        #expect(profile.totalSaved == 0)
+        let record = ProgressEngine.shared.todayRecord(context: ctx)
+        #expect(record.totalSaved == 0)
+        #expect(record.impulsesResisted == 0)
+        #expect(gp.totalXPEarned == xp)
+    }
+}

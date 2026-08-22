@@ -267,16 +267,18 @@ struct QuestQuickView: View {
             }
 
             if quest.targetValue > 0 {
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(AppTheme.cardBackgroundLight)
-                        .frame(height: 4)
+                let progress = min(1.0, quest.currentProgress / quest.targetValue)
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(AppTheme.cardBackgroundLight)
 
-                    let progress = min(1.0, quest.currentProgress / quest.targetValue)
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(AppTheme.primaryGreen)
-                        .frame(width: 280 * progress, height: 4)
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(AppTheme.primaryGreen)
+                            .frame(width: geo.size.width * progress)
+                    }
                 }
+                .frame(height: 4)
             }
         }
         .padding(AppTheme.paddingMedium)

@@ -7,6 +7,7 @@ struct OnboardingCommitView: View {
     @State private var showTitle = false
     @State private var visibleCards: Set<Int> = []
     @State private var flamePulse = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private let commitOptions = [7, 14, 21, 30]
 
@@ -103,8 +104,10 @@ struct OnboardingCommitView: View {
                 }
             }
             // Flame glow pulse
-            withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true).delay(1.0)) {
-                flamePulse = true
+            if !reduceMotion {
+                withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true).delay(1.0)) {
+                    flamePulse = true
+                }
             }
         }
     }

@@ -159,7 +159,6 @@ struct LevelRowView: View {
                             Text(rank?.title ?? String(localized: "Unknown"))
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(isUnlocked ? AppTheme.textPrimary : AppTheme.textTertiary)
-                                .strikethrough(false)
 
                             if isCurrent {
                                 Image(systemName: "checkmark.circle.fill")
@@ -185,15 +184,9 @@ struct LevelRowView: View {
                                 .font(AppTheme.smallFont)
                                 .foregroundColor(AppTheme.accentGold)
 
-                            if !isUnlocked {
-                                Text("Total XP")
-                                    .font(AppTheme.smallFont)
-                                    .foregroundColor(AppTheme.textTertiary)
-                            } else {
-                                Text("Total XP")
-                                    .font(AppTheme.smallFont)
-                                    .foregroundColor(AppTheme.textTertiary)
-                            }
+                            Text("Total XP")
+                                .font(AppTheme.smallFont)
+                                .foregroundColor(AppTheme.textTertiary)
                         }
                     }
 
@@ -202,10 +195,6 @@ struct LevelRowView: View {
                 .padding(AppTheme.paddingMedium)
                 .background(AppTheme.cardBackground)
                 .cornerRadius(AppTheme.cornerRadiusMedium)
-
-                if isSelected {
-                    Color.clear.frame(height: 0)
-                }
             }
         }
         .buttonStyle(.plain)

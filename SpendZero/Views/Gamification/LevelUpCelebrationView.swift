@@ -181,6 +181,7 @@ struct LevelUpCelebrationView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Level up! You reached Level \(newLevel): \(rank.title)")
+        .accessibilityAddTraits(.isModal)
     }
 }
 

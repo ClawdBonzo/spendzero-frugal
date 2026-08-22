@@ -4,10 +4,13 @@ import SwiftData
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
-    @Query(sort: \DailyRecord.date, order: .reverse) private var dailyRecords: [DailyRecord]
-    @Query(sort: \SavingsEntry.date, order: .reverse) private var savings: [SavingsEntry]
-    @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    // Predicated queries: only today's records/savings and the last 30 days of impulses.
+    @Query private var dailyRecords: [DailyRecord]
+    @Query private var todaySavings: [SavingsEntry]
+    @Query private var impulses: [ImpulseLog]
     @State private var showAddImpulse = false
+    @State private var impulseToDelete: ImpulseLog?
     @State private var showGamificationHub = false
     @State private var showUpgradePaywall = false
     @State private var subscription = SubscriptionService.shared
@@ -23,46 +26,51 @@ struct DashboardView: View {
     private var profile: UserProfile? { profiles.first }
     private var gameProfile: GameProfile? { profile?.gameProfile }
 
-    private var todayRecord: DailyRecord? {
-        let today = Calendar.current.startOfDay(for: Date())
-        return dailyRecords.first { Calendar.current.isDate($0.date, inSameDayAs: today) }
+    init() {
+        let cal = Calendar.current
+        let start = cal.startOfDay(for: Date())
+        let end = cal.date(byAdding: .day, value: 1, to: start) ?? Date()
+        let monthAgo = cal.date(byAdding: .day, value: -30, to: start) ?? start
+        _dailyRecords = Query(filter: #Predicate<DailyRecord> { $0.date >= start && $0.date < end },
+                              sort: \DailyRecord.date, order: .reverse)
+        _todaySavings = Query(filter: #Predicate<SavingsEntry> { $0.date >= start && $0.date < end },
+                              sort: \SavingsEntry.date, order: .reverse)
+        _impulses = Query(filter: #Predicate<ImpulseLog> { $0.date >= monthAgo },
+                          sort: \ImpulseLog.date, order: .reverse)
     }
+
+    private var todayRecord: DailyRecord? { dailyRecords.first }
 
     private var currentStreak: Int {
         profile?.currentStreak ?? 0
     }
 
-    private var totalSaved: Double {
-        savings.reduce(0) { $0 + $1.amount }
-    }
+    /// The engine keeps `profile.totalSaved` in sync with every savings change.
+    private var totalSaved: Double { profile?.totalSaved ?? 0 }
 
     private var todaySaved: Double {
-        let today = Calendar.current.startOfDay(for: Date())
-        return savings
-            .filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
-            .reduce(0) { $0 + $1.amount }
+        todaySavings.reduce(0) { $0 + $1.amount }
     }
 
     private var impulsesResistedToday: Int {
-        let today = Calendar.current.startOfDay(for: Date())
-        return impulses
-            .filter { Calendar.current.isDate($0.date, inSameDayAs: today) && $0.wasResisted }
-            .count
+        todayRecord?.impulsesResisted ?? 0
     }
 
     /// A user who has never logged anything yet — gets an encouraging first-action
     /// card instead of a deflating wall of zeros.
     private var isBrandNewUser: Bool {
-        currentStreak == 0 && totalSaved == 0 && dailyRecords.isEmpty && impulses.isEmpty
+        currentStreak == 0 && totalSaved == 0 && profile?.lastNoSpendDate == nil
+            && dailyRecords.isEmpty && impulses.isEmpty
     }
 
     var body: some View {
-        ZStack {
-            // Ambient money particle background (throttled, respects reduceMotion)
-            ParticleBackgroundView(count: 8)
-                .ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                // Ambient money particle background (throttled, respects reduceMotion).
+                // Lives inside the navigation root so pushed screens cover it.
+                ParticleBackgroundView(count: 8)
+                    .ignoresSafeArea()
 
-            NavigationStack {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
                         // Greeting — slides in from left
@@ -140,13 +148,20 @@ struct DashboardView: View {
                     .padding(.top, 8)
                     .onAppear { triggerEntranceAnimations() }
                 }
-                .background(AppTheme.background.ignoresSafeArea())
-                .navigationBarTitleDisplayMode(.inline)
-                .sheet(isPresented: $showAddImpulse) {
-                    AddImpulseView()
-                }
             }
-
+            .background(AppTheme.background.ignoresSafeArea())
+            .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $showAddImpulse) {
+                AddImpulseView()
+            }
+            .confirmationDialog(Text("Delete this impulse?"), isPresented: Binding(
+                get: { impulseToDelete != nil }, set: { if !$0 { impulseToDelete = nil } }
+            ), titleVisibility: .visible, presenting: impulseToDelete) { impulse in
+                Button(role: .destructive) { deleteImpulse(impulse) } label: { Text("Delete") }
+                Button(role: .cancel) { impulseToDelete = nil } label: { Text("Cancel") }
+            } message: { _ in
+                Text("Any savings credited for it will be removed.")
+            }
         }
         .onAppear { refreshTodayState() }
         .onChange(of: dailyRecords.count) { _, _ in refreshTodayState() }
@@ -210,7 +225,8 @@ struct DashboardView: View {
                     .frame(width: 62, height: 62)
                     .scaleEffect(streakBadgePulse ? 1.15 : 0.95)
                     .opacity(streakBadgePulse ? 0.0 : 0.8)
-                    .animation(.easeOut(duration: 1.8).repeatForever(autoreverses: false), value: streakBadgePulse)
+                    .animation(reduceMotion ? nil : .easeOut(duration: 1.8).repeatForever(autoreverses: false),
+                               value: streakBadgePulse)
 
                 Circle()
                     .fill(AppTheme.primaryGreen.opacity(0.15))
@@ -489,8 +505,19 @@ struct DashboardView: View {
                     RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
                         .fill(AppTheme.cardBackground)
                 )
+                .contextMenu {
+                    Button(role: .destructive) { impulseToDelete = impulse } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
         }
+    }
+
+    private func deleteImpulse(_ impulse: ImpulseLog) {
+        ProgressEngine.shared.deleteImpulse(impulse, profile: profile, context: modelContext)
+        impulseToDelete = nil
+        EventPresenter.shared.enqueue(.info(String(localized: "Impulse deleted")))
     }
 
     // MARK: - Quest Quick Link
@@ -633,7 +660,8 @@ struct DashboardView: View {
         withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.45)) {
             showActions = true
         }
-        // Start streak badge pulse loop
+        // Start streak badge pulse loop (skipped when Reduce Motion is on)
+        guard !reduceMotion else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             streakBadgePulse = true
         }
@@ -671,6 +699,7 @@ struct StatCard: View {
     let value: String
     let icon: String
     let color: Color
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var appeared = false
 
     var body: some View {
@@ -678,7 +707,7 @@ struct StatCard: View {
             Image(systemName: icon)
                 .font(.app(size: 20))
                 .foregroundColor(color)
-                .symbolEffect(.pulse, value: appeared)
+                .symbolEffect(.pulse, value: reduceMotion ? false : appeared)
 
             Text(value)
                 .font(.app(size: 20, weight: .bold, design: .rounded))

@@ -4,11 +4,14 @@ import SwiftData
 struct DailyLoggerView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
-    @Query(sort: \SpendingLog.date, order: .reverse) private var spendingLogs: [SpendingLog]
-    @Query(sort: \ImpulseLog.date, order: .reverse) private var impulses: [ImpulseLog]
-    @Query(sort: \DailyRecord.date, order: .reverse) private var dailyRecords: [DailyRecord]
+    // Today-only queries (predicated so SwiftData doesn't load whole tables).
+    @Query private var todaySpending: [SpendingLog]
+    @Query private var todayImpulses: [ImpulseLog]
+    @Query private var dailyRecords: [DailyRecord]
     @State private var showAddSpend = false
     @State private var showAddImpulse = false
+    @State private var spendingToDelete: SpendingLog?
+    @State private var impulseToDelete: ImpulseLog?
     @State private var selectedSegment: Int = {
         #if DEBUG
         let a = ProcessInfo.processInfo.arguments
@@ -19,14 +22,15 @@ struct DailyLoggerView: View {
     @State private var showHeader = false
     @State private var showContent = false
 
-    private var todaySpending: [SpendingLog] {
-        let today = Calendar.current.startOfDay(for: Date())
-        return spendingLogs.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
-    }
-
-    private var todayImpulses: [ImpulseLog] {
-        let today = Calendar.current.startOfDay(for: Date())
-        return impulses.filter { Calendar.current.isDate($0.date, inSameDayAs: today) }
+    init() {
+        let start = Calendar.current.startOfDay(for: Date())
+        let end = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
+        _todaySpending = Query(filter: #Predicate<SpendingLog> { $0.date >= start && $0.date < end },
+                               sort: \SpendingLog.date, order: .reverse)
+        _todayImpulses = Query(filter: #Predicate<ImpulseLog> { $0.date >= start && $0.date < end },
+                               sort: \ImpulseLog.date, order: .reverse)
+        _dailyRecords = Query(filter: #Predicate<DailyRecord> { $0.date >= start && $0.date < end },
+                              sort: \DailyRecord.date, order: .reverse)
     }
 
     private var totalSpentToday: Double {
@@ -35,10 +39,7 @@ struct DailyLoggerView: View {
 
     private var profile: UserProfile? { profiles.first }
 
-    private var todayRecord: DailyRecord? {
-        let today = Calendar.current.startOfDay(for: Date())
-        return dailyRecords.first { Calendar.current.isDate($0.date, inSameDayAs: today) }
-    }
+    private var todayRecord: DailyRecord? { dailyRecords.first }
 
     var body: some View {
         NavigationStack {
@@ -104,10 +105,27 @@ struct DailyLoggerView: View {
                             .font(.app(size: 24))
                             .foregroundColor(AppTheme.primaryGreen)
                     }
+                    .accessibilityLabel(Text("Add entry"))
                 }
             }
             .sheet(isPresented: $showAddSpend) {
                 AddSpendingView()
+            }
+            .confirmationDialog(Text("Delete this purchase?"), isPresented: Binding(
+                get: { spendingToDelete != nil }, set: { if !$0 { spendingToDelete = nil } }
+            ), titleVisibility: .visible, presenting: spendingToDelete) { log in
+                Button(role: .destructive) { deleteSpending(log) } label: { Text("Delete") }
+                Button(role: .cancel) { spendingToDelete = nil } label: { Text("Cancel") }
+            } message: { _ in
+                Text("Today's totals will be updated.")
+            }
+            .confirmationDialog(Text("Delete this impulse?"), isPresented: Binding(
+                get: { impulseToDelete != nil }, set: { if !$0 { impulseToDelete = nil } }
+            ), titleVisibility: .visible, presenting: impulseToDelete) { impulse in
+                Button(role: .destructive) { deleteImpulse(impulse) } label: { Text("Delete") }
+                Button(role: .cancel) { impulseToDelete = nil } label: { Text("Cancel") }
+            } message: { _ in
+                Text("Any savings credited for it will be removed.")
             }
             .onReceive(NotificationCenter.default.publisher(for: .spendZeroPerformAction)) { note in
                 if note.object as? AppAction == .logSpending { showAddSpend = true }
@@ -194,6 +212,11 @@ struct DailyLoggerView: View {
             } else {
                 ForEach(todaySpending) { log in
                     SpendingLogRow(log: log)
+                        .contextMenu {
+                            Button(role: .destructive) { spendingToDelete = log } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                 }
             }
 
@@ -216,6 +239,11 @@ struct DailyLoggerView: View {
             } else {
                 ForEach(todayImpulses) { impulse in
                     ImpulseLogRow(impulse: impulse)
+                        .contextMenu {
+                            Button(role: .destructive) { impulseToDelete = impulse } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                 }
             }
 
@@ -247,6 +275,18 @@ struct DailyLoggerView: View {
                 )
             }
         }
+    }
+
+    private func deleteSpending(_ log: SpendingLog) {
+        ProgressEngine.shared.deleteSpending(log, profile: profile, context: modelContext)
+        spendingToDelete = nil
+        EventPresenter.shared.enqueue(.info(String(localized: "Purchase deleted")))
+    }
+
+    private func deleteImpulse(_ impulse: ImpulseLog) {
+        ProgressEngine.shared.deleteImpulse(impulse, profile: profile, context: modelContext)
+        impulseToDelete = nil
+        EventPresenter.shared.enqueue(.info(String(localized: "Impulse deleted")))
     }
 
     private func toggleWin(_ win: WinItem) {

@@ -134,6 +134,22 @@ struct AddImpulseView: View {
                             }
                         }
 
+                        // Trigger (optional)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("What triggered it? (optional)")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+
+                            TextField("e.g., Stress, boredom, a sale email", text: $triggerNote)
+                                .font(AppTheme.bodyFont)
+                                .foregroundColor(AppTheme.textPrimary)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
+                                        .fill(AppTheme.cardBackground)
+                                )
+                        }
+
                         // Coping strategies
                         if wasResisted {
                             VStack(alignment: .leading, spacing: 8) {

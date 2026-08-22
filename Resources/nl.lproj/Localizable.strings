@@ -567,3 +567,25 @@
 "Your XP was doubled!" = "Je XP is verdubbeld!";
 "~%@/day on non-essentials" = "~%@/dag aan niet-essentiële zaken";
 "🔥 %lld-day streak · %@ saved" = "🔥 Reeks van %lld dagen · %@ bespaard";
+
+/* UX audit additions */
+"Add entry" = "Item toevoegen";
+"Delete this purchase?" = "Deze aankoop verwijderen?";
+"Delete" = "Verwijderen";
+"Today's totals will be updated." = "De totalen van vandaag worden bijgewerkt.";
+"Delete this impulse?" = "Deze impuls verwijderen?";
+"Any savings credited for it will be removed." = "Eventuele besparingen die hiervoor zijn bijgeschreven, worden verwijderd.";
+"Purchase deleted" = "Aankoop verwijderd";
+"Impulse deleted" = "Impuls verwijderd";
+"Previous month" = "Vorige maand";
+"Next month" = "Volgende maand";
+"Nothing logged" = "Niets gelogd";
+"No entries were recorded on this day." = "Op deze dag zijn geen items vastgelegd.";
+"Done" = "Gereed";
+"Not logged" = "Niet gelogd";
+"Close" = "Sluiten";
+"Shows badge details" = "Toont badgedetails";
+"%lld-Day" = "%lld-daags";
+"What triggered it? (optional)" = "Wat heeft het veroorzaakt? (optioneel)";
+"e.g., Stress, boredom, a sale email" = "bijv. stress, verveling, een sale-mail";
+"All data reset" = "Alle gegevens gereset";
