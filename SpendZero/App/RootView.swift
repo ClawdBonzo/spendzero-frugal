@@ -18,13 +18,14 @@ struct RootView: View {
                 if !hasCompletedOnboarding {
                     // Step 1: Onboarding → ends by setting hasCompletedOnboarding = true
                     OnboardingFlowView()
-                } else if let profile, !profile.hasStartedTrial {
-                    // Step 2: First time after onboarding — show soft paywall + start trial
+                } else if let profile, !profile.hasStartedTrial, !subscriptionService.isPremium {
+                    // Step 2: First time after onboarding — soft paywall; closing it starts the
+                    // 3-day full-access window. Subscribers (e.g. reinstalling) skip it.
                     PaywallView(
                         onContinue: { startTrial(for: profile) },
-                        urgencyMessage: "Start your 3-day free trial — full access, no charge"
+                        urgencyMessage: "Not ready? Close this and use everything free for 3 days."
                     )
-                } else if let profile, profile.isTrialExpired, !subscriptionService.isPremium {
+                } else if let profile, profile.hasStartedTrial, profile.isTrialExpired, !subscriptionService.isPremium {
                     // Step 3: Trial expired + not paid — HARD PAYWALL (no X button)
                     PaywallView(
                         onContinue: { /* only reachable via successful purchase */ },
@@ -106,23 +107,23 @@ struct RootView: View {
     /// actually built so they feel the cost of walking away.
     private func hardPaywallMessage(for profile: UserProfile) -> String {
         if profile.currentStreak > 0 && profile.totalSaved > 0 {
-            return "Your trial ended — don't lose your \(profile.currentStreak)-day streak and \(profile.totalSaved.currencyFormatted) saved."
+            return "Your 3 free days are up — don't lose your \(profile.currentStreak)-day streak and \(profile.totalSaved.currencyFormatted) saved."
         } else if profile.currentStreak > 0 {
-            return "Your trial ended — keep your \(profile.currentStreak)-day streak alive."
+            return "Your 3 free days are up — keep your \(profile.currentStreak)-day streak alive."
         } else if profile.totalSaved > 0 {
-            return "Your trial ended — keep building on the \(profile.totalSaved.currencyFormatted) you've saved."
+            return "Your 3 free days are up — keep building on the \(profile.totalSaved.currencyFormatted) you've saved."
         }
-        return "Your free trial has ended"
+        return "Your 3 free days are up"
     }
 
     // MARK: - Strategic Paywall (day 2, day 3 nudges)
 
     private var strategicPaywallMessage: String? {
         guard let profile else { return nil }
-        if profile.isTrialExpired { return "Your free trial has ended" }
+        if profile.isTrialExpired { return "Your 3 free days are up" }
         let remaining = profile.trialDaysRemaining
-        if remaining <= 1 { return "Trial expires today — don't lose your progress!" }
-        if remaining == 2 { return "Trial ends tomorrow — lock in your savings" }
+        if remaining <= 1 { return "Last free day — subscribe to keep your progress" }
+        if remaining == 2 { return "Free access ends tomorrow — lock in your savings" }
         return nil
     }
 

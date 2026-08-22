@@ -42,3 +42,19 @@ struct StreakTests {
         #expect(p.currentStreak == 1)
     }
 }
+
+@MainActor
+struct TrialWindowTests {
+    @Test func threeCalendarDaysInclusive() {
+        let cal = Calendar.current
+        let p = UserProfile(displayName: "T")
+        // Started late on a day: day 1 is that day, day 3 is two days later, expired on day 4.
+        let start = cal.date(bySettingHour: 23, minute: 30, second: 0, of: cal.startOfDay(for: Date()))!
+        p.trialStartDate = start
+        #expect(p.trialDayNumber(asOf: start) == 1)
+        let day3 = cal.date(byAdding: .day, value: 2, to: start)!
+        #expect(p.trialDayNumber(asOf: cal.startOfDay(for: day3)) == 3)
+        let day4 = cal.date(byAdding: .day, value: 3, to: start)!
+        #expect(p.trialDayNumber(asOf: cal.startOfDay(for: day4)) == 4)
+    }
+}

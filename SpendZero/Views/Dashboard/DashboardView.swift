@@ -570,7 +570,7 @@ struct DashboardView: View {
                     .foregroundColor(daysLeft <= 1 ? AppTheme.accentGold : AppTheme.primaryGreen)
 
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(daysLeft <= 1 ? "Trial ends today!" : "Free trial: \(daysLeft) days left")
+                    Text(daysLeft <= 1 ? "Last free day" : "Free access: \(daysLeft) days left")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(AppTheme.textPrimary)
                     Text("Tap to upgrade and keep your progress")
@@ -608,8 +608,8 @@ struct DashboardView: View {
             PaywallView(
                 onContinue: { showUpgradePaywall = false },
                 urgencyMessage: daysLeft <= 1
-                    ? "Trial expires today — don't lose your streak!"
-                    : "Lock in your savings before trial ends"
+                    ? "Last free day — don't lose your streak!"
+                    : "Lock in your savings before free access ends"
             )
         }
     }

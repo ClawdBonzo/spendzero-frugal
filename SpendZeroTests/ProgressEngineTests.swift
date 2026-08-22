@@ -68,6 +68,7 @@ struct ProgressEngineTests {
     @Test func winsCannotFarmXPAndUncheckRemovesSavingsEntry() throws {
         let store = try makeStore(); let ctx = store.context; let profile = store.profile
         let gp = try #require(profile.gameProfile)
+        gp.quests.removeAll()   // random quests could pay out and confuse the XP assertion
         let win = WinItem.all[0]
         let xpBefore = gp.totalXPEarned
 

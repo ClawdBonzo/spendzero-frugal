@@ -7,16 +7,22 @@ struct PaywallView: View {
     /// Optional urgency message shown at top
     var urgencyMessage: String? = nil
 
-    // Default to Yearly — highest LTV, has 3-day trial
+    // Default to Yearly — best value
     @State private var selectedOption: String = SubscriptionService.yearlyID
     @State private var subscriptionService = SubscriptionService.shared
-    @State private var showError = false
+    @State private var alert: PaywallAlert?
+    @State private var showExport = false
+
+    private struct PaywallAlert: Identifiable {
+        let id = UUID()
+        let title: String
+        let message: String
+    }
 
     private var selectedPlan: SubscriptionOption? {
         subscriptionService.offerings.first(where: { $0.id == selectedOption })
     }
     private var selectedHasFreeTrial: Bool { selectedPlan?.hasFreeTrial ?? false }
-    private var selectedTrialDays: Int { selectedPlan?.trialDays ?? 0 }
 
     /// The weekly plan's per-week cost, used as the anchor for "Save X%".
     private var weeklyBaseline: Double? {
@@ -58,6 +64,8 @@ struct PaywallView: View {
                 .offset(y: -280)
 
             VStack(spacing: 0) {
+              ScrollView(showsIndicators: false) {
+               VStack(spacing: 0) {
                 // — URGENCY BANNER —
                 // Renders the urgency/scarcity copy that every caller already passes in
                 // (previously dead — declared but never shown).
@@ -84,18 +92,15 @@ struct PaywallView: View {
                             Text("SpendZero Pro")
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.textPrimary)
-                            Text(isHardPaywall
-                                ? "Subscribe to continue your journey"
-                                : "Unlock the full SpendZero experience")
+                                Text(isHardPaywall
+                                ? "Subscribe to keep going"
+                                : "Keep everything you've built")
                                 .font(.system(size: 14))
                                 .foregroundColor(AppTheme.textSecondary)
                                 .multilineTextAlignment(.center)
                         }
                         .padding(.horizontal, AppTheme.paddingLarge)
 
-                        // Social proof — standard, high-impact trust signal.
-                        SocialProofRow()
-                            .padding(.top, 2)
                     }
                     .frame(maxWidth: .infinity)
 
@@ -127,15 +132,32 @@ struct PaywallView: View {
 
                 // — SUBSCRIPTION CARDS —
                 VStack(spacing: 8) {
-                    ForEach(subscriptionService.offerings) { option in
-                        PremiumSubscriptionCard(
-                            option: option,
-                            isSelected: selectedOption == option.id,
-                            savingsPercent: savingsPercent(for: option)
-                        ) {
-                            HapticManager.shared.trigger(.cardSelect)
-                            withAnimation(.spring(response: 0.25)) {
-                                selectedOption = option.id
+                    switch subscriptionService.loadState {
+                    case .idle, .loading:
+                        ForEach(0..<3, id: \.self) { _ in PlanSkeletonRow() }
+                    case .failed(let message):
+                        VStack(spacing: 10) {
+                            Text(message)
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+                                .multilineTextAlignment(.center)
+                            Button("Try Again") { Task { await subscriptionService.fetchOfferings() } }
+                                .font(AppTheme.bodyFont.weight(.semibold))
+                                .foregroundColor(AppTheme.primaryGreen)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 20)
+                    case .loaded:
+                        ForEach(subscriptionService.offerings) { option in
+                            PremiumSubscriptionCard(
+                                option: option,
+                                isSelected: selectedOption == option.id,
+                                savingsPercent: savingsPercent(for: option)
+                            ) {
+                                HapticManager.shared.trigger(.cardSelect)
+                                withAnimation(.spring(response: 0.25)) {
+                                    selectedOption = option.id
+                                }
                             }
                         }
                     }
@@ -144,21 +166,27 @@ struct PaywallView: View {
                 .padding(.top, 6)   // headroom for the floating BEST VALUE badge
                 .animation(.spring(response: 0.3), value: selectedOption)
 
-                Spacer()
+                Spacer(minLength: 16)
+               }
+              }
 
                 // — CTA BUTTON —
                 VStack(spacing: 8) {
                     PrimaryButton(
-                        title: selectedHasFreeTrial
-                            ? "Start \(selectedTrialDays)-Day Free Trial"
-                            : "Continue",
-                        icon: selectedHasFreeTrial ? "lock.open.fill" : "arrow.right"
+                        title: selectedPlan?.ctaTitle ?? String(localized: "Loading plans…"),
+                        icon: selectedHasFreeTrial ? "lock.open.fill" : "arrow.right",
+                        isEnabled: selectedPlan != nil && !subscriptionService.isLoading
                     ) {
                         Task {
-                            if let option = selectedPlan {
-                                let success = await subscriptionService.purchase(option)
-                                if success { onContinue() }
-                                else if subscriptionService.errorMessage != nil { showError = true }
+                            guard let option = selectedPlan else { return }
+                            switch await subscriptionService.purchase(option) {
+                            case .success:
+                                HapticManager.shared.trigger(.celebrate)
+                                onContinue()
+                            case .cancelled:
+                                break
+                            case .failed(let message):
+                                alert = PaywallAlert(title: String(localized: "Purchase Failed"), message: message)
                             }
                         }
                     }
@@ -174,8 +202,15 @@ struct PaywallView: View {
                     HStack(spacing: 16) {
                         Button("Restore Purchases") {
                             Task {
-                                let restored = await subscriptionService.restorePurchases()
-                                if restored { onContinue() }
+                                switch await subscriptionService.restorePurchases() {
+                                case .restored:
+                                    onContinue()
+                                case .nothingToRestore:
+                                    alert = PaywallAlert(title: String(localized: "Nothing to Restore"),
+                                                         message: String(localized: "No active SpendZero purchase was found for this Apple ID."))
+                                case .failed(let message):
+                                    alert = PaywallAlert(title: String(localized: "Restore Failed"), message: message)
+                                }
                             }
                         }
                         .font(AppTheme.captionFont)
@@ -187,24 +222,43 @@ struct PaywallView: View {
                             .font(AppTheme.smallFont).foregroundColor(AppTheme.textSecondary)
                     }
 
-                    Text(selectedHasFreeTrial
-                        ? "\(selectedTrialDays)-day free trial, then auto-renews. Cancel anytime in Settings."
-                        : "Payment charged at purchase. Cancel anytime in Settings.")
-                        .font(AppTheme.smallFont)
-                        .foregroundColor(AppTheme.textTertiary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, AppTheme.paddingLarge)
+                    if let plan = selectedPlan {
+                        Text(plan.disclosure)
+                            .font(AppTheme.smallFont)
+                            .foregroundColor(AppTheme.textTertiary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, AppTheme.paddingLarge)
+                    }
+
+                    // Your data is always yours: even behind the hard wall you can read and export it.
+                    if isHardPaywall {
+                        Button {
+                            showExport = true
+                        } label: {
+                            Label("View & export my data", systemImage: "square.and.arrow.up")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+                        }
+                        .padding(.top, 4)
+                    }
                 }
                 .padding(.bottom, 20)
             }
         }
-        .alert("Purchase Error", isPresented: $showError) {
-            Button("OK") { subscriptionService.errorMessage = nil }
-        } message: {
-            Text(subscriptionService.errorMessage ?? "Something went wrong. Please try again.")
+        .alert(item: $alert) { a in
+            Alert(title: Text(a.title), message: Text(a.message), dismissButton: .default(Text("OK")))
+        }
+        .sheet(isPresented: $showExport) {
+            NavigationStack { ExportView() }
         }
         .task {
-            await subscriptionService.fetchOfferings()
+            if subscriptionService.loadState != .loaded {
+                await subscriptionService.fetchOfferings()
+            }
+        }
+        .onChange(of: subscriptionService.offerings.map(\.id)) { _, ids in
+            // Keep the selection valid if the set of plans changes after load.
+            if !ids.contains(selectedOption) { selectedOption = ids.first(where: { $0 == SubscriptionService.yearlyID }) ?? ids.first ?? selectedOption }
         }
     }
 }
@@ -361,22 +415,18 @@ private struct UrgencyBanner: View {
     }
 }
 
-// MARK: - Social Proof
+// MARK: - Plan Skeleton
 
-private struct SocialProofRow: View {
+private struct PlanSkeletonRow: View {
+    @State private var shimmer = false
     var body: some View {
-        HStack(spacing: 6) {
-            HStack(spacing: 1) {
-                ForEach(0..<5, id: \.self) { _ in
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 10))
-                        .foregroundColor(AppTheme.accentGold)
-                }
-            }
-            Text("Loved by 100,000+ savers")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundColor(AppTheme.textSecondary)
-        }
+        RoundedRectangle(cornerRadius: 14)
+            .fill(AppTheme.cardBackground)
+            .frame(height: 64)
+            .opacity(shimmer ? 0.55 : 1)
+            .animation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true), value: shimmer)
+            .onAppear { shimmer = true }
+            .accessibilityLabel("Loading plans")
     }
 }
 

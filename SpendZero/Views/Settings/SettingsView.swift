@@ -5,6 +5,16 @@ struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
     @State private var showPaywall = false
+    @State private var subscription = SubscriptionService.shared
+    @State private var infoAlert: InfoAlert?
+
+    private struct InfoAlert: Identifiable { let id = UUID(); let title: String; let message: String }
+
+    private static var versionString: String {
+        let v = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let b = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+        return "\(v) (\(b))"
+    }
     @State private var showExport = false
     @State private var showResetConfirmation = false
     @AppStorage("impulseAlertsEnabled") private var impulseAlertsEnabled = false
@@ -97,10 +107,10 @@ struct SettingsView: View {
                             HStack {
                                 Image(systemName: "crown.fill")
                                     .foregroundColor(AppTheme.accentGold)
-                                Text(profile?.isPremium == true ? "Premium Active" : "Upgrade to Premium")
+                                Text(subscription.isPremium ? "Premium Active" : "Upgrade to Premium")
                                     .foregroundColor(AppTheme.textPrimary)
                                 Spacer()
-                                if profile?.isPremium != true {
+                                if !subscription.isPremium {
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(AppTheme.textTertiary)
                                 }
@@ -109,7 +119,16 @@ struct SettingsView: View {
 
                         Button {
                             Task {
-                                _ = await SubscriptionService.shared.restorePurchases()
+                                switch await subscription.restorePurchases() {
+                                case .restored:
+                                    infoAlert = InfoAlert(title: String(localized: "Purchases Restored"),
+                                                          message: String(localized: "Premium is active on this device."))
+                                case .nothingToRestore:
+                                    infoAlert = InfoAlert(title: String(localized: "Nothing to Restore"),
+                                                          message: String(localized: "No active SpendZero purchase was found for this Apple ID."))
+                                case .failed(let message):
+                                    infoAlert = InfoAlert(title: String(localized: "Restore Failed"), message: message)
+                                }
                             }
                         } label: {
                             HStack {
@@ -117,6 +136,20 @@ struct SettingsView: View {
                                     .foregroundColor(AppTheme.info)
                                 Text("Restore Purchases")
                                     .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+
+                        if subscription.isPremium {
+                            Link(destination: URL(string: "https://apps.apple.com/account/subscriptions")!) {
+                                HStack {
+                                    Image(systemName: "creditcard")
+                                        .foregroundColor(AppTheme.textSecondary)
+                                    Text("Manage Subscription")
+                                        .foregroundColor(AppTheme.textPrimary)
+                                    Spacer()
+                                    Image(systemName: "arrow.up.right")
+                                        .foregroundColor(AppTheme.textTertiary)
+                                }
                             }
                         }
                     }
@@ -216,8 +249,28 @@ struct SettingsView: View {
                             Text("Version")
                                 .foregroundColor(AppTheme.textPrimary)
                             Spacer()
-                            Text("1.0.0")
+                            Text(Self.versionString)
                                 .foregroundColor(AppTheme.textSecondary)
+                        }
+
+                        Link(destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!) {
+                            HStack {
+                                Text("Terms of Use")
+                                    .foregroundColor(AppTheme.textPrimary)
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .foregroundColor(AppTheme.textTertiary)
+                            }
+                        }
+
+                        Link(destination: URL(string: "https://gwlabs.app/privacy")!) {
+                            HStack {
+                                Text("Privacy Policy")
+                                    .foregroundColor(AppTheme.textPrimary)
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .foregroundColor(AppTheme.textTertiary)
+                            }
                         }
 
                         HStack {
@@ -238,6 +291,11 @@ struct SettingsView: View {
             .sheet(isPresented: $showPaywall) {
                 PaywallView(onContinue: { showPaywall = false }, urgencyMessage: "Upgrade to unlock all features")
             }
+            .alert(infoAlert?.title ?? "", isPresented: infoAlertBinding) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(infoAlert?.message ?? "")
+            }
             .alert("Reset All Data?", isPresented: $showResetConfirmation) {
                 Button("Cancel", role: .cancel) {}
                 Button("Reset", role: .destructive) {
@@ -252,6 +310,10 @@ struct SettingsView: View {
                 Text("Enable notifications for SpendZero in Settings to receive impulse-purchase reminders.")
             }
         }
+    }
+
+    private var infoAlertBinding: Binding<Bool> {
+        Binding(get: { infoAlert != nil }, set: { if !$0 { infoAlert = nil } })
     }
 
     private func resetAllData() {

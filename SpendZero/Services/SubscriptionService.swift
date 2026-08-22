@@ -11,6 +11,17 @@ final class SubscriptionService {
     var isLoading = false
     var errorMessage: String?
 
+    enum LoadState: Equatable { case idle, loading, loaded, failed(String) }
+    var loadState: LoadState = .idle
+
+    enum PurchaseResult: Equatable { case success, cancelled, failed(String) }
+    enum RestoreResult: Equatable { case restored, nothingToRestore, failed(String) }
+
+    #if DEBUG
+    /// Demo/screenshot builds can force premium on; entitlement refreshes won't override it.
+    var debugForcePremium = false
+    #endif
+
     // RevenueCat / App Store product identifiers
     // These must exactly match the product IDs created in App Store Connect
     // (and mirrored in RevenueCat). Verified live in ASC on 2026-05-31.
@@ -29,9 +40,7 @@ final class SubscriptionService {
     private var availablePackages: [RevenueCat.Package] = []
     private var availableProducts: [StoreProduct] = []   // direct StoreKit fallback when RC Offering is empty
 
-    private init() {
-        offerings = Self.fallbackOfferings
-    }
+    private init() {}
 
     // MARK: - Configure
 
@@ -42,73 +51,114 @@ final class SubscriptionService {
             await checkEntitlementStatus()
             await fetchOfferings()
         }
+        // Keep `isPremium` live: expiry, refunds, billing-retry and purchases made on another
+        // device all arrive here without waiting for the next cold launch.
+        Task {
+            for await info in Purchases.shared.customerInfoStream {
+                apply(info)
+            }
+        }
+    }
+
+    private func apply(_ info: CustomerInfo) {
+        #if DEBUG
+        if debugForcePremium { isPremium = true; return }
+        #endif
+        isPremium = Self.hasAccess(info)
+    }
+
+    /// Entitlement first; fall back to product-level evidence so a user who paid is never locked
+    /// out because the entitlement mapping in RevenueCat drifted.
+    private static func hasAccess(_ info: CustomerInfo) -> Bool {
+        if info.entitlements[entitlementID]?.isActive == true { return true }
+        let ids: Set<String> = [weeklyID, monthlyID, yearlyID]
+        if !info.activeSubscriptions.isDisjoint(with: ids) { return true }
+        return info.nonSubscriptions.contains { $0.productIdentifier == lifetimeID }
     }
 
     // MARK: - Fetch Offerings
 
     func fetchOfferings() async {
+        if loadState == .loading { return }
+        loadState = .loading
+        errorMessage = nil
         do {
             let rcOfferings = try await Purchases.shared.offerings()
             if let current = rcOfferings.current, !current.availablePackages.isEmpty {
                 availablePackages = current.availablePackages
-                var options: [SubscriptionOption] = []
-                for package in current.availablePackages {
+                availableProducts = []
+                let products = current.availablePackages.map(\.storeProduct)
+                let eligible = await trialEligibility(for: products)
+                let options = current.availablePackages.map { package -> SubscriptionOption in
                     let product = package.storeProduct
-                    let productID = product.productIdentifier
-                    let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
-                    options.append(SubscriptionOption(
-                        id: productID,
-                        title: titleForPackage(package),
-                        price: product.localizedPriceString,
-                        pricePerWeek: pricePerWeekFor(package),
-                        period: periodLabel(for: package),
-                        isBestValue: productID == Self.yearlyID,
-                        hasFreeTrial: hasTrial,
-                        trialDays: hasTrial ? trialDaysFor(product) : 0,
-                        isLifetime: package.packageType == .lifetime || productID == Self.lifetimeID,
-                        weeklyEquivalent: weeklyEquivalentFor(productID: productID, price: product.price as Decimal)
-                    ))
+                    return makeOption(product: product,
+                                      title: titleForPackage(package),
+                                      period: periodLabel(for: package),
+                                      pricePerWeek: pricePerWeekFor(package),
+                                      isLifetime: package.packageType == .lifetime || product.productIdentifier == Self.lifetimeID,
+                                      trialEligible: eligible.contains(product.productIdentifier))
                 }
                 applySorted(options)
-                if offerings.isEmpty { await fetchProductsDirectly() }
             } else {
                 // RC "current" Offering missing or empty — fetch products straight from StoreKit
                 // so the paywall is always purchasable (and reviewable).
                 await fetchProductsDirectly()
             }
         } catch {
-            errorMessage = error.localizedDescription
-            await fetchProductsDirectly()
+            await fetchProductsDirectly(fallbackError: error.localizedDescription)
         }
+        loadState = offerings.isEmpty ? .failed(errorMessage ?? String(localized: "Couldn't load plans.")) : .loaded
     }
 
-    /// Fallback: query StoreKit directly via RevenueCat for the known product IDs. Guarantees the
-    /// paywall shows real, purchasable products even if the RevenueCat Offering isn't configured.
-    private func fetchProductsDirectly() async {
+    /// Fallback: query StoreKit directly via RevenueCat for the known product IDs.
+    private func fetchProductsDirectly(fallbackError: String? = nil) async {
         let ids = [Self.monthlyID, Self.weeklyID, Self.yearlyID, Self.lifetimeID]
         let products = await Purchases.shared.products(ids)
         availableProducts = products
+        availablePackages = []
         guard !products.isEmpty else {
-            if offerings.isEmpty { offerings = Self.fallbackOfferings }
+            errorMessage = fallbackError ?? String(localized: "Plans aren't available right now.")
             return
         }
-        let options = products.map { product -> SubscriptionOption in
+        let eligible = await trialEligibility(for: products)
+        let options = products.map { product in
             let id = product.productIdentifier
-            let hasTrial = product.introductoryDiscount?.paymentMode == .freeTrial
-            return SubscriptionOption(
-                id: id,
-                title: titleForProductID(id),
-                price: product.localizedPriceString,
-                pricePerWeek: pricePerWeekForProduct(product),
-                period: periodForProductID(id),
-                isBestValue: id == Self.yearlyID,
-                hasFreeTrial: hasTrial,
-                trialDays: hasTrial ? trialDaysFor(product) : 0,
-                isLifetime: id == Self.lifetimeID,
-                weeklyEquivalent: weeklyEquivalentFor(productID: id, price: product.price as Decimal)
-            )
+            return makeOption(product: product,
+                              title: titleForProductID(id),
+                              period: periodForProductID(id),
+                              pricePerWeek: pricePerWeekForProduct(product),
+                              isLifetime: id == Self.lifetimeID,
+                              trialEligible: eligible.contains(id))
         }
         applySorted(options)
+    }
+
+    /// Product IDs whose intro offer this Apple ID is actually eligible for. A product with an
+    /// intro offer the user already consumed must NOT be advertised as a free trial.
+    private func trialEligibility(for products: [StoreProduct]) async -> Set<String> {
+        let withIntro = products.filter { $0.introductoryDiscount?.paymentMode == .freeTrial }
+        guard !withIntro.isEmpty else { return [] }
+        let ids = withIntro.map(\.productIdentifier)
+        let statuses = await Purchases.shared.checkTrialOrIntroDiscountEligibility(productIdentifiers: ids)
+        return Set(statuses.compactMap { id, status in status.status == .eligible ? id : nil })
+    }
+
+    private func makeOption(product: StoreProduct, title: String, period: String, pricePerWeek: String,
+                            isLifetime: Bool, trialEligible: Bool) -> SubscriptionOption {
+        let id = product.productIdentifier
+        let hasTrial = trialEligible && product.introductoryDiscount?.paymentMode == .freeTrial
+        return SubscriptionOption(
+            id: id,
+            title: title,
+            price: product.localizedPriceString,
+            pricePerWeek: pricePerWeek,
+            period: period,
+            isBestValue: id == Self.yearlyID,
+            hasFreeTrial: hasTrial,
+            trialDays: hasTrial ? trialDaysFor(product) : 0,
+            isLifetime: isLifetime,
+            weeklyEquivalent: weeklyEquivalentFor(productID: id, price: product.price as Decimal)
+        )
     }
 
     private func applySorted(_ options: [SubscriptionOption]) {
@@ -158,52 +208,59 @@ final class SubscriptionService {
 
     // MARK: - Purchase
 
-    func purchase(_ option: SubscriptionOption) async -> Bool {
+    func purchase(_ option: SubscriptionOption) async -> PurchaseResult {
         isLoading = true
+        errorMessage = nil
         defer { isLoading = false }
         do {
+            let result: PurchaseResultData
             if let package = availablePackages.first(where: { $0.storeProduct.productIdentifier == option.id }) {
-                let result = try await Purchases.shared.purchase(package: package)
-                if result.userCancelled { return false }
-                isPremium = result.customerInfo.entitlements[Self.entitlementID]?.isActive == true
-                return isPremium
+                result = try await Purchases.shared.purchase(package: package)
             } else if let product = availableProducts.first(where: { $0.productIdentifier == option.id }) {
-                let result = try await Purchases.shared.purchase(product: product)
-                if result.userCancelled { return false }
-                isPremium = result.customerInfo.entitlements[Self.entitlementID]?.isActive == true
-                return isPremium
+                result = try await Purchases.shared.purchase(product: product)
             } else {
-                errorMessage = "Product not available"
-                return false
+                let msg = String(localized: "That plan isn't available right now. Please try again.")
+                errorMessage = msg
+                return .failed(msg)
             }
+            if result.userCancelled { return .cancelled }
+            apply(result.customerInfo)
+            if isPremium { return .success }
+            // The App Store charged them but RevenueCat didn't grant access — never strand a payer.
+            isPremium = true
+            NSLog("SpendZero: purchase of \(option.id) succeeded but no entitlement was active")
+            return .success
+        } catch let error as ErrorCode where error == .purchaseCancelledError {
+            return .cancelled
         } catch {
             errorMessage = error.localizedDescription
-            return false
+            return .failed(error.localizedDescription)
         }
     }
 
     // MARK: - Restore
 
-    func restorePurchases() async -> Bool {
+    func restorePurchases() async -> RestoreResult {
         isLoading = true
+        errorMessage = nil
         defer { isLoading = false }
         do {
-            let customerInfo = try await Purchases.shared.restorePurchases()
-            isPremium = customerInfo.entitlements[Self.entitlementID]?.isActive == true
-            return isPremium
+            let info = try await Purchases.shared.restorePurchases()
+            apply(info)
+            return isPremium ? .restored : .nothingToRestore
         } catch {
             errorMessage = error.localizedDescription
-            return false
+            return .failed(error.localizedDescription)
         }
     }
 
     // MARK: - Check Status
 
     func checkEntitlementStatus() async {
-        do {
-            let customerInfo = try await Purchases.shared.customerInfo()
-            isPremium = customerInfo.entitlements[Self.entitlementID]?.isActive == true
-        } catch {}
+        #if DEBUG
+        if debugForcePremium { isPremium = true; return }
+        #endif
+        if let info = try? await Purchases.shared.customerInfo() { apply(info) }
     }
 
     // MARK: - Helpers
@@ -275,55 +332,6 @@ final class SubscriptionService {
         }
     }
 
-    // MARK: - Fallback Offerings
-    // Shown while RevenueCat loads. Matches exact pricing & trial config.
-
-    private static let fallbackOfferings: [SubscriptionOption] = [
-        SubscriptionOption(
-            id: monthlyID,
-            title: "Monthly",
-            price: "$7.99",
-            pricePerWeek: "$1.84/wk",
-            period: "per month",
-            isBestValue: false,
-            hasFreeTrial: true,
-            trialDays: 3,
-            weeklyEquivalent: 7.99 / 4.33
-        ),
-        SubscriptionOption(
-            id: weeklyID,
-            title: "Weekly",
-            price: "$4.99",
-            pricePerWeek: "$4.99/wk",
-            period: "per week",
-            isBestValue: false,
-            hasFreeTrial: false,
-            trialDays: 0,
-            weeklyEquivalent: 4.99
-        ),
-        SubscriptionOption(
-            id: yearlyID,
-            title: "Yearly",
-            price: "$49.99",
-            pricePerWeek: "$0.96/wk",
-            period: "per year",
-            isBestValue: true,
-            hasFreeTrial: true,
-            trialDays: 3,
-            weeklyEquivalent: 49.99 / 52.0
-        ),
-        SubscriptionOption(
-            id: lifetimeID,
-            title: "Lifetime",
-            price: "$79.99",
-            pricePerWeek: "forever",
-            period: "one-time",
-            isBestValue: false,
-            hasFreeTrial: false,
-            trialDays: 0,
-            isLifetime: true
-        ),
-    ]
 }
 
 // MARK: - Subscription Option Model
@@ -340,4 +348,22 @@ struct SubscriptionOption: Identifiable {
     var isLifetime: Bool = false
     /// Normalized cost per week (for computing "Save X%" anchoring vs the weekly plan).
     var weeklyEquivalent: Double? = nil
+
+    /// Call-to-action text that states exactly what tapping does.
+    var ctaTitle: String {
+        if hasFreeTrial { return String(localized: "Start \(trialDays)-Day Free Trial") }
+        if isLifetime { return String(localized: "Buy Lifetime — \(price)") }
+        return String(localized: "Subscribe — \(price) \(period)")
+    }
+
+    /// Guideline 3.1.2 disclosure: price, duration, auto-renewal, per plan.
+    var disclosure: String {
+        if isLifetime {
+            return String(localized: "One-time payment of \(price). No subscription.")
+        }
+        if hasFreeTrial {
+            return String(localized: "\(trialDays)-day free trial, then \(price) \(period). Auto-renews until cancelled; cancel anytime in App Store settings.")
+        }
+        return String(localized: "\(price) \(period), auto-renews until cancelled. Cancel anytime in App Store settings.")
+    }
 }

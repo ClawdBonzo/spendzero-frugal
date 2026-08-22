@@ -36,7 +36,8 @@ enum DemoSeeder {
         // Default: full access (premium) so screenshots land in the app.
         // -ShowPaywall: leave trial unstarted + not premium so RootView shows the paywall.
         let showPaywall = ProcessInfo.processInfo.arguments.contains("-ShowPaywall")
-        profile.isPremium = !showPaywall
+        SubscriptionService.shared.debugForcePremium = !showPaywall
+        SubscriptionService.shared.isPremium = !showPaywall
         profile.trialStartDate = showPaywall ? nil : today
         context.insert(profile)
 
