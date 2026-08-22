@@ -10,9 +10,8 @@ struct DashboardView: View {
     @State private var showAddImpulse = false
     @State private var showGamificationHub = false
     @State private var showUpgradePaywall = false
-    @State private var currentToast: GameEventType?
-    @State private var levelUpEvent: (newLevel: Int, rank: LevelRank, previousLevel: Int)?
-    @State private var badgeUnlockEvent: BadgeInstance?
+    @State private var subscription = SubscriptionService.shared
+    @State private var spentTodayBlock = false
     // Staggered entrance animation
     @State private var showGreeting = false
     @State private var showLevelCard = false
@@ -20,8 +19,6 @@ struct DashboardView: View {
     @State private var showStats = false
     @State private var showActions = false
     @State private var streakBadgePulse = false
-
-    static let maxStreakFreezes = 3
 
     private var profile: UserProfile? { profiles.first }
     private var gameProfile: GameProfile? { profile?.gameProfile }
@@ -74,7 +71,7 @@ struct DashboardView: View {
                             .opacity(showGreeting ? 1 : 0)
 
                         // Trial countdown banner
-                        if let profile, profile.isTrialActive, !profile.isPremium {
+                        if let profile, profile.isTrialActive, !subscription.isPremium {
                             trialBanner(daysLeft: profile.trialDaysRemaining)
                                 .offset(y: showGreeting ? 0 : -10)
                                 .opacity(showGreeting ? 1 : 0)
@@ -146,36 +143,24 @@ struct DashboardView: View {
                 .background(AppTheme.background.ignoresSafeArea())
                 .navigationBarTitleDisplayMode(.inline)
                 .sheet(isPresented: $showAddImpulse) {
-                    AddImpulseView(onImpulseLogged: { recordImpulseLogged() })
+                    AddImpulseView()
                 }
             }
 
-            // Toast notifications
-            VStack(spacing: 12) {
-                if let toast = currentToast {
-                    GameEventToastView(event: toast, onDismiss: { currentToast = nil })
-                }
-                Spacer()
-            }
-            .padding()
-
-            // Celebration overlays
-            if let (newLevel, rank, previousLevel) = levelUpEvent {
-                LevelUpCelebrationView(
-                    newLevel: newLevel,
-                    rank: rank,
-                    previousLevel: previousLevel,
-                    onDismiss: { levelUpEvent = nil }
-                )
-            }
-
-            if let badge = badgeUnlockEvent {
-                BadgeUnlockCelebrationView(
-                    badge: badge,
-                    onDismiss: { badgeUnlockEvent = nil }
-                )
-            }
         }
+        .onAppear { refreshTodayState() }
+        .onChange(of: dailyRecords.count) { _, _ in refreshTodayState() }
+    }
+
+    /// Whether the "Mark Win" button should be live, and what it should say.
+    private var noSpendDayBlocker: ProgressEngine.NoSpendDayBlocker? {
+        guard let profile else { return nil }
+        if profile.hasLoggedToday() { return .alreadyLogged }
+        return spentTodayBlock ? .spentToday : nil
+    }
+
+    private func refreshTodayState() {
+        spentTodayBlock = ProgressEngine.shared.hasNonEssentialSpending(on: Date(), context: modelContext)
     }
 
     // MARK: - Greeting
@@ -426,12 +411,12 @@ struct DashboardView: View {
                     .foregroundColor(AppTheme.textPrimary)
                 Spacer()
 
-                let isNoSpend = todayRecord?.isNoSpendDay ?? true
+                let isNoSpend = !spentTodayBlock
                 HStack(spacing: 6) {
                     Circle()
                         .fill(isNoSpend ? AppTheme.primaryGreen : AppTheme.destructive)
                         .frame(width: 8, height: 8)
-                    Text(isNoSpend ? "No-Spend Day" : "Spent Today")
+                    Text(isNoSpend ? (noSpendDayBlocker == .alreadyLogged ? "No-Spend Day ✓" : "No Spending Yet") : "Spent Today")
                         .font(AppTheme.captionFont)
                         .foregroundColor(isNoSpend ? AppTheme.primaryGreen : AppTheme.destructive)
                 }
@@ -443,9 +428,21 @@ struct DashboardView: View {
                     showAddImpulse = true
                 }
 
-                TodayActionButton(icon: "checkmark.seal.fill", title: "Mark Win", color: AppTheme.primaryGreen) {
-                    HapticManager.shared.trigger(.celebrate)
-                    markNoSpendDay()
+                switch noSpendDayBlocker {
+                case .alreadyLogged:
+                    TodayActionButton(icon: "checkmark.seal.fill", title: "Logged ✓", color: AppTheme.textSecondary) {
+                        HapticManager.shared.trigger(.toggleOff)
+                    }
+                    .disabled(true)
+                case .spentToday:
+                    TodayActionButton(icon: "xmark.seal", title: "Spent Today", color: AppTheme.textSecondary) {
+                        HapticManager.shared.trigger(.warning)
+                    }
+                    .disabled(true)
+                case nil:
+                    TodayActionButton(icon: "checkmark.seal.fill", title: "Mark Win", color: AppTheme.primaryGreen) {
+                        markNoSpendDay()
+                    }
                 }
             }
         }
@@ -546,6 +543,12 @@ struct DashboardView: View {
                 }
 
                 NavigationLink {
+                    ProgressChartsView()
+                } label: {
+                    QuickActionCard(icon: "chart.line.uptrend.xyaxis", title: "Progress", color: AppTheme.primaryGreen)
+                }
+
+                NavigationLink {
                     ExportView()
                 } label: {
                     QuickActionCard(icon: "doc.text.fill", title: "Export", color: AppTheme.info)
@@ -631,24 +634,6 @@ struct DashboardView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             streakBadgePulse = true
         }
-        // Surface any streak freeze that was applied at launch (positive moment).
-        consumePendingStreakEvent()
-    }
-
-    private func consumePendingStreakEvent() {
-        let key = "pendingStreakEvent"
-        guard let raw = UserDefaults.standard.string(forKey: key) else { return }
-        UserDefaults.standard.removeObject(forKey: key)
-
-        let parts = raw.split(separator: ":")
-        guard parts.count == 2, let value = Int(parts[1]) else { return }
-        if parts[0] == "frozen" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
-                currentToast = .streakFrozen(daysUsed: value)
-            }
-        }
-        // "lapsed" intentionally shows no toast — the lapse notification already
-        // nudged the user, and a "you lost your streak" popup on open reads as a scold.
     }
 
     private var greetingText: String {
@@ -663,86 +648,16 @@ struct DashboardView: View {
 
     private func markNoSpendDay() {
         guard let profile else { return }
-        let now = Date()
-        // No double-logging the same day.
-        guard !profile.hasLoggedToday(asOf: now) else { return }
-
-        let today = Calendar.current.startOfDay(for: now)
-        if todayRecord == nil {
-            let record = DailyRecord(date: today, isNoSpendDay: true)
-            modelContext.insert(record)
+        guard let outcome = ProgressEngine.shared.logNoSpendDay(profile: profile, context: modelContext) else {
+            HapticManager.shared.trigger(.warning)
+            refreshTodayState()
+            return
         }
-
-        let saving = SavingsEntry(
-            amount: profile.dailyBudget,
-            source: .noSpendDay,
-            note: "No-spend day completed!"
-        )
-        modelContext.insert(saving)
-
-        // Lapse-aware streak advance (breaks the streak if a day was missed, spends
-        // freezes first). Returns the new streak length.
-        let newStreak = profile.registerNoSpendDay(asOf: now) ?? profile.currentStreak
-        profile.totalSaved += saving.amount
-
-        // Earn a streak freeze at each 7-day milestone (capped) as a safety net.
-        if newStreak > 0, newStreak % 7 == 0, profile.streakFreezes < Self.maxStreakFreezes {
-            profile.streakFreezes += 1
-        }
-
-        try? modelContext.save()
-
-        // Award XP
-        if let gameProfile = gameProfile {
-            let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: newStreak)
-            let result = gameProfile.grantXP(.noSpendDay, streak: newStreak, multiplier: multiplier)
-
-            // Lucky double-XP gets its own toast; otherwise the standard one.
-            currentToast = result.luckyBonus ? .luckyBonus(xp: result.xpGranted) : .nospendDayRecorded
-
-            // Check for level up
-            if result.leveledUp {
-                let previousLevel = result.newLevel - 1
-                levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
-            }
-
-            // Check for streak badge
-            let newBadges = GameStateManager.shared.checkStreakBadges(
-                for: gameProfile,
-                currentStreak: newStreak
-            )
-            if let firstBadge = newBadges.first,
-               let badgeInstance = gameProfile.badges.first(where: { $0.badgeID == firstBadge }) {
-                badgeUnlockEvent = badgeInstance
-            }
-
-            try? modelContext.save()
-        }
-
-        // Re-arm retention notifications now that today is handled.
-        NotificationManager.shared.refreshRetentionNotifications(
-            currentStreak: newStreak,
-            loggedToday: true
-        )
-    }
-
-    private func recordImpulseLogged() {
-        // Award XP when an impulse is logged
-        if let gameProfile = gameProfile {
-            let streak = currentStreak
-            let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
-            let result = gameProfile.grantXP(.impulseResisted, streak: streak, multiplier: multiplier)
-
-            // Correct toast for an impulse (was incorrectly the no-spend-day toast).
-            currentToast = result.luckyBonus ? .luckyBonus(xp: result.xpGranted) : .impulseResisted
-
-            if result.leveledUp {
-                let previousLevel = result.newLevel - 1
-                levelUpEvent = (result.newLevel, gameProfile.currentRank, previousLevel)
-            }
-
-            try? modelContext.save()
-        }
+        HapticManager.shared.trigger(.celebrate)
+        EventPresenter.shared.present(outcome,
+                                      primary: .nospendDayRecorded(xp: outcome.xpGranted),
+                                      rank: profile.gameProfile?.currentRank)
+        refreshTodayState()
     }
 }
 

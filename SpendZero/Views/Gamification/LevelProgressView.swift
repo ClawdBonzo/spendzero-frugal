@@ -213,7 +213,7 @@ struct LevelRowView: View {
 
     private func cumulativeXPForLevel(_ level: Int) -> String {
         let totalXP = calculateCumulativeXP(for: level)
-        return String(format: "%,d", totalXP)
+        return totalXP.formatted()
     }
 
     private func calculateCumulativeXP(for level: Int) -> Int {

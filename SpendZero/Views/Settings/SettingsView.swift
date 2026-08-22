@@ -255,17 +255,8 @@ struct SettingsView: View {
     }
 
     private func resetAllData() {
-        try? modelContext.delete(model: SpendingLog.self)
-        try? modelContext.delete(model: SavingsEntry.self)
-        try? modelContext.delete(model: DailyRecord.self)
-        try? modelContext.delete(model: ImpulseLog.self)
-        try? modelContext.delete(model: ChallengeEntry.self)
-        if let profile {
-            profile.currentStreak = 0
-            profile.longestStreak = 0
-            profile.totalSaved = 0
-        }
-        try? modelContext.save()
+        ProgressEngine.shared.resetAllData(profile: profile, context: modelContext)
+        HapticManager.shared.trigger(.warning)
     }
 }
 

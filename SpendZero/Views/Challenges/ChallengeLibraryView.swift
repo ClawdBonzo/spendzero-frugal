@@ -6,6 +6,7 @@ struct ChallengeLibraryView: View {
     @Query(sort: \ChallengeEntry.title) private var challenges: [ChallengeEntry]
     @State private var selectedCategory: ChallengeCategory?
     @State private var showCreateChallenge = false
+    @Query private var profiles: [UserProfile]
 
     private var filteredChallenges: [ChallengeEntry] {
         if let category = selectedCategory {
@@ -15,7 +16,7 @@ struct ChallengeLibraryView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     // Active challenge
@@ -92,12 +93,8 @@ struct ChallengeLibraryView: View {
     }
 
     private func startChallenge(_ challenge: ChallengeEntry) {
-        // Deactivate other challenges
-        challenges.forEach { $0.isActive = false }
-        challenge.isActive = true
-        challenge.startDate = Date()
-        challenge.completedDays = 0
-        try? modelContext.save()
+        ProgressEngine.shared.startChallenge(challenge, all: challenges, profile: profiles.first, context: modelContext)
+        HapticManager.shared.trigger(.celebrate)
     }
 
     private func seedDefaultChallenges() {
@@ -381,14 +378,14 @@ struct CreateChallengeView: View {
                                 .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
                         }
 
-                        PrimaryButton(title: "Create Challenge", icon: "plus", isEnabled: !title.isEmpty) {
+                        PrimaryButton(title: "Create Challenge", icon: "plus", isEnabled: !title.trimmingCharacters(in: .whitespaces).isEmpty) {
                             let entry = ChallengeEntry(
                                 title: title,
                                 challengeDescription: description,
                                 durationDays: days,
                                 category: category,
                                 difficulty: difficulty,
-                                estimatedSavings: Double(estimatedSavings) ?? 0
+                                estimatedSavings: Double.parseAmount(estimatedSavings) ?? 0
                             )
                             modelContext.insert(entry)
                             try? modelContext.save()

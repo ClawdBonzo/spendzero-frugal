@@ -18,13 +18,13 @@ struct GameMathTests {
         gp.currentLevel = 1
         gp.currentXP = 0
         let needed = gp.xpThresholdForNextLevel
-        _ = GameStateManager.shared.grantXP(to: gp, amount: needed + 10)
+        _ = GameStateManager.shared.grantXP(amount: needed + 10, to: gp)
         #expect(gp.currentLevel == 2)
         #expect(gp.currentXP == 10)
 
         gp.currentLevel = GameProfile.maxLevel
         gp.currentXP = 0
-        _ = GameStateManager.shared.grantXP(to: gp, amount: 1_000_000)
+        _ = GameStateManager.shared.grantXP(amount: 1_000_000, to: gp)
         #expect(gp.currentLevel == GameProfile.maxLevel)
     }
 }

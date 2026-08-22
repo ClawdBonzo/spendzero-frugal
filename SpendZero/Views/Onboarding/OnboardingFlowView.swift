@@ -84,8 +84,8 @@ struct OnboardingFlowView: View {
         profile.gameProfile = gameProfile
 
         // Seed initial quests so the Quests tab isn't empty on day one
-        let dailies = GameStateManager.shared.generateDailyQuests(for: gameProfile)
-        let weekly  = GameStateManager.shared.generateWeeklyQuest(for: gameProfile)
+        let dailies = GameStateManager.shared.generateDailyQuests()
+        let weekly  = GameStateManager.shared.generateWeeklyQuest()
         gameProfile.quests.append(contentsOf: dailies)
         gameProfile.quests.append(weekly)
 

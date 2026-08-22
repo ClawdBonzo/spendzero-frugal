@@ -4,7 +4,14 @@ import SwiftData
 struct AddSpendingView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Query private var profiles: [UserProfile]
     @State private var amount = ""
+    @State private var showRevertWarning = false
+
+    private var parsedAmount: Double? { Double.parseAmount(amount) }
+    private var willRevertNoSpendDay: Bool {
+        !selectedCategory.isEssential && (profiles.first?.hasLoggedToday() ?? false)
+    }
     @State private var selectedCategory: SpendCategory = .coffee
     @State private var note = ""
     @State private var wasImpulse = false
@@ -110,13 +117,27 @@ struct AddSpendingView: View {
                                 .fill(AppTheme.cardBackground)
                         )
 
+                        if !amount.isEmpty, parsedAmount == nil {
+                            Text("Enter an amount greater than zero")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.destructive)
+                        } else if willRevertNoSpendDay {
+                            Label("This will un-mark today as a no-spend day", systemImage: "exclamationmark.triangle.fill")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.warning)
+                        } else if selectedCategory.isEssential {
+                            Label("Essentials don't break your no-spend day", systemImage: "info.circle")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+                        }
+
                         // Save button
                         PrimaryButton(
                             title: "Log Spending",
                             icon: "checkmark",
-                            isEnabled: !amount.isEmpty
+                            isEnabled: parsedAmount != nil
                         ) {
-                            saveSpending()
+                            if willRevertNoSpendDay { showRevertWarning = true } else { saveSpending() }
                         }
                     }
                     .padding(.horizontal, AppTheme.paddingMedium)
@@ -124,6 +145,12 @@ struct AddSpendingView: View {
             }
             .navigationTitle("Log Spending")
             .navigationBarTitleDisplayMode(.inline)
+            .alert("Un-mark today's no-spend day?", isPresented: $showRevertWarning) {
+                Button("Log Spending", role: .destructive) { saveSpending() }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("You already marked today as a win. Logging non-essential spending will remove today from your streak.")
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") { dismiss() }
@@ -134,16 +161,16 @@ struct AddSpendingView: View {
     }
 
     private func saveSpending() {
-        guard let amountValue = Double(amount) else { return }
-        let log = SpendingLog(
+        guard let amountValue = parsedAmount else { return }
+        ProgressEngine.shared.logSpending(
             amount: amountValue,
             category: selectedCategory,
-            note: note,
-            wasImpulse: wasImpulse
+            note: note.trimmingCharacters(in: .whitespacesAndNewlines),
+            wasImpulse: wasImpulse,
+            profile: profiles.first,
+            context: modelContext
         )
-        modelContext.insert(log)
-        try? modelContext.save()
-        WidgetSync.refresh(context: modelContext)
+        HapticManager.shared.trigger(.toggleOff)
         dismiss()
     }
 }

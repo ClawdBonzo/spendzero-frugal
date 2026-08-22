@@ -43,7 +43,7 @@ enum DemoSeeder {
         // MARK: Game profile — Level 12 (Diamond Defender), mid-progress
         let game = GameProfile()
         game.currentLevel = 12
-        game.currentXP = 2460        // between L12 (~2229) and L13 (~2675) thresholds
+        game.currentXP = 1400        // ~52% of the way through Level 12 (needs ~2675)
         game.totalXPEarned = 13850
         game.xpMultiplier = 1.5
         context.insert(game)
@@ -151,7 +151,7 @@ enum DemoSeeder {
         context.insert(challenge)
 
         try? context.save()
-        WidgetSync.refresh(profile: profile, context: context)
+        ProgressEngine.shared.reconcileOnActivate(profile: profile, context: context)
     }
 
     @MainActor

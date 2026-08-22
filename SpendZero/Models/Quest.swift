@@ -43,14 +43,33 @@ final class Quest {
         self.targetValue = targetValue
         self.isDaily = isDaily
 
-        // Set expiry based on daily/weekly
-        let calendar = Calendar.current
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
         if isDaily {
-            // Expires tomorrow at midnight
-            self.expiresAt = calendar.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+            self.expiresAt = cal.date(byAdding: .day, value: 1, to: today) ?? Date()
         } else {
-            // Expires in 7 days at midnight
-            self.expiresAt = calendar.date(byAdding: .day, value: 7, to: Date()) ?? Date()
+            self.expiresAt = cal.date(byAdding: .day, value: 7, to: today) ?? Date()
+        }
+    }
+
+    /// Localized title built from type + target so it's never stuck in the language it was created in.
+    var displayTitle: String {
+        let n = Int(targetValue)
+        switch type {
+        case .noSpendDays:
+            return isDaily ? String(localized: "Log today as a no-spend day")
+                           : String(localized: "Complete \(n) no-spend days this week")
+        case .impulseResist:
+            return n == 1 ? String(localized: "Resist 1 impulse") : String(localized: "Resist \(n) impulses")
+        case .savingsGoal:
+            return String(localized: "Save \(targetValue.currencyFormatted)")
+        case .challengeComplete:
+            return n == 1 ? String(localized: "Complete 1 challenge") : String(localized: "Complete \(n) challenges")
+        case .streakMaintain:
+            return String(localized: "Reach a \(n)-day streak")
+        case .categoryControl:
+            return n == 1 ? String(localized: "Resist 1 impulse in a leak category")
+                          : String(localized: "Resist \(n) impulses in your leak categories")
         }
     }
 
@@ -77,9 +96,8 @@ final class Quest {
     }
 
     /// Is quest expired?
-    var isExpired: Bool {
-        Date() > expiresAt
-    }
+    var isExpired: Bool { isExpired(asOf: Date()) }
+    func isExpired(asOf now: Date) -> Bool { now >= expiresAt }
 
     /// Descriptive progress display (e.g., "3/5 impulses")
     var progressDisplay: String {
@@ -174,93 +192,36 @@ enum QuestDifficulty: String, Codable, CaseIterable {
 
 // MARK: - Quest Generator
 struct QuestGenerator {
-    /// Generate a random daily quest
-    static func generateDailyQuest() -> Quest {
-        let types: [QuestType] = [.noSpendDays, .impulseResist, .savingsGoal, .categoryControl]
-        let difficulties: [QuestDifficulty] = [.easy, .medium]
-
-        let type = types.randomElement() ?? .noSpendDays
-        let difficulty = difficulties.randomElement() ?? .easy
-
-        let (title, targetValue) = generateQuestParams(type: type, difficulty: difficulty)
-
-        return Quest(
-            title: title,
-            details: type.rawValue,
-            type: type,
-            difficulty: difficulty,
-            targetValue: targetValue,
-            isDaily: true
-        )
-    }
-
-    /// Generate a random weekly quest
-    static func generateWeeklyQuest() -> Quest {
-        let types: [QuestType] = [.streakMaintain, .challengeComplete, .savingsGoal, .impulseResist]
-        let difficulties: [QuestDifficulty] = [.medium, .hard]
-
-        let type = types.randomElement() ?? .streakMaintain
-        let difficulty = difficulties.randomElement() ?? .medium
-
-        let (title, targetValue) = generateQuestParams(type: type, difficulty: difficulty)
-
-        return Quest(
-            title: title,
-            details: type.rawValue,
-            type: type,
-            difficulty: difficulty,
-            targetValue: targetValue,
-            isDaily: false
-        )
-    }
-
-    /// Generate quest parameters based on type and difficulty
-    private static func generateQuestParams(
-        type: QuestType,
-        difficulty: QuestDifficulty
-    ) -> (String, Double) {
-        switch (type, difficulty) {
-        case (.noSpendDays, .easy):
-            return ("Complete 2 No-Spend Days", 2)
-        case (.noSpendDays, .medium):
-            return ("Complete 5 No-Spend Days", 5)
-        case (.noSpendDays, .hard):
-            return ("Complete 7 No-Spend Days", 7)
-
-        case (.impulseResist, .easy):
-            return ("Resist 3 Impulses", 3)
-        case (.impulseResist, .medium):
-            return ("Resist 5 Impulses", 5)
-        case (.impulseResist, .hard):
-            return ("Resist 10 Impulses", 10)
-
-        case (.savingsGoal, .easy):
-            return ("Save $25", 25)
-        case (.savingsGoal, .medium):
-            return ("Save $50", 50)
-        case (.savingsGoal, .hard):
-            return ("Save $100", 100)
-
-        case (.challengeComplete, .easy):
-            return ("Complete 1 Challenge", 1)
-        case (.challengeComplete, .medium):
-            return ("Complete 3 Challenges", 3)
-        case (.challengeComplete, .hard):
-            return ("Complete 5 Challenges", 5)
-
-        case (.streakMaintain, .easy):
-            return ("Maintain 3-Day Streak", 3)
-        case (.streakMaintain, .medium):
-            return ("Maintain 7-Day Streak", 7)
-        case (.streakMaintain, .hard):
-            return ("Maintain 14-Day Streak", 14)
-
-        case (.categoryControl, .easy):
-            return ("Resist 2 Category Impulses", 2)
-        case (.categoryControl, .medium):
-            return ("Resist 5 Category Impulses", 5)
-        case (.categoryControl, .hard):
-            return ("Resist 10 Category Impulses", 10)
+    /// Targets are sized so daily quests are achievable within one day and weekly ones within a week.
+    static func make(type: QuestType, difficulty: QuestDifficulty, isDaily: Bool) -> Quest {
+        let target: Double
+        switch (type, isDaily, difficulty) {
+        case (.noSpendDays, true, _):            target = 1
+        case (.noSpendDays, false, .easy):       target = 3
+        case (.noSpendDays, false, .medium):     target = 4
+        case (.noSpendDays, false, .hard):       target = 6
+        case (.impulseResist, true, .easy):      target = 1
+        case (.impulseResist, true, _):          target = 2
+        case (.impulseResist, false, .easy):     target = 3
+        case (.impulseResist, false, .medium):   target = 5
+        case (.impulseResist, false, .hard):     target = 10
+        case (.savingsGoal, true, .easy):        target = 10
+        case (.savingsGoal, true, _):            target = 25
+        case (.savingsGoal, false, .easy):       target = 50
+        case (.savingsGoal, false, .medium):     target = 100
+        case (.savingsGoal, false, .hard):       target = 250
+        case (.challengeComplete, _, _):         target = 1
+        case (.streakMaintain, _, .easy):        target = 3
+        case (.streakMaintain, _, .medium):      target = 7
+        case (.streakMaintain, _, .hard):        target = 14
+        case (.categoryControl, true, _):        target = 1
+        case (.categoryControl, false, .easy):   target = 2
+        case (.categoryControl, false, .medium): target = 3
+        case (.categoryControl, false, .hard):   target = 5
         }
+        let quest = Quest(title: "", details: type.rawValue, type: type, difficulty: difficulty,
+                          targetValue: target, isDaily: isDaily)
+        quest.title = quest.displayTitle
+        return quest
     }
 }

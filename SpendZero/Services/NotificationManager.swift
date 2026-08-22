@@ -78,21 +78,27 @@ final class NotificationManager {
         }
     }
 
-    /// Evening "don't lose your streak" nudge. Repeats daily at `streakGuardHour`.
-    /// Only meaningful once a streak exists; cleared when streak is 0.
-    func scheduleStreakGuard(streak: Int, loggedToday: Bool) {
+    /// Evening "don't lose your streak" nudge, armed as a one-shot for the next evening the user
+    /// still needs to log (today if not logged yet and it's before the guard hour, else tomorrow).
+    /// Re-armed on every activation and log, so the streak count in the text is always current.
+    func scheduleStreakGuard(streak: Int, loggedToday: Bool, now: Date = Date()) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [Self.streakGuardIdentifier])
         guard streak > 0 else { return }
 
+        let cal = Calendar.current
+        var fireDate = cal.date(bySettingHour: Self.streakGuardHour, minute: 0, second: 0, of: now) ?? now
+        if loggedToday || fireDate <= now {
+            fireDate = cal.date(byAdding: .day, value: 1, to: fireDate) ?? fireDate
+        }
+
         let content = UNMutableNotificationContent()
-        content.title = "Protect your \(streak)-day streak 🔥"
-        content.body = "A quick no-spend check-in keeps your momentum alive. Don't break the chain!"
+        content.title = String(localized: "Protect your \(streak)-day streak 🔥")
+        content.body = String(localized: "A quick no-spend check-in keeps your momentum alive. Don't break the chain!")
         content.sound = .default
 
-        var components = DateComponents()
-        components.hour = Self.streakGuardHour
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        let components = cal.dateComponents([.year, .month, .day, .hour, .minute], from: fireDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         center.add(UNNotificationRequest(identifier: Self.streakGuardIdentifier, content: content, trigger: trigger))
     }
 

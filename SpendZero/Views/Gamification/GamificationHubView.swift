@@ -88,11 +88,11 @@ struct GamificationHubView: View {
                             .padding(.horizontal, AppTheme.paddingLarge)
 
                             let dailyQuests = gameProfile.quests.filter { $0.isDaily && !$0.isExpired }
-                            if dailyQuests.isEmpty {
+                            if dailyQuests.isEmpty || dailyQuests.allSatisfy(\.isCompleted) {
                                 HStack {
-                                    Image(systemName: "checkmark.circle.fill")
+                                    Image(systemName: dailyQuests.isEmpty ? "sparkles" : "checkmark.circle.fill")
                                         .foregroundColor(AppTheme.primaryGreen)
-                                    Text("All daily quests complete!")
+                                    Text(dailyQuests.isEmpty ? "New quests arrive tomorrow" : "All daily quests complete!")
                                         .font(AppTheme.bodyFont)
                                         .foregroundColor(AppTheme.textSecondary)
                                     Spacer()
@@ -246,7 +246,7 @@ struct QuestQuickView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(quest.title)
+                    Text(quest.displayTitle)
                         .font(AppTheme.bodyFont)
                         .foregroundColor(AppTheme.textPrimary)
 

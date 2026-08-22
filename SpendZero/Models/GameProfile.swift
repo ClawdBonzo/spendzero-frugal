@@ -17,7 +17,7 @@ final class GameProfile {
 
     // MARK: - Badges & Rewards
     /// Earned badges (max 20 displayed)
-    var badges: [BadgeInstance] = []
+    @Relationship(deleteRule: .cascade) var badges: [BadgeInstance] = []
     /// Badge IDs that user has earned (for fast lookup)
     var earnedBadgeIDs: [String] = []
 
@@ -45,13 +45,8 @@ final class GameProfile {
         self.id = UUID()
     }
 
-    /// Calculate XP needed for current level
-    var xpThresholdForCurrentLevel: Int {
-        let baseThreshold = 300
-        let growthRate = 1.2
-        let level = Double(currentLevel - 1)
-        return Int(Double(baseThreshold) * pow(growthRate, level))
-    }
+    static let maxLevel = 25
+    var isMaxLevel: Bool { currentLevel >= Self.maxLevel }
 
     /// Calculate XP needed for next level
     var xpThresholdForNextLevel: Int {
@@ -63,11 +58,10 @@ final class GameProfile {
 
     /// Progress toward next level (0.0 to 1.0)
     var progressToNextLevel: Double {
-        let threshold = xpThresholdForCurrentLevel
-        let nextThreshold = xpThresholdForNextLevel
-        let progress = nextThreshold - threshold
-        let earned = currentXP - threshold
-        return max(0, min(1, Double(earned) / Double(progress)))
+        if isMaxLevel { return 1 }
+        let needed = xpThresholdForNextLevel
+        guard needed > 0 else { return 0 }
+        return max(0, min(1, Double(currentXP) / Double(needed)))
     }
 
     /// Get the current level rank (name)
@@ -162,7 +156,7 @@ enum XPAction: String, Codable {
     case impulseResisted = "impulse-resisted"
     case challengeCompleted = "challenge-completed"
     case questCompleted = "quest-completed"
-    case loginStreak = "login-streak"
+    case dailyWin = "daily-win"
     case impulseSpree = "impulse-spree"      // 5+ impulses resisted in one day
     case weeklyChallenge = "weekly-challenge"
 
@@ -172,7 +166,7 @@ enum XPAction: String, Codable {
         case .impulseResisted: return 25
         case .challengeCompleted: return 30
         case .questCompleted: return 75      // Varies by difficulty
-        case .loginStreak: return 10
+        case .dailyWin: return 10
         case .impulseSpree: return 50
         case .weeklyChallenge: return 100
         }

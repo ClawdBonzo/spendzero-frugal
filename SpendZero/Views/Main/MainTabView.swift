@@ -1,9 +1,18 @@
 import SwiftUI
+import SwiftData
+
+extension Notification.Name {
+    /// Post with an `AppTab` object to switch tabs from anywhere (quick actions, intents).
+    static let spendZeroSelectTab = Notification.Name("spendZeroSelectTab")
+}
 
 struct MainTabView: View {
     @State private var selectedTab: AppTab = AppTab.initialFromLaunchArgs
+    @State private var presenter = EventPresenter.shared
+    @Query private var profiles: [UserProfile]
 
     var body: some View {
+        ZStack {
         TabView(selection: $selectedTab) {
             DashboardView()
                 .tabItem {
@@ -38,6 +47,29 @@ struct MainTabView: View {
         .tint(AppTheme.primaryGreen)
         .onChange(of: selectedTab) { _, _ in
             HapticManager.shared.trigger(.tabSwitch)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .spendZeroSelectTab)) { note in
+            if let tab = note.object as? AppTab { selectedTab = tab }
+        }
+
+        // Gamification feedback, rendered once for every tab.
+        VStack(spacing: 12) {
+            if let toast = presenter.toast {
+                GameEventToastView(event: toast.event, onDismiss: { presenter.dismissToast() })
+                    .id(toast.id)
+            }
+            Spacer()
+        }
+        .padding()
+        .allowsHitTesting(presenter.toast != nil)
+
+        if let lu = presenter.levelUp {
+            LevelUpCelebrationView(newLevel: lu.new, rank: lu.rank, previousLevel: lu.previous,
+                                   onDismiss: { presenter.dismissLevelUp() })
+        }
+        if let badge = presenter.badgeUnlock {
+            BadgeUnlockCelebrationView(badge: badge, onDismiss: { presenter.dismissBadge() })
+        }
         }
     }
 }

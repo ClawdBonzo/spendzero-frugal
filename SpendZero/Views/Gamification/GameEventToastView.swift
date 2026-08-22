@@ -78,12 +78,14 @@ struct GameEventToastView: View {
 enum GameEventType {
     case questComplete(title: String, xp: Int)
     case streakMilestone(days: Int)
-    case nospendDayRecorded
-    case impulseResisted
-    case challengeComplete(title: String)
+    case nospendDayRecorded(xp: Int)
+    case impulseResisted(xp: Int)
+    case challengeComplete(title: String, xp: Int)
+    case winLogged(xp: Int)
     case savingsRecorded(amount: Double)
     case luckyBonus(xp: Int)
     case streakFrozen(daysUsed: Int)
+    case streakFreezeEarned
 
     var title: String {
         switch self {
@@ -97,12 +99,16 @@ enum GameEventType {
             return "Impulse Resisted! ⚡️"
         case .challengeComplete:
             return "Challenge Complete!"
+        case .winLogged:
+            return "Win Logged!"
         case .savingsRecorded:
             return "Savings Recorded!"
         case .luckyBonus:
             return "Lucky Bonus! 🍀"
         case .streakFrozen:
             return "Streak Freeze Used 🧊"
+        case .streakFreezeEarned:
+            return "Streak Freeze Earned 🧊"
         }
     }
 
@@ -116,16 +122,20 @@ enum GameEventType {
             return "Great job staying on track!"
         case .impulseResisted:
             return "You beat the urge — money saved!"
-        case .challengeComplete(let title):
+        case .challengeComplete(let title, _):
             return title
+        case .winLogged:
+            return "Small wins add up."
         case .savingsRecorded(let amount):
-            return String(format: "Saved $%.2f", amount)
+            return String(localized: "Saved \(amount.currencyFormattedDecimal)")
         case .luckyBonus:
             return "Your XP was doubled!"
         case .streakFrozen(let days):
             return days <= 1
                 ? "We saved your streak from a missed day"
                 : "We covered \(days) missed days for you"
+        case .streakFreezeEarned:
+            return "Covers one missed day so your streak survives."
         }
     }
 
@@ -141,11 +151,13 @@ enum GameEventType {
             return "bolt.slash.fill"
         case .challengeComplete:
             return "trophy.fill"
+        case .winLogged:
+            return "checkmark.circle.fill"
         case .savingsRecorded:
             return "banknote.fill"
         case .luckyBonus:
             return "sparkles"
-        case .streakFrozen:
+        case .streakFrozen, .streakFreezeEarned:
             return "snowflake"
         }
     }
@@ -162,11 +174,13 @@ enum GameEventType {
             return AppTheme.info
         case .challengeComplete:
             return AppTheme.accentGold
+        case .winLogged:
+            return AppTheme.primaryGreen
         case .savingsRecorded:
             return AppTheme.accentGold
         case .luckyBonus:
             return AppTheme.accentGold
-        case .streakFrozen:
+        case .streakFrozen, .streakFreezeEarned:
             return Color(hex: "60CFFF")
         }
     }
@@ -176,18 +190,20 @@ enum GameEventType {
         case .questComplete(_, let xp):
             return xp
         case .streakMilestone:
-            return 25
-        case .nospendDayRecorded:
-            return 100
-        case .impulseResisted:
-            return 25
-        case .challengeComplete:
-            return 30
+            return nil
+        case .nospendDayRecorded(let xp):
+            return xp
+        case .impulseResisted(let xp):
+            return xp
+        case .challengeComplete(_, let xp):
+            return xp
+        case .winLogged(let xp):
+            return xp
         case .savingsRecorded:
             return nil
         case .luckyBonus(let xp):
             return xp
-        case .streakFrozen:
+        case .streakFrozen, .streakFreezeEarned:
             return nil
         }
     }
@@ -208,12 +224,16 @@ enum GameEventType {
             HapticManager.shared.trigger(.celebrate)
         case .challengeComplete:
             HapticManager.shared.trigger(.questComplete)
+        case .winLogged:
+            HapticManager.shared.trigger(.xpGained)
         case .savingsRecorded:
             HapticManager.shared.trigger(.xpGained)
         case .luckyBonus:
             HapticManager.shared.trigger(.badgeEarned)
         case .streakFrozen:
             HapticManager.shared.trigger(.warning)
+        case .streakFreezeEarned:
+            HapticManager.shared.trigger(.badgeEarned)
         }
     }
 }
@@ -231,7 +251,7 @@ enum GameEventType {
         )
 
         GameEventToastView(
-            event: .nospendDayRecorded,
+            event: .nospendDayRecorded(xp: 100),
             onDismiss: {}
         )
     }

@@ -47,6 +47,14 @@ enum SpendCategory: String, Codable, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// Essentials (groceries, transport) don't break a no-spend day; everything else does.
+    var isEssential: Bool {
+        switch self {
+        case .groceries, .transport: return true
+        default: return false
+        }
+    }
+
     var icon: String {
         switch self {
         case .coffee: return "cup.and.saucer.fill"

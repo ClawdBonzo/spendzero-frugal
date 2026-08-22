@@ -52,8 +52,7 @@ struct QuestPanelView: View {
                                 QuestCardView(
                                     quest: quest,
                                     isSelected: selectedQuestID == quest.id,
-                                    onTap: { selectedQuestID = quest.id },
-                                    onToggleComplete: { toggleQuestCompletion(quest) }
+                                    onTap: { selectedQuestID = quest.id }
                                 )
                                 .padding(.horizontal, AppTheme.paddingLarge)
                             }
@@ -82,8 +81,7 @@ struct QuestPanelView: View {
                                 QuestCardView(
                                     quest: quest,
                                     isSelected: selectedQuestID == quest.id,
-                                    onTap: { selectedQuestID = quest.id },
-                                    onToggleComplete: { toggleQuestCompletion(quest) }
+                                    onTap: { selectedQuestID = quest.id }
                                 )
                                 .padding(.horizontal, AppTheme.paddingLarge)
                             }
@@ -122,25 +120,6 @@ struct QuestPanelView: View {
         .background(AppTheme.background)
     }
 
-    private func toggleQuestCompletion(_ quest: Quest) {
-        quest.isCompleted.toggle()
-
-        if quest.isCompleted {
-            // Award XP
-            let streak = calculateCurrentStreak()
-            let multiplier = GameStateManager.shared.calculateStreakMultiplier(streak: streak)
-
-            _ = gameProfile.grantXP(.questCompleted, streak: streak, multiplier: multiplier)
-            HapticManager.shared.trigger(.questComplete)
-        }
-
-        try? modelContext.save()
-    }
-
-    private func calculateCurrentStreak() -> Int {
-        // Placeholder: should link to actual streak from UserProfile
-        return 0
-    }
 }
 
 // MARK: - Quest Card Component
@@ -149,25 +128,20 @@ struct QuestCardView: View {
     let quest: Quest
     let isSelected: Bool
     let onTap: () -> Void
-    let onToggleComplete: () -> Void
 
     var body: some View {
         VStack(spacing: 12) {
             HStack(alignment: .top, spacing: 12) {
-                // Completion Toggle
-                Button(action: onToggleComplete) {
-                    Image(systemName: quest.isCompleted ? "checkmark.circle.fill" : "circle")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(
-                            quest.isCompleted ? AppTheme.primaryGreen : AppTheme.textTertiary
-                        )
-                }
-                .buttonStyle(.plain)
+                // Completion state — quests complete automatically from real actions.
+                Image(systemName: quest.isCompleted ? "checkmark.circle.fill" : quest.type.icon)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(quest.isCompleted ? AppTheme.primaryGreen : AppTheme.textTertiary)
+                    .accessibilityHidden(true)
 
                 // Quest Info
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
-                        Text(quest.title)
+                        Text(quest.displayTitle)
                             .font(AppTheme.bodyFont)
                             .foregroundColor(AppTheme.textPrimary)
                             .strikethrough(quest.isCompleted)
@@ -184,7 +158,7 @@ struct QuestCardView: View {
                             .cornerRadius(4)
                     }
 
-                    Text(quest.details)
+                    Text(quest.progressDisplay)
                         .font(AppTheme.smallFont)
                         .foregroundColor(AppTheme.textSecondary)
                         .lineLimit(2)
@@ -196,12 +170,13 @@ struct QuestCardView: View {
                                 .fill(AppTheme.cardBackgroundLight)
                                 .frame(height: 6)
 
-                            let progress = min(1.0, Double(quest.currentProgress) / Double(quest.targetValue))
-                            RoundedRectangle(cornerRadius: 2)
-                                .fill(AppTheme.primaryGreen)
-                                .frame(width: 280 * progress, height: 6)
+                            GeometryReader { geo in
+                                RoundedRectangle(cornerRadius: 2)
+                                    .fill(AppTheme.primaryGreen)
+                                    .frame(width: geo.size.width * quest.progressPercent, height: 6)
+                            }
                         }
-                        .frame(maxWidth: 280)
+                        .frame(height: 6)
                     }
                 }
 

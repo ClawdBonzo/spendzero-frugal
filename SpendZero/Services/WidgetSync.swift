@@ -1,36 +1,16 @@
 import Foundation
-import SwiftData
 import WidgetKit
 
-/// Writes a small snapshot of the user's progress into the shared App Group
-/// container so the Home Screen widget can display real, up-to-date data.
+/// Writes a small snapshot of the user's progress into the shared App Group container so the
+/// Home Screen widget can display real, up-to-date data. Only `ProgressEngine` calls this.
 enum WidgetSync {
-    typealias Key = WidgetShared.Key
-    private static var defaults: UserDefaults? { WidgetShared.defaults }
-
-    /// Push the latest progress to the widget. Safe to call frequently.
     @MainActor
-    static func refresh(profile: UserProfile?, context: ModelContext) {
-        guard let profile, let defaults else { return }
-
-        // A "no-spend day" = no spending logged for today.
-        let startOfToday = Calendar.current.startOfDay(for: Date())
-        let descriptor = FetchDescriptor<SpendingLog>(
-            predicate: #Predicate { $0.date >= startOfToday }
-        )
-        let spentToday = (try? context.fetch(descriptor))?.isEmpty == false
-
-        defaults.set(profile.totalSaved, forKey: Key.totalSaved)
-        defaults.set(profile.currentStreak, forKey: Key.currentStreak)
-        defaults.set(!spentToday, forKey: Key.isNoSpendDay)
-
+    static func refresh(totalSaved: Double, currentStreak: Int, isNoSpendDay: Bool, loggedToday: Bool) {
+        guard let defaults = WidgetShared.defaults else { return }
+        defaults.set(totalSaved, forKey: WidgetShared.Key.totalSaved)
+        defaults.set(currentStreak, forKey: WidgetShared.Key.currentStreak)
+        defaults.set(isNoSpendDay, forKey: WidgetShared.Key.isNoSpendDay)
+        defaults.set(loggedToday, forKey: WidgetShared.Key.loggedToday)
         WidgetCenter.shared.reloadAllTimelines()
-    }
-
-    /// Convenience that fetches the current profile from the context first.
-    @MainActor
-    static func refresh(context: ModelContext) {
-        let profile = try? context.fetch(FetchDescriptor<UserProfile>()).first
-        refresh(profile: profile ?? nil, context: context)
     }
 }

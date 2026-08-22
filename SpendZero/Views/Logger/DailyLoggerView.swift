@@ -224,14 +224,6 @@ struct DailyLoggerView: View {
 
     // MARK: - Wins Section
 
-    private static let dailyWins: [WinItem] = [
-        WinItem(icon: "cup.and.saucer.fill", title: "Made coffee at home", savedAmount: 5),
-        WinItem(icon: "fork.knife", title: "Packed lunch", savedAmount: 12),
-        WinItem(icon: "figure.walk", title: "Walked instead of Uber", savedAmount: 15),
-        WinItem(icon: "tv.fill", title: "Free entertainment", savedAmount: 15),
-        WinItem(icon: "bag.fill", title: "Skipped online shopping", savedAmount: 30)
-    ]
-
     private var winsSection: some View {
         VStack(spacing: 16) {
             // Intro line — these now persist, earn XP, and add to savings.
@@ -244,7 +236,7 @@ struct DailyLoggerView: View {
                 Spacer()
             }
 
-            ForEach(Self.dailyWins, id: \.title) { win in
+            ForEach(WinItem.all, id: \.title) { win in
                 WinChecklistRow(
                     win: win,
                     isChecked: todayRecord?.wins.contains(win.title) ?? false,
@@ -254,38 +246,15 @@ struct DailyLoggerView: View {
         }
     }
 
-    private func ensureTodayRecord() -> DailyRecord {
-        if let record = todayRecord { return record }
-        let record = DailyRecord(date: Date(), isNoSpendDay: true)
-        modelContext.insert(record)
-        return record
-    }
-
     private func toggleWin(_ win: WinItem) {
-        let record = ensureTodayRecord()
-        if let idx = record.wins.firstIndex(of: win.title) {
-            // Uncheck — roll back the logged savings (XP already earned is kept).
-            record.wins.remove(at: idx)
-            record.totalSaved = max(0, record.totalSaved - win.savedAmount)
-            if let profile { profile.totalSaved = max(0, profile.totalSaved - win.savedAmount) }
-            HapticManager.shared.trigger(.toggleOff)
+        let outcome = ProgressEngine.shared.toggleWin(win, profile: profile, context: modelContext)
+        if let outcome {
+            EventPresenter.shared.present(outcome,
+                                          primary: outcome.xpGranted > 0 ? .winLogged(xp: outcome.xpGranted) : nil,
+                                          rank: profile?.gameProfile?.currentRank)
         } else {
-            // Check — persist, log a small savings entry, and award XP.
-            record.wins.append(win.title)
-            record.totalSaved += win.savedAmount
-            if let profile { profile.totalSaved += win.savedAmount }
-
-            let saving = SavingsEntry(amount: win.savedAmount, source: .manual, note: win.title)
-            modelContext.insert(saving)
-
-            if let gp = profile?.gameProfile {
-                _ = gp.grantXP(.loginStreak, streak: profile?.currentStreak ?? 0)
-                HapticManager.shared.trigger(.xpGained)
-            } else {
-                HapticManager.shared.trigger(.celebrate)
-            }
+            HapticManager.shared.trigger(.toggleOff)
         }
-        try? modelContext.save()
     }
 }
 
@@ -380,13 +349,6 @@ struct ImpulseLogRow: View {
     }
 }
 
-struct WinItem {
-    let icon: String
-    let title: String
-    let savedAmount: Double
-    var saved: String { savedAmount.currencyFormatted }
-}
-
 struct WinChecklistRow: View {
     let win: WinItem
     let isChecked: Bool
@@ -407,7 +369,7 @@ struct WinChecklistRow: View {
                     .font(.system(size: 16))
                     .foregroundColor(AppTheme.textSecondary)
 
-                Text(win.title)
+                Text(win.label)
                     .font(.system(size: 15, weight: .medium))
                     .foregroundColor(isChecked ? AppTheme.textSecondary : AppTheme.textPrimary)
                     .strikethrough(isChecked)

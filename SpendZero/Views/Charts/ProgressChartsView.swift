@@ -46,7 +46,7 @@ struct ProgressChartsView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     // Time range picker
@@ -285,14 +285,18 @@ struct ProgressChartsView: View {
         .frame(height: 150)
     }
 
+    /// One point per calendar day (so the chart never has duplicate x values).
     private var cumulativeSavingsData: [(date: Date, amount: Double)] {
-        var cumulative = 0.0
-        var result: [(date: Date, amount: Double)] = []
+        let cal = Calendar.current
+        var perDay: [Date: Double] = [:]
         for entry in filteredSavings {
-            cumulative += entry.amount
-            result.append((date: entry.date, amount: cumulative))
+            perDay[cal.startOfDay(for: entry.date), default: 0] += entry.amount
         }
-        return result
+        var cumulative = 0.0
+        return perDay.keys.sorted().map { day in
+            cumulative += perDay[day] ?? 0
+            return (date: day, amount: cumulative)
+        }
     }
 }
 

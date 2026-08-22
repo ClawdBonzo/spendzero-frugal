@@ -28,6 +28,26 @@ private enum SharedFormatters {
 }
 
 extension Double {
+    /// Parse a user-typed money amount in the given locale ("12,50" in de_DE, "12.50" in en_US).
+    /// Accepts a "." fallback for locales whose decimal pad still produces a dot. Returns nil for
+    /// empty, non-numeric, zero, or negative input.
+    static func parseAmount(_ text: String, locale: Locale = .current) -> Double? {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        let f = NumberFormatter()
+        f.locale = locale
+        f.numberStyle = .decimal
+        f.isLenient = true
+        var value = f.number(from: trimmed)?.doubleValue
+        if value == nil, trimmed.filter({ $0 == "." || $0 == "," }).count == 1 {
+            // Single separator of the "wrong" kind for this locale: treat it as the decimal point.
+            let normalized = trimmed.replacingOccurrences(of: ",", with: ".")
+            value = Double(normalized)
+        }
+        guard let v = value, v.isFinite, v > 0 else { return nil }
+        return (v * 100).rounded() / 100
+    }
+
     var currencyFormatted: String {
         SharedFormatters.currency0.string(from: NSNumber(value: self)) ?? "$0"
     }

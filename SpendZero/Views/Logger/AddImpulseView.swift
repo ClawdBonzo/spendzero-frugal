@@ -6,8 +6,6 @@ struct AddImpulseView: View {
     @Environment(\.dismiss) private var dismiss
     @Query private var profiles: [UserProfile]
 
-    var onImpulseLogged: (() -> Void)?
-
     @State private var item = ""
     @State private var estimatedCost = ""
     @State private var selectedCategory: SpendCategory = .shopping
@@ -173,7 +171,7 @@ struct AddImpulseView: View {
                         PrimaryButton(
                             title: wasResisted ? "Log Victory!" : "Log Impulse",
                             icon: wasResisted ? "trophy.fill" : "checkmark",
-                            isEnabled: !item.isEmpty && !estimatedCost.isEmpty
+                            isEnabled: !item.trimmingCharacters(in: .whitespaces).isEmpty && Double.parseAmount(estimatedCost) != nil
                         ) {
                             saveImpulse()
                         }
@@ -196,37 +194,23 @@ struct AddImpulseView: View {
     }
 
     private func saveImpulse() {
-        guard let cost = Double(estimatedCost) else { return }
-        let impulse = ImpulseLog(
-            item: item,
-            estimatedCost: cost,
+        guard let cost = Double.parseAmount(estimatedCost) else { return }
+        let profile = profiles.first
+        let outcome = ProgressEngine.shared.logImpulse(
+            item: item.trimmingCharacters(in: .whitespacesAndNewlines),
+            cost: cost,
             category: selectedCategory,
-            wasResisted: wasResisted,
+            resisted: wasResisted,
             triggerNote: triggerNote,
-            copingStrategy: selectedCoping
+            copingStrategy: selectedCoping,
+            profile: profile,
+            context: modelContext
         )
-        modelContext.insert(impulse)
-
-        if wasResisted {
-            let saving = SavingsEntry(
-                amount: cost,
-                source: .impulseResisted,
-                note: "Resisted: \(item)"
-            )
-            modelContext.insert(saving)
-
-            if let profile = profiles.first {
-                profile.totalSaved += cost
-            }
+        if let outcome {
+            EventPresenter.shared.present(outcome,
+                                          primary: .impulseResisted(xp: outcome.xpGranted),
+                                          rank: profile?.gameProfile?.currentRank)
         }
-
-        try? modelContext.save()
-
-        // Trigger gamification callback if impulse was resisted
-        if wasResisted {
-            onImpulseLogged?()
-        }
-
         dismiss()
     }
 }

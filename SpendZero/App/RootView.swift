@@ -8,6 +8,7 @@ struct RootView: View {
     @State private var showSplash = true
     @State private var showStrategicPaywall = false
     @State private var subscriptionService = SubscriptionService.shared
+    @Environment(\.scenePhase) private var scenePhase
 
     private var profile: UserProfile? { profiles.first }
 
@@ -50,44 +51,7 @@ struct RootView: View {
             }
         }
         .onAppear {
-            // Ensure existing users have a GameProfile (with seeded quests)
-            if let profile, profile.gameProfile == nil {
-                let gp = GameProfile()
-                modelContext.insert(gp)
-                profile.gameProfile = gp
-                let dailies = GameStateManager.shared.generateDailyQuests(for: gp)
-                let weekly  = GameStateManager.shared.generateWeeklyQuest(for: gp)
-                gp.quests.append(contentsOf: dailies)
-                gp.quests.append(weekly)
-                try? modelContext.save()
-            }
-
-            // Refresh quests for any returning user (handles daily/weekly rollover)
-            if let gp = profile?.gameProfile {
-                GameStateManager.shared.refreshQuestsIfNeeded(for: gp)
-                try? modelContext.save()
-            }
-
-            // Reconcile the streak against the calendar: break it (or spend a freeze)
-            // if a day was missed. Stash the outcome so the Dashboard can surface it.
-            if let profile {
-                switch profile.reconcileStreak() {
-                case .frozen(let days):
-                    UserDefaults.standard.set("frozen:\(days)", forKey: "pendingStreakEvent")
-                case .lapsed(let lost):
-                    UserDefaults.standard.set("lapsed:\(lost)", forKey: "pendingStreakEvent")
-                case .intact:
-                    break
-                }
-                try? modelContext.save()
-                NotificationManager.shared.refreshRetentionNotifications(
-                    currentStreak: profile.currentStreak,
-                    loggedToday: profile.hasLoggedToday()
-                )
-            }
-
-            // Keep the Home Screen widget in sync with the latest progress
-            WidgetSync.refresh(profile: profile, context: modelContext)
+            activate()
 
             // Dismiss splash — kept short so launch feels snappy (was 2.2s dead time
             // on every cold launch regardless of how fast the app was actually ready).
@@ -101,9 +65,31 @@ struct RootView: View {
                 }
             }
         }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active, !showSplash else { return }
+            activate()
+            Task { await subscriptionService.checkEntitlementStatus() }
+        }
         .task {
             // Re-check premium status on every app launch
             await subscriptionService.checkEntitlementStatus()
+        }
+    }
+
+    /// Runs on launch and every return to the foreground: streak reconcile, quest rollover,
+    /// pending widget marks, widget + notification refresh.
+    private func activate() {
+        guard let profile else { return }
+        let outcome = ProgressEngine.shared.reconcileOnActivate(profile: profile, context: modelContext)
+        // A freeze being spent is a positive moment worth surfacing; a lapse is not (the
+        // lapse notification already nudged them, and a scold on open reads badly).
+        let delay: Double = showSplash ? 2.2 : 0.3
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if !outcome.isEmpty || { if case .frozen = outcome.streakOutcome { return true }; return false }() {
+                EventPresenter.shared.present(outcome,
+                                              primary: outcome.newStreak != nil ? .nospendDayRecorded(xp: outcome.xpGranted) : nil,
+                                              rank: profile.gameProfile?.currentRank)
+            }
         }
     }
 

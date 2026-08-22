@@ -14,6 +14,8 @@ final class ChallengeEntry {
     var category: ChallengeCategory
     var difficulty: ChallengeDifficulty
     var estimatedSavings: Double
+    /// The last calendar day that counted toward `completedDays` (one day counts once).
+    var lastCountedDate: Date? = nil
 
     init(
         title: String,

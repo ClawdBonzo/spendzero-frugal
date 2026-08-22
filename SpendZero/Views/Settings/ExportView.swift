@@ -11,6 +11,7 @@ struct ExportView: View {
     @Query(sort: \DailyRecord.date, order: .reverse) private var records: [DailyRecord]
     @State private var isGenerating = false
     @State private var pdfURL: URL?
+    @State private var exportError: String?
     @State private var showShareSheet = false
     @State private var selectedRange: ExportRange = .month
 
@@ -90,6 +91,9 @@ struct ExportView: View {
             .padding(.horizontal, AppTheme.paddingMedium)
             .padding(.top, 20)
         }
+        .alert("Couldn't save the report", isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(exportError ?? "") }
         .navigationTitle("Export Report")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showShareSheet) {
@@ -147,7 +151,7 @@ struct ExportView: View {
             // Title
             let titleAttrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 28, weight: .bold),
-                .foregroundColor: UIColor.label
+                .foregroundColor: UIColor.black
             ]
             let title = "SpendZero Savings Report"
             title.draw(at: CGPoint(x: margin, y: yOffset), withAttributes: titleAttrs)
@@ -156,7 +160,7 @@ struct ExportView: View {
             // Subtitle
             let subtitleAttrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 14),
-                .foregroundColor: UIColor.secondaryLabel
+                .foregroundColor: UIColor.darkGray
             ]
             let dateStr = "Generated \(Date().formatted(date: .abbreviated, time: .shortened))"
             dateStr.draw(at: CGPoint(x: margin, y: yOffset), withAttributes: subtitleAttrs)
@@ -170,11 +174,11 @@ struct ExportView: View {
             // Stats
             let headerAttrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-                .foregroundColor: UIColor.label
+                .foregroundColor: UIColor.black
             ]
             let bodyAttrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 14),
-                .foregroundColor: UIColor.label
+                .foregroundColor: UIColor.black
             ]
 
             "Summary (\(selectedRange.rawValue))".draw(at: CGPoint(x: margin, y: yOffset), withAttributes: headerAttrs)
@@ -220,14 +224,19 @@ struct ExportView: View {
             let footerY = pageHeight - margin
             let footerAttrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 10),
-                .foregroundColor: UIColor.tertiaryLabel
+                .foregroundColor: UIColor.gray
             ]
             "SpendZero - Your data stays on your device. Always private.".draw(at: CGPoint(x: margin, y: footerY), withAttributes: footerAttrs)
         }
 
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("SpendZero_Report_\(Date().formatted(date: .numeric, time: .omitted)).pdf")
-        try? data.write(to: tempURL)
-        pdfURL = tempURL
+        let stamp = Date().formatted(.iso8601.year().month().day().dateSeparator(.dash))
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("SpendZero_Report_\(stamp).pdf")
+        do {
+            try data.write(to: tempURL, options: .atomic)
+            pdfURL = tempURL
+        } catch {
+            exportError = error.localizedDescription
+        }
         isGenerating = false
     }
 }

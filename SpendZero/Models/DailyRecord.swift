@@ -13,6 +13,8 @@ final class DailyRecord {
     var mood: DailyMood
     var wins: [String]
     var notes: String
+    /// Wins that have already earned XP today (XP is granted once per win per day).
+    var xpAwardedWins: [String] = []
 
     init(
         date: Date = Date(),
