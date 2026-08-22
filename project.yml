@@ -9,8 +9,8 @@ settings:
   base:
     SWIFT_EMIT_LOC_STRINGS: "YES"
     DEVELOPMENT_TEAM: "3N9RY9EG8V"
-    MARKETING_VERSION: "1.1"
-    CURRENT_PROJECT_VERSION: "6"
+    MARKETING_VERSION: "1.2"
+    CURRENT_PROJECT_VERSION: "7"
 packages:
   RevenueCat:
     url: https://github.com/RevenueCat/purchases-ios-spm.git
@@ -25,48 +25,111 @@ targets:
         includes:
           - "**/*.swift"
       - path: SpendZero/Assets.xcassets
+      - path: SpendZero/PrivacyInfo.xcprivacy
       - path: Resources
     info:
       path: SpendZero/Info.plist
       useBaseLocalizationAsSource: true
       properties:
-        CFBundleShortVersionString: "1.1"
-        CFBundleVersion: "6"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        ITSAppUsesNonExemptEncryption: false
         UILaunchScreen:
           UIColorName: AccentColor
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
         CFBundleLocalizations:
           - en
           - de
           - nl
           - pt-BR
           - fr-CA
+        UIApplicationShortcutItems:
+          - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.markNoSpendDay
+            UIApplicationShortcutItemTitle: Mark No-Spend Day
+            UIApplicationShortcutItemIconSymbolName: checkmark.circle.fill
+          - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.logSpending
+            UIApplicationShortcutItemTitle: Log Spending
+            UIApplicationShortcutItemIconSymbolName: creditcard.fill
+          - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.logImpulse
+            UIApplicationShortcutItemTitle: Resist an Impulse
+            UIApplicationShortcutItemIconSymbolName: hand.raised.fill
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZero
       PRODUCT_NAME: SpendZero
       SWIFT_VERSION: "5.0"
+      CODE_SIGN_ENTITLEMENTS: SpendZero/SpendZero.entitlements
       CODE_SIGN_STYLE: Manual
       DEVELOPMENT_TEAM: "3N9RY9EG8V"
       CODE_SIGN_IDENTITY: "Apple Distribution"
       PROVISIONING_PROFILE_SPECIFIER: "SpendZero AppStore Manual"
-      CURRENT_PROJECT_VERSION: "6"
-      MARKETING_VERSION: "1.1"
       TARGETED_DEVICE_FAMILY: "1"
     dependencies:
       - package: RevenueCat
         product: RevenueCat
+      - target: SpendZeroWidget
+        embed: true
+
+  SpendZeroWidget:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: SpendZeroWidget
+        includes:
+          - "**/*.swift"
+      - path: SpendZeroWidget/PrivacyInfo.xcprivacy
+      - path: SpendZero/Assets.xcassets
+      - path: SpendZero/Shared
+    info:
+      path: SpendZeroWidget/Info.plist
+      properties:
+        CFBundleDisplayName: SpendZero
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZero.SpendZeroWidget
+      PRODUCT_NAME: SpendZeroWidget
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_ENTITLEMENTS: SpendZeroWidget/SpendZeroWidget.entitlements
+      CODE_SIGN_STYLE: Manual
+      DEVELOPMENT_TEAM: "3N9RY9EG8V"
+      CODE_SIGN_IDENTITY: "Apple Distribution"
+      PROVISIONING_PROFILE_SPECIFIER: "SpendZeroWidget AppStore Manual"
+      TARGETED_DEVICE_FAMILY: "1"
+      SKIP_INSTALL: "YES"
+      ASSETCATALOG_COMPILER_APPICON_NAME: ""
+
+  SpendZeroTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: SpendZeroTests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZeroTests
+      SWIFT_VERSION: "5.0"
+      CODE_SIGN_STYLE: Automatic
+      CODE_SIGN_IDENTITY: "Apple Development"
+      PROVISIONING_PROFILE_SPECIFIER: ""
+    dependencies:
+      - target: SpendZero
+
 schemes:
   SpendZero:
     build:
       targets:
         SpendZero: all
+        SpendZeroWidget: all
+        SpendZeroTests: [test]
     run:
       config: Debug
     test:
       config: Debug
+      targets:
+        - SpendZeroTests
     profile:
       config: Release
     analyze:

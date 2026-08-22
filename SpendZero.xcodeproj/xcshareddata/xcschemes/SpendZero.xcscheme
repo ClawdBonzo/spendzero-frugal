@@ -21,6 +21,34 @@
                ReferencedContainer = "container:SpendZero.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9657D139D1163A0FB078A84D"
+               BuildableName = "SpendZeroTests.xctest"
+               BlueprintName = "SpendZeroTests"
+               ReferencedContainer = "container:SpendZero.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "73299F087BCD90D0D03221A1"
+               BuildableName = "SpendZeroWidget.appex"
+               BlueprintName = "SpendZeroWidget"
+               ReferencedContainer = "container:SpendZero.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -39,6 +67,17 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9657D139D1163A0FB078A84D"
+               BuildableName = "SpendZeroTests.xctest"
+               BlueprintName = "SpendZeroTests"
+               ReferencedContainer = "container:SpendZero.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <CommandLineArguments>
       </CommandLineArguments>

@@ -5,15 +5,8 @@ import WidgetKit
 /// Writes a small snapshot of the user's progress into the shared App Group
 /// container so the Home Screen widget can display real, up-to-date data.
 enum WidgetSync {
-    static let appGroupID = "group.com.clawdbonzo.SpendZero"
-
-    enum Key {
-        static let totalSaved    = "widget.totalSaved"
-        static let currentStreak = "widget.currentStreak"
-        static let isNoSpendDay  = "widget.isNoSpendDay"
-    }
-
-    private static var defaults: UserDefaults? { UserDefaults(suiteName: appGroupID) }
+    typealias Key = WidgetShared.Key
+    private static var defaults: UserDefaults? { WidgetShared.defaults }
 
     /// Push the latest progress to the widget. Safe to call frequently.
     @MainActor

@@ -4,14 +4,13 @@ import SwiftUI
 // MARK: - Shared App Group store
 
 private enum WidgetStore {
-    static let appGroupID = "group.com.clawdbonzo.SpendZero"
     static func entry() -> SavingsWidgetEntry {
-        let d = UserDefaults(suiteName: appGroupID)
+        let d = WidgetShared.defaults
         return SavingsWidgetEntry(
             date: Date(),
-            totalSaved: d?.double(forKey: "widget.totalSaved") ?? 0,
-            currentStreak: d?.integer(forKey: "widget.currentStreak") ?? 0,
-            isNoSpendDay: d?.object(forKey: "widget.isNoSpendDay") as? Bool ?? true
+            totalSaved: d?.double(forKey: WidgetShared.Key.totalSaved) ?? 0,
+            currentStreak: d?.integer(forKey: WidgetShared.Key.currentStreak) ?? 0,
+            isNoSpendDay: d?.object(forKey: WidgetShared.Key.isNoSpendDay) as? Bool ?? true
         )
     }
 }
@@ -163,7 +162,7 @@ struct SavingsWidgetView: View {
 // MARK: - Widget Configuration
 
 struct SpendZeroSavingsWidget: Widget {
-    let kind = "SpendZeroSavingsWidget"
+    let kind = WidgetShared.widgetKind
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: SavingsProvider()) { entry in

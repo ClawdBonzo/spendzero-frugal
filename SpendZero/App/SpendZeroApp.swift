@@ -7,23 +7,7 @@ struct SpendZeroApp: App {
     let modelContainer: ModelContainer
 
     init() {
-        do {
-            let schema = Schema([
-                UserProfile.self,
-                SpendingLog.self,
-                ChallengeEntry.self,
-                SavingsEntry.self,
-                DailyRecord.self,
-                ImpulseLog.self,
-                GameProfile.self,
-                Quest.self,
-                BadgeInstance.self
-            ])
-            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-            modelContainer = try ModelContainer(for: schema, configurations: [config])
-        } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
-        }
+        modelContainer = SpendZeroStore.makeContainer()
 
         // Configure RevenueCat on the main actor (SubscriptionService is @MainActor)
         SubscriptionService.shared.configure()

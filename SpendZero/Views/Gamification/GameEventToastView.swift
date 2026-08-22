@@ -87,7 +87,7 @@ enum GameEventType {
 
     var title: String {
         switch self {
-        case .questComplete(let title, _):
+        case .questComplete:
             return "Quest Complete!"
         case .streakMilestone(let days):
             return "\(days)-Day Streak! 🔥"
@@ -95,7 +95,7 @@ enum GameEventType {
             return "No-Spend Day!"
         case .impulseResisted:
             return "Impulse Resisted! ⚡️"
-        case .challengeComplete(let title):
+        case .challengeComplete:
             return "Challenge Complete!"
         case .savingsRecorded:
             return "Savings Recorded!"
@@ -110,7 +110,7 @@ enum GameEventType {
         switch self {
         case .questComplete(let title, _):
             return title
-        case .streakMilestone(let days):
+        case .streakMilestone:
             return "Amazing consistency!"
         case .nospendDayRecorded:
             return "Great job staying on track!"

@@ -98,7 +98,7 @@ struct OnboardingCommitView: View {
             }
             // Stagger cards from left
             for i in 0..<commitOptions.count {
-                withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.4 + Double(i) * 0.1)) {
+                _ = withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(0.4 + Double(i) * 0.1)) {
                     visibleCards.insert(i)
                 }
             }

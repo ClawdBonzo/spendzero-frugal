@@ -20,7 +20,7 @@ A beautiful, private SwiftUI habit tracker built with 100% on-device SwiftData. 
 
 ## Tech Stack
 
-- Swift 6 + SwiftUI
+- Swift 5 language mode + SwiftUI (Swift 6 toolchain)
 - SwiftData (100% local & private)
 - RevenueCat
 - WidgetKit + Swift Charts

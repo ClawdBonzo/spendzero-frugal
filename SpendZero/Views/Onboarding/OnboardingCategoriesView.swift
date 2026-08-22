@@ -99,7 +99,7 @@ struct OnboardingCategoriesView: View {
             }
             // Stagger chips appearing in wave pattern
             for i in 0..<categories.count {
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.7).delay(0.35 + Double(i) * 0.05)) {
+                _ = withAnimation(.spring(response: 0.4, dampingFraction: 0.7).delay(0.35 + Double(i) * 0.05)) {
                     visibleChips.insert(i)
                 }
             }
