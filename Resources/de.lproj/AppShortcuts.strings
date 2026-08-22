@@ -1,0 +1,8 @@
+/* Siri / Shortcuts phrases */
+"Mark today a no-spend day in ${applicationName}" = "Heute als ausgabenfreien Tag in ${applicationName} markieren";
+"Log a no-spend day in ${applicationName}" = "Ausgabenfreien Tag in ${applicationName} eintragen";
+"I didn't spend today in ${applicationName}" = "Ich habe heute nichts in ${applicationName} ausgegeben";
+"Log spending in ${applicationName}" = "Ausgabe in ${applicationName} erfassen";
+"I spent money in ${applicationName}" = "Ich habe Geld ausgegeben in ${applicationName}";
+"Log an impulse in ${applicationName}" = "Impuls in ${applicationName} erfassen";
+"I resisted an impulse in ${applicationName}" = "Ich habe einem Impuls in ${applicationName} widerstanden";

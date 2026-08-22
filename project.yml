@@ -82,6 +82,8 @@ targets:
       - path: SpendZero/Assets.xcassets
       - path: SpendZero/Shared
       - path: Resources
+        excludes:
+          - "**/AppShortcuts.strings"
     info:
       path: SpendZeroWidget/Info.plist
       properties:

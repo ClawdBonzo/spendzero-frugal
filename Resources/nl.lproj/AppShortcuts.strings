@@ -1,0 +1,8 @@
+/* Siri / Shortcuts phrases */
+"Mark today a no-spend day in ${applicationName}" = "Markeer vandaag als uitgavenvrije dag in ${applicationName}";
+"Log a no-spend day in ${applicationName}" = "Log een uitgavenvrije dag in ${applicationName}";
+"I didn't spend today in ${applicationName}" = "Ik heb vandaag niets uitgegeven in ${applicationName}";
+"Log spending in ${applicationName}" = "Log een uitgave in ${applicationName}";
+"I spent money in ${applicationName}" = "Ik heb geld uitgegeven in ${applicationName}";
+"Log an impulse in ${applicationName}" = "Log een impuls in ${applicationName}";
+"I resisted an impulse in ${applicationName}" = "Ik heb een impuls weerstaan in ${applicationName}";
