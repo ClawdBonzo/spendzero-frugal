@@ -101,7 +101,7 @@ extension Color {
 
 extension Font {
     /// A system font whose point size follows the user's Dynamic Type setting (scaled with
-    /// `UIFontMetrics` relative to the `.body` style). Use instead of `.app(size:)`.
+    /// `UIFontMetrics` relative to the `.body` style). Use instead of `.system(size:)`.
     static func app(size: CGFloat, weight: Font.Weight = .regular, design: Font.Design = .default) -> Font {
         Font.system(size: UIFontMetrics(forTextStyle: .body).scaledValue(for: size), weight: weight, design: design)
     }
