@@ -56,13 +56,13 @@ struct OnboardingNameView: View {
 
                 VStack(spacing: 8) {
                     Text("What should we call your wealthy future self?")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .font(.app(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("This is the beginning of your financial transformation")
-                        .font(.system(size: 14))
+                        .font(.app(size: 14))
                         .foregroundColor(AppTheme.textSecondary)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -77,7 +77,7 @@ struct OnboardingNameView: View {
             // Input field
             VStack(spacing: 12) {
                 TextField("", text: $name, prompt: Text("Your name").foregroundColor(AppTheme.textTertiary))
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.app(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
                     .padding(14)
@@ -106,11 +106,11 @@ struct OnboardingNameView: View {
                 if !name.isEmpty {
                     HStack(spacing: 6) {
                         Image(systemName: "sparkles")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.app(size: 12, weight: .semibold))
                             .symbolEffect(.pulse, value: name)
                         Text("Welcome, \(name)! Let's build wealth together.")
                     }
-                    .font(.system(size: 13))
+                    .font(.app(size: 13))
                     .foregroundColor(AppTheme.primaryGreen)
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }

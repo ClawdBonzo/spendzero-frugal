@@ -67,7 +67,7 @@ struct ParticleBackgroundView: View {
         // SF Symbol rendered as tinted Text — Canvas-safe (unlike emoji + drawingGroup)
         inner.draw(
             Text(Image(systemName: p.symbol))
-                .font(.system(size: p.size, weight: .semibold))
+                .font(.app(size: p.size, weight: .semibold))
                 .foregroundColor(p.tint),
             at: CGPoint(x: x, y: y)
         )

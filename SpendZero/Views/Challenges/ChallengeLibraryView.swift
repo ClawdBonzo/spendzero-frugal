@@ -78,7 +78,7 @@ struct ChallengeLibraryView: View {
                         showCreateChallenge = true
                     } label: {
                         Image(systemName: "plus.circle.fill")
-                            .font(.system(size: 24))
+                            .font(.app(size: 24))
                             .foregroundColor(AppTheme.primaryGreen)
                     }
                 }
@@ -144,7 +144,7 @@ struct ActiveChallengeCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 6) {
                         Text("ACTIVE CHALLENGE")
-                            .font(.system(size: 10, weight: .bold))
+                            .font(.app(size: 10, weight: .bold))
                             .foregroundColor(AppTheme.primaryGreen)
 
                         Circle()
@@ -160,7 +160,7 @@ struct ActiveChallengeCard: View {
                 Spacer()
 
                 Image(systemName: challenge.category.icon)
-                    .font(.system(size: 28))
+                    .font(.app(size: 28))
                     .foregroundColor(AppTheme.accentGold)
             }
 
@@ -215,17 +215,17 @@ struct ChallengeCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: challenge.category.icon)
-                    .font(.system(size: 20))
+                    .font(.app(size: 20))
                     .foregroundColor(Color(hex: challenge.difficulty.color))
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(challenge.title)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.app(size: 16, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 
                     HStack(spacing: 8) {
                         Text(LocalizedStringKey(challenge.difficulty.rawValue))
-                            .font(.system(size: 10, weight: .bold))
+                            .font(.app(size: 10, weight: .bold))
                             .foregroundColor(Color(hex: challenge.difficulty.color))
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
@@ -242,7 +242,7 @@ struct ChallengeCard: View {
 
                 if challenge.isCompleted {
                     Image(systemName: "checkmark.seal.fill")
-                        .font(.system(size: 24))
+                        .font(.app(size: 24))
                         .foregroundColor(AppTheme.primaryGreen)
                 }
             }
@@ -263,7 +263,7 @@ struct ChallengeCard: View {
                     Button("Start") {
                         onStart()
                     }
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.app(size: 13, weight: .bold))
                     .foregroundColor(AppTheme.background)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
@@ -288,7 +288,7 @@ struct CategoryFilterChip: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: 13, weight: .semibold))
+                .font(.app(size: 13, weight: .semibold))
                 .foregroundColor(isSelected ? AppTheme.background : AppTheme.textSecondary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
@@ -367,7 +367,7 @@ struct CreateChallengeView: View {
                         .pickerStyle(.segmented)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Estimated Savings ($)")
+                            Text("Estimated Savings (\(Locale.displayCurrencySymbol))")
                                 .font(AppTheme.captionFont)
                                 .foregroundColor(AppTheme.textSecondary)
                             TextField("100", text: $estimatedSavings)

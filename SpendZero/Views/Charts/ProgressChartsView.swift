@@ -123,7 +123,7 @@ struct ProgressChartsView: View {
                         AxisValueLabel {
                             if let val = value.as(Double.self) {
                                 Text(val.currencyFormatted)
-                                    .font(.system(size: 10))
+                                    .font(.app(size: 10))
                                     .foregroundColor(AppTheme.textTertiary)
                             }
                         }
@@ -134,7 +134,7 @@ struct ProgressChartsView: View {
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(date, format: .dateTime.month(.abbreviated).day())
-                                    .font(.system(size: 10))
+                                    .font(.app(size: 10))
                                     .foregroundColor(AppTheme.textTertiary)
                             }
                         }
@@ -187,7 +187,7 @@ struct ProgressChartsView: View {
                                 .foregroundColor(AppTheme.textSecondary)
                             Spacer()
                             Text(item.total.currencyFormatted)
-                                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                .font(.app(size: 13, weight: .semibold, design: .rounded))
                                 .foregroundColor(AppTheme.textPrimary)
                         }
                     }
@@ -232,10 +232,10 @@ struct ProgressChartsView: View {
 
                         VStack(spacing: 0) {
                             Text("\(total > 0 ? Int(Double(resisted) / Double(total) * 100) : 0)%")
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .font(.app(size: 22, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.primaryGreen)
                             Text("Resisted")
-                                .font(.system(size: 10, weight: .medium))
+                                .font(.app(size: 10, weight: .medium))
                                 .foregroundColor(AppTheme.textSecondary)
                         }
                     }
@@ -243,7 +243,7 @@ struct ProgressChartsView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         VStack(alignment: .leading, spacing: 2) {
                             Text("\(resisted)")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .font(.app(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.primaryGreen)
                             Text("Impulses Resisted")
                                 .font(AppTheme.smallFont)
@@ -252,7 +252,7 @@ struct ProgressChartsView: View {
 
                         VStack(alignment: .leading, spacing: 2) {
                             Text("\(total - resisted)")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .font(.app(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.destructive)
                             Text("Given In")
                                 .font(AppTheme.smallFont)
@@ -275,7 +275,7 @@ struct ProgressChartsView: View {
     private var chartEmptyState: some View {
         VStack(spacing: 8) {
             Image(systemName: "chart.line.uptrend.xyaxis")
-                .font(.system(size: 32))
+                .font(.app(size: 32))
                 .foregroundColor(AppTheme.textTertiary)
             Text("No data yet")
                 .font(AppTheme.captionFont)
@@ -308,10 +308,10 @@ struct MiniStatCard: View {
     var body: some View {
         VStack(spacing: 4) {
             Text(value)
-                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .font(.app(size: 18, weight: .bold, design: .rounded))
                 .foregroundColor(color)
             Text(title)
-                .font(.system(size: 10, weight: .medium))
+                .font(.app(size: 10, weight: .medium))
                 .foregroundColor(AppTheme.textSecondary)
         }
         .frame(maxWidth: .infinity)

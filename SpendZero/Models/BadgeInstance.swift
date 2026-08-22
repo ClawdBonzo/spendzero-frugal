@@ -94,13 +94,13 @@ enum BadgeType: String, Codable, CaseIterable, Identifiable {
         case .oneYearStreak:
             return "Maintained a 1-year no-spend streak"
         case .savedFiveHundred:
-            return "Saved $500 total"
+            return String(localized: "Saved \(500.0.currencyFormatted) total")
         case .savedOneThousand:
-            return "Saved $1,000 total"
+            return String(localized: "Saved \(1000.0.currencyFormatted) total")
         case .savedFiveThousand:
-            return "Saved $5,000 total"
+            return String(localized: "Saved \(5000.0.currencyFormatted) total")
         case .savedTenThousand:
-            return "Saved $10,000 total"
+            return String(localized: "Saved \(10000.0.currencyFormatted) total")
         case .perfectWeek:
             return "Completed 7 consecutive no-spend days"
         case .impulseExpert:

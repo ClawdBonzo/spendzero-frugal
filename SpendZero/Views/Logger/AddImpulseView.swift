@@ -74,10 +74,10 @@ struct AddImpulseView: View {
 
                             HStack {
                                 Text(Locale.displayCurrencySymbol)
-                                    .font(.system(size: 20, weight: .bold))
+                                    .font(.app(size: 20, weight: .bold))
                                     .foregroundColor(AppTheme.textSecondary)
                                 TextField("0", text: $estimatedCost)
-                                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                                    .font(.app(size: 28, weight: .bold, design: .rounded))
                                     .foregroundColor(wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
                                     .keyboardType(.decimalPad)
                             }
@@ -109,9 +109,9 @@ struct AddImpulseView: View {
                                     } label: {
                                         HStack(spacing: 6) {
                                             Image(systemName: cat.icon)
-                                                .font(.system(size: 13))
+                                                .font(.app(size: 13))
                                             Text(LocalizedStringKey(cat.rawValue))
-                                                .font(.system(size: 13, weight: .medium))
+                                                .font(.app(size: 13, weight: .medium))
                                                 .lineLimit(1)
                                                 .minimumScaleFactor(0.8)
                                             Spacer(minLength: 0)
@@ -147,7 +147,7 @@ struct AddImpulseView: View {
                                     } label: {
                                         HStack {
                                             Text(strategy)
-                                                .font(.system(size: 14, weight: .medium))
+                                                .font(.app(size: 14, weight: .medium))
                                                 .foregroundColor(AppTheme.textPrimary)
                                             Spacer()
                                             if selectedCoping == strategy {
@@ -226,9 +226,9 @@ struct ImpulseToggleButton: View {
         Button(action: action) {
             VStack(spacing: 8) {
                 Image(systemName: icon)
-                    .font(.system(size: 24))
+                    .font(.app(size: 24))
                 Text(title)
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.app(size: 14, weight: .bold))
             }
             .foregroundColor(isSelected ? color : AppTheme.textTertiary)
             .frame(maxWidth: .infinity)

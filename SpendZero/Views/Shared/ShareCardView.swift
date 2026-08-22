@@ -48,11 +48,11 @@ struct StreakShareCard: View {
                         .frame(width: 26, height: 26)
                         .clipShape(RoundedRectangle(cornerRadius: 6))
                     Text("SpendZero")
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .font(.app(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                     Spacer()
                     Text("No-Spend Challenge")
-                        .font(.system(size: 10, weight: .semibold))
+                        .font(.app(size: 10, weight: .semibold))
                         .foregroundColor(AppTheme.primaryGreen)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 3)
@@ -65,9 +65,9 @@ struct StreakShareCard: View {
                 // Hero streak number
                 HStack(alignment: .firstTextBaseline, spacing: 6) {
                     Text("🔥")
-                        .font(.system(size: 44))
+                        .font(.app(size: 44))
                     Text("\(streak)")
-                        .font(.system(size: 72, weight: .black, design: .rounded))
+                        .font(.app(size: 72, weight: .black, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [AppTheme.accentGold, Color(hex: "FF7043")],
@@ -78,12 +78,12 @@ struct StreakShareCard: View {
                 .padding(.bottom, 4)
 
                 Text("day\(streak == 1 ? "" : "s") no-spend streak")
-                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                    .font(.app(size: 17, weight: .semibold, design: .rounded))
                     .foregroundColor(.white.opacity(0.85))
 
                 if !name.isEmpty {
                     Text("\(name) is crushing it 💪")
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.app(size: 13, weight: .medium))
                         .foregroundColor(AppTheme.textSecondary)
                         .padding(.top, 2)
                 }
@@ -95,10 +95,10 @@ struct StreakShareCard: View {
                     if totalSaved > 0 {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(totalSaved.currencyFormatted)
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .font(.app(size: 18, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.primaryGreen)
                             Text("saved")
-                                .font(.system(size: 10))
+                                .font(.app(size: 10))
                                 .foregroundColor(AppTheme.textTertiary)
                         }
                     }
@@ -106,7 +106,7 @@ struct StreakShareCard: View {
                     Spacer()
 
                     Text("Download SpendZero →")
-                        .font(.system(size: 11, weight: .semibold))
+                        .font(.app(size: 11, weight: .semibold))
                         .foregroundColor(AppTheme.primaryGreen.opacity(0.8))
                 }
             }
@@ -139,10 +139,10 @@ struct ShareStreakButton: View {
                         .tint(AppTheme.primaryGreen)
                 } else {
                     Image(systemName: "square.and.arrow.up")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.app(size: 13, weight: .semibold))
                 }
                 Text("Share")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.app(size: 13, weight: .semibold))
             }
             .foregroundColor(AppTheme.primaryGreen)
             .padding(.horizontal, 14)
@@ -191,9 +191,9 @@ struct AchievementShareButton: View {
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
                 Text("Share your win")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.app(size: 15, weight: .semibold))
             }
             .foregroundColor(tint)
             .frame(maxWidth: .infinity)

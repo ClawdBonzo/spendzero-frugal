@@ -31,11 +31,11 @@ struct AddSpendingView: View {
 
                             HStack(alignment: .firstTextBaseline, spacing: 4) {
                                 Text(Locale.displayCurrencySymbol)
-                                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                                    .font(.app(size: 32, weight: .bold, design: .rounded))
                                     .foregroundColor(AppTheme.textSecondary)
 
                                 TextField("0.00", text: $amount)
-                                    .font(.system(size: 48, weight: .bold, design: .rounded))
+                                    .font(.app(size: 48, weight: .bold, design: .rounded))
                                     .foregroundColor(AppTheme.destructive)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.center)
@@ -62,9 +62,9 @@ struct AddSpendingView: View {
                                     } label: {
                                         VStack(spacing: 4) {
                                             Image(systemName: cat.icon)
-                                                .font(.system(size: 18))
+                                                .font(.app(size: 18))
                                             Text(LocalizedStringKey(cat.rawValue))
-                                                .font(.system(size: 9, weight: .medium))
+                                                .font(.app(size: 9, weight: .medium))
                                                 .lineLimit(1)
                                         }
                                         .foregroundColor(selectedCategory == cat ? AppTheme.primaryGreen : AppTheme.textSecondary)
@@ -106,7 +106,7 @@ struct AddSpendingView: View {
                                 Image(systemName: "bolt.fill")
                                     .foregroundColor(AppTheme.warning)
                                 Text("Was this an impulse buy?")
-                                    .font(.system(size: 15, weight: .medium))
+                                    .font(.app(size: 15, weight: .medium))
                                     .foregroundColor(AppTheme.textPrimary)
                             }
                         }

@@ -173,7 +173,7 @@ struct GamificationHubView: View {
                                 Spacer()
 
                                 Image(systemName: "chevron.right")
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(AppTheme.textTertiary)
                             }
                             .padding(AppTheme.paddingMedium)
@@ -218,16 +218,16 @@ struct StatTile: View {
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
+                .font(.app(size: 18, weight: .semibold))
                 .foregroundColor(color)
 
             Text(value)
-                .font(.system(size: 16, weight: .bold))
+                .font(.app(size: 16, weight: .bold))
                 .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(1)
 
             Text(label)
-                .font(.system(size: 10, weight: .medium))
+                .font(.app(size: 10, weight: .medium))
                 .foregroundColor(AppTheme.textSecondary)
         }
         .frame(maxWidth: .infinity)
@@ -252,7 +252,7 @@ struct QuestQuickView: View {
 
                     HStack(spacing: 4) {
                         Image(systemName: "star.fill")
-                            .font(.system(size: 10))
+                            .font(.app(size: 10))
                         Text("\(quest.difficulty.baseXP) XP")
                             .font(AppTheme.smallFont)
                     }
@@ -262,7 +262,7 @@ struct QuestQuickView: View {
                 Spacer()
 
                 Image(systemName: quest.isCompleted ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 20))
+                    .font(.app(size: 20))
                     .foregroundColor(quest.isCompleted ? AppTheme.primaryGreen : AppTheme.textTertiary)
             }
 
@@ -301,7 +301,7 @@ struct BadgeMiniView: View {
                     .fill(badge.rarity.backgroundColor)
 
                 Image(systemName: badge.badgeID.icon)
-                    .font(.system(size: 24, weight: .semibold))
+                    .font(.app(size: 24, weight: .semibold))
                     .foregroundColor(badge.rarity.foregroundColor)
             }
             .frame(height: 70)
@@ -311,7 +311,7 @@ struct BadgeMiniView: View {
             )
 
             Text(LocalizedStringKey(badge.badgeID.rawValue))
-                .font(.system(size: 10, weight: .semibold))
+                .font(.app(size: 10, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(1)
         }

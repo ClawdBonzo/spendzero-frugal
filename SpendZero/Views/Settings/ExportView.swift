@@ -37,7 +37,7 @@ struct ExportView: View {
                 // Preview card
                 VStack(spacing: 16) {
                     Image(systemName: "doc.richtext.fill")
-                        .font(.system(size: 48))
+                        .font(.app(size: 48))
                         .foregroundStyle(AppTheme.primaryGradient)
 
                     Text("Savings Report")
@@ -256,7 +256,7 @@ struct ExportPreviewRow: View {
                 .foregroundColor(AppTheme.textSecondary)
             Spacer()
             Text(value)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .font(.app(size: 16, weight: .bold, design: .rounded))
                 .foregroundColor(color)
         }
     }

@@ -34,7 +34,7 @@ struct BadgeUnlockCelebrationView: View {
                                 .fill(badge.rarity.backgroundColor)
 
                             Image(systemName: badge.badgeID.icon)
-                                .font(.system(size: 80, weight: .semibold))
+                                .font(.app(size: 80, weight: .semibold))
                                 .foregroundColor(badge.rarity.foregroundColor)
                         }
                         .frame(width: 160, height: 160)
@@ -49,7 +49,7 @@ struct BadgeUnlockCelebrationView: View {
                     // Badge info
                     VStack(spacing: 12) {
                         Text("Badge Unlocked!")
-                            .font(.system(size: 28, weight: .bold))
+                            .font(.app(size: 28, weight: .bold))
                             .foregroundColor(AppTheme.accentGold)
 
                         Text(LocalizedStringKey(badge.badgeID.rawValue))

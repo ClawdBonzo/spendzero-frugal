@@ -83,7 +83,7 @@ struct LevelProgressView: View {
                                     ForEach(rank.unlockedFeatures, id: \.self) { feature in
                                         HStack(spacing: 8) {
                                             Image(systemName: "star.fill")
-                                                .font(.system(size: 10))
+                                                .font(.app(size: 10))
                                                 .foregroundColor(AppTheme.accentGold)
                                             Text(LocalizedStringKey(feature))
                                                 .font(AppTheme.smallFont)
@@ -148,7 +148,7 @@ struct LevelRowView: View {
                             )
 
                         Text(String(level))
-                            .font(.system(size: 14, weight: .semibold))
+                            .font(.app(size: 14, weight: .semibold))
                             .foregroundColor(isCurrent || isUnlocked ? .white : AppTheme.textSecondary)
                     }
                     .frame(width: 40, height: 40)
@@ -163,7 +163,7 @@ struct LevelRowView: View {
 
                             if isCurrent {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(AppTheme.primaryGreen)
                             }
 
@@ -171,11 +171,11 @@ struct LevelRowView: View {
 
                             if isSelected {
                                 Image(systemName: "chevron.up")
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(AppTheme.textSecondary)
                             } else {
                                 Image(systemName: "chevron.right")
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(AppTheme.textTertiary)
                             }
                         }

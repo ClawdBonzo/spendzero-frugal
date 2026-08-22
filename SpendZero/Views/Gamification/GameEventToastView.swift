@@ -13,16 +13,16 @@ struct GameEventToastView: View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 Image(systemName: event.icon)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(event.color)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(event.title)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.app(size: 14, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 
                     Text(event.subtitle)
-                        .font(.system(size: 12, weight: .regular))
+                        .font(.app(size: 12, weight: .regular))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
@@ -31,9 +31,9 @@ struct GameEventToastView: View {
                 if let xpReward = event.xpReward {
                     HStack(spacing: 4) {
                         Image(systemName: "star.fill")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.app(size: 12, weight: .semibold))
                         Text("+\(xpReward) XP")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.app(size: 12, weight: .semibold))
                     }
                     .foregroundColor(AppTheme.accentGold)
                 }

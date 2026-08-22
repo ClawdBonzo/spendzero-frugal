@@ -101,7 +101,7 @@ struct DailyLoggerView: View {
                         }
                     } label: {
                         Image(systemName: "plus.circle.fill")
-                            .font(.system(size: 24))
+                            .font(.app(size: 24))
                             .foregroundColor(AppTheme.primaryGreen)
                     }
                 }
@@ -129,7 +129,7 @@ struct DailyLoggerView: View {
                         .foregroundColor(AppTheme.textSecondary)
 
                     Text(totalSpentToday.currencyFormattedDecimal)
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                        .font(.app(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(totalSpentToday == 0 ? AppTheme.primaryGreen : AppTheme.destructive)
                         .shadow(color: totalSpentToday == 0 ? AppTheme.primaryGreen.opacity(0.5) : .clear, radius: 8)
                         .contentTransition(.numericText())
@@ -144,7 +144,7 @@ struct DailyLoggerView: View {
                         .foregroundColor(AppTheme.textSecondary)
 
                     Text((profiles.first?.dailyBudget ?? 50).currencyFormatted)
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .font(.app(size: 20, weight: .semibold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                 }
             }
@@ -269,7 +269,7 @@ struct SpendingLogRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: log.category.icon)
-                .font(.system(size: 18))
+                .font(.app(size: 18))
                 .foregroundColor(Color(hex: log.category.color))
                 .frame(width: 36, height: 36)
                 .background(
@@ -279,7 +279,7 @@ struct SpendingLogRow: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(LocalizedStringKey(log.category.rawValue))
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
                     .foregroundColor(AppTheme.textPrimary)
                 if !log.note.isEmpty {
                     Text(log.note)
@@ -291,13 +291,13 @@ struct SpendingLogRow: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: 2) {
-                Text("-$\(String(format: "%.2f", log.amount))")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                Text("-\(log.amount.currencyFormattedDecimal)")
+                    .font(.app(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.destructive)
 
                 if log.wasImpulse {
                     Text("Impulse")
-                        .font(.system(size: 9, weight: .bold))
+                        .font(.app(size: 9, weight: .bold))
                         .foregroundColor(AppTheme.warning)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 1)
@@ -320,12 +320,12 @@ struct ImpulseLogRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: impulse.wasResisted ? "checkmark.circle.fill" : "xmark.circle.fill")
-                .font(.system(size: 22))
+                .font(.app(size: 22))
                 .foregroundColor(impulse.wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(impulse.item)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
                     .foregroundColor(AppTheme.textPrimary)
                 Text(LocalizedStringKey(impulse.category.rawValue))
                     .font(AppTheme.smallFont)
@@ -336,7 +336,7 @@ struct ImpulseLogRow: View {
 
             VStack(alignment: .trailing, spacing: 2) {
                 Text(impulse.estimatedCost.currencyFormatted)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(.app(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(impulse.wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
 
                 Text(impulse.wasResisted ? "Saved" : "Spent")
@@ -365,22 +365,22 @@ struct WinChecklistRow: View {
         } label: {
             HStack(spacing: 14) {
                 Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 22))
+                    .font(.app(size: 22))
                     .foregroundColor(isChecked ? AppTheme.primaryGreen : AppTheme.textTertiary)
 
                 Image(systemName: win.icon)
-                    .font(.system(size: 16))
+                    .font(.app(size: 16))
                     .foregroundColor(AppTheme.textSecondary)
 
                 Text(win.label)
-                    .font(.system(size: 15, weight: .medium))
+                    .font(.app(size: 15, weight: .medium))
                     .foregroundColor(isChecked ? AppTheme.textSecondary : AppTheme.textPrimary)
                     .strikethrough(isChecked)
 
                 Spacer()
 
                 Text(win.saved)
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .font(.app(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(isChecked ? AppTheme.primaryGreen : AppTheme.textTertiary)
             }
             .padding(14)
@@ -401,7 +401,7 @@ struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 12) {
             Image(systemName: icon)
-                .font(.system(size: 40))
+                .font(.app(size: 40))
                 .foregroundColor(AppTheme.primaryGreen.opacity(0.5))
 
             Text(title)

@@ -40,7 +40,7 @@ struct LevelUpCelebrationView: View {
                             .scaleEffect(starPulse ? 1.15 : 0.9)
 
                         Image(systemName: "crown.fill")
-                            .font(.system(size: 52))
+                            .font(.app(size: 52))
                             .foregroundStyle(
                                 LinearGradient(
                                     colors: [AppTheme.accentGold, Color(hex: "FF8C00")],
@@ -55,7 +55,7 @@ struct LevelUpCelebrationView: View {
 
                     // LEVEL UP text
                     Text("LEVEL UP!")
-                        .font(.system(size: 34, weight: .black, design: .rounded))
+                        .font(.app(size: 34, weight: .black, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [AppTheme.accentGold, AppTheme.primaryGreen],
@@ -67,7 +67,7 @@ struct LevelUpCelebrationView: View {
                     HStack(spacing: 16) {
                         VStack(spacing: 4) {
                             Text("Level \(previousLevel)")
-                                .font(.system(size: 16, weight: .semibold))
+                                .font(.app(size: 16, weight: .semibold))
                                 .foregroundColor(AppTheme.textSecondary)
                             Text("Before")
                                 .font(AppTheme.smallFont)
@@ -75,12 +75,12 @@ struct LevelUpCelebrationView: View {
                         }
 
                         Image(systemName: "arrow.right.circle.fill")
-                            .font(.system(size: 28))
+                            .font(.app(size: 28))
                             .foregroundColor(AppTheme.primaryGreen)
 
                         VStack(spacing: 4) {
                             Text("Level \(newLevel)")
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .font(.app(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.accentGold)
                             Text("Now")
                                 .font(AppTheme.smallFont)
@@ -91,7 +91,7 @@ struct LevelUpCelebrationView: View {
 
                     // Rank title
                     Text(rank.title)
-                        .font(.system(size: 22, weight: .semibold, design: .rounded))
+                        .font(.app(size: 22, weight: .semibold, design: .rounded))
                         .foregroundColor(AppTheme.primaryGreen)
 
                     // Unlocked features
@@ -104,7 +104,7 @@ struct LevelUpCelebrationView: View {
                             ForEach(rank.unlockedFeatures.prefix(3), id: \.self) { feature in
                                 HStack(spacing: 8) {
                                     Image(systemName: "sparkles")
-                                        .font(.system(size: 12))
+                                        .font(.app(size: 12))
                                         .foregroundColor(AppTheme.primaryGreen)
                                     Text(LocalizedStringKey(feature))
                                         .font(AppTheme.captionFont)
@@ -151,7 +151,7 @@ struct LevelUpCelebrationView: View {
                             Image(systemName: "checkmark")
                             Text("Awesome!")
                         }
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .font(.app(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
@@ -196,7 +196,7 @@ struct ConfettiView: View {
         ZStack {
             ForEach(particles) { p in
                 Image(systemName: p.icon)
-                    .font(.system(size: p.size, weight: .semibold))
+                    .font(.app(size: p.size, weight: .semibold))
                     .foregroundColor(p.color)
                     .offset(
                         x: p.startX + (animated ? p.driftX : 0),

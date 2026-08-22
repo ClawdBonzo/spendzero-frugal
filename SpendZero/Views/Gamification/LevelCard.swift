@@ -78,7 +78,7 @@ struct LevelCard: View {
                     if xpProgress >= 0.8 {
                         HStack(spacing: 3) {
                             Image(systemName: "bolt.fill")
-                                .font(.system(size: 10))
+                                .font(.app(size: 10))
                             Text("Almost there!")
                                 .font(AppTheme.smallFont)
                         }
@@ -116,7 +116,7 @@ struct LevelCard: View {
                                     id: \.self
                                 ) { feature in
                                     Text(LocalizedStringKey(feature))
-                                        .font(.system(size: 10, weight: .semibold))
+                                        .font(.app(size: 10, weight: .semibold))
                                         .foregroundColor(AppTheme.primaryGreen)
                                         .lineLimit(1)
                                 }

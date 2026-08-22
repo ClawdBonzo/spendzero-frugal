@@ -90,12 +90,12 @@ struct PaywallView: View {
 
                         VStack(spacing: 4) {
                             Text("SpendZero Pro")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .font(.app(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(AppTheme.textPrimary)
                                 Text(isHardPaywall
                                 ? "Subscribe to keep going"
                                 : "Keep everything you've built")
-                                .font(.system(size: 14))
+                                .font(.app(size: 14))
                                 .foregroundColor(AppTheme.textSecondary)
                                 .multilineTextAlignment(.center)
                         }
@@ -108,7 +108,7 @@ struct PaywallView: View {
                     if !isHardPaywall {
                         Button(action: onContinue) {
                             Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 26))
+                                .font(.app(size: 26))
                                 .foregroundColor(AppTheme.textTertiary.opacity(0.7))
                         }
                         .padding(.top, 16)
@@ -295,12 +295,12 @@ struct PremiumSubscriptionCard: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 5) {
                         Text(option.title)
-                            .font(.system(size: 15, weight: .semibold))
+                            .font(.app(size: 15, weight: .semibold))
                             .foregroundColor(AppTheme.textPrimary)
 
                         if option.hasFreeTrial {
                             Text("\(option.trialDays)-DAY FREE")
-                                .font(.system(size: 8, weight: .bold))
+                                .font(.app(size: 8, weight: .bold))
                                 .foregroundColor(AppTheme.primaryGreen)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2.5)
@@ -311,7 +311,7 @@ struct PremiumSubscriptionCard: View {
 
                         if option.isLifetime {
                             Text("PAY ONCE")
-                                .font(.system(size: 8, weight: .bold))
+                                .font(.app(size: 8, weight: .bold))
                                 .foregroundColor(AppTheme.accentGold)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2.5)
@@ -321,7 +321,7 @@ struct PremiumSubscriptionCard: View {
 
                         if let savingsPercent {
                             Text("SAVE \(savingsPercent)%")
-                                .font(.system(size: 8, weight: .bold))
+                                .font(.app(size: 8, weight: .bold))
                                 .foregroundColor(AppTheme.accentGold)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2.5)
@@ -332,7 +332,7 @@ struct PremiumSubscriptionCard: View {
                     }
 
                     Text(option.isLifetime ? "No recurring charges" : option.pricePerWeek)
-                        .font(.system(size: 11))
+                        .font(.app(size: 11))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
@@ -341,10 +341,10 @@ struct PremiumSubscriptionCard: View {
                 // Right: price
                 VStack(alignment: .trailing, spacing: 1) {
                     Text(option.price)
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .font(.app(size: 17, weight: .bold, design: .rounded))
                         .foregroundColor(isSelected ? AppTheme.primaryGreen : AppTheme.textPrimary)
                     Text(option.period)
-                        .font(.system(size: 10))
+                        .font(.app(size: 10))
                         .foregroundColor(AppTheme.textTertiary)
                 }
             }
@@ -366,7 +366,7 @@ struct PremiumSubscriptionCard: View {
             .overlay(alignment: .top) {
                 if option.isBestValue {
                     Text("BEST VALUE")
-                        .font(.system(size: 8.5, weight: .heavy))
+                        .font(.app(size: 8.5, weight: .heavy))
                         .foregroundColor(AppTheme.background)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 3)
@@ -393,9 +393,9 @@ private struct UrgencyBanner: View {
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: isCritical ? "exclamationmark.triangle.fill" : "clock.fill")
-                .font(.system(size: 13, weight: .bold))
+                .font(.app(size: 13, weight: .bold))
             Text(text)
-                .font(.system(size: 13, weight: .semibold))
+                .font(.app(size: 13, weight: .semibold))
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
@@ -442,15 +442,15 @@ private struct FeatureRow: View {
                     .fill(color.opacity(0.15))
                     .frame(width: 32, height: 32)
                 Image(systemName: icon)
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.app(size: 15, weight: .semibold))
                     .foregroundColor(color)
             }
             Text(text)
-                .font(.system(size: 14, weight: .medium))
+                .font(.app(size: 14, weight: .medium))
                 .foregroundColor(AppTheme.textPrimary)
             Spacer()
             Image(systemName: "checkmark")
-                .font(.system(size: 12, weight: .bold))
+                .font(.app(size: 12, weight: .bold))
                 .foregroundColor(AppTheme.primaryGreen)
         }
     }

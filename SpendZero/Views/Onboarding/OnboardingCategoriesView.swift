@@ -25,12 +25,12 @@ struct OnboardingCategoriesView: View {
 
                 VStack(spacing: 4) {
                     Text("Where does your money leak?")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .font(.app(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                         .multilineTextAlignment(.center)
 
                     Text("Select all that apply")
-                        .font(.system(size: 14))
+                        .font(.app(size: 14))
                         .foregroundColor(AppTheme.textSecondary)
                 }
                 .offset(y: showTitle ? 0 : 15)
@@ -72,7 +72,7 @@ struct OnboardingCategoriesView: View {
             VStack(spacing: 6) {
                 if !selected.isEmpty {
                     Text("\(selected.count) selected")
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.app(size: 13, weight: .medium))
                         .foregroundColor(AppTheme.primaryGreen)
                         .transition(.scale.combined(with: .opacity))
                 }
@@ -116,12 +116,12 @@ struct CategoryChip: View {
         Button(action: action) {
             VStack(spacing: 8) {
                 Image(systemName: category.icon)
-                    .font(.system(size: 24))
+                    .font(.app(size: 24))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : Color(hex: category.color))
                     .symbolEffect(.bounce, value: isSelected)
 
                 Text(LocalizedStringKey(category.rawValue))
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.app(size: 13, weight: .medium))
                     .foregroundColor(AppTheme.textPrimary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)

@@ -65,7 +65,7 @@ struct OnboardingLoadingView: View {
                 VStack(spacing: 12) {
                     HStack(spacing: 6) {
                         Image(systemName: "person.3.fill")
-                            .font(.system(size: 14))
+                            .font(.app(size: 14))
                             .foregroundColor(AppTheme.primaryGreen)
 
                         Text(socialProofFacts[currentFact])
@@ -146,18 +146,18 @@ struct LoadingProgressRow: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 10) {
                 Image(systemName: icon)
-                    .font(.system(size: 16))
+                    .font(.app(size: 16))
                     .foregroundColor(progress >= 1.0 ? AppTheme.primaryGreen : AppTheme.textSecondary)
 
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.app(size: 14, weight: .medium))
                     .foregroundColor(AppTheme.textPrimary)
 
                 Spacer()
 
                 if progress >= 1.0 {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 18))
+                        .font(.app(size: 18))
                         .foregroundColor(AppTheme.primaryGreen)
                         .transition(.scale.combined(with: .opacity))
                 }

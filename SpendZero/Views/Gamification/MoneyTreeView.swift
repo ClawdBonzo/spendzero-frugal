@@ -93,7 +93,7 @@ struct MoneyTreeView: View {
                     Spacer()
                     HStack(spacing: 6) {
                         Image(systemName: stageIcon)
-                            .font(.system(size: 16, weight: .semibold))
+                            .font(.app(size: 16, weight: .semibold))
                         Text(stageTitle)
                             .font(AppTheme.headlineFont)
                     }
@@ -274,7 +274,7 @@ struct ParticleView: View {
 
     var body: some View {
         Image(systemName: "dollarsign.circle.fill")
-            .font(.system(size: 12, weight: .bold))
+            .font(.app(size: 12, weight: .bold))
             .foregroundColor(AppTheme.accentGold)
             .shadow(color: AppTheme.accentGold.opacity(0.5), radius: 3)
             .position(position)

@@ -81,7 +81,7 @@ struct OnboardingSplashView: View {
                     // Floating sparkles around icon
                     ForEach(0..<6, id: \.self) { i in
                         Image(systemName: "sparkle")
-                            .font(.system(size: 12))
+                            .font(.app(size: 12))
                             .foregroundColor(AppTheme.accentGold.opacity(0.7))
                             .offset(sparkleOffset(for: i))
                             .opacity(showContent ? 0.8 : 0)
@@ -105,7 +105,7 @@ struct OnboardingSplashView: View {
                 // App name + tagline
                 VStack(spacing: 14) {
                     Text("SpendZero")
-                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                        .font(.app(size: 44, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
                         .shadow(color: AppTheme.primaryGreen.opacity(0.3), radius: 10)
                         .offset(y: showContent ? 0 : titleOffset)
@@ -113,7 +113,7 @@ struct OnboardingSplashView: View {
 
                     // Shimmering gradient tagline
                     Text("Start Your Wealth Journey")
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .font(.app(size: 18, weight: .semibold, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
                                 stops: [
@@ -129,7 +129,7 @@ struct OnboardingSplashView: View {
                         .opacity(showContent ? 1 : 0)
 
                     Text("Track no-spend days, crush impulse buys,\nand watch your savings grow")
-                        .font(.system(size: 15))
+                        .font(.app(size: 15))
                         .foregroundColor(AppTheme.textSecondary)
                         .multilineTextAlignment(.center)
                         .offset(y: showContent ? 0 : descOffset)

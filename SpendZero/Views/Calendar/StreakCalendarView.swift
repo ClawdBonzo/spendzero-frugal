@@ -23,6 +23,13 @@ struct StreakCalendarView: View {
         }
     }
 
+    /// Locale-aware, rotated so the first column matches `calendar.firstWeekday`.
+    private var weekdayHeaders: [String] {
+        let symbols = calendar.veryShortStandaloneWeekdaySymbols
+        let start = calendar.firstWeekday - 1
+        return Array(symbols[start...] + symbols[..<start])
+    }
+
     private var firstWeekday: Int {
         guard let first = monthDays.first else { return 0 }
         return (calendar.component(.weekday, from: first) - calendar.firstWeekday + 7) % 7
@@ -117,7 +124,7 @@ struct StreakCalendarView: View {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { changeMonth(by: -1) }
             } label: {
                 Image(systemName: "chevron.left")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(AppTheme.textSecondary)
             }
 
@@ -135,7 +142,7 @@ struct StreakCalendarView: View {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) { changeMonth(by: 1) }
             } label: {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(AppTheme.textSecondary)
             }
         }
@@ -148,7 +155,7 @@ struct StreakCalendarView: View {
         HStack(spacing: 0) {
             VStack(spacing: 4) {
                 Text("\(streakDaysThisMonth)")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.app(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.primaryGreen)
                     .contentTransition(.numericText())
                     .animation(.spring(response: 0.4), value: streakDaysThisMonth)
@@ -164,7 +171,7 @@ struct StreakCalendarView: View {
 
             VStack(spacing: 4) {
                 Text(monthTotal.currencyFormatted)
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.app(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.accentGold)
                     .contentTransition(.numericText())
                     .animation(.spring(response: 0.4), value: monthTotal)
@@ -187,9 +194,9 @@ struct StreakCalendarView: View {
         VStack(spacing: 8) {
             // Weekday headers
             HStack(spacing: 0) {
-                ForEach(["S", "M", "T", "W", "T", "F", "S"], id: \.self) { day in
+                ForEach(Array(weekdayHeaders.enumerated()), id: \.offset) { _, day in
                     Text(day)
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.app(size: 12, weight: .semibold))
                         .foregroundColor(AppTheme.textTertiary)
                         .frame(maxWidth: .infinity)
                 }
@@ -247,7 +254,7 @@ struct StreakCalendarView: View {
                 ForEach(Array(recentSavings)) { entry in
                     HStack(spacing: 12) {
                         Image(systemName: entry.source.icon)
-                            .font(.system(size: 16))
+                            .font(.app(size: 16))
                             .foregroundColor(AppTheme.primaryGreen)
                             .frame(width: 32, height: 32)
                             .background(
@@ -256,7 +263,7 @@ struct StreakCalendarView: View {
 
                         VStack(alignment: .leading, spacing: 2) {
                             Text(LocalizedStringKey(entry.source.rawValue))
-                                .font(.system(size: 14, weight: .medium))
+                                .font(.app(size: 14, weight: .medium))
                                 .foregroundColor(AppTheme.textPrimary)
                             Text(entry.date, format: .dateTime.month().day().hour().minute())
                                 .font(AppTheme.smallFont)
@@ -265,8 +272,8 @@ struct StreakCalendarView: View {
 
                         Spacer()
 
-                        Text("+$\(Int(entry.amount))")
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                        Text("+\(entry.amount.currencyFormatted)")
+                            .font(.app(size: 16, weight: .bold, design: .rounded))
                             .foregroundColor(AppTheme.primaryGreen)
                     }
                     .padding(10)
@@ -306,7 +313,7 @@ struct CalendarDayCell: View {
         } label: {
             VStack(spacing: 2) {
                 Text("\(day)")
-                    .font(.system(size: 14, weight: isToday ? .bold : .regular))
+                    .font(.app(size: 14, weight: isToday ? .bold : .regular))
                     .foregroundColor(dayColor)
 
                 if record?.isNoSpendDay == true {

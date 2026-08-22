@@ -183,11 +183,11 @@ struct SplashScreenView: View {
 
                 VStack(spacing: 8) {
                     Text("SpendZero")
-                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                        .font(.app(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.textPrimary)
 
                     Text("Build Financial Freedom")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .font(.app(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(AppTheme.primaryGreen)
                 }
                 .opacity(titleOpacity)

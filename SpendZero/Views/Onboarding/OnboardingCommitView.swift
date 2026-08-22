@@ -29,7 +29,7 @@ struct OnboardingCommitView: View {
                     .scaleEffect(flamePulse ? 1.15 : 1.0)
 
                 Image(systemName: "flame.fill")
-                    .font(.system(size: 64, weight: .bold))
+                    .font(.app(size: 64, weight: .bold))
                     .foregroundStyle(
                         LinearGradient(
                             colors: [AppTheme.accentGold, Color(hex: "FF6F00")],
@@ -46,13 +46,13 @@ struct OnboardingCommitView: View {
             // Title + subtitle
             VStack(spacing: 6) {
                 Text("How many days can you go no-spend?")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .font(.app(size: 22, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
 
                 Text("Start comfortable — you can always level up")
-                    .font(.system(size: 14))
+                    .font(.app(size: 14))
                     .foregroundColor(AppTheme.textSecondary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -133,7 +133,7 @@ struct CommitOptionCard: View {
         Button(action: action) {
             HStack(spacing: 14) {
                 Text("\(days)")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.app(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(isSelected ? AppTheme.primaryGreen : AppTheme.textSecondary)
                     .frame(width: 48)
                     .scaleEffect(isSelected ? 1.15 : 1.0)
@@ -141,12 +141,12 @@ struct CommitOptionCard: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack(spacing: 6) {
                         Text(label)
-                            .font(.system(size: 17, weight: .semibold))
+                            .font(.app(size: 17, weight: .semibold))
                             .foregroundColor(AppTheme.textPrimary)
 
                         if let badge {
                             Text(badge)
-                                .font(.system(size: 9, weight: .bold))
+                                .font(.app(size: 9, weight: .bold))
                                 .foregroundColor(AppTheme.background)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2)
@@ -156,7 +156,7 @@ struct CommitOptionCard: View {
                     }
 
                     Text("\(days) days no unnecessary spending")
-                        .font(.system(size: 13))
+                        .font(.app(size: 13))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
@@ -164,7 +164,7 @@ struct CommitOptionCard: View {
 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 24))
+                        .font(.app(size: 24))
                         .foregroundColor(AppTheme.primaryGreen)
                         .transition(.scale.combined(with: .opacity))
                 }

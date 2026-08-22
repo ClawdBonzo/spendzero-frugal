@@ -54,7 +54,7 @@ struct SettingsView: View {
 
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(profile?.displayName ?? "User")
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .font(.app(size: 18, weight: .semibold))
                                     .foregroundColor(AppTheme.textPrimary)
 
                                 Text("Member since \(profile?.createdAt ?? Date(), format: .dateTime.month(.abbreviated).year())")
@@ -336,7 +336,7 @@ struct SettingsRow: View {
                 .foregroundColor(AppTheme.textPrimary)
             Spacer()
             Text(value)
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .font(.app(size: 15, weight: .semibold, design: .rounded))
                 .foregroundColor(color)
         }
     }

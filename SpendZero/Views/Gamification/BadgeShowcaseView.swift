@@ -53,7 +53,7 @@ struct BadgeShowcaseView: View {
             if earnedBadges.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "medal")
-                        .font(.system(size: 32, weight: .semibold))
+                        .font(.app(size: 32, weight: .semibold))
                         .foregroundColor(AppTheme.textTertiary)
                     Text("No badges yet")
                         .font(AppTheme.bodyFont)
@@ -106,7 +106,7 @@ struct BadgeItemView: View {
                     .fill(badge.rarity.backgroundColor)
 
                 Image(systemName: badge.badgeID.icon)
-                    .font(.system(size: 28, weight: .semibold))
+                    .font(.app(size: 28, weight: .semibold))
                     .foregroundColor(badge.rarity.foregroundColor)
             }
             .frame(height: 80)
@@ -123,14 +123,14 @@ struct BadgeItemView: View {
 
             // Badge Name
             Text(LocalizedStringKey(badge.badgeID.rawValue))
-                .font(.system(size: 11, weight: .semibold))
+                .font(.app(size: 11, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
 
             // Rarity Label
             Text(badge.rarity.label)
-                .font(.system(size: 9, weight: .semibold))
+                .font(.app(size: 9, weight: .semibold))
                 .foregroundColor(badge.rarity.foregroundColor)
         }
     }
@@ -155,7 +155,7 @@ struct BadgeDetailView: View {
 
                 Button(action: { dismiss() }) {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 20, weight: .semibold))
+                        .font(.app(size: 20, weight: .semibold))
                         .foregroundColor(AppTheme.textTertiary)
                 }
             }
@@ -169,7 +169,7 @@ struct BadgeDetailView: View {
                             .fill(badge.rarity.backgroundColor)
 
                         Image(systemName: badge.badgeID.icon)
-                            .font(.system(size: 60, weight: .semibold))
+                            .font(.app(size: 60, weight: .semibold))
                             .foregroundColor(badge.rarity.foregroundColor)
                     }
                     .frame(height: 140)
@@ -224,7 +224,7 @@ struct BadgeDetailView: View {
                                     .font(AppTheme.smallFont)
                                     .foregroundColor(AppTheme.textTertiary)
                                 Text(badge.rarity.label.uppercased())
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(badge.rarity.foregroundColor)
                             }
                         }

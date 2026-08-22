@@ -186,9 +186,9 @@ struct DashboardView: View {
                         } label: {
                             HStack(spacing: 4) {
                                 Text("Lv. \(gameProfile.currentLevel)")
-                                    .font(.system(size: 12, weight: .semibold))
+                                    .font(.app(size: 12, weight: .semibold))
                                 Text(gameProfile.currentRank.title)
-                                    .font(.system(size: 10, weight: .semibold))
+                                    .font(.app(size: 10, weight: .semibold))
                             }
                             .foregroundColor(AppTheme.accentGold)
                             .padding(.vertical, 4)
@@ -218,11 +218,11 @@ struct DashboardView: View {
 
                 VStack(spacing: 0) {
                     Text("\(currentStreak)")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.app(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(AppTheme.primaryGreen)
                         .contentTransition(.numericText())
                     Text("days")
-                        .font(.system(size: 9, weight: .medium))
+                        .font(.app(size: 9, weight: .medium))
                         .foregroundColor(AppTheme.textSecondary)
                 }
             }
@@ -238,7 +238,7 @@ struct DashboardView: View {
                     .fill(AppTheme.primaryGreen.opacity(0.12))
                     .frame(width: 72, height: 72)
                 Image(systemName: "flag.checkered")
-                    .font(.system(size: 30, weight: .semibold))
+                    .font(.app(size: 30, weight: .semibold))
                     .foregroundColor(AppTheme.primaryGreen)
             }
 
@@ -260,7 +260,7 @@ struct DashboardView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "checkmark.seal.fill")
                     Text("Mark Today a No-Spend Day")
-                        .font(.system(size: 15, weight: .bold))
+                        .font(.app(size: 15, weight: .bold))
                 }
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity)
@@ -294,7 +294,7 @@ struct DashboardView: View {
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
                         Text("\(currentStreak)")
-                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .font(.app(size: 48, weight: .bold, design: .rounded))
                             .foregroundColor(AppTheme.primaryGreen)
                             .contentTransition(.numericText(countsDown: false))
                             .animation(.spring(response: 0.5), value: currentStreak)
@@ -310,15 +310,15 @@ struct DashboardView: View {
 
                 VStack(alignment: .trailing, spacing: 8) {
                     StreakFlamesView(currentStreak: currentStreak)
-                        .font(.system(size: 24))
+                        .font(.app(size: 24))
 
                     // Streak freezes — the safety net that protects a missed day.
                     if let freezes = profile?.streakFreezes, freezes > 0 {
                         HStack(spacing: 3) {
                             Image(systemName: "snowflake")
-                                .font(.system(size: 11, weight: .bold))
+                                .font(.app(size: 11, weight: .bold))
                             Text("\(freezes)")
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .font(.app(size: 12, weight: .bold, design: .rounded))
                         }
                         .foregroundColor(Color(hex: "60CFFF"))
                         .padding(.horizontal, 8)
@@ -471,7 +471,7 @@ struct DashboardView: View {
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text(impulse.item)
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.app(size: 14, weight: .medium))
                             .foregroundColor(AppTheme.textPrimary)
                         Text(LocalizedStringKey(impulse.category.rawValue))
                             .font(AppTheme.smallFont)
@@ -481,7 +481,7 @@ struct DashboardView: View {
                     Spacer()
 
                     Text(impulse.estimatedCost.currencyFormatted)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .font(.app(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(impulse.wasResisted ? AppTheme.primaryGreen : AppTheme.destructive)
                 }
                 .padding(12)
@@ -509,7 +509,7 @@ struct DashboardView: View {
 
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 10))
+                            .font(.app(size: 10))
                         Text("Earn XP")
                             .font(AppTheme.smallFont)
                     }
@@ -519,7 +519,7 @@ struct DashboardView: View {
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.app(size: 12, weight: .semibold))
                     .foregroundColor(AppTheme.textTertiary)
             }
             .padding(AppTheme.paddingMedium)
@@ -569,22 +569,22 @@ struct DashboardView: View {
         } label: {
             HStack(spacing: 10) {
                 Image(systemName: daysLeft <= 1 ? "exclamationmark.triangle.fill" : "clock.fill")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
                     .foregroundColor(daysLeft <= 1 ? AppTheme.accentGold : AppTheme.primaryGreen)
 
                 VStack(alignment: .leading, spacing: 1) {
                     Text(daysLeft <= 1 ? "Last free day" : "Free access: \(daysLeft) days left")
-                        .font(.system(size: 13, weight: .bold))
+                        .font(.app(size: 13, weight: .bold))
                         .foregroundColor(AppTheme.textPrimary)
                     Text("Tap to upgrade and keep your progress")
-                        .font(.system(size: 10))
+                        .font(.app(size: 10))
                         .foregroundColor(AppTheme.textSecondary)
                 }
 
                 Spacer()
 
                 Text("Upgrade")
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.app(size: 12, weight: .bold))
                     .foregroundColor(.black)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
@@ -676,17 +676,17 @@ struct StatCard: View {
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: icon)
-                .font(.system(size: 20))
+                .font(.app(size: 20))
                 .foregroundColor(color)
                 .symbolEffect(.pulse, value: appeared)
 
             Text(value)
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .font(.app(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(AppTheme.textPrimary)
                 .contentTransition(.numericText())
 
             Text(title)
-                .font(.system(size: 10, weight: .medium))
+                .font(.app(size: 10, weight: .medium))
                 .foregroundColor(AppTheme.textSecondary)
         }
         .frame(maxWidth: .infinity)
@@ -715,9 +715,9 @@ struct TodayActionButton: View {
         Button(action: action) {
             HStack(spacing: 8) {
                 Image(systemName: icon)
-                    .font(.system(size: 16))
+                    .font(.app(size: 16))
                 Text(title)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
             }
             .foregroundColor(color)
             .frame(maxWidth: .infinity)
@@ -739,11 +739,11 @@ struct QuickActionCard: View {
     var body: some View {
         VStack(spacing: 10) {
             Image(systemName: icon)
-                .font(.system(size: 24))
+                .font(.app(size: 24))
                 .foregroundColor(color)
 
             Text(title)
-                .font(.system(size: 13, weight: .semibold))
+                .font(.app(size: 13, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
         }
         .frame(maxWidth: .infinity)

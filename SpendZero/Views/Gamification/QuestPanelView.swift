@@ -71,7 +71,7 @@ struct QuestPanelView: View {
 
                                 if weeklyQuests.first?.isCompleted ?? false {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .font(.system(size: 14, weight: .semibold))
+                                        .font(.app(size: 14, weight: .semibold))
                                         .foregroundColor(AppTheme.primaryGreen)
                                 }
                             }
@@ -93,7 +93,7 @@ struct QuestPanelView: View {
                         let allCompleted = !gameProfile.quests.isEmpty
                         VStack(spacing: 12) {
                             Image(systemName: allCompleted ? "checkmark.circle.fill" : "sparkles")
-                                .font(.system(size: 32, weight: .semibold))
+                                .font(.app(size: 32, weight: .semibold))
                                 .foregroundColor(AppTheme.primaryGreen)
                             Text(allCompleted ? "All quests completed!" : "Fresh quests on the way")
                                 .font(AppTheme.bodyFont)
@@ -134,7 +134,7 @@ struct QuestCardView: View {
             HStack(alignment: .top, spacing: 12) {
                 // Completion state — quests complete automatically from real actions.
                 Image(systemName: quest.isCompleted ? "checkmark.circle.fill" : quest.type.icon)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.app(size: 18, weight: .semibold))
                     .foregroundColor(quest.isCompleted ? AppTheme.primaryGreen : AppTheme.textTertiary)
                     .accessibilityHidden(true)
 
@@ -150,7 +150,7 @@ struct QuestCardView: View {
 
                         // Difficulty Badge
                         Text(LocalizedStringKey(quest.difficulty.rawValue))
-                            .font(.system(size: 10, weight: .semibold))
+                            .font(.app(size: 10, weight: .semibold))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)

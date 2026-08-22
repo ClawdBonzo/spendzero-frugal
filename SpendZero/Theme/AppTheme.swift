@@ -50,12 +50,12 @@ enum AppTheme {
     )
 
     // MARK: - Typography
-    static let displayFont = Font.system(size: 34, weight: .bold, design: .rounded)
-    static let titleFont = Font.system(size: 28, weight: .bold, design: .rounded)
-    static let headlineFont = Font.system(size: 20, weight: .semibold, design: .rounded)
-    static let bodyFont = Font.system(size: 16, weight: .regular)
-    static let captionFont = Font.system(size: 13, weight: .medium)
-    static let smallFont = Font.system(size: 11, weight: .medium)
+    static let displayFont = Font.app(size: 34, weight: .bold, design: .rounded)
+    static let titleFont = Font.app(size: 28, weight: .bold, design: .rounded)
+    static let headlineFont = Font.app(size: 20, weight: .semibold, design: .rounded)
+    static let bodyFont = Font.app(size: 16, weight: .regular)
+    static let captionFont = Font.app(size: 13, weight: .medium)
+    static let smallFont = Font.app(size: 11, weight: .medium)
 
     // MARK: - Spacing
     static let paddingSmall: CGFloat = 8
@@ -94,5 +94,15 @@ extension Color {
             blue: Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+}
+
+// MARK: - Dynamic Type
+
+extension Font {
+    /// A system font whose point size follows the user's Dynamic Type setting (scaled with
+    /// `UIFontMetrics` relative to the `.body` style). Use instead of `.app(size:)`.
+    static func app(size: CGFloat, weight: Font.Weight = .regular, design: Font.Design = .default) -> Font {
+        Font.system(size: UIFontMetrics(forTextStyle: .body).scaledValue(for: size), weight: weight, design: design)
     }
 }

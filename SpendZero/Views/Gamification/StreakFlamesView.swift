@@ -26,7 +26,7 @@ struct StreakFlamesView: View {
         HStack(spacing: 3) {
             ForEach(0..<totalSlots, id: \.self) { index in
                 Image(systemName: "flame.fill")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.app(size: 14, weight: .semibold))
                     .foregroundColor(flameColor(for: index))
                     .scaleEffect(index < earnedFlames ? pulseScale : 1.0)
                     .animation(

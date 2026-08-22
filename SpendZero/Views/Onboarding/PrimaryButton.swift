@@ -13,11 +13,11 @@ struct PrimaryButton: View {
         } label: {
             HStack(spacing: 12) {
                 Text(title)
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .font(.app(size: 18, weight: .bold, design: .rounded))
 
                 if let icon {
                     Image(systemName: icon)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.app(size: 16, weight: .semibold))
                 }
             }
             .foregroundColor(isEnabled ? Color.black : AppTheme.textSecondary)
@@ -55,10 +55,10 @@ struct SecondaryButton: View {
             HStack(spacing: 8) {
                 if let icon {
                     Image(systemName: icon)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.app(size: 14, weight: .semibold))
                 }
                 Text(title)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.app(size: 16, weight: .semibold))
             }
             .foregroundColor(AppTheme.primaryGreen)
             .frame(maxWidth: .infinity)
