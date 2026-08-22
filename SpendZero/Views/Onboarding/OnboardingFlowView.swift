@@ -106,6 +106,9 @@ struct OnboardingFlowView: View {
         Task { @MainActor in
             let granted = await NotificationManager.shared.requestAuthorization()
             if granted {
+                // Keep Settings in sync so its toggle reflects what's actually scheduled.
+                UserDefaults.standard.set(true, forKey: "impulseAlertsEnabled")
+                UserDefaults.standard.set(19, forKey: "impulseAlertHour")
                 NotificationManager.shared.scheduleDailyReminder(hour: 19)
                 NotificationManager.shared.refreshRetentionNotifications(currentStreak: 0, loggedToday: false)
             }

@@ -86,6 +86,7 @@ enum GameEventType {
     case luckyBonus(xp: Int)
     case streakFrozen(daysUsed: Int)
     case streakFreezeEarned
+    case info(String)
 
     var title: String {
         switch self {
@@ -109,6 +110,8 @@ enum GameEventType {
             return "Streak Freeze Used 🧊"
         case .streakFreezeEarned:
             return "Streak Freeze Earned 🧊"
+        case .info(let text):
+            return text
         }
     }
 
@@ -136,6 +139,8 @@ enum GameEventType {
                 : "We covered \(days) missed days for you"
         case .streakFreezeEarned:
             return "Covers one missed day so your streak survives."
+        case .info:
+            return ""
         }
     }
 
@@ -159,6 +164,8 @@ enum GameEventType {
             return "sparkles"
         case .streakFrozen, .streakFreezeEarned:
             return "snowflake"
+        case .info:
+            return "info.circle.fill"
         }
     }
 
@@ -182,6 +189,8 @@ enum GameEventType {
             return AppTheme.accentGold
         case .streakFrozen, .streakFreezeEarned:
             return Color(hex: "60CFFF")
+        case .info:
+            return AppTheme.textSecondary
         }
     }
 
@@ -203,7 +212,7 @@ enum GameEventType {
             return nil
         case .luckyBonus(let xp):
             return xp
-        case .streakFrozen, .streakFreezeEarned:
+        case .streakFrozen, .streakFreezeEarned, .info:
             return nil
         }
     }
@@ -234,6 +243,8 @@ enum GameEventType {
             HapticManager.shared.trigger(.warning)
         case .streakFreezeEarned:
             HapticManager.shared.trigger(.badgeEarned)
+        case .info:
+            HapticManager.shared.trigger(.warning)
         }
     }
 }

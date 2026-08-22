@@ -10,6 +10,7 @@ struct MainTabView: View {
     @State private var selectedTab: AppTab = AppTab.initialFromLaunchArgs
     @State private var presenter = EventPresenter.shared
     @Query private var profiles: [UserProfile]
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         ZStack {
@@ -51,6 +52,13 @@ struct MainTabView: View {
         .onReceive(NotificationCenter.default.publisher(for: .spendZeroSelectTab)) { note in
             if let tab = note.object as? AppTab { selectedTab = tab }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .spendZeroPendingAction)) { _ in
+            routePendingAction()
+        }
+        .onAppear { routePendingAction() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { routePendingAction() }
+        }
 
         // Gamification feedback, rendered once for every tab.
         VStack(spacing: 12) {
@@ -72,6 +80,30 @@ struct MainTabView: View {
         }
         }
     }
+}
+
+extension MainTabView {
+    /// Quick actions, Siri and notification buttons queue an `AppAction`; land on the right tab
+    /// and tell that tab to open its sheet.
+    fileprivate func routePendingAction() {
+        guard let action = AppAction.dequeue() else { return }
+        switch action {
+        case .logSpending:
+            selectedTab = .logger
+        case .logImpulse:
+            selectedTab = .dashboard
+        case .markNoSpendDay:
+            selectedTab = .dashboard
+        }
+        // Let the tab switch land before the sheet presents.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            NotificationCenter.default.post(name: .spendZeroPerformAction, object: action)
+        }
+    }
+}
+
+extension Notification.Name {
+    static let spendZeroPerformAction = Notification.Name("spendZeroPerformAction")
 }
 
 enum AppTab: String, CaseIterable {

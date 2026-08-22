@@ -150,6 +150,9 @@ struct DashboardView: View {
         }
         .onAppear { refreshTodayState() }
         .onChange(of: dailyRecords.count) { _, _ in refreshTodayState() }
+        .onReceive(NotificationCenter.default.publisher(for: .spendZeroPerformAction)) { note in
+            if note.object as? AppAction == .logImpulse { showAddImpulse = true }
+        }
     }
 
     /// Whether the "Mark Win" button should be live, and what it should say.

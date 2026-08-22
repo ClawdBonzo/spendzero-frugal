@@ -74,12 +74,30 @@ final class ProgressEngine {
         return nil
     }
 
+    /// Mark a specific day (today or yesterday) as a no-spend day — used by the "Was yesterday a
+    /// win?" follow-up. Refuses anything older than yesterday or already covered by the streak.
+    @discardableResult
+    func logNoSpendDay(for day: Date, profile: UserProfile, context: ModelContext) -> Outcome? {
+        let cal = Calendar.current
+        let target = cal.startOfDay(for: day)
+        let today = cal.startOfDay(for: Date())
+        guard let yesterday = cal.date(byAdding: .day, value: -1, to: today),
+              target == today || target == yesterday else { return nil }
+        if target == yesterday, let last = profile.lastNoSpendDate, cal.startOfDay(for: last) >= yesterday {
+            return nil   // yesterday (or today) is already part of the streak
+        }
+        // Stamp the mark at the end of that day so ordering against other entries is sane.
+        let stamp = target == today ? Date() : (cal.date(byAdding: .second, value: -1, to: today) ?? target)
+        return logNoSpendDay(profile: profile, context: context, now: stamp)
+    }
+
     /// Mark today as a no-spend day. Returns nil (and does nothing) if today was already logged
     /// or if non-essential spending has been logged today.
     @discardableResult
     func logNoSpendDay(profile: UserProfile, context: ModelContext, now: Date = Date()) -> Outcome? {
         guard noSpendDayBlocker(profile: profile, context: context, now: now) == nil else { return nil }
         var outcome = Outcome()
+        if Calendar.current.isDateInToday(now) { NotificationManager.recordLogTime(Date()) }
 
         let record = todayRecord(context: context, now: now)
         record.isNoSpendDay = true

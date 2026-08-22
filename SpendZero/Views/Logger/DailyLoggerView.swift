@@ -109,6 +109,9 @@ struct DailyLoggerView: View {
             .sheet(isPresented: $showAddSpend) {
                 AddSpendingView()
             }
+            .onReceive(NotificationCenter.default.publisher(for: .spendZeroPerformAction)) { note in
+                if note.object as? AppAction == .logSpending { showAddSpend = true }
+            }
             .sheet(isPresented: $showAddImpulse) {
                 AddImpulseView()
             }

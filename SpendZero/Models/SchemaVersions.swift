@@ -18,6 +18,9 @@ enum SpendZeroMigrationPlan: SchemaMigrationPlan {
 }
 
 enum SpendZeroStore {
+    /// The live container, for code outside the SwiftUI environment (notification actions, intents).
+    @MainActor static var container: ModelContainer?
+
     /// Builds the production container. If the on-disk store cannot be opened (corruption or an
     /// incompatible schema), the broken store is moved aside and a fresh one created so the app
     /// still launches; the last-resort fallback is an in-memory store.

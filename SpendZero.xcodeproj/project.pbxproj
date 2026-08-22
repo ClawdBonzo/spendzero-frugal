@@ -54,6 +54,7 @@
 		95943617BB79743B187F8E96 /* WidgetShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */; };
 		97377B461BBBB384A2A4A086 /* SpendZeroWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C57002EC107A164B56101F3 /* SpendZeroWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9834C9CF188A5391E22BEBCE /* BadgeShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */; };
+		A17FC0E55E549A806DA421B4 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC42FCFC249D12179A43CEA /* AppActions.swift */; };
 		A4DE1B6FBF88717310B382D0 /* OnboardingCommitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CCB4A2B8841ECECADBCFB9 /* OnboardingCommitView.swift */; };
 		A605E42EEE8825976C8F088C /* WidgetSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF37808D802349C0272BEBC7 /* WidgetSync.swift */; };
 		A7D1DBF528222615F14D13C3 /* StreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F270064BE150B097019BF3F /* StreakTests.swift */; };
@@ -62,6 +63,7 @@
 		AE582BD59AE9D6838F9F34D2 /* EventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829003C19D842A035699C8AE /* EventPresenter.swift */; };
 		BF33031858245BE999DB01E9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF0D248185EBCE6886CF08 /* Quest.swift */; };
 		C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57D6186D37BE5300B245DB /* GameProfile.swift */; };
+		C13F44528932A8BD9452F128 /* SpendZeroShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D14450CE0AFCD6725EFD0F /* SpendZeroShortcuts.swift */; };
 		C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */; };
 		D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */; };
 		D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03861222FFCF94496BF9A45D /* StreakFlamesView.swift */; };
@@ -74,6 +76,8 @@
 		E28508AF7ECC85430D5FC363 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16601C3F13735DD7156B956 /* ExportView.swift */; };
 		EFC9993A1CE4C503FB377AAE /* DailyLoggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5981CF6F97E316CBD3D744 /* DailyLoggerView.swift */; };
 		F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */; };
+		F152D4D4AA60740FF8C6BC52 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC42FCFC249D12179A43CEA /* AppActions.swift */; };
+		F1890055280A1C44AE4C999E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B4A7EAF4E50B406670577 /* AppDelegate.swift */; };
 		FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */; };
 		FD5B6B3DEDC7A50C239359BF /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +124,7 @@
 		1E95CE6500554DA4C850511C /* GamificationHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationHubView.swift; sourceTree = "<group>"; };
 		2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2EBF0D248185EBCE6886CF08 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		302B4A7EAF4E50B406670577 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35119884772FB2E29193F5C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3C6FC1297582D632160FA571 /* SpendZeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroApp.swift; sourceTree = "<group>"; };
 		4045153BEF5A01B5364FF370 /* SpendZeroTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SpendZeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +163,7 @@
 		B83E41E299C05946D4C82088 /* StreakCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCalendarView.swift; sourceTree = "<group>"; };
 		B9C990AB56E38331022515E3 /* BadgeInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeInstance.swift; sourceTree = "<group>"; };
 		BCC9075089162C7C07D8735B /* MoneyTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTreeView.swift; sourceTree = "<group>"; };
+		BDC42FCFC249D12179A43CEA /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
 		C2267198B2DFB412FDC856BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C23381E0714D705C857E32E4 /* LevelUpCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelUpCelebrationView.swift; sourceTree = "<group>"; };
 		C336B4C453750944A6F6EB0E /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		DF3EADC2A53B7B0387A0202F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		E048E221D51203BFFB86868B /* GameMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMathTests.swift; sourceTree = "<group>"; };
 		E06CAF9077B393F1B4FB505A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E3D14450CE0AFCD6725EFD0F /* SpendZeroShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroShortcuts.swift; sourceTree = "<group>"; };
 		E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressView.swift; sourceTree = "<group>"; };
 		E6D925E506CA9C841A256760 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		EE2D0208F363FCFED8A4471B /* SavingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsEntry.swift; sourceTree = "<group>"; };
@@ -263,6 +270,7 @@
 		294F1244998558E7CC5E29F6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BDC42FCFC249D12179A43CEA /* AppActions.swift */,
 				F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */,
 			);
 			path = Shared;
@@ -350,8 +358,10 @@
 		7C848FF43322D066E2A3A47E /* App */ = {
 			isa = PBXGroup;
 			children = (
+				302B4A7EAF4E50B406670577 /* AppDelegate.swift */,
 				C8FA51FA7E1487501B2D7CB6 /* RootView.swift */,
 				3C6FC1297582D632160FA571 /* SpendZeroApp.swift */,
+				E3D14450CE0AFCD6725EFD0F /* SpendZeroShortcuts.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -596,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F152D4D4AA60740FF8C6BC52 /* AppActions.swift in Sources */,
 				7A045D9351C438AA580D9AB4 /* SpendZeroWidget.swift in Sources */,
 				95943617BB79743B187F8E96 /* WidgetShared.swift in Sources */,
 			);
@@ -607,6 +618,8 @@
 			files = (
 				4E7A6A6087F9318415AE88BE /* AddImpulseView.swift in Sources */,
 				11CE4856305A0E5FA1B7220A /* AddSpendingView.swift in Sources */,
+				A17FC0E55E549A806DA421B4 /* AppActions.swift in Sources */,
+				F1890055280A1C44AE4C999E /* AppDelegate.swift in Sources */,
 				D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */,
 				0D01AE72809063EA5272C116 /* BadgeInstance.swift in Sources */,
 				9834C9CF188A5391E22BEBCE /* BadgeShowcaseView.swift in Sources */,
@@ -653,6 +666,7 @@
 				957A840F6713C4916DD03F1C /* SettingsView.swift in Sources */,
 				019F187E393F6AC4323BEFCC /* ShareCardView.swift in Sources */,
 				506BEE36A204D50682E980FB /* SpendZeroApp.swift in Sources */,
+				C13F44528932A8BD9452F128 /* SpendZeroShortcuts.swift in Sources */,
 				5202C01DA9FCF002D067EF48 /* SpendingLog.swift in Sources */,
 				370D33D14331238B809CA22F /* StreakCalendarView.swift in Sources */,
 				D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */,

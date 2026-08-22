@@ -1,5 +1,6 @@
 import WidgetKit
 import SwiftUI
+import AppIntents
 
 // MARK: - Shared App Group store
 
@@ -10,7 +11,8 @@ private enum WidgetStore {
             date: Date(),
             totalSaved: d?.double(forKey: WidgetShared.Key.totalSaved) ?? 0,
             currentStreak: d?.integer(forKey: WidgetShared.Key.currentStreak) ?? 0,
-            isNoSpendDay: d?.object(forKey: WidgetShared.Key.isNoSpendDay) as? Bool ?? true
+            isNoSpendDay: d?.object(forKey: WidgetShared.Key.isNoSpendDay) as? Bool ?? true,
+            loggedToday: d?.bool(forKey: WidgetShared.Key.loggedToday) ?? false
         )
     }
 }
@@ -19,13 +21,13 @@ private enum WidgetStore {
 
 struct SavingsProvider: TimelineProvider {
     func placeholder(in context: Context) -> SavingsWidgetEntry {
-        SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true)
+        SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true, loggedToday: false)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SavingsWidgetEntry) -> Void) {
         // In a gallery/snapshot context, show aspirational sample data.
         if context.isPreview {
-            completion(SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true))
+            completion(SavingsWidgetEntry(date: Date(), totalSaved: 847, currentStreak: 12, isNoSpendDay: true, loggedToday: false))
         } else {
             completion(WidgetStore.entry())
         }
@@ -33,9 +35,14 @@ struct SavingsProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SavingsWidgetEntry>) -> Void) {
         let entry = WidgetStore.entry()
-        // Refresh ~hourly; the app also force-reloads on data changes.
-        let next = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date().addingTimeInterval(3600)
-        completion(Timeline(entries: [entry], policy: .after(next)))
+        // Refresh at the next hour and again at midnight (so "Logged ✓" resets); the app
+        // also force-reloads on every data change.
+        let cal = Calendar.current
+        let nextHour = cal.date(byAdding: .hour, value: 1, to: Date()) ?? Date().addingTimeInterval(3600)
+        let midnight = cal.startOfDay(for: cal.date(byAdding: .day, value: 1, to: Date()) ?? Date())
+        let resetEntry = SavingsWidgetEntry(date: midnight, totalSaved: entry.totalSaved,
+                                            currentStreak: entry.currentStreak, isNoSpendDay: true, loggedToday: false)
+        completion(Timeline(entries: [entry, resetEntry], policy: .after(min(nextHour, midnight))))
     }
 
     typealias Entry = SavingsWidgetEntry
@@ -46,6 +53,7 @@ struct SavingsWidgetEntry: TimelineEntry {
     let totalSaved: Double
     let currentStreak: Int
     let isNoSpendDay: Bool
+    let loggedToday: Bool
 }
 
 // MARK: - Widget Views
@@ -60,6 +68,12 @@ struct SavingsWidgetView: View {
             smallWidget
         case .systemMedium:
             mediumWidget
+        case .accessoryCircular:
+            accessoryCircular
+        case .accessoryRectangular:
+            accessoryRectangular
+        case .accessoryInline:
+            Text("🔥 \(entry.currentStreak)-day streak · \(entry.totalSaved.widgetCurrency) saved")
         default:
             smallWidget
         }
@@ -95,10 +109,39 @@ struct SavingsWidgetView: View {
                 Text("\(entry.currentStreak) day streak")
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(.secondary)
+                Spacer(minLength: 0)
+                MarkTodayButton(entry: entry, compact: true)
             }
         }
         .padding()
         .containerBackground(.fill.tertiary, for: .widget)
+    }
+
+    private var accessoryCircular: some View {
+        ZStack {
+            AccessoryWidgetBackground()
+            VStack(spacing: 0) {
+                Image(systemName: entry.loggedToday ? "checkmark.seal.fill" : "flame.fill")
+                    .font(.system(size: 14, weight: .bold))
+                Text("\(entry.currentStreak)")
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+            }
+        }
+        .widgetAccentable()
+    }
+
+    private var accessoryRectangular: some View {
+        HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(entry.totalSaved.widgetCurrency)
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .widgetAccentable()
+                Text("\(entry.currentStreak)-day streak")
+                    .font(.system(size: 12, weight: .medium))
+            }
+            Spacer(minLength: 0)
+            MarkTodayButton(entry: entry, compact: true)
+        }
     }
 
     private var mediumWidget: some View {
@@ -145,17 +188,53 @@ struct SavingsWidgetView: View {
                     Image(systemName: entry.isNoSpendDay ? "checkmark.circle.fill" : "xmark.circle.fill")
                         .foregroundColor(entry.isNoSpendDay ? Color(hex: "00E676") : Color(hex: "FF5252"))
                     VStack(alignment: .leading) {
-                        Text(entry.isNoSpendDay ? "On Track" : "Spent")
+                        Text(entry.isNoSpendDay ? (entry.loggedToday ? "Logged" : "On Track") : "Spent")
                             .font(.system(size: 14, weight: .semibold))
                         Text("Today")
                             .font(.system(size: 10))
                             .foregroundColor(.secondary)
                     }
                 }
+
+                MarkTodayButton(entry: entry, compact: false)
             }
         }
         .padding()
         .containerBackground(.fill.tertiary, for: .widget)
+    }
+}
+
+// MARK: - One-tap "mark today" button
+
+/// The core loop without opening the app. Disabled once today is logged or has spending.
+struct MarkTodayButton: View {
+    let entry: SavingsWidgetEntry
+    let compact: Bool
+
+    private var isEnabled: Bool { !entry.loggedToday && entry.isNoSpendDay }
+
+    var body: some View {
+        Button(intent: MarkNoSpendDayIntent()) {
+            if compact {
+                Image(systemName: entry.loggedToday ? "checkmark.circle.fill" : "plus.circle.fill")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(isEnabled ? Color(hex: "00E676") : .secondary)
+            } else {
+                HStack(spacing: 4) {
+                    Image(systemName: entry.loggedToday ? "checkmark.circle.fill" : "checkmark.seal.fill")
+                    Text(entry.loggedToday ? "Logged ✓" : "Mark No-Spend")
+                }
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundColor(isEnabled ? .black : .secondary)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(isEnabled ? Color(hex: "00E676") : Color.secondary.opacity(0.2))
+                .clipShape(Capsule())
+            }
+        }
+        .buttonStyle(.plain)
+        .disabled(!isEnabled)
+        .accessibilityLabel(entry.loggedToday ? "Today already logged" : "Mark today a no-spend day")
     }
 }
 
@@ -169,8 +248,8 @@ struct SpendZeroSavingsWidget: Widget {
             SavingsWidgetView(entry: entry)
         }
         .configurationDisplayName("Savings Glance")
-        .description("See your total savings and current streak at a glance.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .description("Your savings and streak, with a one-tap no-spend day button.")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
 
