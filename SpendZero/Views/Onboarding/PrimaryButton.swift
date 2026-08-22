@@ -1,10 +1,26 @@
 import SwiftUI
 
 struct PrimaryButton: View {
-    let title: String
-    var icon: String? = nil
-    var isEnabled: Bool = true
-    let action: () -> Void
+    private let title: Text
+    private let icon: String?
+    private let isEnabled: Bool
+    private let action: () -> Void
+
+    /// Literal titles are looked up in Localizable.strings.
+    init(title: LocalizedStringKey, icon: String? = nil, isEnabled: Bool = true, action: @escaping () -> Void) {
+        self.title = Text(title)
+        self.icon = icon
+        self.isEnabled = isEnabled
+        self.action = action
+    }
+
+    /// For titles that are already localized at runtime (e.g. built with `String(localized:)`).
+    init(verbatimTitle: String, icon: String? = nil, isEnabled: Bool = true, action: @escaping () -> Void) {
+        self.title = Text(verbatim: verbatimTitle)
+        self.icon = icon
+        self.isEnabled = isEnabled
+        self.action = action
+    }
 
     var body: some View {
         Button {
@@ -12,7 +28,7 @@ struct PrimaryButton: View {
             action()
         } label: {
             HStack(spacing: 12) {
-                Text(title)
+                title
                     .font(.app(size: 18, weight: .bold, design: .rounded))
 
                 if let icon {
@@ -43,7 +59,7 @@ struct PrimaryButton: View {
 }
 
 struct SecondaryButton: View {
-    let title: String
+    let title: LocalizedStringKey
     var icon: String? = nil
     let action: () -> Void
 

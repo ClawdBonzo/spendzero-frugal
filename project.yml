@@ -81,6 +81,7 @@ targets:
       - path: SpendZeroWidget/PrivacyInfo.xcprivacy
       - path: SpendZero/Assets.xcassets
       - path: SpendZero/Shared
+      - path: Resources
     info:
       path: SpendZeroWidget/Info.plist
       properties:

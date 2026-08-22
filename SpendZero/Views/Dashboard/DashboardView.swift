@@ -176,7 +176,7 @@ struct DashboardView: View {
                     .foregroundColor(AppTheme.textSecondary)
 
                 HStack(spacing: 8) {
-                    Text(profile?.displayName ?? "Champion")
+                    Text(profile?.displayName ?? String(localized: "Champion"))
                         .font(AppTheme.titleFont)
                         .foregroundColor(AppTheme.textPrimary)
 
@@ -667,7 +667,7 @@ struct DashboardView: View {
 // MARK: - Subviews
 
 struct StatCard: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String
     let icon: String
     let color: Color
@@ -707,7 +707,7 @@ struct StatCard: View {
 
 struct TodayActionButton: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey
     let color: Color
     let action: () -> Void
 
@@ -733,7 +733,7 @@ struct TodayActionButton: View {
 
 struct QuickActionCard: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey
     let color: Color
 
     var body: some View {

@@ -54,7 +54,7 @@ struct GamificationHubView: View {
 
                             StatTile(
                                 label: "Next Level",
-                                value: "\(gameProfile.xpThresholdForNextLevel - gameProfile.currentXP) XP",
+                                value: String(localized: "\(gameProfile.xpThresholdForNextLevel - gameProfile.currentXP) XP"),
                                 icon: "star.fill",
                                 color: AppTheme.primaryGreen
                             )
@@ -210,7 +210,7 @@ struct GamificationHubView: View {
 // MARK: - Stat Tile Component
 
 struct StatTile: View {
-    let label: String
+    let label: LocalizedStringKey
     let value: String
     let icon: String
     let color: Color

@@ -32,7 +32,7 @@ struct ChallengeLibraryView: View {
                             }
                             ForEach(ChallengeCategory.allCases, id: \.self) { cat in
                                 CategoryFilterChip(
-                                    title: cat.rawValue,
+                                    title: LocalizedStringKey(cat.rawValue),
                                     isSelected: selectedCategory == cat
                                 ) {
                                     selectedCategory = cat
@@ -152,7 +152,7 @@ struct ActiveChallengeCard: View {
                             .frame(width: 6, height: 6)
                     }
 
-                    Text(challenge.title)
+                    Text(LocalizedStringKey(challenge.title))
                         .font(AppTheme.headlineFont)
                         .foregroundColor(AppTheme.textPrimary)
                 }
@@ -189,7 +189,7 @@ struct ActiveChallengeCard: View {
             }
 
             HStack {
-                Label("Est. savings: $\(Int(challenge.estimatedSavings))", systemImage: "dollarsign.circle.fill")
+                Label("Est. savings: \(challenge.estimatedSavings.currencyFormatted)", systemImage: "dollarsign.circle.fill")
                     .font(AppTheme.smallFont)
                     .foregroundColor(AppTheme.accentGold)
                 Spacer()
@@ -219,7 +219,7 @@ struct ChallengeCard: View {
                     .foregroundColor(Color(hex: challenge.difficulty.color))
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(challenge.title)
+                    Text(LocalizedStringKey(challenge.title))
                         .font(.app(size: 16, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 
@@ -247,13 +247,13 @@ struct ChallengeCard: View {
                 }
             }
 
-            Text(challenge.challengeDescription)
+            Text(LocalizedStringKey(challenge.challengeDescription))
                 .font(AppTheme.captionFont)
                 .foregroundColor(AppTheme.textSecondary)
                 .lineLimit(2)
 
             HStack {
-                Label("Save ~$\(Int(challenge.estimatedSavings))", systemImage: "dollarsign.circle")
+                Label("Save ~\(challenge.estimatedSavings.currencyFormatted)", systemImage: "dollarsign.circle")
                     .font(AppTheme.smallFont)
                     .foregroundColor(AppTheme.accentGold)
 
@@ -281,7 +281,7 @@ struct ChallengeCard: View {
 }
 
 struct CategoryFilterChip: View {
-    let title: String
+    let title: LocalizedStringKey
     let isSelected: Bool
     let action: () -> Void
 

@@ -141,7 +141,7 @@ struct LevelUpCelebrationView: View {
                 VStack(spacing: 10) {
                     // Share at the peak emotional moment.
                     AchievementShareButton(
-                        message: "I just hit Level \(newLevel) — \(rank.title) — on my no-spend journey with SpendZero! 💪 Building real savings one day at a time.",
+                        message: String(localized: "I just hit Level \(newLevel) — \(rank.title) — on my no-spend journey with SpendZero! 💪 Building real savings one day at a time."),
                         tint: AppTheme.accentGold
                     )
 

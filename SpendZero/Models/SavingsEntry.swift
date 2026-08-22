@@ -31,6 +31,8 @@ enum SavingsSource: String, Codable, CaseIterable {
     case mealPrepped = "Meal Prepped"
     case manual = "Manual Entry"
 
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     var icon: String {
         switch self {
         case .noSpendDay: return "checkmark.seal.fill"

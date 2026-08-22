@@ -106,17 +106,17 @@ final class Quest {
 
         switch type {
         case .noSpendDays:
-            return "\(current)/\(target) days"
+            return String(localized: "\(current)/\(target) days")
         case .impulseResist:
-            return "\(current)/\(target) impulses"
+            return String(localized: "\(current)/\(target) impulses")
         case .savingsGoal:
             return "\(currentProgress.currencyFormatted)/\(targetValue.currencyFormatted)"
         case .challengeComplete:
-            return "\(current)/\(target) challenges"
+            return String(localized: "\(current)/\(target) challenges")
         case .streakMaintain:
-            return "\(current)/\(target) days"
+            return String(localized: "\(current)/\(target) days")
         case .categoryControl:
-            return "\(current)/\(target) resisted"
+            return String(localized: "\(current)/\(target) resisted")
         }
     }
 }
@@ -131,6 +131,9 @@ enum QuestType: String, Codable, CaseIterable, Identifiable {
     case categoryControl = "Category Control"
 
     var id: String { rawValue }
+
+    /// Display name looked up in Localizable.strings (raw values are persisted, so they stay English).
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
 
     var icon: String {
         switch self {
@@ -152,17 +155,17 @@ enum QuestType: String, Codable, CaseIterable, Identifiable {
     var description: String {
         switch self {
         case .noSpendDays:
-            return "Complete days without spending"
+            return String(localized: "Complete days without spending")
         case .impulseResist:
-            return "Resist impulse purchases"
+            return String(localized: "Resist impulse purchases")
         case .savingsGoal:
-            return "Save a target amount"
+            return String(localized: "Save a target amount")
         case .challengeComplete:
-            return "Complete active challenges"
+            return String(localized: "Complete active challenges")
         case .streakMaintain:
-            return "Maintain your no-spend streak"
+            return String(localized: "Maintain your no-spend streak")
         case .categoryControl:
-            return "Control spending in a category"
+            return String(localized: "Control spending in a category")
         }
     }
 }
@@ -172,6 +175,8 @@ enum QuestDifficulty: String, Codable, CaseIterable {
     case easy = "Easy"
     case medium = "Medium"
     case hard = "Hard"
+
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
 
     var baseXP: Int {
         switch self {

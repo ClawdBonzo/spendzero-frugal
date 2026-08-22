@@ -53,7 +53,7 @@ struct SettingsView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(profile?.displayName ?? "User")
+                                Text(profile?.displayName ?? String(localized: "User"))
                                     .font(.app(size: 18, weight: .semibold))
                                     .foregroundColor(AppTheme.textPrimary)
 
@@ -67,8 +67,8 @@ struct SettingsView: View {
 
                     // Stats Section
                     Section("Your Stats") {
-                        SettingsRow(icon: "flame.fill", title: "Current Streak", value: "\(profile?.currentStreak ?? 0) days", color: AppTheme.accentGold)
-                        SettingsRow(icon: "trophy.fill", title: "Longest Streak", value: "\(profile?.longestStreak ?? 0) days", color: AppTheme.primaryGreen)
+                        SettingsRow(icon: "flame.fill", title: "Current Streak", value: String(localized: "\(profile?.currentStreak ?? 0) days"), color: AppTheme.accentGold)
+                        SettingsRow(icon: "trophy.fill", title: "Longest Streak", value: String(localized: "\(profile?.longestStreak ?? 0) days"), color: AppTheme.primaryGreen)
                         SettingsRow(icon: "banknote.fill", title: "Total Saved", value: (profile?.totalSaved ?? 0).currencyFormatted, color: AppTheme.primaryGreen)
                     }
                     .listRowBackground(AppTheme.cardBackground)
@@ -324,7 +324,7 @@ struct SettingsView: View {
 
 struct SettingsRow: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey
     let value: String
     let color: Color
 

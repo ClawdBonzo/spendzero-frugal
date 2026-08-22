@@ -153,7 +153,7 @@ struct ExportView: View {
                 .font: UIFont.systemFont(ofSize: 28, weight: .bold),
                 .foregroundColor: UIColor.black
             ]
-            let title = "SpendZero Savings Report"
+            let title = String(localized: "SpendZero Savings Report")
             title.draw(at: CGPoint(x: margin, y: yOffset), withAttributes: titleAttrs)
             yOffset += 40
 
@@ -162,12 +162,12 @@ struct ExportView: View {
                 .font: UIFont.systemFont(ofSize: 14),
                 .foregroundColor: UIColor.darkGray
             ]
-            let dateStr = "Generated \(Date().formatted(date: .abbreviated, time: .shortened))"
+            let dateStr = String(localized: "Generated \(Date().formatted(date: .abbreviated, time: .shortened))")
             dateStr.draw(at: CGPoint(x: margin, y: yOffset), withAttributes: subtitleAttrs)
             yOffset += 30
 
             if let name = profile?.displayName {
-                "Prepared for: \(name)".draw(at: CGPoint(x: margin, y: yOffset), withAttributes: subtitleAttrs)
+                String(localized: "Prepared for: \(name)").draw(at: CGPoint(x: margin, y: yOffset), withAttributes: subtitleAttrs)
                 yOffset += 40
             }
 
@@ -181,17 +181,18 @@ struct ExportView: View {
                 .foregroundColor: UIColor.black
             ]
 
-            "Summary (\(selectedRange.rawValue))".draw(at: CGPoint(x: margin, y: yOffset), withAttributes: headerAttrs)
+            let rangeName = String(localized: String.LocalizationValue(selectedRange.rawValue))
+            String(localized: "Summary (\(rangeName))").draw(at: CGPoint(x: margin, y: yOffset), withAttributes: headerAttrs)
             yOffset += 30
 
             let stats = [
-                "Total Saved: $\(Int(filteredSavingsTotal))",
-                "Total Spent: $\(Int(filteredSpendingTotal))",
-                "Net Savings: $\(Int(filteredSavingsTotal - filteredSpendingTotal))",
-                "No-Spend Days: \(filteredNoSpendDays)",
-                "Impulses Resisted: \(filteredImpulsesResisted)",
-                "Current Streak: \(profile?.currentStreak ?? 0) days",
-                "Longest Streak: \(profile?.longestStreak ?? 0) days"
+                String(localized: "Total Saved: \(filteredSavingsTotal.currencyFormatted)"),
+                String(localized: "Total Spent: \(filteredSpendingTotal.currencyFormatted)"),
+                String(localized: "Net Savings: \((filteredSavingsTotal - filteredSpendingTotal).currencyFormatted)"),
+                String(localized: "No-Spend Days: \(filteredNoSpendDays)"),
+                String(localized: "Impulses Resisted: \(filteredImpulsesResisted)"),
+                String(localized: "Current Streak: \(profile?.currentStreak ?? 0) days"),
+                String(localized: "Longest Streak: \(profile?.longestStreak ?? 0) days")
             ]
 
             for stat in stats {
@@ -202,22 +203,22 @@ struct ExportView: View {
             yOffset += 20
 
             // Top spending categories
-            "Top Spending Categories".draw(at: CGPoint(x: margin, y: yOffset), withAttributes: headerAttrs)
+            String(localized: "Top Spending Categories").draw(at: CGPoint(x: margin, y: yOffset), withAttributes: headerAttrs)
             yOffset += 30
 
             let filteredSpending = cutoffDate.map { cutoff in spending.filter { $0.date >= cutoff } } ?? spending
             let categoryTotals = Dictionary(grouping: filteredSpending, by: \.category)
-                .map { (category: $0.key.rawValue, total: $0.value.reduce(0) { $0 + $1.amount }) }
+                .map { (category: $0.key.localizedName, total: $0.value.reduce(0) { $0 + $1.amount }) }
                 .sorted { $0.total > $1.total }
                 .prefix(5)
 
             for item in categoryTotals {
-                "\(item.category): $\(Int(item.total))".draw(at: CGPoint(x: margin + 10, y: yOffset), withAttributes: bodyAttrs)
+                "\(item.category): \(item.total.currencyFormatted)".draw(at: CGPoint(x: margin + 10, y: yOffset), withAttributes: bodyAttrs)
                 yOffset += 22
             }
 
             if categoryTotals.isEmpty {
-                "No spending data for this period".draw(at: CGPoint(x: margin + 10, y: yOffset), withAttributes: subtitleAttrs)
+                String(localized: "No spending data for this period").draw(at: CGPoint(x: margin + 10, y: yOffset), withAttributes: subtitleAttrs)
             }
 
             // Footer
@@ -226,7 +227,7 @@ struct ExportView: View {
                 .font: UIFont.systemFont(ofSize: 10),
                 .foregroundColor: UIColor.gray
             ]
-            "SpendZero - Your data stays on your device. Always private.".draw(at: CGPoint(x: margin, y: footerY), withAttributes: footerAttrs)
+            String(localized: "SpendZero - Your data stays on your device. Always private.").draw(at: CGPoint(x: margin, y: footerY), withAttributes: footerAttrs)
         }
 
         let stamp = Date().formatted(.iso8601.year().month().day().dateSeparator(.dash))
@@ -242,7 +243,7 @@ struct ExportView: View {
 }
 
 struct ExportPreviewRow: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String
     let icon: String
     let color: Color

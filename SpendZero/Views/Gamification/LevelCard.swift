@@ -69,7 +69,7 @@ struct LevelCard: View {
 
                 // XP Text
                 HStack {
-                    Text(String(gameProfile.currentXP) + "/" + String(nextLevelXP) + " XP")
+                    Text("\(gameProfile.currentXP)/\(nextLevelXP) XP")
                         .font(AppTheme.smallFont)
                         .foregroundColor(AppTheme.textSecondary)
 
@@ -98,7 +98,7 @@ struct LevelCard: View {
                             Text("Next Level")
                                 .font(AppTheme.smallFont)
                                 .foregroundColor(AppTheme.textTertiary)
-                            Text("Level \(gameProfile.currentLevel + 1): " + (LevelRank(rawValue: gameProfile.currentLevel + 1)?.title ?? ""))
+                            Text("Level \(gameProfile.currentLevel + 1): \(LevelRank(rawValue: gameProfile.currentLevel + 1)?.title ?? "")")
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(AppTheme.textPrimary)
                         }

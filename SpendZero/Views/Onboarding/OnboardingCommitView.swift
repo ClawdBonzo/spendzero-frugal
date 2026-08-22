@@ -115,7 +115,7 @@ struct CommitOptionCard: View {
     let isSelected: Bool
     let action: () -> Void
 
-    private var label: String {
+    private var label: LocalizedStringKey {
         switch days {
         case 7: return "Starter"
         case 14: return "Building Momentum"
@@ -125,7 +125,7 @@ struct CommitOptionCard: View {
         }
     }
 
-    private var badge: String? {
+    private var badge: LocalizedStringKey? {
         days == 30 ? "POPULAR" : nil
     }
 

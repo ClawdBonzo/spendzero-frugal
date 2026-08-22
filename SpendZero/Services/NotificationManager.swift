@@ -67,10 +67,14 @@ final class NotificationManager {
     }
 
     private let messages: [(title: String, body: String)] = [
-        ("Pause before you spend 🧘", "Take a breath. Is this a need or an impulse? Your streak is worth protecting."),
-        ("Stay on track today 💚", "Every dollar not spent is a dollar saved. Resist the impulse and log your win."),
-        ("Beat the urge ⚡️", "Impulse buys fade in minutes. Open SpendZero and remind yourself why you started."),
-        ("Protect your streak 🔥", "Don't break the chain. A no-spend day keeps your momentum alive.")
+        (String(localized: "Pause before you spend 🧘"),
+         String(localized: "Take a breath. Is this a need or an impulse? Your streak is worth protecting.")),
+        (String(localized: "Stay on track today 💚"),
+         String(localized: "Every dollar not spent is a dollar saved. Resist the impulse and log your win.")),
+        (String(localized: "Beat the urge ⚡️"),
+         String(localized: "Impulse buys fade in minutes. Open SpendZero and remind yourself why you started.")),
+        (String(localized: "Protect your streak 🔥"),
+         String(localized: "Don't break the chain. A no-spend day keeps your momentum alive."))
     ]
 
     /// Ask the OS for permission. Returns whether it was granted.
@@ -188,11 +192,11 @@ final class NotificationManager {
 
         let content = UNMutableNotificationContent()
         if currentStreak > 0 {
-            content.title = "Your \(currentStreak)-day streak is waiting 🔥"
-            content.body = "You haven't checked in. Log a no-spend day to keep your streak alive."
+            content.title = String(localized: "Your \(currentStreak)-day streak is waiting 🔥")
+            content.body = String(localized: "You haven't checked in. Log a no-spend day to keep your streak alive.")
         } else {
-            content.title = "Your savings are waiting 💚"
-            content.body = "Jump back in — log a no-spend day and start a fresh streak today."
+            content.title = String(localized: "Your savings are waiting 💚")
+            content.body = String(localized: "Jump back in — log a no-spend day and start a fresh streak today.")
         }
         content.sound = .default
 

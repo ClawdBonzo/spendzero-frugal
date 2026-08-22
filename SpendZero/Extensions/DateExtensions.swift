@@ -34,10 +34,10 @@ extension Date {
     }
 
     var relativeDescription: String {
-        if isToday { return "Today" }
-        if isYesterday { return "Yesterday" }
+        if isToday { return String(localized: "Today") }
+        if isYesterday { return String(localized: "Yesterday") }
         let days = daysAgo
-        if days < 7 { return "\(days) days ago" }
+        if days < 7 { return String(localized: "\(days) days ago") }
         return formatted(date: .abbreviated, time: .omitted)
     }
 }

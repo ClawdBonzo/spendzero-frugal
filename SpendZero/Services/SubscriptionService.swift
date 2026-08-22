@@ -170,17 +170,17 @@ final class SubscriptionService {
     }
 
     private func titleForProductID(_ id: String) -> String {
-        if id.contains("lifetime") { return "Lifetime" }
-        if id.contains("yearly") || id.contains("annual") { return "Yearly" }
-        if id.contains("monthly") { return "Monthly" }
-        if id.contains("weekly") { return "Weekly" }
-        return "Premium"
+        if id.contains("lifetime") { return String(localized: "Lifetime") }
+        if id.contains("yearly") || id.contains("annual") { return String(localized: "Yearly") }
+        if id.contains("monthly") { return String(localized: "Monthly") }
+        if id.contains("weekly") { return String(localized: "Weekly") }
+        return String(localized: "Premium")
     }
     private func periodForProductID(_ id: String) -> String {
-        if id.contains("lifetime") { return "one-time" }
-        if id.contains("yearly") || id.contains("annual") { return "per year" }
-        if id.contains("monthly") { return "per month" }
-        if id.contains("weekly") { return "per week" }
+        if id.contains("lifetime") { return String(localized: "one-time") }
+        if id.contains("yearly") || id.contains("annual") { return String(localized: "per year") }
+        if id.contains("monthly") { return String(localized: "per month") }
+        if id.contains("weekly") { return String(localized: "per week") }
         return ""
     }
     /// Normalized weekly cost for a product, used to compute "Save X%" anchoring.
@@ -195,7 +195,7 @@ final class SubscriptionService {
 
     private func pricePerWeekForProduct(_ product: StoreProduct) -> String {
         let id = product.productIdentifier
-        if id.contains("lifetime") { return "forever" }
+        if id.contains("lifetime") { return String(localized: "forever") }
         let price = product.price as Decimal
         let weekly: Decimal
         if id.contains("yearly") || id.contains("annual") { weekly = price / 52 }
@@ -203,7 +203,8 @@ final class SubscriptionService {
         else { weekly = price }
         let f = NumberFormatter(); f.numberStyle = .currency
         f.currencyCode = product.currencyCode ?? "USD"; f.maximumFractionDigits = 2
-        return (f.string(from: weekly as NSDecimalNumber) ?? "$0") + "/wk"
+        let formatted = f.string(from: weekly as NSDecimalNumber) ?? "$0"
+        return String(localized: "\(formatted)/wk")
     }
 
     // MARK: - Purchase
@@ -267,33 +268,23 @@ final class SubscriptionService {
 
     private func titleForPackage(_ package: RevenueCat.Package) -> String {
         switch package.packageType {
-        case .weekly:   return "Weekly"
-        case .monthly:  return "Monthly"
-        case .annual:   return "Yearly"
-        case .lifetime: return "Lifetime"
+        case .weekly:   return String(localized: "Weekly")
+        case .monthly:  return String(localized: "Monthly")
+        case .annual:   return String(localized: "Yearly")
+        case .lifetime: return String(localized: "Lifetime")
         default:
-            let id = package.storeProduct.productIdentifier
-            if id.contains("lifetime") { return "Lifetime" }
-            if id.contains("yearly") || id.contains("annual") { return "Yearly" }
-            if id.contains("monthly") { return "Monthly" }
-            if id.contains("weekly") { return "Weekly" }
-            return package.storeProduct.localizedTitle
+            return titleForProductID(package.storeProduct.productIdentifier)
         }
     }
 
     private func periodLabel(for package: RevenueCat.Package) -> String {
         switch package.packageType {
-        case .weekly:   return "per week"
-        case .monthly:  return "per month"
-        case .annual:   return "per year"
-        case .lifetime: return "one-time"
+        case .weekly:   return String(localized: "per week")
+        case .monthly:  return String(localized: "per month")
+        case .annual:   return String(localized: "per year")
+        case .lifetime: return String(localized: "one-time")
         default:
-            let id = package.storeProduct.productIdentifier
-            if id.contains("lifetime") { return "one-time" }
-            if id.contains("yearly") || id.contains("annual") { return "per year" }
-            if id.contains("monthly") { return "per month" }
-            if id.contains("weekly") { return "per week" }
-            return ""
+            return periodForProductID(package.storeProduct.productIdentifier)
         }
     }
 
@@ -304,10 +295,10 @@ final class SubscriptionService {
         case .weekly:   weekly = price
         case .monthly:  weekly = price / 4.33
         case .annual:   weekly = price / 52
-        case .lifetime: return "forever"
+        case .lifetime: return String(localized: "forever")
         default:
             let id = package.storeProduct.productIdentifier
-            if id.contains("lifetime") { return "forever" }
+            if id.contains("lifetime") { return String(localized: "forever") }
             if id.contains("yearly") || id.contains("annual") { weekly = price / 52 }
             else if id.contains("monthly") { weekly = price / 4.33 }
             else { weekly = price }
@@ -317,7 +308,7 @@ final class SubscriptionService {
         formatter.currencyCode = package.storeProduct.currencyCode ?? "USD"
         formatter.maximumFractionDigits = 2
         let formatted = formatter.string(from: weekly as NSDecimalNumber) ?? "$0"
-        return "\(formatted)/wk"
+        return String(localized: "\(formatted)/wk")
     }
 
     private func trialDaysFor(_ product: StoreProduct) -> Int {

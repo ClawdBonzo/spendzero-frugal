@@ -46,6 +46,9 @@ enum BadgeType: String, Codable, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// Display name looked up in Localizable.strings (raw values are persisted, so they stay English).
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     var icon: String {
         switch self {
         case .sevenDayStreak:
@@ -86,13 +89,13 @@ enum BadgeType: String, Codable, CaseIterable, Identifiable {
     var description: String {
         switch self {
         case .sevenDayStreak:
-            return "Maintained a 7-day no-spend streak"
+            return String(localized: "Maintained a 7-day no-spend streak")
         case .thirtyDayStreak:
-            return "Maintained a 30-day no-spend streak"
+            return String(localized: "Maintained a 30-day no-spend streak")
         case .hundredDayStreak:
-            return "Maintained a 100-day no-spend streak"
+            return String(localized: "Maintained a 100-day no-spend streak")
         case .oneYearStreak:
-            return "Maintained a 1-year no-spend streak"
+            return String(localized: "Maintained a 1-year no-spend streak")
         case .savedFiveHundred:
             return String(localized: "Saved \(500.0.currencyFormatted) total")
         case .savedOneThousand:
@@ -102,21 +105,21 @@ enum BadgeType: String, Codable, CaseIterable, Identifiable {
         case .savedTenThousand:
             return String(localized: "Saved \(10000.0.currencyFormatted) total")
         case .perfectWeek:
-            return "Completed 7 consecutive no-spend days"
+            return String(localized: "Completed 7 consecutive no-spend days")
         case .impulseExpert:
-            return "Resisted 50 total impulses"
+            return String(localized: "Resisted 50 total impulses")
         case .challengeChampion:
-            return "Completed 5 challenges"
+            return String(localized: "Completed 5 challenges")
         case .savingsMaster:
-            return "Achieved maximum savings goal"
+            return String(localized: "Achieved maximum savings goal")
         case .speedSaver:
-            return "Completed a challenge 2x faster than expected"
+            return String(localized: "Completed a challenge 2x faster than expected")
         case .momentum:
-            return "Increased streak by 10+ days"
+            return String(localized: "Increased streak by 10+ days")
         case .levelTen:
-            return "Reached Level 10"
+            return String(localized: "Reached Level 10")
         case .levelTwentyFive:
-            return "Reached ultimate Wealth King status"
+            return String(localized: "Reached ultimate Wealth King status")
         }
     }
 }
@@ -193,7 +196,6 @@ enum BadgeRarity: String, Codable, CaseIterable {
         }
     }
 
-    var label: String {
-        self.rawValue
-    }
+    /// Localized display label (raw values are persisted, so they stay English).
+    var label: String { String(localized: String.LocalizationValue(rawValue)) }
 }

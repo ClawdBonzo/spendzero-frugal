@@ -156,7 +156,7 @@ struct LevelRowView: View {
                     // Level Info
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
-                            Text(rank?.title ?? "Unknown")
+                            Text(rank?.title ?? String(localized: "Unknown"))
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(isUnlocked ? AppTheme.textPrimary : AppTheme.textTertiary)
                                 .strikethrough(false)

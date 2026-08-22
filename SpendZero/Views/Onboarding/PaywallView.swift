@@ -5,7 +5,7 @@ struct PaywallView: View {
     /// When true, the paywall cannot be dismissed (trial expired / hard gate)
     var isHardPaywall: Bool = false
     /// Optional urgency message shown at top
-    var urgencyMessage: String? = nil
+    var urgencyMessage: LocalizedStringKey? = nil
 
     // Default to Yearly — best value
     @State private var selectedOption: String = SubscriptionService.yearlyID
@@ -173,7 +173,7 @@ struct PaywallView: View {
                 // — CTA BUTTON —
                 VStack(spacing: 8) {
                     PrimaryButton(
-                        title: selectedPlan?.ctaTitle ?? String(localized: "Loading plans…"),
+                        verbatimTitle: selectedPlan?.ctaTitle ?? String(localized: "Loading plans…"),
                         icon: selectedHasFreeTrial ? "lock.open.fill" : "arrow.right",
                         isEnabled: selectedPlan != nil && !subscriptionService.isLoading
                     ) {
@@ -385,7 +385,7 @@ struct PremiumSubscriptionCard: View {
 // MARK: - Urgency Banner
 
 private struct UrgencyBanner: View {
-    let text: String
+    let text: LocalizedStringKey
     let isCritical: Bool
 
     private var tint: Color { isCritical ? AppTheme.destructive : AppTheme.accentGold }
@@ -433,7 +433,7 @@ private struct PlanSkeletonRow: View {
 private struct FeatureRow: View {
     let icon: String
     let color: Color
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: 12) {

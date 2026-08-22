@@ -301,7 +301,7 @@ struct ProgressChartsView: View {
 }
 
 struct MiniStatCard: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String
     let color: Color
 

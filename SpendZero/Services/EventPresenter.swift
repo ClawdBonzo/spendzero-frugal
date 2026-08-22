@@ -28,7 +28,9 @@ final class EventPresenter {
             enqueue(.questComplete(title: quest.displayTitle, xp: quest.baseXPReward))
         }
         if let challenge = outcome.challengeCompleted {
-            enqueue(.challengeComplete(title: challenge.title, xp: XPAction.challengeCompleted.baseXP))
+            // Seeded challenge titles are keys in Localizable.strings; custom titles fall through unchanged.
+            enqueue(.challengeComplete(title: String(localized: String.LocalizationValue(challenge.title)),
+                                       xp: XPAction.challengeCompleted.baseXP))
         }
         if let streak = outcome.newStreak, [7, 30, 100, 365].contains(streak) {
             enqueue(.streakMilestone(days: streak))

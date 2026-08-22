@@ -152,6 +152,8 @@ enum SpendingLevel: String, Codable, CaseIterable {
     case heavy = "Heavy Spender"
     case impulsive = "Impulse Buyer"
 
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     var dailyEstimate: Double {
         switch self {
         case .minimal: return 20

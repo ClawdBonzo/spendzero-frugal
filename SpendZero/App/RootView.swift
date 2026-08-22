@@ -105,7 +105,7 @@ struct RootView: View {
 
     /// Loss-aversion framing for the post-trial hard paywall, using what the user
     /// actually built so they feel the cost of walking away.
-    private func hardPaywallMessage(for profile: UserProfile) -> String {
+    private func hardPaywallMessage(for profile: UserProfile) -> LocalizedStringKey {
         if profile.currentStreak > 0 && profile.totalSaved > 0 {
             return "Your 3 free days are up — don't lose your \(profile.currentStreak)-day streak and \(profile.totalSaved.currencyFormatted) saved."
         } else if profile.currentStreak > 0 {
@@ -118,7 +118,7 @@ struct RootView: View {
 
     // MARK: - Strategic Paywall (day 2, day 3 nudges)
 
-    private var strategicPaywallMessage: String? {
+    private var strategicPaywallMessage: LocalizedStringKey? {
         guard let profile else { return nil }
         if profile.isTrialExpired { return "Your 3 free days are up" }
         let remaining = profile.trialDaysRemaining

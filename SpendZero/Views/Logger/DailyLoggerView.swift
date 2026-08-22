@@ -395,8 +395,8 @@ struct WinChecklistRow: View {
 
 struct EmptyStateView: View {
     let icon: String
-    let title: String
-    let subtitle: String
+    let title: LocalizedStringKey
+    let subtitle: LocalizedStringKey
 
     var body: some View {
         VStack(spacing: 12) {

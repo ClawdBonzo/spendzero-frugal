@@ -68,7 +68,7 @@ struct OnboardingLoadingView: View {
                             .font(.app(size: 14))
                             .foregroundColor(AppTheme.primaryGreen)
 
-                        Text(socialProofFacts[currentFact])
+                        Text(LocalizedStringKey(socialProofFacts[currentFact]))
                             .font(AppTheme.captionFont)
                             .foregroundColor(AppTheme.textSecondary)
                     }
@@ -95,7 +95,7 @@ struct OnboardingLoadingView: View {
     }
 
     private var challengeText: String {
-        "30-Day"
+        String(localized: "30-Day")
     }
 
     private func startLoadingAnimation() {
@@ -139,7 +139,7 @@ struct OnboardingLoadingView: View {
 
 struct LoadingProgressRow: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey
     let progress: CGFloat
 
     var body: some View {

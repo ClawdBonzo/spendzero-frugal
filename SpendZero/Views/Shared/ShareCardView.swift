@@ -77,7 +77,7 @@ struct StreakShareCard: View {
                 }
                 .padding(.bottom, 4)
 
-                Text("day\(streak == 1 ? "" : "s") no-spend streak")
+                Text(streak == 1 ? "day no-spend streak" : "days no-spend streak")
                     .font(.app(size: 17, weight: .semibold, design: .rounded))
                     .foregroundColor(.white.opacity(0.85))
 

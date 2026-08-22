@@ -102,7 +102,7 @@ struct SpendingLevelCard: View {
                         .font(.app(size: 17, weight: .semibold))
                         .foregroundColor(AppTheme.textPrimary)
 
-                    Text("~$\(Int(level.dailyEstimate))/day on non-essentials")
+                    Text("~\(level.dailyEstimate.currencyFormatted)/day on non-essentials")
                         .font(.app(size: 13))
                         .foregroundColor(AppTheme.textSecondary)
                 }

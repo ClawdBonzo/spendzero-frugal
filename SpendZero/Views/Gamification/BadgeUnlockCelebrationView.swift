@@ -87,7 +87,7 @@ struct BadgeUnlockCelebrationView: View {
                 VStack(spacing: 10) {
                     // Share the badge at the moment of unlock.
                     AchievementShareButton(
-                        message: "I just unlocked the \"\(badge.badgeID.rawValue)\" badge on SpendZero! 🏆 Crushing my no-spend challenge.",
+                        message: String(localized: "I just unlocked the \"\(badge.badgeID.localizedName)\" badge on SpendZero! 🏆 Crushing my no-spend challenge."),
                         tint: badge.rarity.foregroundColor
                     )
 

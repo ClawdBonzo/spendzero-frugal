@@ -47,6 +47,9 @@ enum SpendCategory: String, Codable, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// Display name looked up in Localizable.strings (raw values are persisted, so they stay English).
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     /// Essentials (groceries, transport) don't break a no-spend day; everything else does.
     var isEssential: Bool {
         switch self {

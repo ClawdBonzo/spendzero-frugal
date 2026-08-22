@@ -146,7 +146,7 @@ struct AddImpulseView: View {
                                         selectedCoping = strategy
                                     } label: {
                                         HStack {
-                                            Text(strategy)
+                                            Text(LocalizedStringKey(strategy))
                                                 .font(.app(size: 14, weight: .medium))
                                                 .foregroundColor(AppTheme.textPrimary)
                                             Spacer()
@@ -216,7 +216,7 @@ struct AddImpulseView: View {
 }
 
 struct ImpulseToggleButton: View {
-    let title: String
+    let title: LocalizedStringKey
     let icon: String
     let color: Color
     let isSelected: Bool

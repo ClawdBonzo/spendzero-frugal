@@ -91,25 +91,25 @@ enum GameEventType {
     var title: String {
         switch self {
         case .questComplete:
-            return "Quest Complete!"
+            return String(localized: "Quest Complete!")
         case .streakMilestone(let days):
-            return "\(days)-Day Streak! 🔥"
+            return String(localized: "\(days)-Day Streak! 🔥")
         case .nospendDayRecorded:
-            return "No-Spend Day!"
+            return String(localized: "No-Spend Day!")
         case .impulseResisted:
-            return "Impulse Resisted! ⚡️"
+            return String(localized: "Impulse Resisted! ⚡️")
         case .challengeComplete:
-            return "Challenge Complete!"
+            return String(localized: "Challenge Complete!")
         case .winLogged:
-            return "Win Logged!"
+            return String(localized: "Win Logged!")
         case .savingsRecorded:
-            return "Savings Recorded!"
+            return String(localized: "Savings Recorded!")
         case .luckyBonus:
-            return "Lucky Bonus! 🍀"
+            return String(localized: "Lucky Bonus! 🍀")
         case .streakFrozen:
-            return "Streak Freeze Used 🧊"
+            return String(localized: "Streak Freeze Used 🧊")
         case .streakFreezeEarned:
-            return "Streak Freeze Earned 🧊"
+            return String(localized: "Streak Freeze Earned 🧊")
         case .info(let text):
             return text
         }
@@ -120,25 +120,25 @@ enum GameEventType {
         case .questComplete(let title, _):
             return title
         case .streakMilestone:
-            return "Amazing consistency!"
+            return String(localized: "Amazing consistency!")
         case .nospendDayRecorded:
-            return "Great job staying on track!"
+            return String(localized: "Great job staying on track!")
         case .impulseResisted:
-            return "You beat the urge — money saved!"
+            return String(localized: "You beat the urge — money saved!")
         case .challengeComplete(let title, _):
             return title
         case .winLogged:
-            return "Small wins add up."
+            return String(localized: "Small wins add up.")
         case .savingsRecorded(let amount):
             return String(localized: "Saved \(amount.currencyFormattedDecimal)")
         case .luckyBonus:
-            return "Your XP was doubled!"
+            return String(localized: "Your XP was doubled!")
         case .streakFrozen(let days):
             return days <= 1
-                ? "We saved your streak from a missed day"
-                : "We covered \(days) missed days for you"
+                ? String(localized: "We saved your streak from a missed day")
+                : String(localized: "We covered \(days) missed days for you")
         case .streakFreezeEarned:
-            return "Covers one missed day so your streak survives."
+            return String(localized: "Covers one missed day so your streak survives.")
         case .info:
             return ""
         }

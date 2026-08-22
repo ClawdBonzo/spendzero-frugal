@@ -40,6 +40,8 @@ enum DailyMood: String, Codable, CaseIterable {
     case tough = "Tough"
     case struggling = "Struggling"
 
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     var emoji: String {
         switch self {
         case .great: return "🔥"

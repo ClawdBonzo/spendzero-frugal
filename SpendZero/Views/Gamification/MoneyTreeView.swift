@@ -32,11 +32,11 @@ struct MoneyTreeView: View {
 
     var stageTitle: String {
         switch treeStage {
-        case 1: return "Seedling"
-        case 2: return "Sprout"
-        case 3: return "Young Tree"
-        case 4: return "Tall Tree"
-        default: return "Full Palm"
+        case 1: return String(localized: "Seedling")
+        case 2: return String(localized: "Sprout")
+        case 3: return String(localized: "Young Tree")
+        case 4: return String(localized: "Tall Tree")
+        default: return String(localized: "Full Palm")
         }
     }
 

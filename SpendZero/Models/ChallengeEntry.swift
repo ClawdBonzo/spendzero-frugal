@@ -48,6 +48,8 @@ enum ChallengeCategory: String, Codable, CaseIterable {
     case minimalist = "Minimalist"
     case custom = "Custom"
 
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
+
     var icon: String {
         switch self {
         case .noSpend: return "nosign"
@@ -66,6 +68,8 @@ enum ChallengeDifficulty: String, Codable, CaseIterable {
     case medium = "Medium"
     case hard = "Hard"
     case extreme = "Extreme"
+
+    var localizedName: String { String(localized: String.LocalizationValue(rawValue)) }
 
     var color: String {
         switch self {
