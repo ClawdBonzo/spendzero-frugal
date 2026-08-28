@@ -44,6 +44,7 @@
 		63DD1458181C1680AA8F6B64 /* BadgeUnlockCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */; };
 		6947CB53448A6CB59DCCCF24 /* AmountParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE10F78CC75A9A45FB4293 /* AmountParsingTests.swift */; };
 		6CB2A20002594A71A7F3635C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 35119884772FB2E29193F5C2 /* PrivacyInfo.xcprivacy */; };
+		6DEB9062192CF09D5B01856A /* KeyboardDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C903FE91ACBE6A31008F87 /* KeyboardDismiss.swift */; };
 		6E38CF48116FD8D9ECF71BD7 /* GameStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2310008B785608BC389AC2 /* GameStateManager.swift */; };
 		709EC3680836EE14267CF93F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBB3013A612DBFFCB443ED0B /* Localizable.strings */; };
 		7A045D9351C438AA580D9AB4 /* SpendZeroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CAA33A55485B00965A41D2 /* SpendZeroWidget.swift */; };
@@ -140,6 +141,7 @@
 		4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecord.swift; sourceTree = "<group>"; };
 		4D722EA20D19B9654BD86584 /* OnboardingCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCategoriesView.swift; sourceTree = "<group>"; };
 		50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		50C903FE91ACBE6A31008F87 /* KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismiss.swift; sourceTree = "<group>"; };
 		540C6861E29A5C2B07FA205B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		54FD9E74409E718431D508A3 /* OnboardingNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameView.swift; sourceTree = "<group>"; };
 		55166217C7909D983BE0EA97 /* OnboardingLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoadingView.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				9B67E993660666584E727DE4 /* DateExtensions.swift */,
+				50C903FE91ACBE6A31008F87 /* KeyboardDismiss.swift */,
 				FDAC3FE434646F21D046F689 /* NumberExtensions.swift */,
 			);
 			path = Extensions;
@@ -659,6 +662,7 @@
 				1953107F01A6C61BB3A577EF /* GamificationHubView.swift in Sources */,
 				DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */,
 				D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */,
+				6DEB9062192CF09D5B01856A /* KeyboardDismiss.swift in Sources */,
 				4E0EC327D0FE0EF1D9076DCB /* LevelCard.swift in Sources */,
 				21959A51F1D11F6AD056BA76 /* LevelProgressView.swift in Sources */,
 				4E95E905B632D9B08C07C252 /* LevelUpCelebrationView.swift in Sources */,

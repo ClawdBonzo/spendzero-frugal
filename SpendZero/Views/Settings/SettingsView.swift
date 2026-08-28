@@ -245,6 +245,18 @@ struct SettingsView: View {
 
                     // About
                     Section("About") {
+                        Link(destination: URL(string: "https://apps.apple.com/app/id6761767438?action=write-review")!) {
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("Rate SpendZero")
+                                    .foregroundColor(AppTheme.textPrimary)
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .foregroundColor(AppTheme.textTertiary)
+                            }
+                        }
+
                         HStack {
                             Text("Version")
                                 .foregroundColor(AppTheme.textPrimary)

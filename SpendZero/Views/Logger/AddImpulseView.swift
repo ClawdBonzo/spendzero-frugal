@@ -198,6 +198,7 @@ struct AddImpulseView: View {
                     .padding(.top, 20)
                 }
             }
+            .dismissableKeyboard()
             .navigationTitle("Log Impulse")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

@@ -143,6 +143,7 @@ struct AddSpendingView: View {
                     .padding(.horizontal, AppTheme.paddingMedium)
                 }
             }
+            .dismissableKeyboard()
             .navigationTitle("Log Spending")
             .navigationBarTitleDisplayMode(.inline)
             .alert("Un-mark today's no-spend day?", isPresented: $showRevertWarning) {

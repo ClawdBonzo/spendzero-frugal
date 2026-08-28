@@ -397,6 +397,7 @@ struct CreateChallengeView: View {
                     .padding(.top, 20)
                 }
             }
+            .dismissableKeyboard()
             .navigationTitle("New Challenge")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
