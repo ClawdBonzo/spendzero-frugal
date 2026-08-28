@@ -17,12 +17,12 @@ struct GamificationHubView: View {
             ScrollView(showsIndicators: false) {
                 if let gameProfile = gameProfile {
                     VStack(spacing: 20) {
-                        // Header
+                        // Header — the tab is called "Quests", so quests come first.
                         VStack(spacing: 4) {
-                            Text("Your Gamification Hub")
+                            Text("Quests")
                                 .font(AppTheme.titleFont)
                                 .foregroundColor(AppTheme.textPrimary)
-                            Text("Track progress, complete quests, unlock badges")
+                            Text("Earn XP through real no-spend wins")
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(AppTheme.textSecondary)
                         }
@@ -31,11 +31,16 @@ struct GamificationHubView: View {
                         .offset(x: showHero ? 0 : -30)
                         .opacity(showHero ? 1 : 0)
 
-                        // Level Card Hero — scale in
+                        // Active quests — every daily quest and the weekly quest, with progress.
+                        questsList(gameProfile: gameProfile)
+                            .offset(y: showHero ? 0 : 20)
+                            .opacity(showHero ? 1 : 0)
+
+                        // Level Card
                         LevelCard(gameProfile: gameProfile, currentStreak: profile?.currentStreak ?? 0)
                             .padding(.horizontal, AppTheme.paddingLarge)
-                            .scaleEffect(showHero ? 1 : 0.92)
-                            .opacity(showHero ? 1 : 0)
+                            .scaleEffect(showQuests ? 1 : 0.92)
+                            .opacity(showQuests ? 1 : 0)
 
                         // Money Tree
                         MoneyTreeView(gameProfile: gameProfile)
@@ -67,47 +72,6 @@ struct GamificationHubView: View {
                             )
                         }
                         .padding(.horizontal, AppTheme.paddingLarge)
-
-                        // Quests Section
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                Text("Daily Quests")
-                                    .font(AppTheme.headlineFont)
-                                    .foregroundColor(AppTheme.textPrimary)
-
-                                Spacer()
-
-                                NavigationLink {
-                                    QuestPanelView(gameProfile: gameProfile)
-                                } label: {
-                                    Text("See All")
-                                        .font(AppTheme.smallFont)
-                                        .foregroundColor(AppTheme.accentGold)
-                                }
-                            }
-                            .padding(.horizontal, AppTheme.paddingLarge)
-
-                            let dailyQuests = gameProfile.quests.filter { $0.isDaily && !$0.isExpired }
-                            if dailyQuests.isEmpty || dailyQuests.allSatisfy(\.isCompleted) {
-                                HStack {
-                                    Image(systemName: dailyQuests.isEmpty ? "sparkles" : "checkmark.circle.fill")
-                                        .foregroundColor(AppTheme.primaryGreen)
-                                    Text(dailyQuests.isEmpty ? "New quests arrive tomorrow" : "All daily quests complete!")
-                                        .font(AppTheme.bodyFont)
-                                        .foregroundColor(AppTheme.textSecondary)
-                                    Spacer()
-                                }
-                                .padding(AppTheme.paddingMedium)
-                                .background(AppTheme.cardBackground)
-                                .cornerRadius(AppTheme.cornerRadiusMedium)
-                                .padding(.horizontal, AppTheme.paddingLarge)
-                            } else {
-                                ForEach(dailyQuests.prefix(2), id: \.id) { quest in
-                                    QuestQuickView(quest: quest)
-                                        .padding(.horizontal, AppTheme.paddingLarge)
-                                }
-                            }
-                        }
 
                         // Badges Section
                         VStack(alignment: .leading, spacing: 12) {
@@ -207,6 +171,63 @@ struct GamificationHubView: View {
     }
 }
 
+extension GamificationHubView {
+    /// The reason this tab exists: every active quest, grouped daily/weekly, with live progress.
+    @ViewBuilder
+    fileprivate func questsList(gameProfile: GameProfile) -> some View {
+        let daily = gameProfile.quests.filter { $0.isDaily && !$0.isExpired }
+        let weekly = gameProfile.quests.filter { !$0.isDaily && !$0.isExpired }
+
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Today")
+                    .font(AppTheme.headlineFont)
+                    .foregroundColor(AppTheme.textPrimary)
+                Spacer()
+                if !daily.isEmpty {
+                    Text("\(daily.filter(\.isCompleted).count)/\(daily.count) done")
+                        .font(AppTheme.smallFont)
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+            }
+            .padding(.horizontal, AppTheme.paddingLarge)
+
+            if daily.isEmpty {
+                HStack {
+                    Image(systemName: "sparkles")
+                        .foregroundColor(AppTheme.primaryGreen)
+                    Text("New quests arrive tomorrow")
+                        .font(AppTheme.bodyFont)
+                        .foregroundColor(AppTheme.textSecondary)
+                    Spacer()
+                }
+                .padding(AppTheme.paddingMedium)
+                .background(AppTheme.cardBackground)
+                .cornerRadius(AppTheme.cornerRadiusMedium)
+                .padding(.horizontal, AppTheme.paddingLarge)
+            } else {
+                ForEach(daily, id: \.id) { quest in
+                    QuestQuickView(quest: quest)
+                        .padding(.horizontal, AppTheme.paddingLarge)
+                }
+            }
+
+            if !weekly.isEmpty {
+                Text("This Week")
+                    .font(AppTheme.headlineFont)
+                    .foregroundColor(AppTheme.textPrimary)
+                    .padding(.horizontal, AppTheme.paddingLarge)
+                    .padding(.top, 4)
+
+                ForEach(weekly, id: \.id) { quest in
+                    QuestQuickView(quest: quest)
+                        .padding(.horizontal, AppTheme.paddingLarge)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Stat Tile Component
 
 struct StatTile: View {
@@ -250,13 +271,19 @@ struct QuestQuickView: View {
                         .font(AppTheme.bodyFont)
                         .foregroundColor(AppTheme.textPrimary)
 
-                    HStack(spacing: 4) {
-                        Image(systemName: "star.fill")
-                            .font(.app(size: 10))
-                        Text("\(quest.difficulty.baseXP) XP")
+                    HStack(spacing: 8) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "star.fill")
+                                .font(.app(size: 10))
+                            Text("\(quest.difficulty.baseXP) XP")
+                                .font(AppTheme.smallFont)
+                        }
+                        .foregroundColor(AppTheme.accentGold)
+
+                        Text(quest.progressDisplay)
                             .font(AppTheme.smallFont)
+                            .foregroundColor(AppTheme.textSecondary)
                     }
-                    .foregroundColor(AppTheme.accentGold)
                 }
 
                 Spacer()
