@@ -22,6 +22,9 @@ final class SubscriptionService {
     var debugForcePremium = false
     #endif
 
+    /// syncPurchases is rate-limited by RevenueCat; run the safety net at most once per launch.
+    private var didSyncPurchases = false
+
     // RevenueCat / App Store product identifiers
     // These must exactly match the product IDs created in App Store Connect
     // (and mirrored in RevenueCat). Verified live in ASC on 2026-05-31.
@@ -262,6 +265,15 @@ final class SubscriptionService {
         if debugForcePremium { isPremium = true; return }
         #endif
         if let info = try? await Purchases.shared.customerInfo() { apply(info) }
+
+        // Safety net: if StoreKit says this Apple ID owns a purchase that RevenueCat doesn't
+        // know about (receipt never posted — e.g. the app closed mid-purchase, or a purchase
+        // made through the direct-StoreKit fallback), push the receipt up once per launch so
+        // revenue is attributed and the entitlement granted. No-op when nothing is missing.
+        if !isPremium, !didSyncPurchases {
+            didSyncPurchases = true
+            if let info = try? await Purchases.shared.syncPurchases() { apply(info) }
+        }
     }
 
     // MARK: - Helpers

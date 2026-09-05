@@ -146,6 +146,7 @@
 		54FD9E74409E718431D508A3 /* OnboardingNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameView.swift; sourceTree = "<group>"; };
 		55166217C7909D983BE0EA97 /* OnboardingLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoadingView.swift; sourceTree = "<group>"; };
 		57AE70DBD15D8E3F18263621 /* DemoSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSeeder.swift; sourceTree = "<group>"; };
+		58432C4BACA770A50A06A15C /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A435E5F13C3A56A18918ED9 /* SchemaVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersions.swift; sourceTree = "<group>"; };
 		5B8465D4B7FB7559349E9886 /* AddImpulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImpulseView.swift; sourceTree = "<group>"; };
 		5EDA61857EDF980505037E5E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		9B67E993660666584E727DE4 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		9C40569F0A23F6F1B067377D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A118753892C3052B932E645C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
+		A2DB63A37887D17F31ACC170 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A39E67617222179E5FC4357C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A71B69E3062FE60B57AEBA19 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventToastView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseLog.swift; sourceTree = "<group>"; };
 		D90FD11B36B928190D29A8FC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DB2C9053F8B0F85922A99FA2 /* SpendZero.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SpendZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEEF851C7823465BF9A60E3D /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		DF37808D802349C0272BEBC7 /* WidgetSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSync.swift; sourceTree = "<group>"; };
 		DF3EADC2A53B7B0387A0202F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		E048E221D51203BFFB86868B /* GameMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMathTests.swift; sourceTree = "<group>"; };
@@ -569,6 +572,7 @@
 				"fr-CA",
 				nl,
 				"pt-BR",
+				tr,
 			);
 			mainGroup = 31B9FA0D8733051A54EE652A;
 			minimizedProjectReferenceProxies = 1;
@@ -726,6 +730,7 @@
 				9C40569F0A23F6F1B067377D /* fr-CA */,
 				BF6803E7364DC5F3EE3459E1 /* nl */,
 				5EDA61857EDF980505037E5E /* pt-BR */,
+				58432C4BACA770A50A06A15C /* tr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -738,6 +743,7 @@
 				0E88BED4832C92ACC54AAE15 /* fr-CA */,
 				A118753892C3052B932E645C /* nl */,
 				00BC0DE192007C24CB897A31 /* pt-BR */,
+				DEEF851C7823465BF9A60E3D /* tr */,
 			);
 			name = AppShortcuts.strings;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				B80F68FA1119F78F9B464062 /* fr-CA */,
 				D90FD11B36B928190D29A8FC /* nl */,
 				6A3DEFBDA31719492D61E283 /* pt-BR */,
+				A2DB63A37887D17F31ACC170 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

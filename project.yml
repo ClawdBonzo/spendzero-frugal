@@ -44,6 +44,7 @@ targets:
           - nl
           - pt-BR
           - fr-CA
+          - tr
         UIApplicationShortcutItems:
           - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.markNoSpendDay
             UIApplicationShortcutItemTitle: Mark No-Spend Day
