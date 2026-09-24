@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "茁壮成长 · 连续 %lld 天";
 "Freshly planted — every no-spend day helps it grow" = "刚刚种下——每个零消费日都能让它长大";
 "%lld gold coins" = "%lld 枚金币";
+
+"Quest done: %@" = "任务完成：%@";

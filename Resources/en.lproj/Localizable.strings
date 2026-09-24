@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "Thriving · %lld-day streak";
 "Freshly planted — every no-spend day helps it grow" = "Freshly planted — every no-spend day helps it grow";
 "%lld gold coins" = "%lld gold coins";
+
+"Quest done: %@" = "Quest done: %@";

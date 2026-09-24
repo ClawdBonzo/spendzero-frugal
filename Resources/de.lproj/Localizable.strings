@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "Blüht auf · %lld-Tage-Serie";
 "Freshly planted — every no-spend day helps it grow" = "Frisch gepflanzt – jeder ausgabenfreie Tag lässt ihn wachsen";
 "%lld gold coins" = "%lld Goldmünzen";
+
+"Quest done: %@" = "Quest geschafft: %@";

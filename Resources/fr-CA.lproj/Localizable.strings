@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "Florissant · série de %lld jours";
 "Freshly planted — every no-spend day helps it grow" = "Fraîchement planté — chaque journée sans dépense le fait grandir";
 "%lld gold coins" = "%lld pièces d’or";
+
+"Quest done: %@" = "Quête réussie : %@";

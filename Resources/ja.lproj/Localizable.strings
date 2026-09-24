@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "すくすく成長中 · %lld日連続";
 "Freshly planted — every no-spend day helps it grow" = "植えたばかり。節約デーのたびに成長します";
 "%lld gold coins" = "金貨%lld枚";
+
+"Quest done: %@" = "クエスト達成：%@";

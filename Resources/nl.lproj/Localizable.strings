@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "Bloeit · reeks van %lld dagen";
 "Freshly planted — every no-spend day helps it grow" = "Pas geplant — elke uitgavenvrije dag laat hem groeien";
 "%lld gold coins" = "%lld gouden munten";
+
+"Quest done: %@" = "Quest voltooid: %@";

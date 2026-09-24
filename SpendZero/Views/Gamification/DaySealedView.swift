@@ -36,9 +36,6 @@ struct DaySealedView: View {
                     Spacer(minLength: 12)
 
                     ZStack {
-                        Sunburst(rays: 20)
-                            .frame(width: medal * 2.1, height: medal * 2.1)
-                            .opacity(stamped ? 1 : 0)
                         ForEach(0..<2, id: \.self) { i in
                             Circle()
                                 .stroke(AppTheme.accentGold.opacity(shockwave ? 0 : 0.7), lineWidth: 3)
@@ -52,7 +49,13 @@ struct DaySealedView: View {
                             .opacity(stamped ? 1 : 0)
                             .shadow(color: .black.opacity(0.45), radius: 18, y: 10)
                     }
-                    .frame(height: medal * 1.2)
+                    .frame(width: medal, height: medal * 1.2)
+                    // In a background so the rays can spill past the screen edge without widening the layout.
+                    .background {
+                        Sunburst(rays: 20)
+                            .frame(width: medal * 3, height: medal * 3)
+                            .opacity(stamped ? 1 : 0)
+                    }
 
                     VStack(spacing: 6) {
                         Text("Day sealed.")
@@ -88,10 +91,12 @@ struct DaySealedView: View {
                         .padding(.bottom, 28)
                         .opacity(showActions ? 1 : 0)
                 }
+                .frame(width: geo.size.width, height: geo.size.height)
 
                 CashConfettiBurst(trigger: confetti, origin: UnitPoint(x: 0.5, y: 0.26))
                     .ignoresSafeArea()
             }
+            .frame(width: geo.size.width, height: geo.size.height)
         }
         .contentShape(Rectangle())
         .onTapGesture { if showActions { onDismiss() } }
@@ -118,7 +123,7 @@ struct DaySealedView: View {
             RewardChip(icon: "snowflake", text: String(localized: "Streak freeze earned"), tint: Color(hex: "60CFFF"))
         }
         ForEach(info.questsCompleted, id: \.self) { title in
-            RewardChip(icon: "checkmark.seal.fill", text: title, tint: AppTheme.primaryGreen)
+            RewardChip(icon: "checkmark.seal.fill", text: String(localized: "Quest done: \(title)"), tint: AppTheme.primaryGreen)
         }
         if let challenge = info.challengeCompleted {
             RewardChip(icon: "trophy.fill", text: String(localized: "\(challenge) complete"), tint: AppTheme.accentGold)
@@ -231,7 +236,7 @@ struct RewardChip: View {
     var body: some View {
         HStack(spacing: 6) {
             Image(systemName: icon).font(.app(size: 12, weight: .bold))
-            Text(text).font(.app(size: 13, weight: .bold, design: .rounded)).lineLimit(1)
+            Text(text).font(.app(size: 13, weight: .bold, design: .rounded)).lineLimit(1).minimumScaleFactor(0.7)
         }
         .foregroundColor(tint)
         .padding(.horizontal, 12)
@@ -271,15 +276,16 @@ struct MilestoneTrack: View {
     }
 }
 
-/// Centres each row of chips.
+/// Wraps chips onto as many rows as needed; rows are centred unless `alignment` is `.leading`.
 struct FlowLayout: Layout {
     var spacing: CGFloat = 8
+    var alignment: HorizontalAlignment = .center
 
     private func rows(_ subviews: Subviews, maxWidth: CGFloat) -> [[(Int, CGSize)]] {
         var rows: [[(Int, CGSize)]] = [[]]
         var x: CGFloat = 0
         for (i, v) in subviews.enumerated() {
-            let s = v.sizeThatFits(.unspecified)
+            let s = v.sizeThatFits(ProposedViewSize(width: maxWidth.isFinite ? maxWidth : nil, height: nil))
             if x + s.width > maxWidth, !rows[rows.count - 1].isEmpty {
                 rows.append([]); x = 0
             }
@@ -302,7 +308,7 @@ struct FlowLayout: Layout {
         for row in rows(subviews, maxWidth: bounds.width) {
             let rowW = row.reduce(0) { $0 + $1.1.width } + spacing * CGFloat(max(0, row.count - 1))
             let rowH = row.map(\.1.height).max() ?? 0
-            var x = bounds.minX + (bounds.width - rowW) / 2
+            var x = alignment == .leading ? bounds.minX : bounds.minX + (bounds.width - rowW) / 2
             for (i, s) in row {
                 subviews[i].place(at: CGPoint(x: x, y: y + (rowH - s.height) / 2), proposal: ProposedViewSize(s))
                 x += s.width + spacing

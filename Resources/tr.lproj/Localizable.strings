@@ -615,3 +615,5 @@
 "Thriving · %lld-day streak" = "Gelişiyor · %lld günlük seri";
 "Freshly planted — every no-spend day helps it grow" = "Yeni dikildi — her harcamasız gün onu büyütür";
 "%lld gold coins" = "%lld altın para";
+
+"Quest done: %@" = "Görev tamamlandı: %@";

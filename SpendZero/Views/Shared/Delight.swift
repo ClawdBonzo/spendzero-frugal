@@ -191,6 +191,8 @@ struct Sunburst: View {
             Canvas { ctx, size in
                 let c = CGPoint(x: size.width / 2, y: size.height / 2)
                 let R = max(size.width, size.height) * 0.75
+                // Fade out by the inscribed circle so the canvas edge never shows as a hard line.
+                let fade = min(size.width, size.height) / 2
                 let step = 2 * Double.pi / Double(rays)
                 for i in 0..<rays {
                     let a = Double(i) * step + spin
@@ -200,8 +202,8 @@ struct Sunburst: View {
                     ray.addLine(to: CGPoint(x: c.x + cos(a + step * 0.22) * R, y: c.y + sin(a + step * 0.22) * R))
                     ray.closeSubpath()
                     ctx.fill(ray, with: .radialGradient(
-                        Gradient(colors: [color.opacity(0.32), color.opacity(0)]),
-                        center: c, startRadius: 0, endRadius: R))
+                        Gradient(colors: [color.opacity(0.34), color.opacity(0.16), color.opacity(0)]),
+                        center: c, startRadius: 0, endRadius: fade))
                 }
             }
         }
@@ -311,12 +313,6 @@ struct SealMedallion: View {
             let c = CGPoint(x: size.width / 2, y: size.height / 2)
             let r = d / 2
 
-            if glow {
-                ctx.fill(Path(ellipseIn: CGRect(x: c.x - r * 1.25, y: c.y - r * 1.25, width: r * 2.5, height: r * 2.5)),
-                         with: .radialGradient(Gradient(colors: [AppTheme.accentGold.opacity(0.35), .clear]),
-                                               center: c, startRadius: r * 0.6, endRadius: r * 1.25))
-            }
-
             let outer = CGRect(x: c.x - r, y: c.y - r, width: d, height: d)
             // Coin body with a light source top-left.
             ctx.fill(Path(ellipseIn: outer), with: .radialGradient(
@@ -340,17 +336,44 @@ struct SealMedallion: View {
                 startPoint: CGPoint(x: inner.minX, y: inner.minY), endPoint: CGPoint(x: inner.maxX, y: inner.maxY)))
             ctx.stroke(Path(ellipseIn: inner), with: .color(Color(hex: "FFE082")), lineWidth: r * 0.03)
 
-            // Ring lettering between the rims.
-            let lettering = Array((ringText + "  ★  " + ringText + "  ★  ").uppercased())
+            // Ring lettering between the rims: the label arcs over the top, the brand arcs under the
+            // bottom, and both read upright left-to-right like a real coin.
             let ringR = r * 0.815
-            let fontSize = r * 0.125
-            for (i, ch) in lettering.enumerated() {
-                let a = -Double.pi / 2 + Double(i) / Double(lettering.count) * 2 * .pi
+            let ink = Color(hex: "3D2600")
+            func arc(_ string: String, centeredAt mid: Double, upright bottom: Bool) {
+                let maxArc = ringR * 2.5
+                func glyphs(_ size: CGFloat) -> [(GraphicsContext.ResolvedText, CGFloat)] {
+                    Array(string.uppercased()).map { ch in
+                        let t = ctx.resolve(Text(String(ch)).font(.system(size: size, weight: .heavy, design: .rounded))
+                            .foregroundColor(ink))
+                        return (t, t.measure(in: CGSize(width: size * 4, height: size * 4)).width + size * 0.14)
+                    }
+                }
+                var size = r * 0.125
+                var gs = glyphs(size)
+                let total = gs.reduce(0) { $0 + $1.1 }
+                if total > maxArc {
+                    size *= maxArc / total
+                    gs = glyphs(size)
+                }
+                let length = gs.reduce(0) { $0 + $1.1 }
+                var run = -length / 2
+                for (glyph, w) in gs {
+                    let offset = Double((run + w / 2) / ringR)
+                    let a = bottom ? mid - offset : mid + offset
+                    var l = ctx
+                    l.translateBy(x: c.x + cos(a) * ringR, y: c.y + sin(a) * ringR)
+                    l.rotate(by: .radians(bottom ? a - .pi / 2 : a + .pi / 2))
+                    l.draw(glyph, at: .zero)
+                    run += w
+                }
+            }
+            arc(ringText, centeredAt: -.pi / 2, upright: false)
+            arc("SpendZero", centeredAt: .pi / 2, upright: true)
+            for side in [0.0, Double.pi] {
                 var l = ctx
-                l.translateBy(x: c.x + cos(a) * ringR, y: c.y + sin(a) * ringR)
-                l.rotate(by: .radians(a + .pi / 2))
-                l.draw(Text(String(ch)).font(.system(size: fontSize, weight: .heavy, design: .rounded))
-                        .foregroundColor(Color(hex: "3D2600")), at: .zero)
+                l.translateBy(x: c.x + cos(side) * ringR, y: c.y + sin(side) * ringR)
+                l.draw(Text("★").font(.system(size: r * 0.1, weight: .heavy)).foregroundColor(ink), at: .zero)
             }
 
             // Centre: amount spent (zero) and the date.
@@ -361,11 +384,23 @@ struct SealMedallion: View {
                         .foregroundColor(Color(hex: "FFE082")),
                      at: CGPoint(x: c.x, y: c.y + r * 0.25))
 
-            // Specular glint.
+            // Specular glint on the inner bevel, clear of the ring lettering.
             var l = ctx
-            l.opacity = 0.8
-            l.translateBy(x: c.x - r * 0.5, y: c.y - r * 0.55)
-            l.fill(Sparkle.path(size: r * 0.28), with: .color(.white))
+            l.opacity = 0.85
+            l.translateBy(x: c.x + cos(-2.36) * r * 0.62, y: c.y + sin(-2.36) * r * 0.62)
+            l.fill(Sparkle.path(size: r * 0.2), with: .color(.white))
+        }
+        .background {
+            // Outside the canvas so the halo isn't clipped to the coin's square frame.
+            if glow {
+                GeometryReader { g in
+                    let r = min(g.size.width, g.size.height) / 2
+                    RadialGradient(colors: [AppTheme.accentGold.opacity(0.35), AppTheme.accentGold.opacity(0)],
+                                   center: .center, startRadius: r * 0.6, endRadius: r * 1.3)
+                        .frame(width: r * 2.6, height: r * 2.6)
+                        .position(x: g.size.width / 2, y: g.size.height / 2)
+                }
+            }
         }
         .accessibilityHidden(true)
     }

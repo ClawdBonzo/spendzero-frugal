@@ -24,22 +24,22 @@ struct ChallengeLibraryView: View {
                         ActiveChallengeCard(challenge: active)
                     }
 
-                    // Category filter
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) {
-                            CategoryFilterChip(title: "All", isSelected: selectedCategory == nil) {
-                                selectedCategory = nil
-                            }
-                            ForEach(ChallengeCategory.allCases, id: \.self) { cat in
-                                CategoryFilterChip(
-                                    title: LocalizedStringKey(cat.rawValue),
-                                    isSelected: selectedCategory == cat
-                                ) {
-                                    selectedCategory = cat
-                                }
+                    // Category filter: wrapped so every option is visible without sideways scrolling.
+                    FlowLayout(spacing: 8) {
+                        CategoryFilterChip(title: "All", icon: "square.grid.2x2.fill", isSelected: selectedCategory == nil) {
+                            withAnimation(.snappy) { selectedCategory = nil }
+                        }
+                        ForEach(ChallengeCategory.allCases, id: \.self) { cat in
+                            CategoryFilterChip(
+                                title: LocalizedStringKey(cat.rawValue),
+                                icon: cat.icon,
+                                isSelected: selectedCategory == cat
+                            ) {
+                                withAnimation(.snappy) { selectedCategory = cat }
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity)
 
                     // Challenge cards
                     if filteredChallenges.isEmpty {
@@ -283,22 +283,37 @@ struct ChallengeCard: View {
 
 struct CategoryFilterChip: View {
     let title: LocalizedStringKey
+    var icon: String? = nil
     let isSelected: Bool
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.app(size: 13, weight: .semibold))
-                .foregroundColor(isSelected ? AppTheme.background : AppTheme.textSecondary)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 8)
-                .background(
-                    Capsule()
-                        .fill(isSelected ? AppTheme.primaryGreen : AppTheme.cardBackground)
-                )
+            HStack(spacing: 6) {
+                if let icon {
+                    Image(systemName: icon)
+                        .font(.app(size: 12, weight: .bold))
+                        .foregroundColor(isSelected ? AppTheme.background : AppTheme.accentGold)
+                }
+                Text(title)
+                    .font(.app(size: 14, weight: .semibold))
+                    .lineLimit(1)
+                    .fixedSize()
+            }
+            .foregroundColor(isSelected ? AppTheme.background : AppTheme.textPrimary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
+            .background(
+                Capsule()
+                    .fill(isSelected ? AppTheme.primaryGreen : AppTheme.cardBackground)
+            )
+            .overlay(
+                Capsule()
+                    .stroke(isSelected ? .clear : AppTheme.textSecondary.opacity(0.18), lineWidth: 1)
+            )
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
@@ -353,19 +368,35 @@ struct CreateChallengeView: View {
                             .tint(AppTheme.primaryGreen)
                         }
 
-                        Picker("Category", selection: $category) {
-                            ForEach(ChallengeCategory.allCases, id: \.self) { cat in
-                                Text(LocalizedStringKey(cat.rawValue)).tag(cat)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Category")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+                            FlowLayout(spacing: 8, alignment: .leading) {
+                                ForEach(ChallengeCategory.allCases, id: \.self) { cat in
+                                    CategoryFilterChip(
+                                        title: LocalizedStringKey(cat.rawValue),
+                                        icon: cat.icon,
+                                        isSelected: category == cat
+                                    ) {
+                                        withAnimation(.snappy) { category = cat }
+                                    }
+                                }
                             }
+                            .frame(maxWidth: .infinity)
                         }
-                        .pickerStyle(.segmented)
 
-                        Picker("Difficulty", selection: $difficulty) {
-                            ForEach(ChallengeDifficulty.allCases, id: \.self) { diff in
-                                Text(LocalizedStringKey(diff.rawValue)).tag(diff)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Difficulty")
+                                .font(AppTheme.captionFont)
+                                .foregroundColor(AppTheme.textSecondary)
+                            Picker("Difficulty", selection: $difficulty) {
+                                ForEach(ChallengeDifficulty.allCases, id: \.self) { diff in
+                                    Text(LocalizedStringKey(diff.rawValue)).tag(diff)
+                                }
                             }
+                            .pickerStyle(.segmented)
                         }
-                        .pickerStyle(.segmented)
 
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Estimated Savings (\(Locale.displayCurrencySymbol))")
