@@ -1,5 +1,6 @@
 import Foundation
 import RevenueCat
+import StoreKit
 
 @MainActor
 @Observable
@@ -72,6 +73,19 @@ final class SubscriptionService {
 
     /// Entitlement first; fall back to product-level evidence so a user who paid is never locked
     /// out because the entitlement mapping in RevenueCat drifted.
+    private static let ownProductIDs: Set<String> = [weeklyID, monthlyID, yearlyID, lifetimeID]
+
+    /// True if StoreKit holds a verified, unrevoked, unexpired transaction for one of our products.
+    private static func ownsVerifiedEntitlement() async -> Bool {
+        for await result in Transaction.currentEntitlements {
+            if case .verified(let t) = result, ownProductIDs.contains(t.productID), t.revocationDate == nil {
+                if let exp = t.expirationDate, exp < Date() { continue }
+                return true
+            }
+        }
+        return false
+    }
+
     private static func hasAccess(_ info: CustomerInfo) -> Bool {
         if info.entitlements[entitlementID]?.isActive == true { return true }
         let ids: Set<String> = [weeklyID, monthlyID, yearlyID]
@@ -266,13 +280,16 @@ final class SubscriptionService {
         #endif
         if let info = try? await Purchases.shared.customerInfo() { apply(info) }
 
-        // Safety net: if StoreKit says this Apple ID owns a purchase that RevenueCat doesn't
-        // know about (receipt never posted — e.g. the app closed mid-purchase, or a purchase
-        // made through the direct-StoreKit fallback), push the receipt up once per launch so
-        // revenue is attributed and the entitlement granted. No-op when nothing is missing.
+        // Safety net for a purchase RevenueCat never saw (receipt not posted). Ask StoreKit 2
+        // first — silently, no sign-in — and only sync when this Apple ID really owns something:
+        // syncPurchases can trigger an App Store sign-in sheet when there's nothing to sync.
+        // A verified StoreKit entitlement also grants access directly, so a payer is never locked out.
         if !isPremium, !didSyncPurchases {
             didSyncPurchases = true
-            if let info = try? await Purchases.shared.syncPurchases() { apply(info) }
+            if await Self.ownsVerifiedEntitlement() {
+                if let info = try? await Purchases.shared.syncPurchases() { apply(info) }
+                if !isPremium { isPremium = true }
+            }
         }
     }
 

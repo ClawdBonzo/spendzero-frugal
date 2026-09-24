@@ -14,6 +14,7 @@ struct GamificationHubView: View {
 
     var body: some View {
         NavigationStack {
+            ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 if let gameProfile = gameProfile {
                     VStack(spacing: 20) {
@@ -45,6 +46,7 @@ struct GamificationHubView: View {
                         // Money Tree
                         MoneyTreeView(gameProfile: gameProfile, streak: profile?.currentStreak ?? 0, totalSaved: profile?.totalSaved ?? 0,
                                       thirsty: (profile?.currentStreak ?? 0) == 0 && (profile?.longestStreak ?? 0) > 0)
+                            .id("wealthTree")
                             .padding(.horizontal, AppTheme.paddingLarge)
                             .offset(y: showQuests ? 0 : 25)
                             .opacity(showQuests ? 1 : 0)
@@ -168,6 +170,15 @@ struct GamificationHubView: View {
                 }
             }
             .background(AppTheme.background.ignoresSafeArea())
+            #if DEBUG
+            .onAppear {
+                // Screenshot hook: -ScrollToTree
+                if ProcessInfo.processInfo.arguments.contains("-ScrollToTree") {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { proxy.scrollTo("wealthTree", anchor: .top) }
+                }
+            }
+            #endif
+            }
         }
     }
 }
