@@ -14,7 +14,7 @@ settings:
 packages:
   RevenueCat:
     url: https://github.com/RevenueCat/purchases-ios-spm.git
-    from: 5.0.0
+    from: 5.91.0
 targets:
   SpendZero:
     type: application
@@ -45,6 +45,12 @@ targets:
           - pt-BR
           - fr-CA
           - tr
+          - es
+          - fr
+          - pt-PT
+          - it
+          - ja
+          - zh-Hans
         UIApplicationShortcutItems:
           - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.markNoSpendDay
             UIApplicationShortcutItemTitle: Mark No-Spend Day

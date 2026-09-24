@@ -106,7 +106,8 @@ struct DashboardView: View {
 
                         // Money Tree visualization
                         if let gameProfile = gameProfile {
-                            MoneyTreeView(gameProfile: gameProfile)
+                            MoneyTreeView(gameProfile: gameProfile, streak: currentStreak, totalSaved: totalSaved,
+                                          thirsty: currentStreak == 0 && profile?.lastNoSpendDate == nil && (profile?.longestStreak ?? 0) > 0)
                                 .padding(.horizontal, AppTheme.paddingMedium)
                                 .offset(y: showStats ? 0 : 25)
                                 .opacity(showStats ? 1 : 0)

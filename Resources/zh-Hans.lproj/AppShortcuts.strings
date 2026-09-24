@@ -1,0 +1,8 @@
+/* Siri / Shortcuts phrases */
+"Mark today a no-spend day in ${applicationName}" = "用${applicationName}把今天标记为零消费日";
+"Log a no-spend day in ${applicationName}" = "用${applicationName}记录零消费日";
+"I didn't spend today in ${applicationName}" = "告诉${applicationName}我今天没花钱";
+"Log spending in ${applicationName}" = "用${applicationName}记一笔消费";
+"I spent money in ${applicationName}" = "告诉${applicationName}我花钱了";
+"Log an impulse in ${applicationName}" = "用${applicationName}记录一次冲动消费";
+"I resisted an impulse in ${applicationName}" = "告诉${applicationName}我忍住了冲动消费";

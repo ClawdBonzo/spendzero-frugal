@@ -11,7 +11,7 @@ struct LevelUpCelebrationView: View {
     @State private var cardScale: CGFloat = 0.8
     @State private var cardOpacity: Double = 0
     @State private var starPulse = false
-    @State private var showConfetti = false
+    @State private var confetti = 0
 
     var body: some View {
         ZStack {
@@ -20,12 +20,8 @@ struct LevelUpCelebrationView: View {
                 .ignoresSafeArea()
                 .onTapGesture { onDismiss() }
 
-            // Confetti layer (behind card)
-            if showConfetti && !reduceMotion {
-                ConfettiView()
-                    .ignoresSafeArea()
-                    .allowsHitTesting(false)
-            }
+            GlowBackdrop(colors: [AppTheme.accentGold, AppTheme.primaryGreen, Color(hex: "FF8C00")], intensity: 0.16)
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 Spacer()
@@ -34,6 +30,9 @@ struct LevelUpCelebrationView: View {
                 VStack(spacing: 20) {
                     // Animated star / crown
                     ZStack {
+                        Sunburst(color: AppTheme.accentGold, rays: 16)
+                            .frame(width: 260, height: 260)
+                            .opacity(cardOpacity)
                         Circle()
                             .fill(AppTheme.accentGold.opacity(0.15))
                             .frame(width: 100, height: 100)
@@ -163,6 +162,7 @@ struct LevelUpCelebrationView: View {
                 .padding(.bottom, 40)
             }
         }
+        .overlay { CashConfettiBurst(trigger: confetti, origin: UnitPoint(x: 0.5, y: 0.3)).ignoresSafeArea() }
         .onAppear {
             HapticManager.shared.trigger(.levelUp)
             withAnimation(reduceMotion ? nil : .spring(response: 0.55, dampingFraction: 0.72)) {
@@ -173,89 +173,16 @@ struct LevelUpCelebrationView: View {
                 withAnimation(.easeInOut(duration: 0.9).repeatForever(autoreverses: true)) {
                     starPulse = true
                 }
-                // Slight delay so card appears first
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    showConfetti = true
+                // Card lands first, then the burst on the beat.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
+                    confetti += 1
+                    Beat.stamp()
                 }
             }
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Level up! You reached Level \(newLevel): \(rank.title)")
         .accessibilityAddTraits(.isModal)
-    }
-}
-
-// MARK: - ConfettiView (fixed)
-// Previously broken: used value-type struct mutation inside withAnimation block.
-// Now: computes start/end positions up front; single `animated` bool drives all transitions.
-
-struct ConfettiView: View {
-    @State private var particles: [ConfettiParticle] = []
-    @State private var animated = false
-
-    var body: some View {
-        ZStack {
-            ForEach(particles) { p in
-                Image(systemName: p.icon)
-                    .font(.app(size: p.size, weight: .semibold))
-                    .foregroundColor(p.color)
-                    .offset(
-                        x: p.startX + (animated ? p.driftX : 0),
-                        y: animated ? p.endY : p.startY
-                    )
-                    .opacity(animated ? 0 : p.opacity)
-                    .rotationEffect(.degrees(animated ? p.finalRotation : 0))
-                    .animation(
-                        .easeOut(duration: p.duration).delay(p.delay),
-                        value: animated
-                    )
-            }
-        }
-        .onAppear {
-            particles = (0..<28).map { _ in ConfettiParticle() }
-            // Tiny delay lets the view appear before animation fires
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                animated = true
-            }
-        }
-    }
-}
-
-// MARK: - ConfettiParticle
-
-struct ConfettiParticle: Identifiable {
-    let id = UUID()
-    let icon: String
-    let color: Color
-    let size: Double
-    // Start
-    let startX: CGFloat
-    let startY: CGFloat
-    // End deltas (applied when animated == true)
-    let driftX: CGFloat
-    let endY: CGFloat
-    // Rotation
-    let finalRotation: Double
-    // Animation timing
-    let duration: Double
-    let delay: Double
-    let opacity: Double
-
-    private static let icons  = ["star.fill", "sparkles", "dollarsign.circle.fill", "heart.fill", "crown.fill", "diamond.fill"]
-    private static let colors: [Color] = [AppTheme.accentGold, AppTheme.primaryGreen, Color(hex: "FF6B9D"), Color(hex: "60CFFF"), .white]
-
-    init() {
-        startX = CGFloat.random(in: -180...180)
-        startY = CGFloat.random(in: -100...100)
-        driftX = CGFloat.random(in: -60...60)
-        endY   = startY + CGFloat.random(in: 350...600)
-        finalRotation = Double.random(in: -360...360)
-        icon     = Self.icons.randomElement()!
-        color    = Self.colors.randomElement()!
-        size     = Double.random(in: 14...28)
-        duration = Double.random(in: 1.8...2.8)
-        delay    = Double.random(in: 0...0.6)
-        opacity  = Double.random(in: 0.6...1.0)
     }
 }
 

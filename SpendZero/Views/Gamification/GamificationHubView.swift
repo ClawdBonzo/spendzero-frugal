@@ -43,7 +43,8 @@ struct GamificationHubView: View {
                             .opacity(showQuests ? 1 : 0)
 
                         // Money Tree
-                        MoneyTreeView(gameProfile: gameProfile)
+                        MoneyTreeView(gameProfile: gameProfile, streak: profile?.currentStreak ?? 0, totalSaved: profile?.totalSaved ?? 0,
+                                      thirsty: (profile?.currentStreak ?? 0) == 0 && (profile?.longestStreak ?? 0) > 0)
                             .padding(.horizontal, AppTheme.paddingLarge)
                             .offset(y: showQuests ? 0 : 25)
                             .opacity(showQuests ? 1 : 0)

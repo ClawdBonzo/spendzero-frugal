@@ -25,6 +25,12 @@ final class ProgressEngine {
         var newStreak: Int?
         var streakFreezeEarned = false
         var streakOutcome: UserProfile.StreakOutcome = .intact
+        /// Savings credited by this action (the day's budget for a no-spend day).
+        var savedAmount: Double = 0
+        /// Lifetime count of no-spend days, including this one.
+        var totalNoSpendDays: Int = 0
+        /// Set when this action crossed a moment worth asking for an App Store rating.
+        var reviewMilestone: String?
 
         var isEmpty: Bool {
             xpGranted == 0 && levelUp == nil && badgesUnlocked.isEmpty
@@ -125,6 +131,11 @@ final class ProgressEngine {
         syncStreakQuests(in: gp, streak: newStreak, into: &outcome)
         advanceActiveChallenge(profile: profile, gp: gp, context: context, streak: newStreak, into: &outcome)
         checkBadges(profile: profile, gp: gp, context: context, into: &outcome)
+
+        outcome.savedAmount = saving.amount
+        outcome.totalNoSpendDays = (try? context.fetchCount(
+            FetchDescriptor<DailyRecord>(predicate: #Predicate { $0.isNoSpendDay }))) ?? 0
+        outcome.reviewMilestone = ReviewPrompter.milestone(for: outcome, level: gp.currentLevel)
 
         save(context)
         syncWidget(profile: profile, context: context, now: now)

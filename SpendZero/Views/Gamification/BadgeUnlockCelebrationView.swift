@@ -8,6 +8,7 @@ struct BadgeUnlockCelebrationView: View {
     @State private var scale: CGFloat = 0.5
     @State private var opacity: Double = 0
     @State private var rotate: Double = 0
+    @State private var confetti = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -23,6 +24,9 @@ struct BadgeUnlockCelebrationView: View {
                 VStack(spacing: 20) {
                     // Badge icon with glow
                     ZStack {
+                        Sunburst(color: badge.rarity.foregroundColor, rays: 18)
+                            .frame(width: 320, height: 320)
+                            .opacity(opacity)
                         // Glow background
                         Circle()
                             .fill(badge.rarity.glowColor)
@@ -46,6 +50,7 @@ struct BadgeUnlockCelebrationView: View {
                     }
                     .scaleEffect(scale)
                     .rotationEffect(.degrees(rotate))
+                    .holoSheen(cornerRadius: 30)
 
                     // Badge info
                     VStack(spacing: 12) {
@@ -110,18 +115,18 @@ struct BadgeUnlockCelebrationView: View {
                 .padding(.bottom, AppTheme.paddingLarge)
             }
         }
+        .overlay { CashConfettiBurst(trigger: confetti, origin: UnitPoint(x: 0.5, y: 0.32), count: 90).ignoresSafeArea() }
         .accessibilityAddTraits(.isModal)
         .onAppear {
             HapticManager.shared.trigger(.badgeEarned)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { confetti += 1; Beat.stamp() }
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 scale = 1.0
                 opacity = 1.0
             }
             guard !reduceMotion else { return }
-            withAnimation(
-                Animation.easeInOut(duration: 2.0).repeatForever(autoreverses: true)
-            ) {
-                rotate = 5
+            withAnimation(.easeInOut(duration: 2.4).repeatForever(autoreverses: true)) {
+                rotate = 3
             }
         }
     }

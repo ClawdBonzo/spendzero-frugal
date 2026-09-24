@@ -149,3 +149,19 @@ extension ProgressEngineTests {
         #expect(gp.totalXPEarned == xp)
     }
 }
+
+@MainActor
+struct DaySealedOutcomeTests {
+    @Test func noSpendDayReportsSavingsCountAndReviewMilestone() throws {
+        let schema = Schema(versionedSchema: SpendZeroSchemaV1.self)
+        let container = try ModelContainer(for: schema, configurations: [ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)])
+        let ctx = container.mainContext
+        let profile = UserProfile(displayName: "T", dailyBudget: 20)
+        ctx.insert(profile)
+        UserDefaults.standard.removeObject(forKey: "review.usedMilestones")
+        let o = try #require(ProgressEngine.shared.logNoSpendDay(profile: profile, context: ctx))
+        #expect(o.savedAmount == 20)
+        #expect(o.totalNoSpendDays == 1)
+        #expect(o.reviewMilestone == nil)   // first day is too early to ask
+    }
+}

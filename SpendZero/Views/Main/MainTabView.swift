@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 import SwiftData
 
 extension Notification.Name {
@@ -11,6 +12,7 @@ struct MainTabView: View {
     @State private var presenter = EventPresenter.shared
     @Query private var profiles: [UserProfile]
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
 
     var body: some View {
         ZStack {
@@ -55,9 +57,22 @@ struct MainTabView: View {
         .onReceive(NotificationCenter.default.publisher(for: .spendZeroPendingAction)) { _ in
             routePendingAction()
         }
-        .onAppear { routePendingAction() }
+        .onAppear {
+            routePendingAction()
+            #if DEBUG
+            stageDebugCelebration()
+            #endif
+        }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { routePendingAction() }
+        }
+        .onChange(of: presenter.reviewRequest) { _, _ in
+            // Let the last celebration finish animating out before the system sheet appears.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                guard scenePhase == .active else { return }
+                requestReview()
+                presenter.didRequestReview()
+            }
         }
 
         // Gamification feedback, rendered once for every tab.
@@ -77,6 +92,14 @@ struct MainTabView: View {
         }
         if let badge = presenter.badgeUnlock {
             BadgeUnlockCelebrationView(badge: badge, onDismiss: { presenter.dismissBadge() })
+        }
+        if let sealed = presenter.daySealed {
+            DaySealedView(info: sealed, onDismiss: {
+                withAnimation(.easeOut(duration: 0.25)) { presenter.dismissDaySealed() }
+            })
+            .id(sealed.id)
+            .transition(.opacity)
+            .zIndex(10)
         }
         }
     }
@@ -101,6 +124,27 @@ extension MainTabView {
         }
     }
 }
+
+#if DEBUG
+extension MainTabView {
+    /// Screenshot/QA hooks: -ShowDaySealed, -ShowLevelUp, -ShowBadge.
+    fileprivate func stageDebugCelebration() {
+        let args = ProcessInfo.processInfo.arguments
+        let presenter = EventPresenter.shared
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            if args.contains("-ShowDaySealed") {
+                presenter.daySealed = .init(streak: 24, previousStreak: 23, xp: 150, saved: 40, lucky: false,
+                                            freezeEarned: false, questsCompleted: [String(localized: "Log today as a no-spend day")],
+                                            challengeCompleted: nil, totalNoSpendDays: 41)
+            } else if args.contains("-ShowLevelUp") {
+                presenter.levelUp = (12, 13, LevelRank(rawValue: 13) ?? .wealthKing)
+            } else if args.contains("-ShowBadge") {
+                presenter.badgeUnlock = BadgeInstance(badgeID: .thirtyDayStreak, rarity: .epic)
+            }
+        }
+    }
+}
+#endif
 
 extension Notification.Name {
     static let spendZeroPerformAction = Notification.Name("spendZeroPerformAction")

@@ -56,17 +56,17 @@ enum BadgeType: String, Codable, CaseIterable, Identifiable {
         case .thirtyDayStreak:
             return "30.circle.fill"
         case .hundredDayStreak:
-            return "100.circle.fill"
+            return "flame.circle.fill"
         case .oneYearStreak:
             return "star.circle.fill"
         case .savedFiveHundred:
             return "dollarsign.circle.fill"
         case .savedOneThousand:
-            return "banknote.circle.fill"
+            return "banknote.fill"
         case .savedFiveThousand:
-            return "crown.circle.fill"
+            return "crown.fill"
         case .savedTenThousand:
-            return "gem.fill"
+            return "diamond.fill"
         case .perfectWeek:
             return "checkmark.seal.fill"
         case .impulseExpert:
