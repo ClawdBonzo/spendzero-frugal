@@ -44,6 +44,9 @@ final class SubscriptionService {
     private var availablePackages: [RevenueCat.Package] = []
     private var availableProducts: [StoreProduct] = []   // direct StoreKit fallback when RC Offering is empty
 
+    /// RevenueCat holds its delegate weakly.
+    private let promotedPurchaseHandler = PromotedPurchaseHandler()
+
     private init() {}
 
     // MARK: - Configure
@@ -51,6 +54,7 @@ final class SubscriptionService {
     func configure() {
         Purchases.logLevel = .warn
         Purchases.configure(withAPIKey: Self.apiKey)
+        Purchases.shared.delegate = promotedPurchaseHandler
         Task {
             await checkEntitlementStatus()
             await fetchOfferings()
@@ -293,6 +297,17 @@ final class SubscriptionService {
         }
     }
 
+    /// An offer-code redemption lands in StoreKit first; make sure access follows right away.
+    func refreshAfterCodeRedemption() async {
+        try? await Task.sleep(for: .seconds(1))
+        if await Self.ownsVerifiedEntitlement() {
+            if let info = try? await Purchases.shared.syncPurchases() { apply(info) }
+            if !isPremium { isPremium = true }
+        } else if let info = try? await Purchases.shared.customerInfo(fetchPolicy: .fetchCurrent) {
+            apply(info)
+        }
+    }
+
     // MARK: - Helpers
 
     private func titleForPackage(_ package: RevenueCat.Package) -> String {
@@ -385,5 +400,15 @@ struct SubscriptionOption: Identifiable {
             return String(localized: "\(trialDays)-day free trial, then \(price) \(period). Auto-renews until cancelled; cancel anytime in App Store settings.")
         }
         return String(localized: "\(price) \(period), auto-renews until cancelled. Cancel anytime in App Store settings.")
+    }
+}
+
+/// Completes purchases started from the App Store product page (promoted in-app purchases).
+/// Without a delegate RevenueCat drops them. The entitlement arrives via `customerInfoStream`.
+private final class PromotedPurchaseHandler: NSObject, PurchasesDelegate {
+    func purchases(_ purchases: Purchases,
+                   readyForPromotedProduct product: StoreProduct,
+                   purchase startPurchase: @escaping StartPurchaseBlock) {
+        startPurchase { _, _, _, _ in }
     }
 }

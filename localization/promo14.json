@@ -1,0 +1,418 @@
+{
+  "en-US": {
+    "whatsNew": "New for the no-spend season: three limited-time challenges.\n• Black Friday No-Buy Weekend: skip every deal from Friday through Cyber Monday.\n• 12 Days of No-Spend: twelve days in a row before Christmas.\n• No-Spend January: start the year with 31 days of essentials only.\nEach appears in Challenges during its season.\nYou can also redeem SpendZero Pro offer codes in the app, from Settings or the upgrade screen.",
+    "promo": {
+      "now": "New: limited-time challenges for Black Friday, the 12 days before Christmas and No-Spend January. Seal every no-spend day with a gold coin.",
+      "bf": "Black Friday No-Buy Weekend is here: skip every deal from Friday through Cyber Monday and grow your wealth tree instead.",
+      "dec": "12 Days of No-Spend: twelve days in a row before Christmas. Planned gifts are fine; the extras aren't. Start it in Challenges.",
+      "jan": "No-Spend January: 31 days of essentials only. Seal each day with a gold coin and start the year with more money."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday No-Buy Weekend",
+        "short": "Skip every deal, Friday to Cyber Monday",
+        "long": "A 4-day challenge: no non-essential purchases from Black Friday through Cyber Monday. Seal each day with a gold coin."
+      },
+      "twelve-days": {
+        "name": "12 Days of No-Spend",
+        "short": "Twelve no-spend days before Christmas",
+        "long": "Go twelve days in a row without non-essential spending before Christmas. Planned gifts are fine; the extras aren't."
+      },
+      "no-spend-january": {
+        "name": "No-Spend January",
+        "short": "31 days of essentials only",
+        "long": "Start 2027 with a 31-day no-spend challenge: spend only on essentials and seal every day with a gold coin."
+      }
+    }
+  },
+  "en-GB": {
+    "whatsNew": "New for the no-spend season: three limited-time challenges.\n• Black Friday No-Buy Weekend: skip every deal from Friday to Cyber Monday.\n• 12 Days of No-Spend: twelve days in a row in the run-up to Christmas.\n• No-Spend January: start the year with 31 days of essentials only.\nEach one appears in Challenges during its season.\nYou can also redeem SpendZero Pro offer codes in the app, from Settings or the upgrade screen.",
+    "promo": {
+      "now": "New: limited-time challenges for Black Friday, the 12 days before Christmas and No-Spend January. Seal every no-spend day with a gold coin.",
+      "bf": "Black Friday No-Buy Weekend is here: skip every deal from Friday to Cyber Monday and grow your wealth tree instead.",
+      "dec": "12 Days of No-Spend: twelve days in a row in the run-up to Christmas. Planned presents are fine; the extras aren't. Start it in Challenges.",
+      "jan": "No-Spend January: 31 days of essentials only. Seal each day with a gold coin and start the year with more money in your pocket."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday No-Buy Weekend",
+        "short": "Skip every deal, Friday to Cyber Monday",
+        "long": "A 4-day challenge: no non-essential purchases from Black Friday to Cyber Monday. Seal each day with a gold coin."
+      },
+      "twelve-days": {
+        "name": "12 Days of No-Spend",
+        "short": "Twelve no-spend days before Christmas",
+        "long": "Go twelve days in a row without non-essential spending before Christmas. Planned presents are fine; the extras aren't."
+      },
+      "no-spend-january": {
+        "name": "No-Spend January",
+        "short": "31 days of essentials only",
+        "long": "Start 2027 with a 31-day no-spend challenge: spend only on essentials and seal every day with a gold coin."
+      }
+    }
+  },
+  "en-AU": {
+    "whatsNew": "New for the no-spend season: three limited-time challenges.\n• Black Friday No-Buy Weekend: skip every deal from Friday to Cyber Monday.\n• 12 Days of No-Spend: twelve days in a row in the lead-up to Christmas.\n• No-Spend January: start the year with 31 days of essentials only.\nEach one appears in Challenges during its season.\nYou can also redeem SpendZero Pro offer codes in the app, from Settings or the upgrade screen.",
+    "promo": {
+      "now": "New: limited-time challenges for Black Friday, the 12 days before Christmas and No-Spend January. Seal every no-spend day with a gold coin.",
+      "bf": "Black Friday No-Buy Weekend is here: skip every deal from Friday to Cyber Monday and grow your wealth tree instead.",
+      "dec": "12 Days of No-Spend: twelve days in a row before Christmas. Planned presents are fine; the extras aren't. Take on the silly season in Challenges.",
+      "jan": "No-Spend January: 31 days of essentials only. Seal each day with a gold coin and start the year with more money in your pocket."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday No-Buy Weekend",
+        "short": "Skip every deal, Friday to Cyber Monday",
+        "long": "A 4-day challenge: no non-essential purchases from Black Friday to Cyber Monday. Seal each day with a gold coin."
+      },
+      "twelve-days": {
+        "name": "12 Days of No-Spend",
+        "short": "Twelve no-spend days before Christmas",
+        "long": "Go twelve days in a row without non-essential spending before Christmas. Planned presents are fine; the extras aren't."
+      },
+      "no-spend-january": {
+        "name": "No-Spend January",
+        "short": "31 days of essentials only",
+        "long": "Start 2027 with a 31-day no-spend challenge: spend only on essentials and seal every day with a gold coin."
+      }
+    }
+  },
+  "en-CA": {
+    "whatsNew": "New for the no-spend season: three limited-time challenges.\n• Black Friday No-Buy Weekend: skip every deal from Friday through Cyber Monday.\n• 12 Days of No-Spend: twelve days in a row before Christmas.\n• No-Spend January: start the year with 31 days of essentials only.\nEach one appears in Challenges during its season.\nYou can also redeem SpendZero Pro offer codes in the app, from Settings or the upgrade screen.",
+    "promo": {
+      "now": "New: limited-time challenges for Black Friday, the 12 days before Christmas and No-Spend January. Seal every no-spend day with a golden coin.",
+      "bf": "Black Friday No-Buy Weekend is here: skip every deal from Friday through Cyber Monday and grow your wealth tree instead.",
+      "dec": "12 Days of No-Spend: twelve days in a row before Christmas. Planned gifts are fine; the extras aren't. Start it in Challenges.",
+      "jan": "No-Spend January: 31 days of essentials only. Seal each day with a golden coin and start the year with more loonies in your pocket."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday No-Buy Weekend",
+        "short": "Skip every deal, Friday to Cyber Monday",
+        "long": "A 4-day challenge: no non-essential purchases from Black Friday through Cyber Monday. Seal each day with a golden coin."
+      },
+      "twelve-days": {
+        "name": "12 Days of No-Spend",
+        "short": "Twelve no-spend days before Christmas",
+        "long": "Go twelve days in a row without non-essential spending before Christmas. Planned gifts are fine; the extras aren't."
+      },
+      "no-spend-january": {
+        "name": "No-Spend January",
+        "short": "31 days of essentials only",
+        "long": "Start 2027 with a 31-day no-spend challenge: spend only on essentials and seal every day with a golden coin."
+      }
+    }
+  },
+  "de-DE": {
+    "whatsNew": "Neu zur No-Spend-Saison: drei Challenges, nur für kurze Zeit.\n• Black-Friday-Kaufstopp-Wochenende: Ignoriere von Freitag bis Cyber Monday jedes Angebot.\n• 12 Tage No-Spend: zwölf Tage am Stück vor Weihnachten.\n• No-Spend-Januar: Starte ins Jahr mit 31 Tagen, an denen du nur für das Nötigste ausgibst.\nJede Challenge erscheint zu ihrer Saison unter Challenges.\nAußerdem kannst du Angebotscodes für SpendZero Pro jetzt direkt in der App einlösen – in den Einstellungen oder auf dem Pro-Bildschirm.",
+    "promo": {
+      "now": "Neu: Challenges nur für kurze Zeit – zum Black Friday, für die 12 Tage vor Weihnachten und den No-Spend-Januar. Besiegle jeden No-Spend-Tag mit einer Goldmünze.",
+      "bf": "Das Black-Friday-Kaufstopp-Wochenende ist da: Ignoriere von Freitag bis Cyber Monday jedes Angebot und lass stattdessen deinen Vermögensbaum wachsen.",
+      "dec": "12 Tage No-Spend: zwölf Tage am Stück vor Weihnachten. Geplante Geschenke sind okay – die Extras nicht. Starte die Challenge unter Challenges.",
+      "jan": "No-Spend-Januar: 31 Tage nur das Nötigste. Besiegle jeden Tag mit einer Goldmünze und starte mit mehr Geld ins neue Jahr."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black-Friday-Kaufstopp",
+        "short": "Kein Schnäppchen von Freitag bis Cyber Monday",
+        "long": "4-Tage-Challenge: von Black Friday bis Cyber Monday keine unnötigen Käufe. Besiegle jeden Tag mit einer Goldmünze."
+      },
+      "twelve-days": {
+        "name": "12 Tage No-Spend",
+        "short": "Zwölf No-Spend-Tage vor Weihnachten",
+        "long": "Zwölf Tage am Stück ohne unnötige Ausgaben vor Weihnachten. Geplante Geschenke sind okay – die Extras nicht."
+      },
+      "no-spend-january": {
+        "name": "No-Spend-Januar",
+        "short": "31 Tage nur das Nötigste",
+        "long": "Starte 2027 mit 31 No-Spend-Tagen: nur für das Nötigste ausgeben und jeden Tag mit einer Goldmünze besiegeln."
+      }
+    }
+  },
+  "nl-NL": {
+    "whatsNew": "Nieuw voor het no-spend-seizoen: drie tijdelijke challenges.\n• Koopvrij Black Friday-weekend: sla van vrijdag tot en met Cyber Monday elke deal over.\n• 12 dagen no-spend: twaalf dagen op rij vóór Kerstmis.\n• No-spend januari: begin het jaar met 31 dagen waarin je alleen uitgeeft aan het noodzakelijke.\nElke challenge verschijnt in zijn eigen seizoen bij Challenges.\nJe kunt nu ook aanbiedingscodes voor SpendZero Pro in de app inwisselen, via Instellingen of het Pro-scherm.",
+    "promo": {
+      "now": "Nieuw: tijdelijke challenges voor Black Friday, de 12 dagen vóór Kerstmis en no-spend januari. Verzegel elke uitgavenvrije dag met een gouden munt.",
+      "bf": "Het koopvrije Black Friday-weekend is er: sla van vrijdag tot en met Cyber Monday elke deal over en zie in plaats daarvan je vermogensboom groeien.",
+      "dec": "12 dagen no-spend: twaalf dagen op rij vóór Kerstmis. Geplande cadeaus mogen; de extra's niet. Start de challenge bij Challenges.",
+      "jan": "No-spend januari: 31 dagen alleen het noodzakelijke. Verzegel elke dag met een gouden munt en begin het jaar met meer geld."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Koopvrij Black Friday-weekend",
+        "short": "Geen deals van vrijdag tot en met Cyber Monday",
+        "long": "4 dagen geen onnodige aankopen, van Black Friday tot en met Cyber Monday. Verzegel elke dag met een gouden munt."
+      },
+      "twelve-days": {
+        "name": "12 dagen no-spend",
+        "short": "Twaalf no-spend-dagen vóór Kerstmis",
+        "long": "Twaalf dagen op rij zonder onnodige uitgaven vóór Kerstmis. Geplande cadeaus mogen; de extra's niet."
+      },
+      "no-spend-january": {
+        "name": "No-spend januari",
+        "short": "31 dagen alleen het noodzakelijke",
+        "long": "Begin 2027 met 31 no-spend-dagen: alleen uitgeven aan het noodzakelijke en elke dag verzegelen met een gouden munt."
+      }
+    }
+  },
+  "pt-BR": {
+    "whatsNew": "Novidade para a temporada sem gastos: três desafios por tempo limitado.\n• Fim de semana sem compras da Black Friday: fique longe de todas as ofertas de sexta até a Cyber Monday.\n• 12 dias sem gastos: doze dias seguidos antes do Natal.\n• Janeiro sem gastos: comece o ano com 31 dias gastando só com o essencial.\nCada um aparece em Desafios durante a sua temporada.\nAgora você também pode resgatar códigos de oferta do SpendZero Pro no app, em Ajustes ou na tela de assinatura.",
+    "promo": {
+      "now": "Novo: desafios por tempo limitado para a Black Friday, os 12 dias antes do Natal e o Janeiro sem gastos. Sele cada dia sem gastos com uma moeda de ouro.",
+      "bf": "Chegou o Fim de semana sem compras da Black Friday: fique longe de todas as ofertas de sexta até a Cyber Monday e veja sua árvore da riqueza crescer.",
+      "dec": "12 dias sem gastos: doze dias seguidos antes do Natal. Presentes planejados valem; os extras, não. É só começar em Desafios.",
+      "jan": "Janeiro sem gastos: 31 dias só com o essencial. Sele cada dia com uma moeda de ouro e comece o ano com mais dinheiro no bolso."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday sem compras",
+        "short": "Nada de ofertas de sexta até a Cyber Monday",
+        "long": "4 dias sem compras não essenciais, da Black Friday até a Cyber Monday. Sele cada dia com uma moeda de ouro."
+      },
+      "twelve-days": {
+        "name": "12 dias sem gastos",
+        "short": "Doze dias sem gastos antes do Natal",
+        "long": "Fique doze dias seguidos sem gastos não essenciais antes do Natal. Presentes planejados valem; os extras, não."
+      },
+      "no-spend-january": {
+        "name": "Janeiro sem gastos",
+        "short": "31 dias só com o essencial",
+        "long": "Comece 2027 com um desafio de 31 dias sem gastos: gaste só com o essencial e sele cada dia com uma moeda de ouro."
+      }
+    }
+  },
+  "pt-PT": {
+    "whatsNew": "Novidade para a época sem gastos: três desafios por tempo limitado.\n• Fim de semana sem compras da Black Friday: passa ao lado de todas as promoções de sexta até à Cyber Monday.\n• 12 dias sem gastos: doze dias seguidos antes do Natal.\n• Janeiro sem gastos: começa o ano com 31 dias a gastar só no essencial.\nCada um aparece em Desafios durante a respetiva época.\nAgora também podes resgatar códigos de oferta do SpendZero Pro na app, nas Definições ou no ecrã de subscrição.",
+    "promo": {
+      "now": "Novidade: desafios por tempo limitado para a Black Friday, os 12 dias antes do Natal e o Janeiro sem gastos. Sela cada dia sem gastos com uma moeda de ouro.",
+      "bf": "Chegou o Fim de semana sem compras da Black Friday: passa ao lado de todas as promoções de sexta até à Cyber Monday e faz crescer a tua árvore da riqueza.",
+      "dec": "12 dias sem gastos: doze dias seguidos antes do Natal. Os presentes planeados contam; os extras, não. Começa já em Desafios.",
+      "jan": "Janeiro sem gastos: 31 dias só com o essencial. Sela cada dia com uma moeda de ouro e começa o ano com mais dinheiro no bolso."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday sem compras",
+        "short": "Nada de promoções de sexta até à Cyber Monday",
+        "long": "4 dias sem compras não essenciais, da Black Friday até à Cyber Monday. Sela cada dia com uma moeda de ouro."
+      },
+      "twelve-days": {
+        "name": "12 dias sem gastos",
+        "short": "Doze dias sem gastos antes do Natal",
+        "long": "Passa doze dias seguidos sem gastos não essenciais antes do Natal. Os presentes planeados contam; os extras, não."
+      },
+      "no-spend-january": {
+        "name": "Janeiro sem gastos",
+        "short": "31 dias só com o essencial",
+        "long": "Começa 2027 com um desafio de 31 dias sem gastos: gasta só no essencial e sela cada dia com uma moeda de ouro."
+      }
+    }
+  },
+  "fr-FR": {
+    "whatsNew": "Nouveau pour la saison zéro dépense : trois défis à durée limitée.\n• Week-end zéro achat du Black Friday : ignore toutes les promos du vendredi au Cyber Monday.\n• 12 jours sans dépense : douze jours d’affilée avant Noël.\n• Janvier sans dépense : commence l’année avec 31 jours à ne dépenser que pour l’essentiel.\nChaque défi s’affiche dans Défis le moment venu.\nTu peux aussi utiliser tes codes promo SpendZero Pro dans l’app, depuis Réglages ou l’écran d’abonnement.",
+    "promo": {
+      "now": "Nouveau : des défis à durée limitée pour le Black Friday, les 12 jours avant Noël et Janvier sans dépense. Scelle chaque journée sans dépense d’une pièce d’or.",
+      "bf": "Le week-end zéro achat du Black Friday est là : ignore toutes les promos du vendredi au Cyber Monday et fais plutôt pousser ton arbre de richesse.",
+      "dec": "12 jours sans dépense : douze jours d’affilée avant Noël. Les cadeaux prévus sont permis, les extras non. Lance-toi dans Défis.",
+      "jan": "Janvier sans dépense : 31 jours pour l’essentiel seulement. Scelle chaque journée d’une pièce d’or et commence l’année avec plus d’argent."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday zéro achat",
+        "short": "Zéro promo du vendredi au Cyber Monday",
+        "long": "Défi de 4 jours : aucun achat non essentiel du Black Friday au Cyber Monday. Scelle chaque journée d’une pièce d’or."
+      },
+      "twelve-days": {
+        "name": "12 jours sans dépense",
+        "short": "Douze jours sans dépense avant Noël",
+        "long": "Tiens douze jours d’affilée sans dépense non essentielle avant Noël. Les cadeaux prévus sont permis, les extras non."
+      },
+      "no-spend-january": {
+        "name": "Janvier sans dépense",
+        "short": "31 jours pour l’essentiel seulement",
+        "long": "Démarre 2027 avec un défi de 31 jours : ne dépense que pour l’essentiel et scelle chaque journée d’une pièce d’or."
+      }
+    }
+  },
+  "fr-CA": {
+    "whatsNew": "Nouveau cette saison : trois défis offerts pour un temps limité.\n• Fin de semaine sans achats du Vendredi fou : ignorez toutes les aubaines du vendredi au Cyberlundi.\n• 12 jours sans dépenses : douze jours de suite avant Noël.\n• Janvier sans dépenses : commencez l’année avec 31 jours à ne dépenser que pour l’essentiel.\nChaque défi s’affiche dans Défis au bon moment.\nVous pouvez aussi utiliser vos codes promotionnels SpendZero Pro dans l’app, à partir des Réglages ou de l’écran d’abonnement.",
+    "promo": {
+      "now": "Nouveau : des défis à durée limitée pour le Vendredi fou, les 12 jours avant Noël et Janvier sans dépenses. Scellez chaque journée sans dépense d’une pièce d’or.",
+      "bf": "La fin de semaine sans achats du Vendredi fou est arrivée : ignorez toutes les aubaines du vendredi au Cyberlundi et faites plutôt pousser votre arbre de richesse.",
+      "dec": "12 jours sans dépenses : douze jours de suite avant Noël. Les cadeaux déjà prévus sont permis, les extras non. Lancez-vous dans Défis.",
+      "jan": "Janvier sans dépenses : 31 jours pour l’essentiel seulement. Scellez chaque journée d’une pièce d’or et commencez l’année avec plus d’argent."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Vendredi fou sans achats",
+        "short": "Aucune aubaine du vendredi au Cyberlundi",
+        "long": "Défi de 4 jours : aucun achat non essentiel du Vendredi fou au Cyberlundi. Scellez chaque journée d’une pièce d’or."
+      },
+      "twelve-days": {
+        "name": "12 jours sans dépenses",
+        "short": "Douze jours sans dépenses avant Noël",
+        "long": "Tenez douze jours de suite sans dépenses non essentielles avant Noël. Les cadeaux prévus sont permis, les extras non."
+      },
+      "no-spend-january": {
+        "name": "Janvier sans dépenses",
+        "short": "31 jours pour l’essentiel seulement",
+        "long": "Commencez 2027 avec un défi de 31 jours : ne dépensez que pour l’essentiel et scellez chaque journée d’une pièce d’or."
+      }
+    }
+  },
+  "es-MX": {
+    "whatsNew": "Novedades para la temporada sin gastos: tres retos por tiempo limitado.\n• Fin de semana sin compras de Black Friday: olvídate de todas las ofertas del viernes al Cyber Monday.\n• 12 días sin gastos: doce días seguidos antes de Navidad.\n• Enero sin gastos: empieza el año con 31 días gastando solo en lo esencial.\nCada uno aparece en Retos durante su temporada.\nAdemás, ahora puedes canjear códigos de promoción de SpendZero Pro en la app, desde Ajustes o la pantalla de suscripción.",
+    "promo": {
+      "now": "Nuevo: retos por tiempo limitado para Black Friday, los 12 días antes de Navidad y Enero sin gastos. Sella cada día sin gastos con una moneda de oro.",
+      "bf": "Ya llegó el Fin de semana sin compras de Black Friday: olvídate de todas las ofertas del viernes al Cyber Monday y mejor haz crecer tu árbol de la riqueza.",
+      "dec": "12 días sin gastos: doce días seguidos antes de Navidad. Los regalos que ya tenías planeados valen; los extras, no. Empieza en Retos.",
+      "jan": "Enero sin gastos: 31 días solo con lo esencial. Sella cada día con una moneda de oro y arranca el año con más dinero en tu bolsillo."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday sin compras",
+        "short": "Cero ofertas del viernes al Cyber Monday",
+        "long": "Reto de 4 días: nada de compras no esenciales del Black Friday al Cyber Monday. Sella cada día con una moneda de oro."
+      },
+      "twelve-days": {
+        "name": "12 días sin gastos",
+        "short": "Doce días sin gastos antes de Navidad",
+        "long": "Aguanta doce días seguidos sin gastos no esenciales antes de Navidad. Los regalos ya planeados valen; los extras, no."
+      },
+      "no-spend-january": {
+        "name": "Enero sin gastos",
+        "short": "31 días gastando solo en lo esencial",
+        "long": "Arranca 2027 con un reto de 31 días sin gastos: gasta solo en lo esencial y sella cada día con una moneda de oro."
+      }
+    }
+  },
+  "es-ES": {
+    "whatsNew": "Novedades para la temporada sin gastos: tres retos por tiempo limitado.\n• Fin de semana sin compras de Black Friday: pasa de todas las ofertas desde el viernes hasta el Cyber Monday.\n• 12 días sin gastos: doce días seguidos antes de Navidad.\n• Enero sin gastos: empieza el año con 31 días gastando solo en lo esencial.\nCada uno aparece en Retos durante su temporada.\nAdemás, ya puedes canjear códigos promocionales de SpendZero Pro en la app, desde Ajustes o la pantalla de suscripción.",
+    "promo": {
+      "now": "Novedad: retos por tiempo limitado para el Black Friday, los 12 días antes de Navidad y Enero sin gastos. Sella cada día sin gastos con una moneda de oro.",
+      "bf": "Llega el Fin de semana sin compras de Black Friday: pasa de todos los chollos desde el viernes hasta el Cyber Monday y haz crecer tu árbol de la riqueza.",
+      "dec": "12 días sin gastos: doce días seguidos antes de Navidad. Los regalos que ya tenías pensados valen; los extras, no. Empiézalo en Retos.",
+      "jan": "Enero sin gastos: 31 días solo con lo esencial. Sella cada día con una moneda de oro y empieza el año con más dinero en el bolsillo."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday sin compras",
+        "short": "Pasa de los chollos, del viernes al Cyber Monday",
+        "long": "Reto de 4 días: nada de compras no esenciales del Black Friday al Cyber Monday. Sella cada día con una moneda de oro."
+      },
+      "twelve-days": {
+        "name": "12 días sin gastos",
+        "short": "Doce días sin gastos antes de Navidad",
+        "long": "Aguanta doce días seguidos sin gastos no esenciales antes de Navidad. Los regalos ya pensados valen; los extras, no."
+      },
+      "no-spend-january": {
+        "name": "Enero sin gastos",
+        "short": "31 días gastando solo en lo esencial",
+        "long": "Empieza 2027 con un reto de 31 días sin gastos: gasta solo en lo esencial y sella cada día con una moneda de oro."
+      }
+    }
+  },
+  "it": {
+    "whatsNew": "Novità per la stagione del no spend: tre sfide a tempo limitato.\n• Weekend senza acquisti del Black Friday: ignora tutte le offerte da venerdì fino al Cyber Monday.\n• 12 giorni senza spese: dodici giorni di fila prima di Natale.\n• Gennaio senza spese: inizia l'anno con 31 giorni di spese solo per l'essenziale.\nOgnuna compare in Sfide nel suo periodo.\nOra puoi anche riscattare i codici promozionali di SpendZero Pro nell'app, da Impostazioni o dalla schermata di abbonamento.",
+    "promo": {
+      "now": "Novità: sfide a tempo limitato per il Black Friday, i 12 giorni prima di Natale e Gennaio senza spese. Chiudi ogni giorno senza spese con una moneta d'oro.",
+      "bf": "È arrivato il Weekend senza acquisti del Black Friday: ignora tutte le offerte da venerdì al Cyber Monday e fai crescere il tuo albero della ricchezza.",
+      "dec": "12 giorni senza spese: dodici giorni di fila prima di Natale. I regali già previsti vanno bene, gli extra no. La trovi in Sfide.",
+      "jan": "Gennaio senza spese: 31 giorni solo per l'essenziale. Chiudi ogni giorno con una moneta d'oro e inizia l'anno con più soldi in tasca."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Black Friday senza acquisti",
+        "short": "Niente offerte da venerdì al Cyber Monday",
+        "long": "Sfida di 4 giorni: niente acquisti superflui dal Black Friday al Cyber Monday. Chiudi ogni giorno con una moneta d'oro."
+      },
+      "twelve-days": {
+        "name": "12 giorni senza spese",
+        "short": "Dodici giorni senza spese prima di Natale",
+        "long": "Dodici giorni di fila senza spese non essenziali prima di Natale. I regali già previsti vanno bene, gli extra no."
+      },
+      "no-spend-january": {
+        "name": "Gennaio senza spese",
+        "short": "31 giorni solo per l'essenziale",
+        "long": "Inizia il 2027 con una sfida di 31 giorni: spendi solo per l'essenziale e chiudi ogni giorno con una moneta d'oro."
+      }
+    }
+  },
+  "ja": {
+    "whatsNew": "節約シーズンに向けて、期間限定チャレンジが3つ登場しました。\n• ブラックフライデー買わない週末：金曜からサイバーマンデーまで、セールはすべてスルー。\n• 12日間の節約チャレンジ：クリスマス前に12日連続で節約。\n• 1月の節約チャレンジ：必需品だけで過ごす31日間で、新しい年をスタート。\nそれぞれの期間中、「チャレンジ」に表示されます。\nまた、SpendZero Proのオファーコードを、アプリ内の「設定」または購入画面から利用できるようになりました。",
+    "promo": {
+      "now": "新登場：ブラックフライデー、クリスマス前の12日間、1月の節約チャレンジを期間限定で開催。お金を使わなかった日を金のコインで締めくくろう。",
+      "bf": "ブラックフライデー買わない週末がスタート。金曜からサイバーマンデーまでセールはすべてスルーして、マネーツリーを育てよう。",
+      "dec": "12日間の節約チャレンジ：クリスマス前に12日連続で節約。予定していたプレゼントはOK、それ以外はなし。「チャレンジ」から始めよう。",
+      "jan": "1月の節約チャレンジ：必需品だけで過ごす31日間。毎日を金のコインで締めくくって、お金に余裕のある新年をスタートしよう。"
+    },
+    "events": {
+      "black-friday": {
+        "name": "ブラックフライデー買わない週末",
+        "short": "金曜からサイバーマンデーまでセールはスルー",
+        "long": "ブラックフライデーからサイバーマンデーまでの4日間、必需品以外は買わないチャレンジ。毎日を金のコインで締めくくろう。"
+      },
+      "twelve-days": {
+        "name": "12日間の節約チャレンジ",
+        "short": "クリスマス前に12日連続の節約デー",
+        "long": "クリスマス前に12日連続で、必需品以外にお金を使わないチャレンジ。予定していたプレゼントはOK、それ以外はなし。"
+      },
+      "no-spend-january": {
+        "name": "1月の節約チャレンジ",
+        "short": "必需品だけで過ごす31日間",
+        "long": "31日間、必需品だけにお金を使う節約チャレンジで2027年をスタート。毎日を金のコインで締めくくろう。"
+      }
+    }
+  },
+  "zh-Hans": {
+    "whatsNew": "零消费季来了：三项限时挑战上线。\n• 黑五零购物周末：从周五到网络星期一，跳过所有促销。\n• 12 天零消费：圣诞节前连续 12 天零消费。\n• 零消费一月：新年开局，31 天只为必需品花钱。\n每项挑战会在对应时段出现在“挑战”中。\n此外，现在可以在 App 内的“设置”或订阅页面兑换 SpendZero Pro 优惠码。",
+    "promo": {
+      "now": "新功能：黑五、圣诞前 12 天和零消费一月限时挑战上线。用一枚金币封存每个零消费日。",
+      "bf": "黑五零购物周末来了：从周五到网络星期一，跳过所有促销，让你的财富树茁壮成长。",
+      "dec": "12 天零消费：圣诞节前连续 12 天。已经计划好的礼物可以买，额外的就免了。快去“挑战”中开始吧。",
+      "jan": "零消费一月：31 天只买必需品。用金币封存每一天，让新的一年从多存一点钱开始。"
+    },
+    "events": {
+      "black-friday": {
+        "name": "黑五零购物周末",
+        "short": "从周五到网络星期一，跳过所有促销",
+        "long": "为期 4 天的挑战：从黑色星期五到网络星期一，不买任何非必需品。用一枚金币封存每一天。"
+      },
+      "twelve-days": {
+        "name": "12 天零消费",
+        "short": "圣诞节前连续 12 天零消费",
+        "long": "圣诞节前连续 12 天，不在非必需品上花一分钱。已经计划好的礼物可以买，额外的就免了。"
+      },
+      "no-spend-january": {
+        "name": "零消费一月",
+        "short": "31 天只为必需品花钱",
+        "long": "用 31 天零消费挑战开启 2027 年：只为必需品花钱，用一枚金币封存每一天。"
+      }
+    }
+  },
+  "tr": {
+    "whatsNew": "Harcamasız sezona özel: sınırlı süreli üç yeni meydan okuma.\n• Black Friday Alışverişsiz Hafta Sonu: cumadan Cyber Monday'ye kadar hiçbir indirime kanma.\n• 12 Gün Harcamasız: Noel'den önce üst üste on iki harcamasız gün.\n• Harcamasız Ocak: yıla 31 gün boyunca yalnızca temel ihtiyaçlara harcayarak başla.\nHer biri kendi döneminde Meydan Okumalar bölümünde görünür.\nAyrıca SpendZero Pro teklif kodlarını artık uygulama içinde, Ayarlar'dan ya da abonelik ekranından kullanabilirsin.",
+    "promo": {
+      "now": "Yeni: Black Friday, Noel'den önceki 12 gün ve Harcamasız Ocak için sınırlı süreli meydan okumalar. Her harcamasız günü altın bir parayla mühürle.",
+      "bf": "Black Friday Alışverişsiz Hafta Sonu başladı: cumadan Cyber Monday'ye kadar hiçbir indirime kanma, bunun yerine servet ağacını büyüt.",
+      "dec": "12 Gün Harcamasız: Noel'den önce üst üste on iki gün. Önceden planladığın hediyeler olur, fazlası olmaz. Meydan Okumalar'dan hemen başla.",
+      "jan": "Harcamasız Ocak: 31 gün yalnızca temel ihtiyaçlar. Her günü altın bir parayla mühürle ve yeni yıla daha çok parayla başla."
+    },
+    "events": {
+      "black-friday": {
+        "name": "Alışverişsiz Black Friday",
+        "short": "Cumadan Cyber Monday'ye kadar indirime kanma",
+        "long": "4 günlük meydan okuma: Black Friday'den Cyber Monday'ye gereksiz alışveriş yok. Her günü altın bir parayla mühürle."
+      },
+      "twelve-days": {
+        "name": "12 Gün Harcamasız",
+        "short": "Noel'den önce 12 harcamasız gün",
+        "long": "Noel'den önce üst üste on iki gün gereksiz harcama yapma. Önceden planladığın hediyeler olur, fazlası olmaz."
+      },
+      "no-spend-january": {
+        "name": "Harcamasız Ocak",
+        "short": "31 gün yalnızca temel ihtiyaçlar",
+        "long": "2027'ye 31 harcamasız günle başla: yalnızca temel ihtiyaçlara harca ve her günü altın bir parayla mühürle."
+      }
+    }
+  }
+}

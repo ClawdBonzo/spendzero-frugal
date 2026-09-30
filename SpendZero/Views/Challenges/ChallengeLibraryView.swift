@@ -2,21 +2,28 @@ import SwiftUI
 import SwiftData
 
 struct ChallengeLibraryView: View {
+    /// Seasonal challenge to scroll to and highlight (from a deep link).
+    var highlightKey: String? = nil
+    /// Presented as a sheet from a deep link, so it needs its own Done button.
+    var showsDoneButton = false
+
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @State private var highlightedID: UUID?
     @Query(sort: \ChallengeEntry.title) private var challenges: [ChallengeEntry]
     @State private var selectedCategory: ChallengeCategory?
     @State private var showCreateChallenge = false
     @Query private var profiles: [UserProfile]
 
     private var filteredChallenges: [ChallengeEntry] {
-        if let category = selectedCategory {
-            return challenges.filter { $0.category == category }
-        }
-        return challenges
+        let list = selectedCategory.map { category in challenges.filter { $0.category == category } } ?? challenges
+        // Limited-time challenges lead the list while they're offered.
+        let seasonal = list.filter { SeasonalChallenges.challenge(forTitle: $0.title) != nil }
+        return seasonal + list.filter { SeasonalChallenges.challenge(forTitle: $0.title) == nil }
     }
 
     var body: some View {
-        Group {
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     // Active challenge
@@ -60,6 +67,11 @@ struct ChallengeLibraryView: View {
                                 ChallengeCard(challenge: challenge) {
                                     startChallenge(challenge)
                                 }
+                                .id(challenge.id)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
+                                        .stroke(AppTheme.accentGold, lineWidth: highlightedID == challenge.id ? 2 : 0)
+                                )
                             }
                         }
                     }
@@ -73,6 +85,12 @@ struct ChallengeLibraryView: View {
             .navigationTitle("Challenges")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if showsDoneButton {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("Done") { dismiss() }
+                            .foregroundColor(AppTheme.textSecondary)
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showCreateChallenge = true
@@ -89,6 +107,21 @@ struct ChallengeLibraryView: View {
             }
             .onAppear {
                 seedDefaultChallenges()
+                ProgressEngine.shared.syncSeasonalChallenges(challenges, context: modelContext, now: SeasonalChallenges.now)
+                highlight(using: proxy)
+            }
+        }
+    }
+
+    private func highlight(using proxy: ScrollViewProxy) {
+        guard let key = highlightKey, let seasonal = SeasonalChallenges.challenge(forKey: key) else { return }
+        // Give the seasonal sync and @Query a moment to surface the entry.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            guard let entry = challenges.first(where: { $0.title == seasonal.title }) else { return }
+            selectedCategory = nil
+            withAnimation(.easeInOut(duration: 0.5)) {
+                proxy.scrollTo(entry.id, anchor: .center)
+                highlightedID = entry.id
             }
         }
     }
@@ -251,7 +284,19 @@ struct ChallengeCard: View {
             Text(LocalizedStringKey(challenge.challengeDescription))
                 .font(AppTheme.captionFont)
                 .foregroundColor(AppTheme.textSecondary)
-                .lineLimit(2)
+                .lineLimit(3)
+
+            if let seasonal = SeasonalChallenges.challenge(forTitle: challenge.title),
+               let window = SeasonalChallenges.window(of: seasonal, containing: SeasonalChallenges.now) {
+                let lastDay = Calendar.current.date(byAdding: .day, value: -1, to: window.end) ?? window.end
+                Label(String(localized: "Limited time · ends \(lastDay.formatted(.dateTime.month(.abbreviated).day()))"),
+                      systemImage: "hourglass")
+                    .font(.app(size: 11, weight: .bold))
+                    .foregroundColor(AppTheme.accentGold)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Capsule().fill(AppTheme.accentGold.opacity(0.14)))
+            }
 
             HStack {
                 Label("Save ~\(challenge.estimatedSavings.currencyFormatted)", systemImage: "dollarsign.circle")

@@ -13,6 +13,14 @@ struct MainTabView: View {
     @Query private var profiles: [UserProfile]
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.requestReview) private var requestReview
+    @State private var router = DeepLinkRouter.shared
+    @State private var deepLinkedChallenge: DeepLinkedChallenge?
+
+    /// Sheet item for a challenge-library deep link.
+    struct DeepLinkedChallenge: Identifiable {
+        let key: String
+        var id: String { key }
+    }
 
     var body: some View {
         ZStack {
@@ -57,7 +65,14 @@ struct MainTabView: View {
         .onReceive(NotificationCenter.default.publisher(for: .spendZeroPendingAction)) { _ in
             routePendingAction()
         }
+        .onChange(of: router.pendingChallengeKey) { _, _ in consumeDeepLink() }
+        .sheet(item: $deepLinkedChallenge) { link in
+            NavigationStack {
+                ChallengeLibraryView(highlightKey: link.key.isEmpty ? nil : link.key, showsDoneButton: true)
+            }
+        }
         .onAppear {
+            consumeDeepLink()
             routePendingAction()
             #if DEBUG
             stageDebugCelebration()
@@ -106,6 +121,12 @@ struct MainTabView: View {
 }
 
 extension MainTabView {
+    fileprivate func consumeDeepLink() {
+        guard let key = router.pendingChallengeKey else { return }
+        router.pendingChallengeKey = nil
+        deepLinkedChallenge = DeepLinkedChallenge(key: key)
+    }
+
     /// Quick actions, Siri and notification buttons queue an `AppAction`; land on the right tab
     /// and tell that tab to open its sheet.
     fileprivate func routePendingAction() {

@@ -617,3 +617,13 @@
 "%lld gold coins" = "%lld altın para";
 
 "Quest done: %@" = "Görev tamamlandı: %@";
+
+"Black Friday No-Buy Weekend" = "Black Friday Alışverişsiz Hafta Sonu";
+"Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday." = "Black Friday ve Cyber Monday fırsatlarını boş ver: cumadan pazartesiye kadar gereksiz hiçbir şey alma.";
+"12 Days of No-Spend" = "12 Gün Harcamasız";
+"Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't." = "Noel'den önce üst üste on iki harcamasız gün. Önceden planladığın hediyeler olur, fazlası olmaz.";
+"No-Spend January" = "Harcamasız Ocak";
+"Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport." = "Yıla 31 gün boyunca yalnızca kira, faturalar, market ve ulaşım gibi temel ihtiyaçlara harcayarak başla.";
+"Limited time · ends %@" = "Sınırlı süre · %@ tarihinde bitiyor";
+"Redeem Code" = "Kodu Kullan";
+"Have a code? Redeem it" = "Kodun mu var? Hemen kullan";

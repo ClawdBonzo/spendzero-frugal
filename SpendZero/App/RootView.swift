@@ -51,6 +51,7 @@ struct RootView: View {
                     .zIndex(1)
             }
         }
+        .onOpenURL { DeepLinkRouter.shared.handle($0) }
         .onAppear {
             activate()
 

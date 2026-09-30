@@ -305,6 +305,40 @@ final class ProgressEngine {
         save(context)
     }
 
+    /// Adds seasonal challenges that are in their window, removes untouched ones whose window has
+    /// passed, and resets last season's copy so it can be taken again. Started challenges are kept.
+    func syncSeasonalChallenges(_ all: [ChallengeEntry], context: ModelContext, now: Date = Date()) {
+        var changed = false
+        for seasonal in SeasonalChallenges.all {
+            let matches = all.filter { $0.title == seasonal.title }
+            if let window = SeasonalChallenges.window(of: seasonal, containing: now) {
+                if matches.isEmpty {
+                    context.insert(ChallengeEntry(title: seasonal.title,
+                                                  challengeDescription: seasonal.description,
+                                                  durationDays: seasonal.durationDays,
+                                                  category: .noSpend,
+                                                  difficulty: seasonal.difficulty,
+                                                  estimatedSavings: seasonal.estimatedSavings))
+                    changed = true
+                } else {
+                    for entry in matches where !entry.isActive && (entry.startDate ?? .distantFuture) < window.start {
+                        entry.isCompleted = false
+                        entry.completedDays = 0
+                        entry.startDate = nil
+                        entry.lastCountedDate = nil
+                        changed = true
+                    }
+                }
+            } else {
+                for entry in matches where !entry.isActive && entry.startDate == nil {
+                    context.delete(entry)
+                    changed = true
+                }
+            }
+        }
+        if changed { save(context) }
+    }
+
     /// Wipe everything the user has built. Keeps the profile identity and onboarding answers.
     func resetAllData(profile: UserProfile?, context: ModelContext) {
         try? context.delete(model: SpendingLog.self)

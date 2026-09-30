@@ -617,3 +617,13 @@
 "%lld gold coins" = "%lld 枚金币";
 
 "Quest done: %@" = "任务完成：%@";
+
+"Black Friday No-Buy Weekend" = "黑五零购物周末";
+"Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday." = "跳过黑色星期五和网络星期一的促销：从周五到周一，不买任何非必需品。";
+"12 Days of No-Spend" = "12 天零消费";
+"Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't." = "圣诞节前连续 12 天零消费。已经计划好的礼物可以买，额外的就免了。";
+"No-Spend January" = "零消费一月";
+"Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport." = "新的一年，用 31 天只为房租、账单、食品杂货和交通等必需品花钱。";
+"Limited time · ends %@" = "限时 · %@ 结束";
+"Redeem Code" = "兑换代码";
+"Have a code? Redeem it" = "有兑换码？点此兑换";

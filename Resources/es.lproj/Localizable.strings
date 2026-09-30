@@ -617,3 +617,13 @@
 "%lld gold coins" = "%lld monedas de oro";
 
 "Quest done: %@" = "Misión cumplida: %@";
+
+"Black Friday No-Buy Weekend" = "Fin de semana sin compras de Black Friday";
+"Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday." = "Pasa de las ofertas del Black Friday y el Cyber Monday: nada de compras no esenciales de viernes a lunes.";
+"12 Days of No-Spend" = "12 días sin gastos";
+"Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't." = "Doce días seguidos sin gastos antes de Navidad. Los regalos que ya tenías planeados valen; los extras, no.";
+"No-Spend January" = "Enero sin gastos";
+"Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport." = "Empieza el año con 31 días gastando solo en lo esencial, como vivienda, servicios, comida y transporte.";
+"Limited time · ends %@" = "Por tiempo limitado · termina el %@";
+"Redeem Code" = "Canjear código";
+"Have a code? Redeem it" = "¿Tienes un código? Canjéalo";

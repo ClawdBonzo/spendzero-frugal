@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 
 struct PaywallView: View {
     let onContinue: () -> Void
@@ -11,6 +12,7 @@ struct PaywallView: View {
     @State private var selectedOption: String = SubscriptionService.yearlyID
     @State private var subscriptionService = SubscriptionService.shared
     @State private var alert: PaywallAlert?
+    @State private var showRedeemCode = false
     @State private var showExport = false
 
     private struct PaywallAlert: Identifiable {
@@ -198,6 +200,16 @@ struct PaywallView: View {
                         }
                     }
                     .padding(.horizontal, AppTheme.paddingLarge)
+
+                    Button("Have a code? Redeem it") { showRedeemCode = true }
+                        .font(AppTheme.captionFont)
+                        .foregroundColor(AppTheme.accentGold)
+                        .offerCodeRedemption(isPresented: $showRedeemCode) { _ in
+                            Task {
+                                await subscriptionService.refreshAfterCodeRedemption()
+                                if subscriptionService.isPremium { onContinue() }
+                            }
+                        }
 
                     // Restore + Legal
                     HStack(spacing: 16) {

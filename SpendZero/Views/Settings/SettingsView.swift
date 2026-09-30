@@ -1,10 +1,12 @@
 import SwiftUI
+import StoreKit
 import SwiftData
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
     @State private var showPaywall = false
+    @State private var showRedeemCode = false
     @State private var subscription = SubscriptionService.shared
     @State private var infoAlert: InfoAlert?
 
@@ -136,6 +138,22 @@ struct SettingsView: View {
                                     .foregroundColor(AppTheme.info)
                                 Text("Restore Purchases")
                                     .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+
+                        if !subscription.isPremium {
+                            Button {
+                                showRedeemCode = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "ticket.fill")
+                                        .foregroundColor(AppTheme.accentGold)
+                                    Text("Redeem Code")
+                                        .foregroundColor(AppTheme.textPrimary)
+                                }
+                            }
+                            .offerCodeRedemption(isPresented: $showRedeemCode) { _ in
+                                Task { await subscription.refreshAfterCodeRedemption() }
                             }
                         }
 

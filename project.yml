@@ -9,8 +9,8 @@ settings:
   base:
     SWIFT_EMIT_LOC_STRINGS: "YES"
     DEVELOPMENT_TEAM: "3N9RY9EG8V"
-    MARKETING_VERSION: "1.3"
-    CURRENT_PROJECT_VERSION: "11"
+    MARKETING_VERSION: "1.4"
+    CURRENT_PROJECT_VERSION: "12"
 packages:
   RevenueCat:
     url: https://github.com/RevenueCat/purchases-ios-spm.git
@@ -34,6 +34,10 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
+        CFBundleURLTypes:
+          - CFBundleURLName: com.clawdbonzo.SpendZero
+            CFBundleURLSchemes:
+              - spendzero
         UILaunchScreen:
           UIColorName: AccentColor
         UISupportedInterfaceOrientations:

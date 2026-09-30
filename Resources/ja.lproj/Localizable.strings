@@ -617,3 +617,13 @@
 "%lld gold coins" = "金貨%lld枚";
 
 "Quest done: %@" = "クエスト達成：%@";
+
+"Black Friday No-Buy Weekend" = "ブラックフライデー買わない週末";
+"Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday." = "ブラックフライデーとサイバーマンデーのセールはスルー。金曜から月曜まで、必需品以外は買いません。";
+"12 Days of No-Spend" = "12日間の節約チャレンジ";
+"Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't." = "クリスマス前に12日連続の節約デー。予定していたプレゼントはOK、それ以外の買い物はなし。";
+"No-Spend January" = "1月の節約チャレンジ";
+"Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport." = "家賃、光熱費、食料品、交通費など必需品だけで31日間。新しい年を節約でスタート。";
+"Limited time · ends %@" = "期間限定・%@まで";
+"Redeem Code" = "コードを使う";
+"Have a code? Redeem it" = "コードをお持ちの方はこちら";

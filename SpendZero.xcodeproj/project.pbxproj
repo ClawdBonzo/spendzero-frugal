@@ -79,11 +79,13 @@
 		D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */; };
 		D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03861222FFCF94496BF9A45D /* StreakFlamesView.swift */; };
 		D2AF3101520B15306040110C /* ParticleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5497DF05997681E8D5FD5 /* ParticleBackgroundView.swift */; };
+		D44F0F732C47F3025C4AB3D6 /* SeasonalChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F82E9B7C857AA3D07310052 /* SeasonalChallenges.swift */; };
 		D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */; };
 		DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EADC2A53B7B0387A0202F /* HapticManager.swift */; };
 		DF439DCD13736B03246B0B9A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D925E506CA9C841A256760 /* UserProfile.swift */; };
 		DFF7184CB537987BBDCC172D /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB104A19FD9EAE752C0CE92 /* SubscriptionService.swift */; };
 		E0B83266C4B0BD85C5623519 /* ChallengeLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EFB8F580D6E1B9FDD792F /* ChallengeLibraryView.swift */; };
+		E26C5819A762AD16F366B8B7 /* SeasonalChallengesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C96CEBF54D6C66D1163A0 /* SeasonalChallengesTests.swift */; };
 		E28508AF7ECC85430D5FC363 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16601C3F13735DD7156B956 /* ExportView.swift */; };
 		EFC9993A1CE4C503FB377AAE /* DailyLoggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5981CF6F97E316CBD3D744 /* DailyLoggerView.swift */; };
 		F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */; };
@@ -157,6 +159,7 @@
 		4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecord.swift; sourceTree = "<group>"; };
 		4D70B8999B3B70E25AAD97C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4D722EA20D19B9654BD86584 /* OnboardingCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCategoriesView.swift; sourceTree = "<group>"; };
+		4F82E9B7C857AA3D07310052 /* SeasonalChallenges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalChallenges.swift; sourceTree = "<group>"; };
 		50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		50C903FE91ACBE6A31008F87 /* KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismiss.swift; sourceTree = "<group>"; };
 		522D81AF5CD6EC2F5D45ADB1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 		E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressView.swift; sourceTree = "<group>"; };
 		E6D925E506CA9C841A256760 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E8BFB99C6E1B75506DB4ABBB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
+		EA5C96CEBF54D6C66D1163A0 /* SeasonalChallengesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalChallengesTests.swift; sourceTree = "<group>"; };
 		EE2D0208F363FCFED8A4471B /* SavingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsEntry.swift; sourceTree = "<group>"; };
 		EE99FE1149A556888EA6268B /* LevelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCard.swift; sourceTree = "<group>"; };
 		EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeUnlockCelebrationView.swift; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 				A71B69E3062FE60B57AEBA19 /* NotificationManager.swift */,
 				4748FECF29D12B89DF052F81 /* ProgressEngine.swift */,
 				145BDF1CB5885C72DE718C68 /* ReviewPrompter.swift */,
+				4F82E9B7C857AA3D07310052 /* SeasonalChallenges.swift */,
 				7EB104A19FD9EAE752C0CE92 /* SubscriptionService.swift */,
 				DF37808D802349C0272BEBC7 /* WidgetSync.swift */,
 			);
@@ -518,6 +523,7 @@
 				E048E221D51203BFFB86868B /* GameMathTests.swift */,
 				01A09BEB89CB38991F913944 /* ProgressEngineTests.swift */,
 				B1B1BC91CDB86699E4307AE4 /* ReviewPrompterTests.swift */,
+				EA5C96CEBF54D6C66D1163A0 /* SeasonalChallengesTests.swift */,
 				6F270064BE150B097019BF3F /* StreakTests.swift */,
 			);
 			path = SpendZeroTests;
@@ -679,6 +685,7 @@
 				290D5B0F7BA320132B5D3BA4 /* GameMathTests.swift in Sources */,
 				ACA3FE778F23F7438BFE10A1 /* ProgressEngineTests.swift in Sources */,
 				284C56B2394372DE52DF0E05 /* ReviewPrompterTests.swift in Sources */,
+				E26C5819A762AD16F366B8B7 /* SeasonalChallengesTests.swift in Sources */,
 				A7D1DBF528222615F14D13C3 /* StreakTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -748,6 +755,7 @@
 				84E0AC583078E418D15A2F0B /* RootView.swift in Sources */,
 				1274D3DAC918D0C3917E1E96 /* SavingsEntry.swift in Sources */,
 				08C8D9315481C62FDFC2D1F4 /* SchemaVersions.swift in Sources */,
+				D44F0F732C47F3025C4AB3D6 /* SeasonalChallenges.swift in Sources */,
 				957A840F6713C4916DD03F1C /* SettingsView.swift in Sources */,
 				019F187E393F6AC4323BEFCC /* ShareCardView.swift in Sources */,
 				506BEE36A204D50682E980FB /* SpendZeroApp.swift in Sources */,
@@ -934,7 +942,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 3N9RY9EG8V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -954,7 +962,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1001,7 +1009,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3N9RY9EG8V;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1015,7 +1023,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
