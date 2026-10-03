@@ -1,0 +1,20 @@
+# Agent F (wealth tree, alternate app icons, sound toggle): new Localizable.strings keys (English value = key)
+# Settings (SettingsView.swift)
+"Personalize" = "Personalize";
+"App Icon" = "App Icon";
+"Sound effects" = "Sound effects";
+# App icon picker (AppIconPicker.swift)
+"Classic" = "Classic";
+"Gold" = "Gold";
+"Emerald" = "Emerald";
+"Midnight" = "Midnight";
+"Default" = "Default";
+# (also uses existing keys "Level %lld" and "OK")
+"Make SpendZero yours" = "Make SpendZero yours";
+"You’re level %lld" = "You’re level %lld";
+"Earn XP to unlock new icons. Your choice applies on the Home Screen right away." = "Earn XP to unlock new icons. Your choice applies on the Home Screen right away.";
+"Couldn’t Change Icon" = "Couldn’t Change Icon";
+"This device doesn’t support alternate app icons." = "This device doesn’t support alternate app icons.";
+"Selected" = "Selected";
+"Unlocks at level %lld" = "Unlocks at level %lld";
+# No new user-facing strings in WealthTree.swift / MoneyTreeView.swift.
