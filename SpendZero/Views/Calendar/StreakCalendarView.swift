@@ -5,12 +5,22 @@ struct StreakCalendarView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \DailyRecord.date) private var records: [DailyRecord]
     @Query(sort: \SavingsEntry.date, order: .reverse) private var savings: [SavingsEntry]
+    @Query(sort: \SpendingLog.date) private var spending: [SpendingLog]
+    @Query private var profiles: [UserProfile]
     @State private var selectedMonth = Date()
     @State private var selectedDate: Date?
     @State private var detailDay: SelectedDay?
+    @AppStorage("streakCalendarMode") private var mode: Mode = .year
+    @State private var mintYear = Calendar.current.component(.year, from: Date())
+    @State private var zoomDay: SelectedDay?
+    @State private var zoomSource: Date?
+    @State private var showInsights = false
+    @Namespace private var zoomNamespace
+
+    enum Mode: String, CaseIterable { case month, year }
 
     /// Identifiable wrapper so a tapped day can drive `.sheet(item:)`.
-    struct SelectedDay: Identifiable {
+    struct SelectedDay: Identifiable, Hashable {
         let date: Date
         var id: Date { date }
     }
@@ -78,49 +88,111 @@ struct StreakCalendarView: View {
         return monthDays.filter { recordFor($0, in: table)?.isNoSpendDay == true }.count
     }
 
+    private var ledger: DayLedger {
+        DayLedger(records: records, savings: savings, spending: spending,
+                  profileCreated: profiles.first?.createdAt, lastNoSpendDate: profiles.first?.lastNoSpendDate)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    // Month navigator
-                    monthNavigator
+                    Picker(selection: $mode.animation(.snappy)) {
+                        Text("Month").tag(Mode.month)
+                        Text("Year").tag(Mode.year)
+                    } label: {
+                        Text("Calendar view")
+                    }
+                    .pickerStyle(.segmented)
 
-                    // Month summary — slides in
-                    monthSummaryCard
-                        .scaleEffect(showSummary ? 1 : 0.92)
-                        .opacity(showSummary ? 1 : 0)
-
-                    // Calendar grid — fades in
-                    calendarGrid
-                        .offset(y: showCalendar ? 0 : 20)
-                        .opacity(showCalendar ? 1 : 0)
-
-                    // Savings timeline — slides up
-                    savingsTimeline
-                        .offset(y: showTimeline ? 0 : 25)
-                        .opacity(showTimeline ? 1 : 0)
+                    if mode == .year {
+                        MintCalendarView(ledger: ledger, year: $mintYear, zoomSource: zoomSource,
+                                         zoomNamespace: zoomNamespace) { date in
+                            zoomSource = date
+                            zoomDay = SelectedDay(date: date)
+                        }
+                        .transition(.opacity.combined(with: .scale(scale: 0.98)))
+                    } else {
+                        monthContent
+                            .transition(.opacity.combined(with: .scale(scale: 0.98)))
+                    }
 
                     Spacer(minLength: 100)
                 }
                 .padding(.horizontal, AppTheme.paddingMedium)
                 .padding(.top, 8)
-                .onAppear {
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
-                        showSummary = true
-                    }
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.15)) {
-                        showCalendar = true
-                    }
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.3)) {
-                        showTimeline = true
-                    }
-                }
             }
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle("Streak Calendar")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        HapticManager.shared.trigger(.buttonTap)
+                        showInsights = true
+                    } label: {
+                        Image(systemName: "chart.line.uptrend.xyaxis")
+                    }
+                    .tint(AppTheme.primaryGreen)
+                    .accessibilityLabel(Text("Progress charts"))
+                }
+            }
+            .navigationDestination(isPresented: $showInsights) { ProgressChartsView() }
+            .navigationDestination(item: $zoomDay) { day in
+                DayDetailView(date: day.date, record: recordFor(day.date, in: recordsByDay), showsMedallion: true)
+                    .navigationTransition(.zoom(sourceID: day.date, in: zoomNamespace))
+            }
             .sheet(item: $detailDay) { day in
                 DayDetailSheet(date: day.date, record: recordFor(day.date, in: recordsByDay))
+            }
+            #if DEBUG
+            .onAppear {
+                let args = ProcessInfo.processInfo.arguments
+                if args.contains("-OpenInsights") { showInsights = true }
+                if args.contains("-CalendarMonth") { mode = .month }
+                if let i = args.firstIndex(of: "-OpenDayOffset"), i + 1 < args.count, let off = Int(args[i + 1]),
+                   let d = calendar.date(byAdding: .day, value: -off, to: calendar.startOfDay(for: Date())) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        zoomSource = d
+                        zoomDay = SelectedDay(date: d)
+                    }
+                }
+            }
+            #endif
+        }
+    }
+
+    // MARK: - Month mode
+
+    private var monthContent: some View {
+        VStack(spacing: 20) {
+            // Month navigator
+            monthNavigator
+
+            // Month summary — slides in
+            monthSummaryCard
+                .scaleEffect(showSummary ? 1 : 0.92)
+                .opacity(showSummary ? 1 : 0)
+
+            // Calendar grid — fades in
+            calendarGrid
+                .offset(y: showCalendar ? 0 : 20)
+                .opacity(showCalendar ? 1 : 0)
+
+            // Savings timeline — slides up
+            savingsTimeline
+                .offset(y: showTimeline ? 0 : 25)
+                .opacity(showTimeline ? 1 : 0)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.05)) {
+                showSummary = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.15)) {
+                showCalendar = true
+            }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.3)) {
+                showTimeline = true
             }
         }
     }
@@ -377,8 +449,29 @@ struct CalendarDayCell: View {
 struct DayDetailSheet: View {
     let date: Date
     let record: DailyRecord?
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            DayDetailView(date: date, record: record, showsMedallion: false)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { dismiss() } label: { Text("Done") }
+                    }
+                }
+        }
+        .presentationDetents([.medium, .large])
+    }
+}
+
+/// The body of a day's detail, shown pushed (zooming out of its Mint Calendar coin) or in a sheet.
+struct DayDetailView: View {
+    let date: Date
+    let record: DailyRecord?
+    var showsMedallion: Bool = false
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var medallionIn = false
     @State private var spending: [SpendingLog] = []
     @State private var impulses: [ImpulseLog] = []
 
@@ -397,9 +490,9 @@ struct DayDetailSheet: View {
     }
 
     var body: some View {
-        NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 20) {
+                    if showsMedallion && status == .noSpend { medallionHero }
                     statusHeader
                     totalsRow
 
@@ -449,14 +542,30 @@ struct DayDetailSheet: View {
             .background(AppTheme.background.ignoresSafeArea())
             .navigationTitle(Text(date, format: .dateTime.weekday(.wide).month().day()))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: { Text("Done") }
-                }
-            }
             .task { load() }
+    }
+
+    /// The day's coin, struck large: the zoom transition lands on it.
+    private var medallionHero: some View {
+        ZStack {
+            Sunburst(color: AppTheme.accentGold, rays: 16, period: 22)
+                .frame(width: 300, height: 300)
+                .opacity(medallionIn ? 0.9 : 0)
+            SealMedallion(center: (record?.totalSpent ?? 0).currencyFormatted,
+                          caption: date.formatted(.dateTime.month(.abbreviated).day().year()))
+                .frame(width: 180, height: 180)
+                .goldSheen()
+                .scaleEffect(medallionIn ? 1 : 0.86)
         }
-        .presentationDetents([.medium, .large])
+        .frame(maxWidth: .infinity)
+        .frame(height: 220)
+        .clipped()
+        .onAppear {
+            if reduceMotion { medallionIn = true; return }
+            withAnimation(.spring(duration: 0.55, bounce: 0.35).delay(0.12)) { medallionIn = true }
+        }
+        .accessibilityElement()
+        .accessibilityLabel(Text("Sealed no-spend day medallion"))
     }
 
     private var statusHeader: some View {
