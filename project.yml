@@ -40,6 +40,10 @@ targets:
           - CFBundleURLName: com.clawdbonzo.SpendZero
             CFBundleURLSchemes:
               - spendzero
+        LSApplicationQueriesSchemes:
+          - wishlock
+          - placesivevisited
+          - calmanchor
         UILaunchScreen:
           UIColorName: AccentColor
         UISupportedInterfaceOrientations:
@@ -130,6 +134,7 @@ targets:
       - path: SpendZeroTests
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZeroTests
+      GENERATE_INFOPLIST_FILE: YES
       SWIFT_VERSION: "5.0"
       CODE_SIGN_STYLE: Automatic
       CODE_SIGN_IDENTITY: "Apple Development"

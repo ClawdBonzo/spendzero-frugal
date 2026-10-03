@@ -25,6 +25,9 @@ struct SettingsView: View {
     /// Same key and default as `SoundEffects.isEnabled`.
     @AppStorage("soundEffectsEnabled") private var soundEffectsEnabled = true
     @AppStorage(LiveActivityCoordinator.enabledKey) private var eveningCountdownEnabled = true
+    @Environment(\.scenePhase) private var scenePhase
+    /// GW Labs apps not on this iPhone yet (More from GW Labs). Rechecked whenever SpendZero comes back.
+    @State private var promotedApps: [CrossPromoApp] = []
 
     private var profile: UserProfile? { profiles.first }
 
@@ -304,6 +307,16 @@ struct SettingsView: View {
                     }
                     .listRowBackground(AppTheme.cardBackground)
 
+                    // Other GW Labs apps (4+ only), hidden once installed
+                    if !promotedApps.isEmpty {
+                        Section("More from GW Labs") {
+                            ForEach(promotedApps) { app in
+                                CrossPromoRow(app: app)
+                            }
+                        }
+                        .listRowBackground(AppTheme.cardBackground)
+                    }
+
                     // Data Section
                     Section("Data") {
                         Button(role: .destructive) {
@@ -376,6 +389,10 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear { promotedApps = CrossPromoApp.notInstalled }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { promotedApps = CrossPromoApp.notInstalled }
+            }
             .sheet(isPresented: $showPaywall) {
                 PaywallView(onContinue: { showPaywall = false }, urgencyMessage: "Upgrade to unlock all features")
             }
