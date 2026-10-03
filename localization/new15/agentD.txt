@@ -1,0 +1,53 @@
+# Agent D (Monthly Recap + share card) — new Localizable.strings keys (en value = key).
+# %@ = locale-formatted month name (standalone, e.g. "September") unless noted; %lld = integer.
+"%@ recap"
+"Your %@, sealed."
+"no-spend\nday"
+"no-spend\ndays"
+"%lld of %lld days kept spend-free"
+"Your %@, sealed. %lld of %lld days were no-spend days."
+"Money kept"
+"In %@ you kept"
+"kept, not spent"
+"In %@ you kept %@, not spent."            # 2nd %@ = currency amount
+"Best streak"
+"day in a row"
+"days in a row"
+"Your longest no-spend run, %@"            # %@ = date range, e.g. "Sep 10 – 24"
+"Every streak starts with one sealed day."
+"Best streak: 1 day."
+"Best streak: %lld days in a row."
+"Urges beaten"
+"time you felt the pull and walked away."
+"times you felt the pull and walked away."
+"Log the urges you resist next month and watch this number grow."
+"Biggest walk-away"
+"You beat 1 urge to spend."
+"You beat %lld urges to spend."
+"Biggest walk-away: %@, %@."               # item name, currency amount
+"Your wealth tree"
+"Your tree held strong."
+"Your tree grew 1 level."
+"Your tree grew %lld levels."
+"Level"
+"+%lld in %@"                              # "+2 in September" (levels gained chip)
+"Level %lld, %@."                          # level, rank title
+"Next card"
+"Previous card"
+"Card %lld of %lld"
+"Close recap"
+"My %@ on SpendZero"
+"Share to Stories"
+"Next"
+"SpendZero · %@ recap"
+"1 day"
+"best streak"
+"urges beaten"
+"your tree held strong"
+"your tree grew 1 level"
+"your tree grew %lld levels"
+"No-spend streak"
+"%@'s no-spend streak"                     # %@ = user's display name
+"%lld-day no-spend streak, %@ kept"        # %@ = currency amount
+# Existing keys reused (already present): "Done", "Share", "Level %lld", "NO-SPEND DAY",
+# "day without spending", "days in a row without spending", "My no-spend streak", "Share your %lld-day streak"
