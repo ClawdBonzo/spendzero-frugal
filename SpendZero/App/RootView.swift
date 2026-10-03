@@ -83,7 +83,6 @@ struct RootView: View {
     private func activate() {
         guard let profile else { return }
         let outcome = ProgressEngine.shared.reconcileOnActivate(profile: profile, context: modelContext)
-        LiveActivityCoordinator.shared.refresh(profile: profile, context: modelContext)  // TEMP-AGENTE
         // A freeze being spent is a positive moment worth surfacing; a lapse is not (the
         // lapse notification already nudged them, and a scold on open reads badly).
         let delay: Double = showSplash ? 2.2 : 0.3
