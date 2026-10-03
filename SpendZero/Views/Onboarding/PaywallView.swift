@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import SwiftData
 
 struct PaywallView: View {
     let onContinue: () -> Void
@@ -14,6 +15,12 @@ struct PaywallView: View {
     @State private var alert: PaywallAlert?
     @State private var showRedeemCode = false
     @State private var showExport = false
+    /// Bumped only when the user taps a different plan; flips the hero coin.
+    @State private var heroFlips = 0
+    @Query private var profiles: [UserProfile]
+
+    /// The user's own 12-month estimate (same math as the onboarding forecast), when available.
+    private var forecast: SavingsForecast? { profiles.first.flatMap { SavingsForecast(profile: $0) } }
 
     private struct PaywallAlert: Identifiable {
         let id = UUID()
@@ -44,26 +51,12 @@ struct PaywallView: View {
 
     var body: some View {
         ZStack {
-            // Deep dark background with subtle green tint
-            LinearGradient(
-                colors: [
-                    Color(hex: "0A0F0A"),
-                    AppTheme.background,
-                    Color(hex: "0A100A")
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-
-            // Subtle ambient glow top
-            Circle()
-                .fill(RadialGradient(
-                    colors: [AppTheme.primaryGreen.opacity(0.12), Color.clear],
-                    center: .center, startRadius: 0, endRadius: 200
-                ))
-                .frame(width: 400, height: 400)
-                .offset(y: -280)
+            // Living mesh of deep greens warming toward gold, faded out behind the plans and CTA.
+            AppTheme.background.ignoresSafeArea()
+            LivingBackground(warmth: 0.4)
+                .mask(LinearGradient(colors: [.white, .white.opacity(0.55), .white.opacity(0.15)],
+                                     startPoint: .top, endPoint: .bottom))
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
               ScrollView(showsIndicators: false) {
@@ -80,30 +73,16 @@ struct PaywallView: View {
 
                 // — HEADER —
                 ZStack(alignment: .topTrailing) {
-                    VStack(spacing: 12) {
-                        Spacer().frame(height: 20)
-
-                        Image("BrandIcon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 64, height: 64)
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
-                            .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 10, y: 3)
-
-                        VStack(spacing: 4) {
-                            Text("SpendZero Pro")
-                                .font(.app(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(AppTheme.textPrimary)
-                                Text(isHardPaywall
-                                ? "Subscribe to keep going"
-                                : "Keep everything you've built")
-                                .font(.app(size: 14))
-                                .foregroundColor(AppTheme.textSecondary)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding(.horizontal, AppTheme.paddingLarge)
-
-                    }
+                    PaywallHero(
+                        forecast: forecast,
+                        plan: selectedPlan,
+                        flipTrigger: heroFlips,
+                        subtitle: isHardPaywall
+                            ? "Subscribe to keep going"
+                            : "Keep everything you've built"
+                    )
+                    .padding(.top, isHardPaywall ? 20 : 34)
+                    .padding(.horizontal, AppTheme.paddingLarge)
                     .frame(maxWidth: .infinity)
 
                     // Close button — only shown on soft paywall (during trial)
@@ -114,8 +93,8 @@ struct PaywallView: View {
                                 .foregroundColor(AppTheme.textTertiary.opacity(0.7))
                         }
                         .accessibilityLabel(Text("Close"))
-                        .padding(.top, 16)
-                        .padding(.trailing, AppTheme.paddingLarge)
+                        .padding(.top, 8)
+                        .padding(.trailing, AppTheme.paddingLarge - 8)
                     }
                 }
                 .padding(.bottom, 18)
@@ -158,6 +137,7 @@ struct PaywallView: View {
                                 savingsPercent: savingsPercent(for: option)
                             ) {
                                 HapticManager.shared.trigger(.cardSelect)
+                                if option.id != selectedOption { heroFlips += 1 }
                                 withAnimation(.spring(response: 0.25)) {
                                     selectedOption = option.id
                                 }

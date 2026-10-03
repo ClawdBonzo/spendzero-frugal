@@ -11,6 +11,20 @@ struct OnboardingFlowView: View {
     @Environment(\.modelContext) private var modelContext
 
     private let totalSteps = 6
+    /// Loading (5) hands off to the savings forecast (6), which continues into the paywall.
+    private let forecastStep = 6
+
+    init() {
+        #if DEBUG
+        // -ShowForecast jumps straight to the forecast for screenshots / recordings.
+        if ProcessInfo.processInfo.arguments.contains("-ShowForecast") {
+            _currentStep = State(initialValue: 6)
+            _userName = State(initialValue: "Alex")
+            _spendingLevel = State(initialValue: .minimal)
+            _challengeDays = State(initialValue: 14)
+        }
+        #endif
+    }
 
     var body: some View {
         ZStack {
@@ -31,11 +45,17 @@ struct OnboardingFlowView: View {
                     OnboardingCategoriesView(selected: $selectedCategories, onNext: nextStep)
                 case 4:
                     OnboardingCommitView(days: $challengeDays, onNext: nextStep)
-                default:
+                case 5:
                     OnboardingLoadingView(
                         userName: userName.trimmingCharacters(in: .whitespacesAndNewlines),
                         challengeDays: challengeDays,
                         onComplete: nextStep
+                    )
+                default:
+                    SavingsForecastView(
+                        name: userName.trimmingCharacters(in: .whitespacesAndNewlines),
+                        forecast: SavingsForecast(level: spendingLevel, challengeDays: challengeDays),
+                        onContinue: nextStep
                     )
                 }
             }
@@ -65,7 +85,7 @@ struct OnboardingFlowView: View {
     private func nextStep() {
         // The name step can't be skipped with an empty name.
         if currentStep == 1, userName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return }
-        if currentStep < 5 {
+        if currentStep < forecastStep {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                 currentStep += 1
             }

@@ -85,6 +85,7 @@
 		ACE02A8202E231D2B3D5CF77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2267198B2DFB412FDC856BE /* Assets.xcassets */; };
 		AE582BD59AE9D6838F9F34D2 /* EventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829003C19D842A035699C8AE /* EventPresenter.swift */; };
 		BC4250ED364CD57710396EEB /* SealTodayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA26803E7C10065DCE86C85 /* SealTodayControl.swift */; };
+		BCBD79240F90C1165E7D2F55 /* SavingsForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760A9ED76CB09C46E660DD49 /* SavingsForecastView.swift */; };
 		BF33031858245BE999DB01E9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF0D248185EBCE6886CF08 /* Quest.swift */; };
 		C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57D6186D37BE5300B245DB /* GameProfile.swift */; };
 		C13F44528932A8BD9452F128 /* SpendZeroShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D14450CE0AFCD6725EFD0F /* SpendZeroShortcuts.swift */; };
@@ -109,8 +110,10 @@
 		F152D4D4AA60740FF8C6BC52 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC42FCFC249D12179A43CEA /* AppActions.swift */; };
 		F1890055280A1C44AE4C999E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B4A7EAF4E50B406670577 /* AppDelegate.swift */; };
 		F51E8881B2C6331B7AFE5E24 /* EveningCheckInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548D4B7230A9BE4688ADE6F /* EveningCheckInTests.swift */; };
+		FA9105EE39DB369A9EE5EF96 /* PaywallHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F9A2CA43B9E8676615E27 /* PaywallHero.swift */; };
 		FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */; };
 		FD5B6B3DEDC7A50C239359BF /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */; };
+		FEC3B7B6B109C1FFB56EA306 /* SavingsForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DF6A0472C23C060A834816 /* SavingsForecast.swift */; };
 		FFE5E9D1CBB2961D290D4251 /* AppShortcuts.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63038780C57E27310FCAD4C /* AppShortcuts.strings */; };
 /* End PBXBuildFile section */
 
@@ -171,11 +174,13 @@
 		2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2EBF0D248185EBCE6886CF08 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		302B4A7EAF4E50B406670577 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		319F9A2CA43B9E8676615E27 /* PaywallHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallHero.swift; sourceTree = "<group>"; };
 		35119884772FB2E29193F5C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3C6FC1297582D632160FA571 /* SpendZeroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroApp.swift; sourceTree = "<group>"; };
 		3C8288716699739446C1124D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4045153BEF5A01B5364FF370 /* SpendZeroTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SpendZeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40AA7611E998B335B192AAE4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		42DF6A0472C23C060A834816 /* SavingsForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsForecast.swift; sourceTree = "<group>"; };
 		4748FECF29D12B89DF052F81 /* ProgressEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressEngine.swift; sourceTree = "<group>"; };
 		4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRecord.swift; sourceTree = "<group>"; };
 		4D70B8999B3B70E25AAD97C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 		6F270064BE150B097019BF3F /* StreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakTests.swift; sourceTree = "<group>"; };
 		7009B9A4958688F021940DAF /* SealTodayLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SealTodayLiveActivity.swift; sourceTree = "<group>"; };
 		750224DD0908BA397F8D7C98 /* EveningCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningCheckIn.swift; sourceTree = "<group>"; };
+		760A9ED76CB09C46E660DD49 /* SavingsForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsForecastView.swift; sourceTree = "<group>"; };
 		78AAA8AE17EE1383B05B4709 /* MotionPolish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionPolish.swift; sourceTree = "<group>"; };
 		798F74BFEB8A00319214C521 /* ProgressChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressChartsView.swift; sourceTree = "<group>"; };
 		7B2310008B785608BC389AC2 /* GameStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateManager.swift; sourceTree = "<group>"; };
@@ -340,8 +346,11 @@
 				54FD9E74409E718431D508A3 /* OnboardingNameView.swift */,
 				ADDF669DD286F4C318B33535 /* OnboardingSpendingQuizView.swift */,
 				16E93DF856241D8F9CF6EB89 /* OnboardingSplashView.swift */,
+				319F9A2CA43B9E8676615E27 /* PaywallHero.swift */,
 				894D6EB3BC66EB8AD7338CFC /* PaywallView.swift */,
 				50A76325A27FC7F38A3B2A15 /* PrimaryButton.swift */,
+				42DF6A0472C23C060A834816 /* SavingsForecast.swift */,
+				760A9ED76CB09C46E660DD49 /* SavingsForecastView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -851,6 +860,7 @@
 				16DAF1BC62C07E4A827BF4C7 /* OnboardingSpendingQuizView.swift in Sources */,
 				4964A955FF2565169213CC6B /* OnboardingSplashView.swift in Sources */,
 				D2AF3101520B15306040110C /* ParticleBackgroundView.swift in Sources */,
+				FA9105EE39DB369A9EE5EF96 /* PaywallHero.swift in Sources */,
 				F0E4BC6FABC981D3D175AE49 /* PaywallView.swift in Sources */,
 				FB38AD7F5C6F5A7858C6393B /* PrimaryButton.swift in Sources */,
 				294DCFB45E3CB5FB59195916 /* ProgressChartsView.swift in Sources */,
@@ -861,6 +871,8 @@
 				A2DDA7AAF079EAC08014493C /* ReviewPrompter.swift in Sources */,
 				84E0AC583078E418D15A2F0B /* RootView.swift in Sources */,
 				1274D3DAC918D0C3917E1E96 /* SavingsEntry.swift in Sources */,
+				FEC3B7B6B109C1FFB56EA306 /* SavingsForecast.swift in Sources */,
+				BCBD79240F90C1165E7D2F55 /* SavingsForecastView.swift in Sources */,
 				08C8D9315481C62FDFC2D1F4 /* SchemaVersions.swift in Sources */,
 				90FE593BF0D18C1DB18B0B61 /* SealTodayIntent.swift in Sources */,
 				D44F0F732C47F3025C4AB3D6 /* SeasonalChallenges.swift in Sources */,

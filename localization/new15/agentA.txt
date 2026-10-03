@@ -1,0 +1,16 @@
+Your plan is ready
+Here's what you could keep
+Here's what you could keep, %@
+by %@
+Savings forecast
+Grows to %@ over the next 12 months
+no-spend days a month (your goal)
+you usually spend on extras each day
+An estimate from your answers, not a guarantee.
+%lld no-spend days × %@ a day × 12 months = %@
+Start keeping it
+How the estimate works
+Year one
+Your 12-month forecast
+Your forecast
+PRO
