@@ -50,7 +50,7 @@ struct BadgeUnlockCelebrationView: View {
                     }
                     .scaleEffect(scale)
                     .rotationEffect(.degrees(rotate))
-                    .holoSheen(cornerRadius: 30)
+                    .holoFoil(0.9)
 
                     // Badge info
                     VStack(spacing: 12) {
@@ -119,7 +119,7 @@ struct BadgeUnlockCelebrationView: View {
         .accessibilityAddTraits(.isModal)
         .onAppear {
             HapticManager.shared.trigger(.badgeEarned)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { confetti += 1; Beat.stamp() }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { confetti += 1; CoinHaptics.seal(); SoundEffects.play(.chime) }
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 scale = 1.0
                 opacity = 1.0

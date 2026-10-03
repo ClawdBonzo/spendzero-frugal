@@ -43,6 +43,7 @@ struct DaySealedView: View {
                                 .scaleEffect(shockwave ? 1.7 + 0.35 * Double(i) : 0.95)
                         }
                         SealMedallion(caption: today)
+                            .goldSheen()
                             .frame(width: medal, height: medal)
                             .scaleEffect(stamped ? 1 : 2.1)
                             .rotationEffect(.degrees(stamped ? 0 : -14))
@@ -202,12 +203,14 @@ struct DaySealedView: View {
         guard !reduceMotion else {
             stamped = true; shockwave = true; showDetails = true; showActions = true
             streakShown = Double(info.streak)
-            Beat.success()
+            CoinHaptics.seal()
+            SoundEffects.play(.clink)
             return
         }
         withAnimation(.spring(duration: 0.34, bounce: 0.28)) { stamped = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            Beat.stamp()
+            CoinHaptics.seal()
+            SoundEffects.play(.clink)
             withAnimation(.easeOut(duration: 0.75)) { shockwave = true }
             confetti += 1
         }

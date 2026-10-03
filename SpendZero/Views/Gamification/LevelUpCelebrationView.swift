@@ -176,7 +176,8 @@ struct LevelUpCelebrationView: View {
                 // Card lands first, then the burst on the beat.
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
                     confetti += 1
-                    Beat.stamp()
+                    CoinHaptics.levelUp()
+                    SoundEffects.play(.levelUp)
                 }
             }
         }

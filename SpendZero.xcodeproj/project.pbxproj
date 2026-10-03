@@ -27,6 +27,7 @@
 		359D001260E6259D79987EF2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B69E3062FE60B57AEBA19 /* NotificationManager.swift */; };
 		370D33D14331238B809CA22F /* StreakCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83E41E299C05946D4C82088 /* StreakCalendarView.swift */; };
 		3A645488470BB7E1FBC40E38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2267198B2DFB412FDC856BE /* Assets.xcassets */; };
+		3BC2AEBB50B4DCBD2BEE24CD /* levelup.wav in Resources */ = {isa = PBXBuildFile; fileRef = DF40D6B061FE4543608FAB95 /* levelup.wav */; };
 		3FFBDAD001E7002B7CF4DC44 /* MoneyTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC9075089162C7C07D8735B /* MoneyTreeView.swift */; };
 		40424849B1C36AF8FCE4C7B2 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3364D486BB242A3248EE3B3B /* Localizable.stringsdict */; };
 		44F16C116EE8220580498033 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B18E32B6B346135D3087DDB /* MainTabView.swift */; };
@@ -51,12 +52,16 @@
 		6E38CF48116FD8D9ECF71BD7 /* GameStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2310008B785608BC389AC2 /* GameStateManager.swift */; };
 		709EC3680836EE14267CF93F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBB3013A612DBFFCB443ED0B /* Localizable.strings */; };
 		7A045D9351C438AA580D9AB4 /* SpendZeroWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CAA33A55485B00965A41D2 /* SpendZeroWidget.swift */; };
+		7A66F22AD9A8627A57653042 /* GoldShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE6C4B9FD8F20969A1BA99 /* GoldShaders.metal */; };
+		7A8916932E49EA26D8D75BA4 /* chime.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2269C10ABEE29CBCFDAB7D47 /* chime.wav */; };
 		7A9834E7ECFF524FFBC98C30 /* DaySealedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1A8B234199B45DB56F2E /* DaySealedView.swift */; };
+		7B8342009EC397FE12B66A9D /* clink.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAF026C574C0D98E6926F204 /* clink.wav */; };
 		7F548042B804A6C3510A8435 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */; };
 		847178F6A99BA413D861E6F1 /* GameEventToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */; };
 		84E0AC583078E418D15A2F0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA51FA7E1487501B2D7CB6 /* RootView.swift */; };
 		84FDBE16FF96C50D1F948655 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AAFE24BD3596FB6EF7DFA32E /* RevenueCat */; };
 		8BBBFD6CFEFA341AB1237BFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBB3013A612DBFFCB443ED0B /* Localizable.strings */; };
+		925A07B2CD54A743F94FA8DB /* flip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5C1CB50A58FF04A52916BE5A /* flip.wav */; };
 		957A840F6713C4916DD03F1C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641C60538E847D1BAE4A83D /* SettingsView.swift */; };
 		95943617BB79743B187F8E96 /* WidgetShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */; };
 		97377B461BBBB384A2A4A086 /* SpendZeroWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C57002EC107A164B56101F3 /* SpendZeroWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -77,6 +82,7 @@
 		C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */; };
 		C868D2F865443C63C0606F6F /* Delight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2015523C850C52614BBC0D /* Delight.swift */; };
 		D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */; };
+		D15AB9EDE81A4E610A62E580 /* MotionFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E40BD9ABAFF42A1898AF99 /* MotionFoundation.swift */; };
 		D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03861222FFCF94496BF9A45D /* StreakFlamesView.swift */; };
 		D2AF3101520B15306040110C /* ParticleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5497DF05997681E8D5FD5 /* ParticleBackgroundView.swift */; };
 		D44F0F732C47F3025C4AB3D6 /* SeasonalChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F82E9B7C857AA3D07310052 /* SeasonalChallenges.swift */; };
@@ -134,6 +140,7 @@
 		03861222FFCF94496BF9A45D /* StreakFlamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakFlamesView.swift; sourceTree = "<group>"; };
 		03F633174D1EFDE03BD590DD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B18E32B6B346135D3087DDB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		0CEE6C4B9FD8F20969A1BA99 /* GoldShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GoldShaders.metal; sourceTree = "<group>"; };
 		0E88BED4832C92ACC54AAE15 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AppShortcuts.strings"; sourceTree = "<group>"; };
 		0FEB1A8B234199B45DB56F2E /* DaySealedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySealedView.swift; sourceTree = "<group>"; };
 		11D98AE99CD516A7DB41F66C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AppShortcuts.strings"; sourceTree = "<group>"; };
@@ -145,6 +152,7 @@
 		1E95CE6500554DA4C850511C /* GamificationHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationHubView.swift; sourceTree = "<group>"; };
 		1FBEF7EC2D988E8ED3DF778B /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-BR"; path = "pt-BR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		218514412393CAFBD3288BE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
+		2269C10ABEE29CBCFDAB7D47 /* chime.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime.wav; sourceTree = "<group>"; };
 		23C88D930182B0EB5860A4FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		28FB54359090500BABE219A1 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "fr-CA"; path = "fr-CA.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -172,6 +180,7 @@
 		59D2F076D45BA4949252D28F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AppShortcuts.strings"; sourceTree = "<group>"; };
 		5A435E5F13C3A56A18918ED9 /* SchemaVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersions.swift; sourceTree = "<group>"; };
 		5B8465D4B7FB7559349E9886 /* AddImpulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImpulseView.swift; sourceTree = "<group>"; };
+		5C1CB50A58FF04A52916BE5A /* flip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flip.wav; sourceTree = "<group>"; };
 		5EDA61857EDF980505037E5E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		63FFA76F272E697441988B27 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		6A3DEFBDA31719492D61E283 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -221,6 +230,7 @@
 		C336B4C453750944A6F6EB0E /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		C3CE10F78CC75A9A45FB4293 /* AmountParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountParsingTests.swift; sourceTree = "<group>"; };
 		C5CAA33A55485B00965A41D2 /* SpendZeroWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendZeroWidget.swift; sourceTree = "<group>"; };
+		C7E40BD9ABAFF42A1898AF99 /* MotionFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionFoundation.swift; sourceTree = "<group>"; };
 		C8FA51FA7E1487501B2D7CB6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		CAECD8B07FA8F1D63A7CA187 /* ImpulseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpulseLog.swift; sourceTree = "<group>"; };
 		D0ADB879E2A9B22B7D5C0F40 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -231,6 +241,7 @@
 		DEEF851C7823465BF9A60E3D /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		DF37808D802349C0272BEBC7 /* WidgetSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSync.swift; sourceTree = "<group>"; };
 		DF3EADC2A53B7B0387A0202F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		DF40D6B061FE4543608FAB95 /* levelup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelup.wav; sourceTree = "<group>"; };
 		DFC81D47DB8FD0B544A0548A /* WealthTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WealthTree.swift; sourceTree = "<group>"; };
 		E048E221D51203BFFB86868B /* GameMathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMathTests.swift; sourceTree = "<group>"; };
 		E06CAF9077B393F1B4FB505A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -250,6 +261,7 @@
 		F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetShared.swift; sourceTree = "<group>"; };
 		F92DDC7541AB2FF011C4B18E /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
 		FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeShowcaseView.swift; sourceTree = "<group>"; };
+		FAF026C574C0D98E6926F204 /* clink.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clink.wav; sourceTree = "<group>"; };
 		FDAC3FE434646F21D046F689 /* NumberExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,6 +284,7 @@
 				439642ED0D9D8BDA2C0F0FDF /* InfoPlist.strings */,
 				DBB3013A612DBFFCB443ED0B /* Localizable.strings */,
 				3364D486BB242A3248EE3B3B /* Localizable.stringsdict */,
+				3E05A5BA47F26D0A9026209D /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -280,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */,
+				4DA3B1B03559BF608AEB07F0 /* Motion */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -379,12 +393,32 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		3E05A5BA47F26D0A9026209D /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				2269C10ABEE29CBCFDAB7D47 /* chime.wav */,
+				FAF026C574C0D98E6926F204 /* clink.wav */,
+				5C1CB50A58FF04A52916BE5A /* flip.wav */,
+				DF40D6B061FE4543608FAB95 /* levelup.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		421E76770CD796A62EE407F3 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
 				798F74BFEB8A00319214C521 /* ProgressChartsView.swift */,
 			);
 			path = Charts;
+			sourceTree = "<group>";
+		};
+		4DA3B1B03559BF608AEB07F0 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				0CEE6C4B9FD8F20969A1BA99 /* GoldShaders.metal */,
+				C7E40BD9ABAFF42A1898AF99 /* MotionFoundation.swift */,
+			);
+			path = Motion;
 			sourceTree = "<group>";
 		};
 		5718AA326F27A6F596F4E474 /* SpendZeroWidget */ = {
@@ -659,6 +693,10 @@
 				8BBBFD6CFEFA341AB1237BFA /* Localizable.strings in Resources */,
 				0FF2DE72B4908C2D9BD86105 /* Localizable.stringsdict in Resources */,
 				6CB2A20002594A71A7F3635C /* PrivacyInfo.xcprivacy in Resources */,
+				7A8916932E49EA26D8D75BA4 /* chime.wav in Resources */,
+				7B8342009EC397FE12B66A9D /* clink.wav in Resources */,
+				925A07B2CD54A743F94FA8DB /* flip.wav in Resources */,
+				3BC2AEBB50B4DCBD2BEE24CD /* levelup.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +765,7 @@
 				C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */,
 				6E38CF48116FD8D9ECF71BD7 /* GameStateManager.swift in Sources */,
 				1953107F01A6C61BB3A577EF /* GamificationHubView.swift in Sources */,
+				7A66F22AD9A8627A57653042 /* GoldShaders.metal in Sources */,
 				DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */,
 				D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */,
 				6DEB9062192CF09D5B01856A /* KeyboardDismiss.swift in Sources */,
@@ -735,6 +774,7 @@
 				4E95E905B632D9B08C07C252 /* LevelUpCelebrationView.swift in Sources */,
 				44F16C116EE8220580498033 /* MainTabView.swift in Sources */,
 				3FFBDAD001E7002B7CF4DC44 /* MoneyTreeView.swift in Sources */,
+				D15AB9EDE81A4E610A62E580 /* MotionFoundation.swift in Sources */,
 				359D001260E6259D79987EF2 /* NotificationManager.swift in Sources */,
 				53B356A7445094838A516607 /* NumberExtensions.swift in Sources */,
 				55D9763FA62A3F30E55AD71E /* OnboardingCategoriesView.swift in Sources */,
