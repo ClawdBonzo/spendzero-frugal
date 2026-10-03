@@ -20,6 +20,7 @@
 		1953107F01A6C61BB3A577EF /* GamificationHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E95CE6500554DA4C850511C /* GamificationHubView.swift */; };
 		1F6F770C27730E946D12B37E /* DailyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0C86BFB98CFBA65F65062 /* DailyRecord.swift */; };
 		21959A51F1D11F6AD056BA76 /* LevelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59ED32729F04E79846D4ED5 /* LevelProgressView.swift */; };
+		23E810417A42AE058276F654 /* VaultArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7F9E85ADDC5B39BA3598B5 /* VaultArt.swift */; };
 		284C56B2394372DE52DF0E05 /* ReviewPrompterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B1BC91CDB86699E4307AE4 /* ReviewPrompterTests.swift */; };
 		290D5B0F7BA320132B5D3BA4 /* GameMathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E048E221D51203BFFB86868B /* GameMathTests.swift */; };
 		294DCFB45E3CB5FB59195916 /* ProgressChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798F74BFEB8A00319214C521 /* ProgressChartsView.swift */; };
@@ -49,6 +50,7 @@
 		57E7163F823BB0317F06C422 /* EveningCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750224DD0908BA397F8D7C98 /* EveningCheckIn.swift */; };
 		5BF57B699AB47C941EC045FC /* MotionPolish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AAA8AE17EE1383B05B4709 /* MotionPolish.swift */; };
 		5DB5516524760C632A4D1DDE /* DemoSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE70DBD15D8E3F18263621 /* DemoSeeder.swift */; };
+		5E90CAEC67BC31F772E798B7 /* JarGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22CA27500409D21FFDD7AC2 /* JarGlass.swift */; };
 		63DD1458181C1680AA8F6B64 /* BadgeUnlockCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */; };
 		6947CB53448A6CB59DCCCF24 /* AmountParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE10F78CC75A9A45FB4293 /* AmountParsingTests.swift */; };
 		6CB2A20002594A71A7F3635C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 35119884772FB2E29193F5C2 /* PrivacyInfo.xcprivacy */; };
@@ -64,6 +66,7 @@
 		847178F6A99BA413D861E6F1 /* GameEventToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */; };
 		84E0AC583078E418D15A2F0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA51FA7E1487501B2D7CB6 /* RootView.swift */; };
 		84FDBE16FF96C50D1F948655 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AAFE24BD3596FB6EF7DFA32E /* RevenueCat */; };
+		85F542D204AA0ACD07972D72 /* CoinVaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0750D03B63197B45F091C814 /* CoinVaultView.swift */; };
 		8BBBFD6CFEFA341AB1237BFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBB3013A612DBFFCB443ED0B /* Localizable.strings */; };
 		8BCEB707A234B2E69703A405 /* ResistedImpulseIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BB9DBE1819D323B90C9A3 /* ResistedImpulseIntent.swift */; };
 		8CED604CF0CBA92AE63DEF97 /* SealTodayLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7009B9A4958688F021940DAF /* SealTodayLiveActivity.swift */; };
@@ -74,6 +77,7 @@
 		95943617BB79743B187F8E96 /* WidgetShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */; };
 		97377B461BBBB384A2A4A086 /* SpendZeroWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8C57002EC107A164B56101F3 /* SpendZeroWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9834C9CF188A5391E22BEBCE /* BadgeShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABC186520EE3D0736CD3097 /* BadgeShowcaseView.swift */; };
+		9FD33D9F5B34FEFEB1B57B4B /* VaultScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18BC07B5CC37C071DA75579 /* VaultScene.swift */; };
 		A17FC0E55E549A806DA421B4 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC42FCFC249D12179A43CEA /* AppActions.swift */; };
 		A2DDA7AAF079EAC08014493C /* ReviewPrompter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDF1CB5885C72DE718C68 /* ReviewPrompter.swift */; };
 		A3F5B862AB9ED8ACD6EE379F /* WealthTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC81D47DB8FD0B544A0548A /* WealthTree.swift */; };
@@ -89,6 +93,7 @@
 		BF33031858245BE999DB01E9 /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBF0D248185EBCE6886CF08 /* Quest.swift */; };
 		C07B3A98420D253CF1D2E632 /* GameProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A57D6186D37BE5300B245DB /* GameProfile.swift */; };
 		C13F44528932A8BD9452F128 /* SpendZeroShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D14450CE0AFCD6725EFD0F /* SpendZeroShortcuts.swift */; };
+		C4A3D656220AE78713BC15CC /* JarGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B47537A88122DCE8B6E3E /* JarGeometry.swift */; };
 		C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */; };
 		C868D2F865443C63C0606F6F /* Delight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2015523C850C52614BBC0D /* Delight.swift */; };
 		D0B81FB4B095BFAE42D0B44C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */; };
@@ -155,6 +160,7 @@
 		023EFB8F580D6E1B9FDD792F /* ChallengeLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLibraryView.swift; sourceTree = "<group>"; };
 		03861222FFCF94496BF9A45D /* StreakFlamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakFlamesView.swift; sourceTree = "<group>"; };
 		03F633174D1EFDE03BD590DD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0750D03B63197B45F091C814 /* CoinVaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinVaultView.swift; sourceTree = "<group>"; };
 		0B18E32B6B346135D3087DDB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		0CEE6C4B9FD8F20969A1BA99 /* GoldShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GoldShaders.metal; sourceTree = "<group>"; };
 		0E88BED4832C92ACC54AAE15 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AppShortcuts.strings"; sourceTree = "<group>"; };
@@ -207,6 +213,7 @@
 		6DD5497DF05997681E8D5FD5 /* ParticleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleBackgroundView.swift; sourceTree = "<group>"; };
 		6F270064BE150B097019BF3F /* StreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakTests.swift; sourceTree = "<group>"; };
 		7009B9A4958688F021940DAF /* SealTodayLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SealTodayLiveActivity.swift; sourceTree = "<group>"; };
+		707B47537A88122DCE8B6E3E /* JarGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarGeometry.swift; sourceTree = "<group>"; };
 		750224DD0908BA397F8D7C98 /* EveningCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningCheckIn.swift; sourceTree = "<group>"; };
 		760A9ED76CB09C46E660DD49 /* SavingsForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsForecastView.swift; sourceTree = "<group>"; };
 		78AAA8AE17EE1383B05B4709 /* MotionPolish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionPolish.swift; sourceTree = "<group>"; };
@@ -226,11 +233,13 @@
 		91C205315E1D5829FBE9F7B4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		9215D9713409887916805375 /* SpendingLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingLog.swift; sourceTree = "<group>"; };
 		99CCB4A2B8841ECECADBCFB9 /* OnboardingCommitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCommitView.swift; sourceTree = "<group>"; };
+		9A7F9E85ADDC5B39BA3598B5 /* VaultArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultArt.swift; sourceTree = "<group>"; };
 		9B67E993660666584E727DE4 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		9C40569F0A23F6F1B067377D /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FA26803E7C10065DCE86C85 /* SealTodayControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SealTodayControl.swift; sourceTree = "<group>"; };
 		A118753892C3052B932E645C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
 		A1CD53578AC9E7B8171CDB2F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AppShortcuts.strings; sourceTree = "<group>"; };
+		A22CA27500409D21FFDD7AC2 /* JarGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarGlass.swift; sourceTree = "<group>"; };
 		A2DB63A37887D17F31ACC170 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A39E67617222179E5FC4357C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A71B69E3062FE60B57AEBA19 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -284,6 +293,7 @@
 		EEF9B1F29D0EED50510FA26F /* BadgeUnlockCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeUnlockCelebrationView.swift; sourceTree = "<group>"; };
 		EFAE2EA7F04F4911B6FC863A /* ChallengeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeEntry.swift; sourceTree = "<group>"; };
 		F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		F18BC07B5CC37C071DA75579 /* VaultScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultScene.swift; sourceTree = "<group>"; };
 		F43C62D358414F78F10D9EA7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4DD45CC52E9976D57DEC6C9 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F4E368F3C2EE8315A9EBB74D /* WidgetShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetShared.swift; sourceTree = "<group>"; };
@@ -403,6 +413,7 @@
 				248D4C3E4B1D7EE206C79089 /* Onboarding */,
 				237ACA0AF3BAB16CB86D78ED /* Settings */,
 				AAD5311F8A9E1A22F04E8D2C /* Shared */,
+				B4B237AE9CB76B6BE9F5EAB6 /* Vault */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -602,6 +613,18 @@
 				0B18E32B6B346135D3087DDB /* MainTabView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		B4B237AE9CB76B6BE9F5EAB6 /* Vault */ = {
+			isa = PBXGroup;
+			children = (
+				0750D03B63197B45F091C814 /* CoinVaultView.swift */,
+				707B47537A88122DCE8B6E3E /* JarGeometry.swift */,
+				A22CA27500409D21FFDD7AC2 /* JarGlass.swift */,
+				9A7F9E85ADDC5B39BA3598B5 /* VaultArt.swift */,
+				F18BC07B5CC37C071DA75579 /* VaultScene.swift */,
+			);
+			path = Vault;
 			sourceTree = "<group>";
 		};
 		E188AF2872F456C15A15EC00 /* Extensions */ = {
@@ -824,6 +847,7 @@
 				63DD1458181C1680AA8F6B64 /* BadgeUnlockCelebrationView.swift in Sources */,
 				C84AE55730DA2D94D3786CF1 /* ChallengeEntry.swift in Sources */,
 				E0B83266C4B0BD85C5623519 /* ChallengeLibraryView.swift in Sources */,
+				85F542D204AA0ACD07972D72 /* CoinVaultView.swift in Sources */,
 				EFC9993A1CE4C503FB377AAE /* DailyLoggerView.swift in Sources */,
 				1F6F770C27730E946D12B37E /* DailyRecord.swift in Sources */,
 				7F548042B804A6C3510A8435 /* DashboardView.swift in Sources */,
@@ -841,6 +865,8 @@
 				7A66F22AD9A8627A57653042 /* GoldShaders.metal in Sources */,
 				DDBCA430CDC6FBFA71A51AFF /* HapticManager.swift in Sources */,
 				D8C5151E4FDB5BDA842EDC00 /* ImpulseLog.swift in Sources */,
+				C4A3D656220AE78713BC15CC /* JarGeometry.swift in Sources */,
+				5E90CAEC67BC31F772E798B7 /* JarGlass.swift in Sources */,
 				6DEB9062192CF09D5B01856A /* KeyboardDismiss.swift in Sources */,
 				4E0EC327D0FE0EF1D9076DCB /* LevelCard.swift in Sources */,
 				21959A51F1D11F6AD056BA76 /* LevelProgressView.swift in Sources */,
@@ -885,6 +911,8 @@
 				D1C38A84545B2B200A098499 /* StreakFlamesView.swift in Sources */,
 				DFF7184CB537987BBDCC172D /* SubscriptionService.swift in Sources */,
 				DF439DCD13736B03246B0B9A /* UserProfile.swift in Sources */,
+				23E810417A42AE058276F654 /* VaultArt.swift in Sources */,
+				9FD33D9F5B34FEFEB1B57B4B /* VaultScene.swift in Sources */,
 				A3F5B862AB9ED8ACD6EE379F /* WealthTree.swift in Sources */,
 				16C0B36F12CB368E8E179445 /* WidgetShared.swift in Sources */,
 				A605E42EEE8825976C8F088C /* WidgetSync.swift in Sources */,

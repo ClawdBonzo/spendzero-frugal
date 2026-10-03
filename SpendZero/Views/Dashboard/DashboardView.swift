@@ -23,7 +23,14 @@ struct DashboardView: View {
     @State private var showActions = false
     @State private var streakBadgePulse = false
 
+    private static let vaultAnchor = "coinVault"
+
     private var profile: UserProfile? { profiles.first }
+
+    /// 0…1: the background warms toward gold as the streak grows (most of the way by ~2 months).
+    private var backgroundWarmth: Double {
+        pow(min(1, Double(currentStreak) / 60), 0.7)
+    }
     private var gameProfile: GameProfile? { profile?.gameProfile }
 
     init() {
@@ -66,15 +73,16 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Ambient money particle background (throttled, respects reduceMotion).
-                // Lives inside the navigation root so pushed screens cover it.
-                ParticleBackgroundView(count: 8)
-                    .ignoresSafeArea()
+                // Living mesh that warms from green toward gold as the streak grows. Lives inside
+                // the navigation root so pushed screens cover it.
+                LivingBackground(warmth: backgroundWarmth)
 
+                ScrollViewReader { scroller in
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 20) {
                         // Greeting — slides in from left
                         greetingSection
+                            .scrollDepth()
                             .offset(x: showGreeting ? 0 : -40)
                             .opacity(showGreeting ? 1 : 0)
 
@@ -89,6 +97,7 @@ struct DashboardView: View {
                         if let gameProfile = gameProfile {
                             LevelCard(gameProfile: gameProfile, currentStreak: currentStreak)
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .scrollDepth()
                                 .scaleEffect(showLevelCard ? 1 : 0.9)
                                 .opacity(showLevelCard ? 1 : 0)
                         }
@@ -101,20 +110,32 @@ struct DashboardView: View {
                                 streakHeroCard
                             }
                         }
+                        .scrollDepth()
                         .offset(y: showStreakCard ? 0 : 30)
                         .opacity(showStreakCard ? 1 : 0)
+
+                        // Coin Vault: every sealed day is a gold coin in the jar.
+                        if !isBrandNewUser {
+                            CoinVaultView(profile: profile)
+                                .scrollDepth(blurs: false)
+                                .offset(y: showStreakCard ? 0 : 30)
+                                .opacity(showStreakCard ? 1 : 0)
+                                .id(Self.vaultAnchor)
+                        }
 
                         // Money Tree visualization
                         if let gameProfile = gameProfile {
                             MoneyTreeView(gameProfile: gameProfile, streak: currentStreak, totalSaved: totalSaved,
                                           thirsty: currentStreak == 0 && profile?.lastNoSpendDate == nil && (profile?.longestStreak ?? 0) > 0)
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .scrollDepth()
                                 .offset(y: showStats ? 0 : 25)
                                 .opacity(showStats ? 1 : 0)
                         }
 
                         // Quick stats — staggered scale
                         quickStatsGrid
+                            .scrollDepth()
                             .offset(y: showStats ? 0 : 20)
                             .opacity(showStats ? 1 : 0)
 
@@ -122,24 +143,28 @@ struct DashboardView: View {
                         if let gameProfile = gameProfile, !gameProfile.quests.isEmpty {
                             questQuickLink
                                 .padding(.horizontal, AppTheme.paddingMedium)
+                                .scrollDepth()
                                 .offset(y: showActions ? 0 : 20)
                                 .opacity(showActions ? 1 : 0)
                         }
 
                         // Today's status
                         todayStatusCard
+                            .scrollDepth()
                             .offset(y: showActions ? 0 : 20)
                             .opacity(showActions ? 1 : 0)
 
                         // Recent impulses
                         if !impulses.prefix(3).isEmpty {
                             recentImpulsesSection
+                                .scrollDepth()
                                 .offset(y: showActions ? 0 : 20)
                                 .opacity(showActions ? 1 : 0)
                         }
 
                         // Quick actions
                         quickActionsSection
+                            .scrollDepth()
                             .offset(y: showActions ? 0 : 20)
                             .opacity(showActions ? 1 : 0)
 
@@ -148,6 +173,15 @@ struct DashboardView: View {
                     .padding(.horizontal, AppTheme.paddingMedium)
                     .padding(.top, 8)
                     .onAppear { triggerEntranceAnimations() }
+                }
+                #if DEBUG
+                .task {
+                    // QA/screenshot hook: land on the Coin Vault.
+                    guard ProcessInfo.processInfo.arguments.contains("-ScrollToVault") else { return }
+                    try? await Task.sleep(for: .milliseconds(700))
+                    withAnimation(.smooth(duration: 0.6)) { scroller.scrollTo(Self.vaultAnchor, anchor: .center) }
+                }
+                #endif
                 }
             }
             .background(AppTheme.background.ignoresSafeArea())
@@ -234,10 +268,9 @@ struct DashboardView: View {
                     .frame(width: 52, height: 52)
 
                 VStack(spacing: 0) {
-                    Text("\(currentStreak)")
-                        .font(.app(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(AppTheme.primaryGreen)
-                        .contentTransition(.numericText())
+                    FlipCounter(value: currentStreak,
+                                font: .app(size: 20, weight: .bold, design: .rounded),
+                                color: AppTheme.primaryGreen)
                     Text("days")
                         .font(.app(size: 9, weight: .medium))
                         .foregroundColor(AppTheme.textSecondary)
@@ -310,11 +343,9 @@ struct DashboardView: View {
                         .foregroundColor(AppTheme.textSecondary)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("\(currentStreak)")
-                            .font(.app(size: 48, weight: .bold, design: .rounded))
-                            .foregroundColor(AppTheme.primaryGreen)
-                            .contentTransition(.numericText(countsDown: false))
-                            .animation(.spring(response: 0.5), value: currentStreak)
+                        FlipCounter(value: currentStreak,
+                                    font: .app(size: 48, weight: .bold, design: .rounded),
+                                    color: AppTheme.primaryGreen)
                             .accessibilityLabel("\(currentStreak) day streak")
 
                         Text("days")
@@ -400,14 +431,14 @@ struct DashboardView: View {
         HStack(spacing: 12) {
             StatCard(
                 title: "Saved Today",
-                value: todaySaved.currencyFormatted,
+                money: todaySaved,
                 icon: "dollarsign.circle.fill",
                 color: AppTheme.primaryGreen
             )
 
             StatCard(
                 title: "Total Saved",
-                value: totalSaved.currencyFormatted,
+                money: totalSaved,
                 icon: "banknote.fill",
                 color: AppTheme.accentGold
             )
@@ -693,6 +724,47 @@ struct DashboardView: View {
     }
 }
 
+// MARK: - Scroll depth
+
+private struct ScrollDepth: ViewModifier {
+    /// Live content (the SpriteKit vault) skips the blur so it never re-filters every frame.
+    var blurs: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func body(content: Content) -> some View {
+        let still = reduceMotion
+        Group {
+            if blurs {
+                content.scrollTransition(.interactive.threshold(.visible(0.6))) { view, phase in
+                    let v = abs(phase.value)
+                    return view
+                        .scaleEffect(still ? 1 : 1 - 0.05 * v, anchor: phase.value < 0 ? .bottom : .top)
+                        .opacity(1 - 0.4 * v)
+                        .blur(radius: still ? 0 : 2.5 * v)
+                }
+            } else {
+                content.scrollTransition(.interactive.threshold(.visible(0.6))) { view, phase in
+                    let v = abs(phase.value)
+                    return view
+                        .scaleEffect(still ? 1 : 1 - 0.05 * v, anchor: phase.value < 0 ? .bottom : .top)
+                        .opacity(1 - 0.4 * v)
+                }
+            }
+        }
+        .visualEffect { view, proxy in
+            // Cards tip back a few degrees as they slide up under the top edge.
+            let top = proxy.frame(in: .scrollView).minY
+            let t = still ? 0 : max(0, min(1, -top / 240))
+            return view.rotation3DEffect(.degrees(t * 9), axis: (x: 1, y: 0, z: 0), anchor: .bottom, perspective: 0.5)
+        }
+    }
+}
+
+private extension View {
+    /// Subtle depth while scrolling: cards shrink, fade and soften at the edges of the dashboard.
+    func scrollDepth(blurs: Bool = true) -> some View { modifier(ScrollDepth(blurs: blurs)) }
+}
+
 // MARK: - Subviews
 
 struct StatCard: View {
@@ -700,8 +772,22 @@ struct StatCard: View {
     let value: String
     let icon: String
     let color: Color
+    /// When set, the figure is money and rolls digit by digit as it changes.
+    var money: Double?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var appeared = false
+
+    init(title: LocalizedStringKey, value: String, icon: String, color: Color) {
+        self.title = title
+        self.value = value
+        self.icon = icon
+        self.color = color
+    }
+
+    init(title: LocalizedStringKey, money: Double, icon: String, color: Color) {
+        self.init(title: title, value: money.currencyFormatted, icon: icon, color: color)
+        self.money = money
+    }
 
     var body: some View {
         VStack(spacing: 8) {
@@ -710,10 +796,17 @@ struct StatCard: View {
                 .foregroundColor(color)
                 .symbolEffect(.pulse, value: reduceMotion ? false : appeared)
 
-            Text(value)
-                .font(.app(size: 20, weight: .bold, design: .rounded))
-                .foregroundColor(AppTheme.textPrimary)
-                .contentTransition(.numericText())
+            if let money {
+                RollingMoney(value: money, font: .app(size: 20, weight: .bold, design: .rounded),
+                             color: AppTheme.textPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            } else {
+                Text(value)
+                    .font(.app(size: 20, weight: .bold, design: .rounded))
+                    .foregroundColor(AppTheme.textPrimary)
+                    .contentTransition(.numericText())
+            }
 
             Text(title)
                 .font(.app(size: 10, weight: .medium))
