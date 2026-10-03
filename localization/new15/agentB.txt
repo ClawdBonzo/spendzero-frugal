@@ -1,0 +1,12 @@
+Coin Vault
+Every sealed day mints a coin.
+coins minted
+kept on sealed days
+until it's full
+Seal your first no-spend day to mint a coin.
+Tilt to shake
+Tap a coin for its day
+Day %lld
+%@ kept
+%lld full jars
+%lld of %lld coins in this jar
