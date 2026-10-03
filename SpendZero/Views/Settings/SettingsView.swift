@@ -22,6 +22,8 @@ struct SettingsView: View {
     @AppStorage("impulseAlertsEnabled") private var impulseAlertsEnabled = false
     @AppStorage("impulseAlertHour") private var impulseAlertHour = 18
     @State private var showNotificationDeniedAlert = false
+    /// Same key and default as `SoundEffects.isEnabled`.
+    @AppStorage("soundEffectsEnabled") private var soundEffectsEnabled = true
 
     private var profile: UserProfile? { profiles.first }
 
@@ -217,6 +219,37 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    }
+                    .listRowBackground(AppTheme.cardBackground)
+
+                    // Personalize: app icon + sound
+                    Section("Personalize") {
+                        NavigationLink {
+                            AppIconPicker()
+                        } label: {
+                            HStack {
+                                Image(systemName: "app.badge.fill")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("App Icon")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+
+                        Toggle(isOn: Binding(
+                            get: { soundEffectsEnabled },
+                            set: { newValue in
+                                soundEffectsEnabled = newValue
+                                if newValue { SoundEffects.play(.clink, volume: 0.4) }
+                            }
+                        )) {
+                            HStack {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .foregroundColor(AppTheme.info)
+                                Text("Sound effects")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                        .tint(AppTheme.primaryGreen)
                     }
                     .listRowBackground(AppTheme.cardBackground)
 

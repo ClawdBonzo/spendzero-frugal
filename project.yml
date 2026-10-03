@@ -77,6 +77,8 @@ targets:
       CODE_SIGN_IDENTITY: "Apple Distribution"
       PROVISIONING_PROFILE_SPECIFIER: "SpendZero AppStore Manual"
       TARGETED_DEVICE_FAMILY: "1"
+      ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: "AppIcon-Gold AppIcon-Emerald AppIcon-Midnight"
+      ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: "YES"
     dependencies:
       - package: RevenueCat
         product: RevenueCat
