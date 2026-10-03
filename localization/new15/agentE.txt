@@ -1,0 +1,76 @@
+# SpendZero 1.5 - Agent E (controls, interactive widget, Live Activity, Siri)
+# New English strings. NOT yet added to any Localizable.strings / AppShortcuts.strings.
+# Format: "key" = "English value";   (%@ = string, %lld = integer)
+
+## Localizable.strings (app + widget; the widget extension bundles Resources/*.lproj/Localizable.strings)
+
+# App Intents: titles, descriptions, parameters, dialogs
+"Seal Today" = "Seal Today";
+"Seals today as a no-spend day and extends your streak, without opening SpendZero." = "Seals today as a no-spend day and extends your streak, without opening SpendZero.";
+"Today is sealed. You're on a %lld-day streak." = "Today is sealed. You're on a %lld-day streak.";
+"Today is already sealed. Nice work." = "Today is already sealed. Nice work.";
+"You logged spending today, so today can't be sealed." = "You logged spending today, so today can't be sealed.";
+"Today is already sealed." = "Today is already sealed.";
+"Today is sealed." = "Today is sealed.";
+"Open SpendZero to seal today." = "Open SpendZero to seal today.";
+"Open SpendZero to finish setting up first." = "Open SpendZero to finish setting up first.";   # already exists (MarkNoSpendDayIntent)
+"Log a Resisted Impulse" = "Log a Resisted Impulse";
+"Records something you wanted to buy but didn't, and credits what you would have spent to your savings." = "Records something you wanted to buy but didn't, and credits what you would have spent to your savings.";
+"Item" = "Item";
+"What did you resist buying?" = "What did you resist buying?";
+"Amount" = "Amount";
+"About how much it would have cost." = "About how much it would have cost.";
+"Category" = "Category";
+"I resisted buying %@ for %@" = "I resisted buying %@ for %@";   # Shortcuts parameter summary
+"Nice. You skipped %@ and kept %@." = "Nice. You skipped %@ and kept %@.";   # item, currency amount
+"Nice. You resisted %@. That's a win logged." = "Nice. You resisted %@. That's a win logged.";
+# Category display names reuse existing keys ("Coffee & Drinks", "Eating Out", "Shopping", ... "Other").
+
+# Shortcuts tile short title
+"I Resisted Buying…" = "I Resisted Buying…";
+
+# Control Center / Lock Screen / Action button control
+"Sealed" = "Sealed";
+"Spent Today" = "Spent Today";
+"Sealing…" = "Sealing…";
+"Seal today as a no-spend day without opening SpendZero." = "Seal today as a no-spend day without opening SpendZero.";
+
+# Home Screen / Lock Screen widget
+"Your savings and streak. Tap the gold coin to seal today." = "Your savings and streak. Tap the gold coin to seal today.";   # replaces the old widget description
+"Sealed ✓" = "Sealed ✓";
+"Tap coin to seal" = "Tap coin to seal";
+"Spent today" = "Spent today";
+"Today: Sealed" = "Today: Sealed";
+"Today: On Track" = "Today: On Track";
+"Today: Spent" = "Today: Spent";
+"Day Streak" = "Day Streak";   # already exists
+"Tap to seal" = "Tap to seal";
+"Today is sealed. %lld-day streak" = "Today is sealed. %lld-day streak";   # VoiceOver
+"Seal today. %lld-day streak" = "Seal today. %lld-day streak";               # VoiceOver
+"Today is sealed" = "Today is sealed";
+"Seal today" = "Seal today";
+
+# Live Activity (Lock Screen + Dynamic Island)
+"%lldh left to seal today" = "%lldh left to seal today";   # alert title when the scheduled activity appears
+"Tap Seal to lock in today as a no-spend day." = "Tap Seal to lock in today as a no-spend day.";
+"day streak" = "day streak";
+"sealed" = "sealed";
+"left today" = "left today";
+"Today is sealed. See you tomorrow." = "Today is sealed. See you tomorrow.";
+"Day closed" = "Day closed";
+"Seal" = "Seal";
+"%lld-day streak. See you tomorrow." = "%lld-day streak. See you tomorrow.";
+"Open SpendZero to check in." = "Open SpendZero to check in.";
+"left to seal today" = "left to seal today";
+"%lld-day streak on the line" = "%lld-day streak on the line";
+
+## AppShortcuts.strings (Siri phrases; ${applicationName} must stay in every translation)
+
+"Seal today in ${applicationName}" = "Seal today in ${applicationName}";
+"Seal the day in ${applicationName}" = "Seal the day in ${applicationName}";
+"Seal my day in ${applicationName}" = "Seal my day in ${applicationName}";
+"I resisted buying something in ${applicationName}" = "I resisted buying something in ${applicationName}";
+"I didn't buy something in ${applicationName}" = "I didn't buy something in ${applicationName}";
+"Log a resisted impulse in ${applicationName}" = "Log a resisted impulse in ${applicationName}";
+# Note: App Shortcut phrases can only interpolate AppEntity/AppEnum parameters, so "<thing>" can't be
+# spoken inline; Siri asks "What did you resist buying?" as a follow-up.

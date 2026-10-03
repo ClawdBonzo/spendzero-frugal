@@ -12,7 +12,9 @@ private enum WidgetStore {
             totalSaved: d?.double(forKey: WidgetShared.Key.totalSaved) ?? 0,
             currentStreak: d?.integer(forKey: WidgetShared.Key.currentStreak) ?? 0,
             isNoSpendDay: d?.object(forKey: WidgetShared.Key.isNoSpendDay) as? Bool ?? true,
-            loggedToday: d?.bool(forKey: WidgetShared.Key.loggedToday) ?? false
+            // Day-stamped seal (from the Seal intent / app refresh) covers the gap before the
+            // app's snapshot lands; the snapshot flag stays the primary source.
+            loggedToday: (d?.bool(forKey: WidgetShared.Key.loggedToday) ?? false) || SealStatus.isSealed(on: Date())
         )
     }
 }
@@ -79,55 +81,76 @@ struct SavingsWidgetView: View {
         }
     }
 
+    private var statusText: LocalizedStringKey {
+        if entry.loggedToday { return "Sealed ✓" }
+        return entry.isNoSpendDay ? "Tap coin to seal" : "Spent today"
+    }
+
+    private var statusColor: Color {
+        if entry.loggedToday { return WidgetPalette.green }
+        return entry.isNoSpendDay ? WidgetPalette.gold : WidgetPalette.red
+    }
+
+    private var brandHeader: some View {
+        HStack(spacing: 6) {
+            Image("BrandIcon")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 18, height: 18)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+            Text("SpendZero")
+                .font(.system(size: 11, weight: .bold))
+                .foregroundStyle(.white.opacity(0.6))
+        }
+    }
+
     private var smallWidget: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image("BrandIcon")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                Text("SpendZero")
-                    .font(.system(size: 11, weight: .bold))
-                    .foregroundColor(.secondary)
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(alignment: .top) {
+                brandHeader
+                Spacer(minLength: 0)
+                CoinSealButton(entry: entry, size: 50)
             }
 
-            Spacer()
+            Spacer(minLength: 0)
 
             Text(entry.totalSaved.widgetCurrency)
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "00E676"))
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .foregroundStyle(WidgetPalette.green)
+                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+                .contentTransition(.numericText(value: entry.totalSaved))
 
             Text("Total Saved")
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.white.opacity(0.6))
 
-            HStack(spacing: 4) {
-                Image(systemName: "flame.fill")
-                    .font(.system(size: 10))
-                    .foregroundColor(Color(hex: "FFD740"))
-                Text("\(entry.currentStreak) day streak")
-                    .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(.secondary)
-                Spacer(minLength: 0)
-                MarkTodayButton(entry: entry, compact: true)
-            }
+            Text(statusText)
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(statusColor)
+                .contentTransition(.opacity)
         }
-        .padding()
-        .containerBackground(.fill.tertiary, for: .widget)
+        .containerBackground(for: .widget) { WidgetPalette.backgroundGradient }
     }
 
     private var accessoryCircular: some View {
-        ZStack {
-            AccessoryWidgetBackground()
-            VStack(spacing: 0) {
-                Image(systemName: entry.loggedToday ? "checkmark.seal.fill" : "flame.fill")
-                    .font(.system(size: 14, weight: .bold))
-                Text("\(entry.currentStreak)")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+        Button(intent: SealTodayIntent()) {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack(spacing: 0) {
+                    Image(systemName: entry.loggedToday ? "checkmark.seal.fill" : "flame.fill")
+                        .font(.system(size: 14, weight: .bold))
+                    Text("\(entry.currentStreak)")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .contentTransition(.numericText(value: Double(entry.currentStreak)))
+                }
+                .invalidatableContent()
             }
         }
+        .buttonStyle(.plain)
+        .disabled(entry.loggedToday || !entry.isNoSpendDay)
         .widgetAccentable()
+        .accessibilityLabel(entry.loggedToday ? Text("Today is sealed") : Text("Seal today"))
     }
 
     private var accessoryRectangular: some View {
@@ -138,6 +161,7 @@ struct SavingsWidgetView: View {
                     .widgetAccentable()
                 Text("\(entry.currentStreak)-day streak")
                     .font(.system(size: 12, weight: .medium))
+                    .contentTransition(.numericText(value: Double(entry.currentStreak)))
             }
             Spacer(minLength: 0)
             MarkTodayButton(entry: entry, compact: true)
@@ -146,65 +170,49 @@ struct SavingsWidgetView: View {
 
     private var mediumWidget: some View {
         HStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Image("BrandIcon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                    Text("SpendZero")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(.secondary)
-                }
+            VStack(alignment: .leading, spacing: 6) {
+                brandHeader
 
-                Spacer()
+                Spacer(minLength: 0)
 
                 Text(entry.totalSaved.widgetCurrency)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "00E676"))
+                    .foregroundStyle(WidgetPalette.green)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
+                    .contentTransition(.numericText(value: entry.totalSaved))
 
                 Text("Total Saved")
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.white.opacity(0.6))
+
+                HStack(spacing: 5) {
+                    Image(systemName: entry.loggedToday ? "checkmark.circle.fill"
+                          : (entry.isNoSpendDay ? "circle.dashed" : "xmark.circle.fill"))
+                    Text(entry.isNoSpendDay ? (entry.loggedToday ? "Today: Sealed" : "Today: On Track") : "Today: Spent")
+                }
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(statusColor)
             }
 
-            Divider()
+            Spacer(minLength: 0)
 
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(spacing: 6) {
-                    Image(systemName: "flame.fill")
-                        .foregroundColor(Color(hex: "FFD740"))
-                    VStack(alignment: .leading) {
-                        Text("\(entry.currentStreak)")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                        Text("Day Streak")
-                            .font(.system(size: 10))
-                            .foregroundColor(.secondary)
-                    }
-                }
-
-                HStack(spacing: 6) {
-                    Image(systemName: entry.isNoSpendDay ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        .foregroundColor(entry.isNoSpendDay ? Color(hex: "00E676") : Color(hex: "FF5252"))
-                    VStack(alignment: .leading) {
-                        Text(entry.isNoSpendDay ? (entry.loggedToday ? "Logged" : "On Track") : "Spent")
-                            .font(.system(size: 14, weight: .semibold))
-                        Text("Today")
-                            .font(.system(size: 10))
-                            .foregroundColor(.secondary)
-                    }
-                }
-
-                MarkTodayButton(entry: entry, compact: false)
+            VStack(spacing: 6) {
+                CoinSealButton(entry: entry, size: 78)
+                Text("Day Streak")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(WidgetPalette.gold)
+                Text(entry.loggedToday ? "Sealed ✓" : (entry.isNoSpendDay ? "Tap to seal" : "Spent today"))
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.6))
             }
+            .frame(minWidth: 90)
         }
-        .padding()
-        .containerBackground(.fill.tertiary, for: .widget)
+        .containerBackground(for: .widget) { WidgetPalette.backgroundGradient }
     }
 }
 
-// MARK: - One-tap "mark today" button
+// MARK: - One-tap "seal today" button (compact, used on the Lock Screen)
 
 /// The core loop without opening the app. Disabled once today is logged or has spending.
 struct MarkTodayButton: View {
@@ -214,27 +222,30 @@ struct MarkTodayButton: View {
     private var isEnabled: Bool { !entry.loggedToday && entry.isNoSpendDay }
 
     var body: some View {
-        Button(intent: MarkNoSpendDayIntent()) {
+        Button(intent: SealTodayIntent()) {
             if compact {
-                Image(systemName: entry.loggedToday ? "checkmark.circle.fill" : "plus.circle.fill")
+                Image(systemName: entry.loggedToday ? "checkmark.seal.fill" : "plus.circle.fill")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(isEnabled ? Color(hex: "00E676") : .secondary)
+                    .foregroundColor(isEnabled ? WidgetPalette.green : .secondary)
+                    .contentTransition(.symbolEffect(.replace))
+                    .invalidatableContent()
             } else {
                 HStack(spacing: 4) {
                     Image(systemName: entry.loggedToday ? "checkmark.circle.fill" : "checkmark.seal.fill")
-                    Text(entry.loggedToday ? "Logged ✓" : "Mark No-Spend")
+                    Text(entry.loggedToday ? "Sealed ✓" : "Seal Today")
                 }
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(isEnabled ? .black : .secondary)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
-                .background(isEnabled ? Color(hex: "00E676") : Color.secondary.opacity(0.2))
+                .background(isEnabled ? WidgetPalette.green : Color.secondary.opacity(0.2))
                 .clipShape(Capsule())
+                .invalidatableContent()
             }
         }
         .buttonStyle(.plain)
         .disabled(!isEnabled)
-        .accessibilityLabel(entry.loggedToday ? "Today already logged" : "Mark today a no-spend day")
+        .accessibilityLabel(entry.loggedToday ? Text("Today is sealed") : Text("Seal today"))
     }
 }
 
@@ -248,7 +259,7 @@ struct SpendZeroSavingsWidget: Widget {
             SavingsWidgetView(entry: entry)
         }
         .configurationDisplayName("Savings Glance")
-        .description("Your savings and streak, with a one-tap no-spend day button.")
+        .description("Your savings and streak. Tap the gold coin to seal today.")
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
@@ -259,6 +270,8 @@ struct SpendZeroSavingsWidget: Widget {
 struct SpendZeroWidgetBundle: WidgetBundle {
     var body: some Widget {
         SpendZeroSavingsWidget()
+        SealTodayControl()
+        SealTodayLiveActivity()
     }
 }
 
