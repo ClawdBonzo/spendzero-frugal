@@ -111,10 +111,12 @@ struct CoinVaultView: View {
         }
         .onAppear {
             onScreen = true
+            TiltMotion.shared.start()
             prepare(coins)
         }
         .onDisappear {
             onScreen = false
+            TiltMotion.shared.stop()
             selection = nil
         }
         .onChange(of: isActive) { _, active in
