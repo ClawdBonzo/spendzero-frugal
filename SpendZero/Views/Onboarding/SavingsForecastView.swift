@@ -244,7 +244,7 @@ private struct ExplainRow: View {
                 .lineLimit(1)
                 .foregroundStyle(tint)
                 .padding(.horizontal, 7)
-                .frame(minWidth: 30, minHeight: 28)
+                .frame(minWidth: 44, minHeight: 28)
                 .background(RoundedRectangle(cornerRadius: 9, style: .continuous).fill(tint.opacity(0.14)))
             Text(text)
                 .font(.app(size: 14, weight: .bold, design: .rounded))
