@@ -54,6 +54,8 @@ final class SubscriptionService {
     func configure() {
         Purchases.logLevel = .warn
         Purchases.configure(withAPIKey: Self.apiKey)
+        // Lets RevenueCat attribute installs, trials and revenue to Apple Ads campaigns and keywords.
+        Purchases.shared.attribution.enableAdServicesAttributionTokenCollection()
         Purchases.shared.delegate = promotedPurchaseHandler
         Task {
             await checkEntitlementStatus()
