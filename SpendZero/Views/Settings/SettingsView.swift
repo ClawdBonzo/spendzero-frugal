@@ -24,6 +24,7 @@ struct SettingsView: View {
     @State private var showNotificationDeniedAlert = false
     /// Same key and default as `SoundEffects.isEnabled`.
     @AppStorage("soundEffectsEnabled") private var soundEffectsEnabled = true
+    @AppStorage(LiveActivityCoordinator.enabledKey) private var eveningCountdownEnabled = true
 
     private var profile: UserProfile? { profiles.first }
 
@@ -219,6 +220,30 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    }
+                    .listRowBackground(AppTheme.cardBackground)
+
+                    // Evening check-in: the Lock Screen / Dynamic Island countdown
+                    Section {
+                        Toggle(isOn: Binding(
+                            get: { eveningCountdownEnabled },
+                            set: { newValue in
+                                eveningCountdownEnabled = newValue
+                                LiveActivityCoordinator.shared.refresh(profile: profile, context: modelContext)
+                            }
+                        )) {
+                            HStack {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("Evening countdown")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                        .tint(AppTheme.primaryGreen)
+                    } header: {
+                        Text("Evening check-in")
+                    } footer: {
+                        Text("In the evening, shows how long you have left to seal today on the Lock Screen and in the Dynamic Island. Needs notifications.")
                     }
                     .listRowBackground(AppTheme.cardBackground)
 

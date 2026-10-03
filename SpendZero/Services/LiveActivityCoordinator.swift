@@ -47,6 +47,11 @@ final class LiveActivityCoordinator {
         forceStart = ProcessInfo.processInfo.arguments.contains("-StartLiveActivity") && !didForceDebugStart
         #endif
 
+        guard Self.isEnabled || forceStart else {
+            if !activities.isEmpty { Task { await SealTodayActivity.endAll(sealedStreak: nil, now: now) } }
+            return
+        }
+
         let decision: EveningCheckIn.Decision
         if forceStart {
             decision = current.isEmpty ? .startNow : .update
@@ -120,6 +125,16 @@ final class LiveActivityCoordinator {
     private func startedToday(_ now: Date) -> Bool {
         guard let day = UserDefaults.standard.object(forKey: Self.startedDayKey) as? Date else { return false }
         return Calendar.current.isDate(day, inSameDayAs: now)
+    }
+
+    static let enabledKey = "eveningLiveActivityEnabled"
+
+    /// Shown only to people who receive the evening reminder (notifications allowed) and who
+    /// haven't switched the countdown off in Settings.
+    static var isEnabled: Bool {
+        let d = UserDefaults.standard
+        let switchedOn = d.object(forKey: enabledKey) as? Bool ?? true
+        return switchedOn && d.bool(forKey: NotificationManager.notificationsAuthorizedKey)
     }
 
     /// Scheduled (future-start) Live Activities arrived in iOS 26.

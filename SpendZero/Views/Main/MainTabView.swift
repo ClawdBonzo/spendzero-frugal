@@ -117,7 +117,7 @@ struct MainTabView: View {
             .zIndex(10)
         }
         }
-        .monthlyRecapPresenter() // TEMP-AGENTD
+        .monthlyRecapPresenter()
     }
 }
 

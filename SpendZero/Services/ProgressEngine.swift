@@ -560,6 +560,7 @@ final class ProgressEngine {
             isNoSpendDay: !hasNonEssentialSpending(on: now, context: context),
             loggedToday: profile.hasLoggedToday(asOf: now)
         )
+        LiveActivityCoordinator.shared.refresh(profile: profile, context: context, now: now)
     }
 
     private func refreshNotifications(profile: UserProfile, now: Date) {
