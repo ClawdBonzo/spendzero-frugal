@@ -15,6 +15,8 @@ struct CoinVaultView: View {
     @State private var holder = SceneHolder()
     @State private var inViewport = false
     @State private var onScreen = false
+    /// SpriteKit shows an opaque grey placeholder until its first frame; never pause before that.
+    @State private var primed = false
     /// Coins shown in the stat tiles; lags the data while a coin is still falling.
     @State private var shownCount: Int?
     @State private var pendingDrop = false
@@ -113,6 +115,7 @@ struct CoinVaultView: View {
             onScreen = true
             TiltMotion.shared.start()
             prepare(coins)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { primed = true }
         }
         .onDisappear {
             onScreen = false
@@ -179,7 +182,7 @@ struct CoinVaultView: View {
             ZStack(alignment: .topLeading) {
                 JarGlassBack(geometry: g, fill: fill, pulse: glowPulse)
                 SpriteView(scene: holder.scene,
-                           isPaused: !isActive,
+                           isPaused: primed && !isActive,
                            preferredFramesPerSecond: UIScreen.main.maximumFramesPerSecond,
                            options: [.allowsTransparency, .ignoresSiblingOrder])
                     .frame(width: size.width, height: size.height)

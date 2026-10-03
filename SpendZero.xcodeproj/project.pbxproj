@@ -72,6 +72,7 @@
 		7B8342009EC397FE12B66A9D /* clink.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAF026C574C0D98E6926F204 /* clink.wav */; };
 		7F548042B804A6C3510A8435 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9E7EAE05FB5B6D6089121 /* DashboardView.swift */; };
 		825FCA0551A4AD1A703B35E9 /* MintCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442396F921F90069E17E27B /* MintCoin.swift */; };
+		8318B423323892AF1F3E3294 /* SavingsForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77B3DCC4DBCD703FCBF9E6 /* SavingsForecastTests.swift */; };
 		847178F6A99BA413D861E6F1 /* GameEventToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4A2461D744C4086B93CA35 /* GameEventToastView.swift */; };
 		84E0AC583078E418D15A2F0B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FA51FA7E1487501B2D7CB6 /* RootView.swift */; };
 		84FDBE16FF96C50D1F948655 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AAFE24BD3596FB6EF7DFA32E /* RevenueCat */; };
@@ -199,6 +200,7 @@
 		28FB54359090500BABE219A1 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "fr-CA"; path = "fr-CA.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A19ABDD84BEA69E8846CB50 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2E3D44DE69EFFF8FA4FC1477 /* RecapCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapCards.swift; sourceTree = "<group>"; };
+		2E77B3DCC4DBCD703FCBF9E6 /* SavingsForecastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsForecastTests.swift; sourceTree = "<group>"; };
 		2EBF0D248185EBCE6886CF08 /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		302B4A7EAF4E50B406670577 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		319F9A2CA43B9E8676615E27 /* PaywallHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallHero.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				01A09BEB89CB38991F913944 /* ProgressEngineTests.swift */,
 				9402D6D6E13EA344A81F8C94 /* RecapTests.swift */,
 				B1B1BC91CDB86699E4307AE4 /* ReviewPrompterTests.swift */,
+				2E77B3DCC4DBCD703FCBF9E6 /* SavingsForecastTests.swift */,
 				EA5C96CEBF54D6C66D1163A0 /* SeasonalChallengesTests.swift */,
 				6F270064BE150B097019BF3F /* StreakTests.swift */,
 			);
@@ -880,6 +883,7 @@
 				ACA3FE778F23F7438BFE10A1 /* ProgressEngineTests.swift in Sources */,
 				D3B95B2CF9D7F4D84923F593 /* RecapTests.swift in Sources */,
 				284C56B2394372DE52DF0E05 /* ReviewPrompterTests.swift in Sources */,
+				8318B423323892AF1F3E3294 /* SavingsForecastTests.swift in Sources */,
 				E26C5819A762AD16F366B8B7 /* SeasonalChallengesTests.swift in Sources */,
 				A7D1DBF528222615F14D13C3 /* StreakTests.swift in Sources */,
 			);

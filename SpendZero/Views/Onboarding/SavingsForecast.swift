@@ -10,13 +10,15 @@ struct SavingsForecast: Equatable {
 
     /// What a no-spend day keeps: the user's usual daily spend on extras.
     let dailyExtras: Double
-    /// No-spend days per month the user is aiming for (their chosen challenge, capped to a month).
+    /// No-spend days per month: the user's chosen challenge length, capped at a realistic month.
+    /// A 30-day pick would otherwise assume a whole year without a single non-essential purchase.
     let goalDaysPerMonth: Int
+    static let realisticDaysPerMonth = 20
     let start: Date
 
     init(dailyExtras: Double, challengeDays: Int, start: Date = .now) {
         self.dailyExtras = max(0, dailyExtras)
-        self.goalDaysPerMonth = min(max(challengeDays, 0), 30)
+        self.goalDaysPerMonth = min(max(challengeDays, 0), Self.realisticDaysPerMonth)
         self.start = start
     }
 

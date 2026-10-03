@@ -141,7 +141,7 @@ struct SavingsForecastView: View {
     private var rows: some View {
         VStack(alignment: .leading, spacing: 10) {
             ExplainRow(badge: "\(forecast.goalDaysPerMonth)", tint: AppTheme.primaryGreen,
-                       text: "no-spend days a month (your goal)")
+                       text: "no-spend days a month, based on your goal")
             ExplainRow(badge: forecast.dailyExtras.currencyFormatted, tint: AppTheme.accentGold,
                        text: "you usually spend on extras each day")
             Text("An estimate from your answers, not a guarantee.")
