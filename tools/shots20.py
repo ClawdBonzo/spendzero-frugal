@@ -93,7 +93,7 @@ def looks_like_splash(path):
 CROPS = {  # asset: (raw, box)
     "vault_stats": ("vault", (45, 2015, 1275, 2310)),
     "forecast_big": ("forecast", (60, 560, 1260, 900)),
-    "calendar_card": ("calendar", (30, 540, 1290, 2020)),
+    "calendar_card": ("calendar", (30, 540, 1290, 2200)),
     "impulse_rows": ("impulses", (45, 1010, 1275, 1630)),
     "quest_rows": ("quests", (60, 590, 1260, 1410)),
     "tree_dec_night": ("tree_dec_night", (144, 483, 1176, 1284)),
@@ -120,6 +120,24 @@ def gold_rows(path, top, bottom):
     return rows[0], end
 
 
+def tree_panel_bottom(path):
+    """Bottom edge of the wealth-tree panel: the longest run of rows where both side columns leave the background.
+    (The night sky's top is too dark to find, but the lit ground at the bottom always is.)"""
+    im = Image.open(path).convert("RGB")
+    bg = (10, 14, 20)
+    diff = lambda x, y: sum(abs(a - b) for a, b in zip(im.getpixel((x, y)), bg))
+    best, start = (0, 0), None
+    for y in range(250, 2000, 4):
+        on = diff(170, y) > 30 and diff(1150, y) > 30
+        if on and start is None:
+            start = y
+        if (not on or y >= 1996) and start is not None:
+            if y - start > best[1] - best[0]:
+                best = (start, y)
+            start = None
+    return best[1] or None
+
+
 def crops(set_name):
     raw, out = f"{WORK}/raw_{set_name}", f"{WORK}/assets_{set_name}"
     os.makedirs(out, exist_ok=True)
@@ -128,6 +146,10 @@ def crops(set_name):
             g = gold_rows(f"{raw}/{src}.png", 300, 1200)
             if g:
                 box = (60, max(0, g[0] - 120), 1260, min(2868, g[1] + 135))
+        if asset.startswith("tree_"):  # the title above the tree wraps differently per language
+            b = tree_panel_bottom(f"{raw}/{src}.png")
+            if b:
+                box = (144, b - 800, 1176, b + 4)
         Image.open(f"{raw}/{src}.png").crop(box).save(f"{out}/{asset}.png")
     print(f"{set_name}: crops done", flush=True)
 
