@@ -76,6 +76,8 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
 .gcoin::after { content: ""; position: absolute; inset: 13%; border-radius: 50%; border: 3px solid rgba(74,51,0,.25); }
 .gcoin .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #4A3300; z-index: 2; }
 .rtl .h, .rtl .sub, .rtl .kicker, .rtl .chip { direction: rtl; unicode-bidi: plaintext; }
+.rtl .kicker, .nospace .kicker { letter-spacing: 0; }
+.rtl .h { letter-spacing: 0; }
 .h { white-space: nowrap; }
 </style></head>
 <body class="{{BODYCLASS}}">
@@ -106,7 +108,7 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
   <div class="sub" style="top:735px">{{f1.sub}}</div>
   <div style="position:absolute; left:160px; top:1010px; width:1000px; height:1000px; border-radius:50%; overflow:hidden;
        -webkit-mask: radial-gradient(circle, #000 64%, transparent 71%); filter: drop-shadow(0 30px 80px rgba(0,0,0,.6))">
-    <img src="{{RAW}}/sealed_1.png" style="position:absolute; width:1860px; left:-415px; top:-806px">
+    <img src="{{RAW}}/sealed.png" style="position:absolute; width:1860px; left:-415px; top:-806px">
   </div>
   <div class="row" style="top:2090px"><div class="chip" style="font-size:50px; padding:30px 48px">🔥 <span>{{f1.chip_streak}}</span> · <b>{{f1.chip_kept}}</b></div></div>
   <div class="row" style="top:2560px; gap:18px">
@@ -136,7 +138,7 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
   <div class="kicker" style="top:200px">{{f3.kicker}}</div>
   <div class="h" style="top:280px">{{f3.h}}</div>
   <div class="phone" style="left:190px; top:760px">
-    <div class="screen"><img class="shot" src="{{RAW}}/forecast_1.png"></div>
+    <div class="screen"><img class="shot" src="{{RAW}}/forecast.png"></div>
   </div>
   <div class="pop" style="left:110px; top:1080px; width:1100px; transform: rotate(-2deg)"><img src="{{ASSETS}}/forecast_big.png"></div>
 </div>
@@ -173,9 +175,9 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
 <div class="frame" style="left:7920px">
   <div class="kicker" style="top:200px">{{f7.kicker}}</div>
   <div class="h" style="top:280px">{{f7.h}}</div>
-  <div class="pop" style="left:10px; top:1000px; width:560px; border-radius:56px; transform: rotate(-8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recapB.png"></div>
-  <div class="pop" style="left:750px; top:1000px; width:560px; border-radius:56px; transform: rotate(8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recapB_2.png"></div>
-  <div class="pop" style="left:290px; top:780px; width:740px; border-radius:70px"><img src="{{RAW}}/recap.png"></div>
+  <div class="pop" style="left:10px; top:1000px; width:560px; border-radius:56px; transform: rotate(-8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recap1.png"></div>
+  <div class="pop" style="left:750px; top:1000px; width:560px; border-radius:56px; transform: rotate(8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recap3.png"></div>
+  <div class="pop" style="left:290px; top:780px; width:740px; border-radius:70px"><img src="{{RAW}}/recap0.png"></div>
 </div>
 
 <!-- ============ F8 LOCK SCREEN ============ -->
@@ -198,7 +200,7 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
        box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(255,215,64,.75), 0 0 80px rgba(255,200,40,.35)">
     <div class="gcoin" style="width:160px; height:160px; flex:none"><div class="face"><span style="font-size:36px">🔥</span><span style="font:900 54px/1 SFR">23</span></div></div>
     <div style="flex:1; display:flex; flex-direction:column; gap:12px">
-      <div style="display:flex; align-items:baseline; gap:16px"><span style="font:900 72px/1 SFR; color:#FFD740">2:47:12</span><span style="font:600 36px/1 SFP; color:rgba(255,255,255,.8)">{{f8.la_left}}</span></div>
+      <div style="display:flex; align-items:baseline; flex-wrap:wrap; column-gap:16px; row-gap:6px"><span style="font:900 72px/1 SFR; color:#FFD740">2:47:12</span><span style="font:600 36px/1 SFP; color:rgba(255,255,255,.8)">{{f8.la_left}}</span></div>
       <div style="height:12px; border-radius:6px; background:rgba(255,255,255,.18)"><div style="width:62%; height:100%; border-radius:6px; background:#FFD740"></div></div>
       <div style="font:500 34px/1 SFP; color:rgba(255,255,255,.6)">{{f8.la_streak}}</div>
     </div>

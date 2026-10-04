@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Výzva bez míňania",
+ "subtitle": "Šetrenie peňazí a nákupný pôst",
+ "keywords": "šetriť,sporenie,úspory,rozpočet,výdavky,impulzívne,nákupy,peniaze,pokladnička,návyk,séria,no,spend",
+ "promotionalText": "Vo verzii 2.0 je každý deň bez míňania zlatá minca v pohári a zamknutá obrazovka odpočíta čas do konca dňa. Bez reklám, bez účtu. Rozhranie je v angličtine.",
+ "description": "Nemíňajte – a vyhrávajte. SpendZero premení každý deň bez míňania na zlatú mincu: sledujte, ako ich pribúda v pohári Coin Vault, vyplňte zlatom celý rok v Mint Calendar a zistite, akú hodnotu môže mať rok bez zbytočných nákupov. Série, XP, úlohy, odznaky a živý strom bohatstva urobia z nákupného pôstu hru, ktorú budete chcieť vyhrať.\n\nDÔLEŽITÉ: aplikácia nemá slovenskú verziu. Je dostupná v angličtine a 15 ďalších jazykoch (zoznam nižšie), preto pri funkciách uvádzame aj anglické názvy.\n\nNOVINKY VO VERZII 2.0\n• Coin Vault: každý spečatený deň hodí zlatú mincu do pohára, ktorý môžete nakláňať\n• Mint Calendar: celý rok v zlatých minciach a nové grafy\n• Predpoveď úspor: akú hodnotu môže mať rok dní bez míňania\n• Monthly Recap: mesačné zhrnutie v štýle príbehov na zdieľanie\n• Spečaťte deň zo zamknutej obrazovky, Dynamic Islandu, Ovládacieho centra alebo cez Siri\n• Živý strom: deň a noc, ročné obdobia, svetielka v decembri\n• Ikony Gold, Emerald a Midnight na odomknutie s ďalšími úrovňami\n\nHRA, KTORÚ VYHRÁTE TÝM, ŽE NEMÍŇATE\nOznačte deň bez míňania a spečatí ho zlatá minca. Séria rastie, prichádzajú odmeny a vidíte, koľko chýba do ďalšieho míľnika.\n• Série so zmrazením, ktoré vás podrží v horšom dni\n• Denné a týždenné úlohy podľa toho, čo naozaj robíte\n• 25 úrovní, od Frugal Novice po Wealth King\n• Odznaky za série 7, 30, 100 a 365 dní a za míľniky úspor\n• Výzvy ako 30-Day No-Spend Challenge alebo sezónna No-Spend January – alebo si vytvorte vlastnú\n\nSTROM BOHATSTVA\nVáš strom (Wealth Tree) je jediný svojho druhu. Rastie s každou úrovňou, obsýpa sa zlatými mincami a žije v rytme vášho dňa. Keď sa séria preruší, vädne – jeden deň bez míňania a znova ožije.\n\nZASTAVTE IMPULZÍVNE NÁKUPY\nNiečo vás láka v košíku? Zapíšte to do Impulse Log. Keď odoláte, suma sa počíta ako ušetrená a XP to potvrdí. Nevyšlo to? Žiadna hanba – zapíšte to a pokračujte. Nákup potravín či doprava deň bez míňania neprerušia.\n\nNEPRERUŠTE SÉRIU\n• Interaktívne widgety: spečaťte deň bez otvorenia aplikácie\n• Voliteľný večerný odpočet na zamknutej obrazovke\n• Siri (v angličtine, napr. „Log a no-spend day in SpendZero“) alebo jedno ťuknutie v Ovládacom centre\n• Večerná pripomienka – a ranná, ak ste včera zabudli\n\nSÚKROMIE\nVšetko zostáva vo vašom iPhone. Žiadny účet, žiadne prihlasovanie do banky, žiadne reklamy, žiadne sledovanie.\n\nAplikácia je dostupná v 16 jazykoch: angličtina, nemčina, španielčina, francúzština, taliančina, holandčina, portugalčina, turečtina, japončina, čínština (zjednodušená aj tradičná), kórejčina, švédčina, dánčina, nórčina a fínčina. Slovenská verzia nie je.\n\nPREDPLATNÉ\nSpendZero Pro je k dispozícii ako týždenné, mesačné alebo ročné predplatné, prípadne ako jednorazový doživotný nákup. Mesačný a ročný plán môže zahŕňať 3-dňové skúšobné obdobie zadarmo pre nových predplatiteľov, ktorí spĺňajú podmienky. Ceny sa v aplikácii zobrazujú v miestnej mene. Predplatné sa automaticky obnovuje, ak ho nezrušíte aspoň 24 hodín pred koncom aktuálneho obdobia. Spravovať alebo zrušiť ho môžete kedykoľvek v nastaveniach svojho účtu App Store.\n\nPodmienky používania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nZásady ochrany súkromia: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0:\n• Coin Vault: každý spečatený deň hodí zlatú mincu do pohára, ktorý môžete nakláňať\n• Mint Calendar: celý rok v zlatých minciach a nové grafy\n• Predpoveď úspor: akú hodnotu môže mať rok dní bez míňania\n• Monthly Recap: mesačné zhrnutie v štýle príbehov na zdieľanie\n• Večerný odpočet na zamknutej obrazovke a v Dynamic Islande, k tomu Ovládacie centrum a Siri\n• Strom bohatstva žije v reálnom čase: deň a noc, ročné obdobia, decembrové svetielka\n• Ikony Gold, Emerald a Midnight na odomknutie s úrovňami\n• Nové zvukové efekty a haptika\n• Aplikácia je po novom v 16 jazykoch (slovenčina medzi nimi nie je – rozhranie je v angličtine)",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro – týždeň",
+   "description": "Všetky funkcie Pro, týždeň po týždni"
+  },
+  "monthly": {
+   "name": "SpendZero Pro – mesiac",
+   "description": "Všetky funkcie Pro, obnova každý mesiac"
+  },
+  "yearly": {
+   "name": "SpendZero Pro – rok",
+   "description": "Celý rok so všetkými funkciami Pro"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro – doživotne",
+   "description": "Zaplaťte raz, Pro máte navždy"
+  }
+ }
+}

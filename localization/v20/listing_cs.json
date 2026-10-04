@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Výzva bez utrácení",
+ "subtitle": "Šetření peněz a nákupní půst",
+ "keywords": "šetřit,spoření,úspory,rozpočet,výdaje,impulzivní,nákupy,peníze,pokladnička,návyk,série,no,spend",
+ "promotionalText": "Ve verzi 2.0 je každý den bez utrácení zlatá mince ve sklenici a zamčená obrazovka odpočítává čas do konce dne. Bez reklam, bez účtu. Rozhraní je v angličtině.",
+ "description": "Neutrácejte – a vyhrávejte. SpendZero promění každý den bez utrácení ve zlatou minci: sledujte, jak jich přibývá ve sklenici Coin Vault, vyplňte zlatem celý rok v Mint Calendar a zjistěte, kolik může mít cenu rok bez zbytečných nákupů. Série, XP, úkoly, odznaky a živý strom bohatství z nákupního půstu udělají hru, kterou budete chtít vyhrát.\n\nDŮLEŽITÉ: aplikace nemá českou verzi. Je k dispozici v angličtině a 15 dalších jazycích (seznam níže), proto u funkcí uvádíme i anglické názvy.\n\nNOVINKY VE VERZI 2.0\n• Coin Vault: každý zpečetěný den hodí zlatou minci do sklenice, kterou můžete naklánět\n• Mint Calendar: celý rok ve zlatých mincích a nové grafy\n• Předpověď úspor: kolik může mít cenu rok dnů bez utrácení\n• Monthly Recap: měsíční shrnutí ve stylu příběhů ke sdílení\n• Zpečeťte den ze zamčené obrazovky, Dynamic Islandu, Ovládacího centra nebo přes Siri\n• Živý strom: den a noc, roční období, světýlka v prosinci\n• Ikony Gold, Emerald a Midnight k odemčení s dalšími úrovněmi\n\nHRA, KTEROU VYHRAJETE TÍM, ŽE NEUTRATÍTE\nOznačte den bez utrácení a zpečetí ho zlatá mince. Série roste, přicházejí odměny a vidíte, kolik zbývá do dalšího milníku.\n• Série se zmrazením, které vás podrží v horším dni\n• Denní a týdenní úkoly podle toho, co opravdu děláte\n• 25 úrovní, od Frugal Novice po Wealth King\n• Odznaky za série 7, 30, 100 a 365 dní a za milníky úspor\n• Výzvy jako 30-Day No-Spend Challenge nebo sezónní No-Spend January – nebo si vytvořte vlastní\n\nSTROM BOHATSTVÍ\nVáš strom (Wealth Tree) je jediný svého druhu. Roste s každou úrovní, obsypává se zlatými mincemi a žije v rytmu vašeho dne. Když se série přeruší, vadne – jeden den bez utrácení a zase ožije.\n\nZASTAVTE IMPULZIVNÍ NÁKUPY\nNěco vás láká v košíku? Zapište to do Impulse Log. Když odoláte, částka se počítá jako ušetřená a XP to potvrdí. Nevyšlo to? Žádná ostuda – zapište to a pokračujte. Nákup potravin nebo doprava den bez utrácení nepřeruší.\n\nNEPŘERUŠTE SÉRII\n• Interaktivní widgety: zpečeťte den bez otevření aplikace\n• Volitelný večerní odpočet na zamčené obrazovce\n• Siri (anglicky, např. „Log a no-spend day in SpendZero“) nebo jedno klepnutí v Ovládacím centru\n• Večerní připomínka – a ranní, pokud jste včera zapomněli\n\nSOUKROMÍ\nVše zůstává ve vašem iPhonu. Žádný účet, žádné přihlašování do banky, žádné reklamy, žádné sledování.\n\nAplikace je k dispozici v 16 jazycích: angličtina, němčina, španělština, francouzština, italština, nizozemština, portugalština, turečtina, japonština, čínština (zjednodušená i tradiční), korejština, švédština, dánština, norština a finština. Česká verze není.\n\nPŘEDPLATNÉ\nSpendZero Pro je k dispozici jako týdenní, měsíční nebo roční předplatné, případně jako jednorázový doživotní nákup. Měsíční a roční plán může zahrnovat 3denní zkušební období zdarma pro nové předplatitele, kteří splňují podmínky. Ceny se v aplikaci zobrazují v místní měně. Předplatné se automaticky obnovuje, pokud ho nezrušíte nejméně 24 hodin před koncem aktuálního období. Spravovat nebo zrušit ho můžete kdykoli v nastavení svého účtu App Store.\n\nPodmínky použití (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nZásady ochrany soukromí: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0:\n• Coin Vault: každý zpečetěný den hodí zlatou minci do sklenice, kterou můžete naklánět\n• Mint Calendar: celý rok ve zlatých mincích a nové grafy\n• Předpověď úspor: kolik může mít cenu rok dnů bez utrácení\n• Monthly Recap: měsíční shrnutí ve stylu příběhů ke sdílení\n• Večerní odpočet na zamčené obrazovce a v Dynamic Islandu, k tomu Ovládací centrum a Siri\n• Strom bohatství žije v reálném čase: den a noc, roční období, prosincová světýlka\n• Ikony Gold, Emerald a Midnight k odemčení s úrovněmi\n• Nové zvukové efekty a haptika\n• Aplikace je nově v 16 jazycích (čeština mezi nimi není – rozhraní je v angličtině)",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro – týden",
+   "description": "Všechny funkce Pro, týden po týdnu"
+  },
+  "monthly": {
+   "name": "SpendZero Pro – měsíc",
+   "description": "Všechny funkce Pro, obnova každý měsíc"
+  },
+  "yearly": {
+   "name": "SpendZero Pro – rok",
+   "description": "Celý rok se všemi funkcemi Pro"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro – doživotně",
+   "description": "Zaplaťte jednou, Pro máte navždy"
+  }
+ }
+}

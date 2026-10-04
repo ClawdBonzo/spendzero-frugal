@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Geef niks uit.<br><g>Spaar goud.</g>",
+  "sub": "Elke uitgavenvrije dag wordt een gouden munt die je houdt.",
+  "chip_streak": "24 dagen op rij",
+  "chip_kept": "+€ 40 vandaag bespaard",
+  "trust": [
+   "Geen reclame",
+   "Geen bank-login",
+   "100% privé"
+  ]
+ },
+ "f2": {
+  "kicker": "Muntenkluis",
+  "h": "Zie je spaargeld<br><g>opstapelen.</g>"
+ },
+ "f3": {
+  "kicker": "Je prognose",
+  "h": "Zie wat een jaar<br>je kan <g>opleveren.</g>"
+ },
+ "f4": {
+  "kicker": "Muntenkalender",
+  "h": "Vul je jaar<br>met <g>goud.</g>"
+ },
+ "f5": {
+  "kicker": "Impulsdagboek",
+  "h": "Weersta de drang.<br><g>Houd je geld.</g>"
+ },
+ "f6": {
+  "kicker": "Vermogensboom",
+  "h": "Je boom groeit<br>met je <g>reeks.</g>",
+  "sub": "Dag en nacht, elk seizoen, en lichtjes in december."
+ },
+ "f7": {
+  "kicker": "Maandoverzicht",
+  "h": "Je maand,<br><g>verzegeld.</g>"
+ },
+ "f8": {
+  "kicker": "Live-activiteit",
+  "h": "Verzegel vanaf je<br><g>toegangsscherm.</g>",
+  "date": "Zaterdag 3 oktober",
+  "la_left": "om vandaag te verzegelen",
+  "la_streak": "Reeks van 23 dagen staat op het spel",
+  "la_button": "Verzegelen"
+ },
+ "f9": {
+  "kicker": "Quests · XP · 25 levels",
+  "h": "Level omhoog.<br>Verdien <g>badges.</g>"
+ },
+ "f10": {
+  "kicker": "Privacy voorop",
+  "h": "Geen reclame.<br>Geen <g>bank-login.</g>",
+  "sub": "Geen account, geen bankkoppeling. Je gegevens blijven op je iPhone.",
+  "icons": "Level omhoog en ontgrendel de app-iconen Goud, Smaragd en Middernacht.",
+  "chips": [
+   "Werkt zonder account",
+   "Nooit je bank koppelen",
+   "Je gegevens blijven op je iPhone"
+  ]
+ }
+}

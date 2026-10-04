@@ -102,10 +102,32 @@ CROPS = {  # asset: (raw, box)
 }
 
 
+def gold_rows(path, top, bottom):
+    """First and last row in [top, bottom) where the big gold forecast number is drawn."""
+    im = Image.open(path).convert("RGB")
+    rows = []
+    for y in range(top, bottom, 4):
+        n = sum(1 for x in range(60, 1260, 6) if (lambda p: p[0] > 200 and p[1] > 160 and p[2] < 120)(im.getpixel((x, y))))
+        if n > 12:
+            rows.append(y)
+    if not rows:
+        return None
+    end = rows[0]
+    for y in rows[1:]:  # first contiguous block only (the chart below also has gold)
+        if y - end > 24:
+            break
+        end = y
+    return rows[0], end
+
+
 def crops(set_name):
     raw, out = f"{WORK}/raw_{set_name}", f"{WORK}/assets_{set_name}"
     os.makedirs(out, exist_ok=True)
     for asset, (src, box) in CROPS.items():
+        if asset == "forecast_big":  # the headline above it changes height per language
+            g = gold_rows(f"{raw}/{src}.png", 300, 1200)
+            if g:
+                box = (60, max(0, g[0] - 120), 1260, min(2868, g[1] + 135))
         Image.open(f"{raw}/{src}.png").crop(box).save(f"{out}/{asset}.png")
     print(f"{set_name}: crops done", flush=True)
 
@@ -129,7 +151,7 @@ def render(locale):
     cap = json.load(open(f"{ROOT}/localization/v20/captions_{'en' if locale == 'en-US' else locale}.json"))
     t = open(f"{ROOT}/localization/v20/screenshots_template.html").read()
     t = t.replace("{{RAW}}", f"raw_{set_name}").replace("{{ASSETS}}", f"assets_{set_name}").replace("{{SHARED}}", "assets")
-    t = t.replace("{{BODYCLASS}}", "rtl" if locale in RTL else "")
+    t = t.replace("{{BODYCLASS}}", ("rtl" if locale in RTL else "") + (" nospace" if locale in ("hi", "th") else ""))
     html = fill(t, cap)
     page = f"{WORK}/page_{locale}.html"
     open(page, "w").write(html)

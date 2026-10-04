@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Nu cheltui.<br><g>Strânge aur.</g>",
+  "sub": "Fiecare zi fără cheltuieli devine o monedă de aur care rămâne a ta.",
+  "chip_streak": "Serie de 24 de zile",
+  "chip_kept": "+$40 economisiți azi",
+  "trust": [
+   "Fără reclame",
+   "Fără logare la bancă",
+   "100% privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Pușculița",
+  "h": "Economiile tale<br><g>se adună.</g>"
+ },
+ "f3": {
+  "kicker": "Prognoza ta",
+  "h": "Vezi cât poate<br><g>valora un an.</g>"
+ },
+ "f4": {
+  "kicker": "Calendarul de aur",
+  "h": "Umple-ți anul<br>cu <g>aur.</g>"
+ },
+ "f5": {
+  "kicker": "Jurnalul tentațiilor",
+  "h": "Învinge tentația.<br><g>Păstrează banii.</g>"
+ },
+ "f6": {
+  "kicker": "Copacul bogăției",
+  "h": "Un copac ce crește<br>cu <g>seria ta.</g>",
+  "sub": "Zi și noapte, în fiecare anotimp, și luminițe în decembrie."
+ },
+ "f7": {
+  "kicker": "Rezumatul lunii",
+  "h": "Luna ta,<br><g>pecetluită.</g>"
+ },
+ "f8": {
+  "kicker": "Activitate live",
+  "h": "Pecetluiește ziua<br><g>fără deblocare.</g>",
+  "date": "Saturday, October 3",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Misiuni · 25 de niveluri",
+  "h": "Urcă de nivel.<br>Câștigă <g>insigne.</g>"
+ },
+ "f10": {
+  "kicker": "Privat din start",
+  "h": "Fără reclame.<br>Fără <g>date bancare.</g>",
+  "sub": "Fără cont, fără conectarea băncii. Datele tale rămân pe iPhone.",
+  "icons": "Urcă de nivel și deblochează iconițele Aur, Smarald și Miezul nopții.",
+  "chips": [
+   "Merge fără cont",
+   "Niciodată conectat la bancă",
+   "Datele tale rămân pe iPhone"
+  ]
+ }
+}

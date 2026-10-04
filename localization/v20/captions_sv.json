@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Köp inget.<br><g>Samla guld.</g>",
+  "sub": "Varje köpfri dag blir ett guldmynt som du får behålla.",
+  "chip_streak": "24 dagar i rad",
+  "chip_kept": "+40 kr sparat i dag",
+  "trust": [
+   "Ingen reklam",
+   "Ingen bankkoppling",
+   "100 % privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Sparburken",
+  "h": "Se pengarna<br><g>trilla in.</g>"
+ },
+ "f3": {
+  "kicker": "Din prognos",
+  "h": "Se vad ett år<br>kan vara <g>värt.</g>"
+ },
+ "f4": {
+  "kicker": "Myntkalender",
+  "h": "Fyll ditt år<br>med <g>guld.</g>"
+ },
+ "f5": {
+  "kicker": "Impulsloggen",
+  "h": "Stå emot suget.<br><g>Behåll pengarna.</g>"
+ },
+ "f6": {
+  "kicker": "Pengaträdet",
+  "h": "Ett träd som växer<br>med din <g>svit.</g>",
+  "sub": "Dag och natt, alla årstider – och juleljus i december."
+ },
+ "f7": {
+  "kicker": "Månadens återblick",
+  "h": "Din månad,<br><g>förseglad.</g>"
+ },
+ "f8": {
+  "kicker": "Live-aktivitet",
+  "h": "Försegla dagen<br>från <g>låsskärmen.</g>",
+  "date": "Lördag 3 oktober",
+  "la_left": "kvar att försegla",
+  "la_streak": "Svit på spel: 23",
+  "la_button": "Försegla"
+ },
+ "f9": {
+  "kicker": "Uppdrag · XP · 25 nivåer",
+  "h": "Gå upp i nivå.<br>Samla <g>märken.</g>"
+ },
+ "f10": {
+  "kicker": "Privat från grunden",
+  "h": "Ingen reklam.<br>Inget <g>bank-login.</g>",
+  "sub": "Inget konto, ingen koppling till banken. Din data stannar på din iPhone.",
+  "icons": "Gå upp i nivå och lås upp appikonerna Guld, Smaragd och Midnatt.",
+  "chips": [
+   "Funkar utan konto",
+   "Aldrig kopplad till banken",
+   "Din data stannar på din iPhone"
+  ]
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Köpstopp & sparande",
+ "subtitle": "Spara pengar, stoppa impulsköp",
+ "keywords": "utmaning,sparutmaning,köpfri,budget,sparmål,ekonomi,sparsam,utgifter,svit,streak,vana,sparburk,spel",
+ "promotionalText": "Nytt i 2.0: varje köpfri dag blir ett guldmynt i Sparburken. Fyll året med guld, se din sparprognos och försegla dagen direkt från låsskärmen. Nu på svenska!",
+ "description": "Låt bli att handla – och vinn ändå. SpendZero gör varje köpfri dag till ett guldmynt: se dem samlas i Sparburken, fyll året i Myntkalendern och se vad ett år utan onödiga köp kan vara värt. Sviter, XP, uppdrag, märken och ett levande pengaträd gör köpstoppet till ett spel du faktiskt vill vinna.\n\nKör du köpstopp en månad, ett helt år eller vill du bara sluta impulshandla? Med SpendZero känns varje dag du låter plånboken vila som en vinst.\n\nNYTT I 2.0 – NU PÅ SVENSKA\n• Sparburken: varje förseglad dag släpper ett guldmynt i en glasburk som du kan luta och skaka\n• Myntkalendern: hela ditt år i guldmynt, plus helt nya diagram\n• Sparprognos: se vad ett år med köpfria dagar kan vara värt\n• Återblick: din månad som en story att dela\n• Försegla dagen från låsskärmen, Dynamic Island, Kontrollcenter eller Siri\n• Ett levande pengaträd: dag och natt, årstider och ljusslingor i december\n• Lås upp appsymbolerna Guld, Smaragd och Midnatt när du går upp i nivå\n\nETT SPEL DU VINNER GENOM ATT INTE HANDLA\nMarkera en köpfri dag så förseglas den med ett guldmynt. Sviten tickar uppåt, belöningarna dyker upp och du ser hur nära nästa milstolpe du är.\n• Sviter, med svitskydd som räddar dig en dålig dag\n• Dagliga och veckovisa uppdrag som följer det du faktiskt gör\n• 25 nivåer, från Sparnovis till Krösus\n• Märken för sviter på 7, 30, 100 och 365 dagar och för sparmilstolpar\n• Utmaningar som 30 dagars köpstopp, kaffedetoxvecka och säsongsutmaningar som Köpstopp i januari – eller skapa din egen\n\nLÅT DITT PENGATRÄD VÄXA\nDitt träd är helt unikt. Det växer för varje nivå, bär fler guldmynt ju mer du sparar och följer din riktiga dag, från soluppgång till månljusa nätter. Bryts sviten börjar det vissna – en köpfri dag så piggnar det till igen.\n\nSTOPPA IMPULSKÖPEN\nLigger något och lockar i varukorgen? Logga impulsen. Låter du bli räknas pengarna som sparade – med XP som bevis. Föll du för frestelsen? Ingen skam – logga och kör vidare. Nödvändigheter som mat och resor bryter inte din köpfria dag.\n\nBRYT ALDRIG KEDJAN\n• Interaktiva widgetar: försegla dagen utan att öppna appen\n• Valfri kvällsnedräkning på låsskärmen innan dagen tar slut\n• Försegla med Siri eller med ett tryck i Kontrollcenter\n• En vänlig kvällspåminnelse – och en morgonpåminnelse om du glömde igår\n\nPRIVAT PÅ RIKTIGT\nAllt du loggar stannar på din iPhone. Inget konto, ingen bankinloggning, ingen reklam, ingen spårning.\n\nFinns på 16 språk: svenska, engelska, danska, norska, finska, tyska, nederländska, franska, spanska, italienska, portugisiska, turkiska, japanska, koreanska samt förenklad och traditionell kinesiska.\n\nPRENUMERATIONER\nSpendZero Pro finns som vecko-, månads- eller årsprenumeration, eller som ett engångsköp för livstid. Månads- och årsprenumerationer kan inkludera en gratis provperiod på 3 dagar för nya prenumeranter som uppfyller villkoren. Priserna visas i appen i din lokala valuta. Prenumerationen förnyas automatiskt om den inte sägs upp minst 24 timmar före slutet av den aktuella perioden. Hantera eller avsluta den när du vill i inställningarna för ditt App Store-konto.\n\nAnvändarvillkor (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nIntegritetspolicy: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0 – nu på svenska!\n• Sparburken: varje förseglad dag släpper ett guldmynt i en glasburk som du kan luta och skaka\n• Myntkalendern: hela året i guldmynt, plus helt nya diagram\n• Sparprognos: se vad ett år med köpfria dagar kan vara värt\n• Återblick: din månad som en story att dela\n• Försegla dagen från låsskärmen och Dynamic Island med kvällsnedräkning, eller via Kontrollcenter och Siri\n• Pengaträdet lever i realtid: dag och natt, årstider och ljusslingor i december\n• Lås upp appsymbolerna Guld, Smaragd och Midnatt när du går upp i nivå\n• Nya ljudeffekter och haptik\n• Nu på 16 språk – nytt är svenska, danska, norska, finska, koreanska och traditionell kinesiska",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Vecka",
+   "description": "Alla Pro-funktioner, vecka för vecka"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Månad",
+   "description": "Alla Pro-funktioner, förnyas varje månad"
+  },
+  "yearly": {
+   "name": "SpendZero Pro År",
+   "description": "Ett helt år med alla Pro-funktioner"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Livstid",
+   "description": "Betala en gång – Pro för alltid"
+  }
+ }
+}

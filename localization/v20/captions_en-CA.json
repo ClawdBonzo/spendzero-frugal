@@ -1,5 +1,4 @@
 {
- "_notes": "Screenshot text for SpendZero 2.0 (10 frames, 1320x2868). 'h' = headline in 2 lines: use <br> for the line break and wrap the 1-3 accent words in <g>...</g> (rendered in gold). Headlines are huge (~128px on a 1320px-wide frame): each line must fit ~16 Latin characters (CJK ~8 characters). Kickers are small uppercase labels (max ~24 characters). 'sub' lines max ~60 characters. Currency: app-language locales use the market's currency style for the amount 40 (e.g. 40 €, ₺40, ¥40, ₩40); listing-only locales keep $40 (their screenshots show the English app).",
  "f1": {
   "h": "Don't spend.<br><g>Mint gold.</g>",
   "sub": "Every no-spend day becomes a gold coin you get to keep.",

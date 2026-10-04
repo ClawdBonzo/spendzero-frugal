@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Akciószezonra: három időszakos kihívás.\n• Vásárlásmentes Black Friday hétvége: hagyd ki az összes akciót péntektől Cyber Mondayig.\n• 12 költésmentes nap: tizenkét nap egymás után karácsony előtt.\n• Költésmentes január: kezdd az évet 31 nappal, amikor csak a legszükségesebbre költesz.\nMindegyik a saját szezonjában jelenik meg a Challenges között.\nA SpendZero Pro ajánlatkódjait mostantól az alkalmazásban is beválthatod, a Settingsben vagy a frissítési képernyőn.",
+ "promo": {
+  "now": "Új: időszakos kihívások Black Fridayre, a karácsony előtti 12 napra és költésmentes januárra. Pecsételd le minden költésmentes napod egy aranyérmével.",
+  "bf": "Itt a vásárlásmentes Black Friday hétvége: hagyd ki az összes akciót péntektől Cyber Mondayig, és inkább a vagyonfádat növeszd.",
+  "dec": "12 költésmentes nap: tizenkét nap egymás után karácsony előtt. A már eltervezett ajándékok beleférnek, az extrák nem. Indítsd a Challenges közül.",
+  "jan": "Költésmentes január: 31 nap csak a legszükségesebbre. Pecsételd le minden napod aranyérmével, és kezdd több pénzzel az évet."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Vásárlásmentes Black Friday",
+   "short": "Egyetlen akció se péntektől hétfőig",
+   "long": "4 napos kihívás: semmi felesleges vásárlás Black Fridaytől Cyber Mondayig. Pecsételd le minden napod aranyérmével."
+  },
+  "twelve-days": {
+   "name": "12 költésmentes nap",
+   "short": "12 nap egymás után karácsony előtt",
+   "long": "Tizenkét nap egymás után felesleges költés nélkül karácsony előtt. Az eltervezett ajándékok beleférnek, az extrák nem."
+  },
+  "no-spend-january": {
+   "name": "Költésmentes január",
+   "short": "31 nap csak a legszükségesebbre",
+   "long": "Kezdd a 2027-es évet egy 31 napos kihívással: csak a legszükségesebbre költs, és pecsételd le minden napod aranyérmével."
+  }
+ }
+}

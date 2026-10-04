@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Mùa mua sắm cuối năm đã tới: ba thử thách có thời hạn.\n• Cuối tuần không mua sắm dịp Black Friday: bỏ qua mọi ưu đãi từ thứ Sáu đến Cyber Monday.\n• 12 ngày không tiêu: mười hai ngày liên tiếp trước Giáng sinh.\n• Tháng Một không tiêu: 31 ngày chỉ chi cho thiết yếu, để dành cho Tết.\nMỗi thử thách xuất hiện trong mục Challenges vào đúng mùa.\nBạn cũng có thể đổi mã ưu đãi SpendZero Pro ngay trong ứng dụng, từ Settings hoặc màn hình nâng cấp.",
+ "promo": {
+  "now": "Mới: thử thách có thời hạn cho Black Friday, 12 ngày trước Giáng sinh và Tháng Một không tiêu. Niêm phong mỗi ngày không tiêu tiền bằng một đồng xu vàng.",
+  "bf": "Cuối tuần không mua sắm dịp Black Friday: bỏ qua mọi ưu đãi từ thứ Sáu đến Cyber Monday và để cây tài lộc lớn lên thay cho giỏ hàng.",
+  "dec": "12 ngày không tiêu: mười hai ngày liên tiếp trước Giáng sinh. Quà đã định mua thì được, đồ phát sinh thì không. Bắt đầu ngay trong Challenges.",
+  "jan": "Tháng Một không tiêu: 31 ngày chỉ chi cho thiết yếu. Niêm phong mỗi ngày bằng xu vàng và để dành một khoản thật đầy cho Tết."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday không mua sắm",
+   "short": "Bỏ qua mọi ưu đãi từ thứ Sáu đến thứ Hai",
+   "long": "Thử thách 4 ngày: không mua đồ không thiết yếu từ Black Friday đến Cyber Monday. Niêm phong mỗi ngày bằng xu vàng."
+  },
+  "twelve-days": {
+   "name": "12 ngày không tiêu",
+   "short": "12 ngày liên tiếp không tiêu trước Giáng sinh",
+   "long": "Mười hai ngày liền không chi tiêu không thiết yếu trước Giáng sinh. Quà đã định mua thì được, đồ phát sinh thì không."
+  },
+  "no-spend-january": {
+   "name": "Tháng Một không tiêu",
+   "short": "31 ngày chỉ chi cho thiết yếu, để dành cho Tết",
+   "long": "Bắt đầu năm 2027 với thử thách 31 ngày: chỉ chi cho thiết yếu, niêm phong mỗi ngày bằng xu vàng và để dành cho Tết."
+  }
+ }
+}

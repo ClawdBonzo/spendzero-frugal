@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Musim promo akhir tahun tiba: tiga tantangan dengan waktu terbatas.\n• Akhir Pekan Tanpa Belanja saat Black Friday: lewati semua diskon dari Jumat sampai Cyber Monday.\n• 12 Hari Tanpa Belanja: dua belas hari berturut-turut di bulan Desember, saat promo akhir tahun ada di mana-mana.\n• Januari Tanpa Belanja: awali tahun dengan 31 hari belanja kebutuhan pokok saja.\nMasing-masing muncul di menu Challenges selama musimnya.\nKamu juga bisa menukarkan kode promo SpendZero Pro di aplikasi, dari Settings atau layar upgrade.",
+ "promo": {
+  "now": "Baru: tantangan waktu terbatas untuk Black Friday, 12 hari di bulan Desember, dan Januari Tanpa Belanja. Segel setiap hari tanpa belanja dengan koin emas.",
+  "bf": "Akhir Pekan Tanpa Belanja saat Black Friday sudah dimulai: lewati semua diskon dari Jumat sampai Cyber Monday dan tumbuhkan pohon kekayaanmu.",
+  "dec": "12 Hari Tanpa Belanja: dua belas hari berturut-turut di musim promo akhir tahun. Hadiah yang sudah direncanakan boleh, yang lain jangan dulu.",
+  "jan": "Januari Tanpa Belanja: 31 hari belanja kebutuhan pokok saja. Segel setiap hari dengan koin emas dan awali tahun dengan tabungan lebih tebal."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday Tanpa Belanja",
+   "short": "Lewati semua diskon dari Jumat sampai Senin",
+   "long": "Tantangan 4 hari: tanpa belanja tak perlu dari Black Friday sampai Cyber Monday. Segel setiap hari dengan koin emas."
+  },
+  "twelve-days": {
+   "name": "12 Hari Tanpa Belanja",
+   "short": "12 hari berturut-turut saat promo akhir tahun",
+   "long": "Dua belas hari berturut-turut tanpa belanja tak perlu di bulan Desember. Hadiah yang sudah direncanakan tetap boleh."
+  },
+  "no-spend-january": {
+   "name": "Januari Tanpa Belanja",
+   "short": "31 hari belanja kebutuhan pokok saja",
+   "long": "Awali 2027 dengan tantangan 31 hari: belanja kebutuhan pokok saja dan segel setiap hari dengan koin emas."
+  }
+ }
+}

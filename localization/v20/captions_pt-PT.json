@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Não gastes.<br><g>Ganha ouro.</g>",
+  "sub": "Cada dia sem gastos torna-se uma moeda de ouro que é tua.",
+  "chip_streak": "24 dias seguidos",
+  "chip_kept": "+40 € poupados hoje",
+  "trust": [
+   "Sem anúncios",
+   "Sem login no banco",
+   "100% privado"
+  ]
+ },
+ "f2": {
+  "kicker": "Mealheiro",
+  "h": "As tuas poupanças<br><g>a acumular.</g>"
+ },
+ "f3": {
+  "kicker": "A tua previsão",
+  "h": "Vê quanto pode<br>valer um <g>ano.</g>"
+ },
+ "f4": {
+  "kicker": "Calendário de moedas",
+  "h": "Enche o teu ano<br>de <g>ouro.</g>"
+ },
+ "f5": {
+  "kicker": "Registo de impulsos",
+  "h": "Vence o impulso.<br><g>Dinheiro no bolso.</g>"
+ },
+ "f6": {
+  "kicker": "Árvore da riqueza",
+  "h": "Cresce com a<br>tua <g>sequência.</g>",
+  "sub": "Dia e noite, todas as estações e luzes de Natal em dezembro."
+ },
+ "f7": {
+  "kicker": "Resumo do mês",
+  "h": "O teu mês,<br><g>selado.</g>"
+ },
+ "f8": {
+  "kicker": "Atividade em direto",
+  "h": "Sela o dia no<br><g>ecrã bloqueado.</g>",
+  "date": "Sábado, 3 de outubro",
+  "la_left": "para selar hoje",
+  "la_streak": "A tua sequência de 23 dias está em jogo",
+  "la_button": "Selar"
+ },
+ "f9": {
+  "kicker": "Missões · XP · 25 níveis",
+  "h": "Sobe de nível.<br>Ganha <g>medalhas.</g>"
+ },
+ "f10": {
+  "kicker": "Privacidade de raiz",
+  "h": "Sem anúncios.<br>Banco? <g>Nunca.</g>",
+  "sub": "Sem conta e sem ligação ao banco. Os teus dados ficam no teu iPhone.",
+  "icons": "Sobe de nível e desbloqueia os ícones Ouro, Esmeralda e Meia-noite.",
+  "chips": [
+   "Funciona sem conta",
+   "Nunca ligas o teu banco",
+   "Os teus dados ficam no teu iPhone"
+  ]
+ }
+}

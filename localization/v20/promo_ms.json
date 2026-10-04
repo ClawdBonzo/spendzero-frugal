@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Musim jualan hujung tahun tiba: tiga cabaran untuk masa terhad.\n• Hujung Minggu Tanpa Belanja Black Friday: abaikan semua tawaran dari Jumaat hingga Cyber Monday.\n• 12 Hari Tanpa Belanja: dua belas hari berturut-turut pada bulan Disember, ketika jualan hujung tahun.\n• Januari Tanpa Belanja: mulakan tahun dengan 31 hari berbelanja untuk keperluan asas sahaja.\nSetiap cabaran muncul dalam Challenges pada musimnya.\nAnda juga boleh menebus kod tawaran SpendZero Pro dalam aplikasi, melalui Settings atau skrin naik taraf.",
+ "promo": {
+  "now": "Baharu: cabaran masa terhad untuk Black Friday, 12 hari pada bulan Disember dan Januari Tanpa Belanja. Meterai setiap hari tanpa belanja dengan syiling emas.",
+  "bf": "Hujung Minggu Tanpa Belanja Black Friday sudah bermula: abaikan semua tawaran dari Jumaat hingga Cyber Monday dan besarkan pokok kekayaan anda.",
+  "dec": "12 Hari Tanpa Belanja: dua belas hari berturut-turut ketika jualan hujung tahun. Hadiah yang sudah dirancang boleh; yang lain, tunggu dulu.",
+  "jan": "Januari Tanpa Belanja: 31 hari untuk keperluan asas sahaja. Meterai setiap hari dengan syiling emas dan mulakan tahun dengan simpanan lebih banyak."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday Tanpa Belanja",
+   "short": "Abaikan semua tawaran dari Jumaat hingga Isnin",
+   "long": "Cabaran 4 hari: tiada belanja tak perlu dari Black Friday hingga Cyber Monday. Meterai setiap hari dengan syiling emas."
+  },
+  "twelve-days": {
+   "name": "12 Hari Tanpa Belanja",
+   "short": "12 hari berturut-turut ketika jualan hujung tahun",
+   "long": "Dua belas hari berturut-turut tanpa belanja tak perlu pada bulan Disember. Hadiah yang sudah dirancang tetap boleh."
+  },
+  "no-spend-january": {
+   "name": "Januari Tanpa Belanja",
+   "short": "31 hari untuk keperluan asas sahaja",
+   "long": "Mulakan 2027 dengan cabaran 31 hari: belanja untuk keperluan asas sahaja dan meterai setiap hari dengan syiling emas."
+  }
+ }
+}

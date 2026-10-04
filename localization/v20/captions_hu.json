@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Ne költs.<br><g>Gyűjts aranyat.</g>",
+  "sub": "Minden költésmentes nap egy aranyérme, ami a tiéd marad.",
+  "chip_streak": "24 napos széria",
+  "chip_kept": "+$40 ma megspórolva",
+  "trust": [
+   "Nincs reklám",
+   "Nincs banki belépés",
+   "100% privát"
+  ]
+ },
+ "f2": {
+  "kicker": "Érmepersely",
+  "h": "Nézd, ahogy<br><g>gyűlik a pénz.</g>"
+ },
+ "f3": {
+  "kicker": "Előrejelzésed",
+  "h": "Mennyit érhet<br><g>egy év?</g>"
+ },
+ "f4": {
+  "kicker": "Éremnaptár",
+  "h": "Töltsd meg az évet<br><g>arannyal.</g>"
+ },
+ "f5": {
+  "kicker": "Kísértésnapló",
+  "h": "Állj ellen.<br><g>Maradjon a pénz.</g>"
+ },
+ "f6": {
+  "kicker": "Gazdagságfa",
+  "h": "Egy fa, ami a<br><g>szériáddal nő.</g>",
+  "sub": "Éjjel-nappal, minden évszakban, decemberben fényekkel."
+ },
+ "f7": {
+  "kicker": "Havi összegzés",
+  "h": "A hónapod,<br><g>lepecsételve.</g>"
+ },
+ "f8": {
+  "kicker": "Élő tevékenység",
+  "h": "Pecsételd le<br><g>feloldás nélkül.</g>",
+  "date": "Saturday, October 3",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Küldetés · XP · 25 szint",
+  "h": "Lépj szintet.<br><g>Gyűjts jelvényt.</g>"
+ },
+ "f10": {
+  "kicker": "Alapból privát",
+  "h": "Reklám nincs.<br><g>Bank sem kell.</g>",
+  "sub": "Nincs fiók, nincs bankkapcsolat. Az adataid az iPhone-odon maradnak.",
+  "icons": "Lépj szintet, és nyisd meg az arany, smaragd és éjfél ikonokat.",
+  "chips": [
+   "Fiók nélkül is működik",
+   "Soha nincs bankkapcsolat",
+   "Az adataid az iPhone-odon maradnak"
+  ]
+ }
+}

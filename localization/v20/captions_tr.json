@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Harcama yok.<br><g>Altın var.</g>",
+  "sub": "Her harcamasız gün, cebinde kalan bir altına dönüşür.",
+  "chip_streak": "24 günlük seri",
+  "chip_kept": "+₺40 bugün cepte",
+  "trust": [
+   "Reklam yok",
+   "Banka girişi yok",
+   "%100 gizlilik"
+  ]
+ },
+ "f2": {
+  "kicker": "KUMBARA",
+  "h": "Birikimini<br><g>büyürken izle.</g>"
+ },
+ "f3": {
+  "kicker": "BİRİKİM TAHMİNİ",
+  "h": "Bir yıl sonra<br><g>ne kadar birikir?</g>"
+ },
+ "f4": {
+  "kicker": "ALTIN TAKVİM",
+  "h": "Yılını altınla<br><g>doldur.</g>"
+ },
+ "f5": {
+  "kicker": "DÜRTÜ GÜNLÜĞÜ",
+  "h": "Dürtüyü yen.<br><g>Para cepte kalsın.</g>"
+ },
+ "f6": {
+  "kicker": "SERVET AĞACI",
+  "h": "Serinle birlikte<br><g>büyüyen bir ağaç.</g>",
+  "sub": "Gece gündüz, her mevsim; Aralık'ta da yılbaşı ışıkları."
+ },
+ "f7": {
+  "kicker": "AYLIK ÖZET",
+  "h": "Bu ay da<br><g>mühürlendi.</g>"
+ },
+ "f8": {
+  "kicker": "CANLI ETKİNLİK",
+  "h": "Kilitli Ekran'dan<br><g>günü mühürle.</g>",
+  "date": "3 Ekim Cumartesi",
+  "la_left": "bugünü mühürlemek için",
+  "la_streak": "23 günlük serin tehlikede",
+  "la_button": "Mühürle"
+ },
+ "f9": {
+  "kicker": "GÖREV · XP · 25 SEVİYE",
+  "h": "Seviye atla.<br><g>Rozet kazan.</g>"
+ },
+ "f10": {
+  "kicker": "GİZLİLİK ODAKLI",
+  "h": "Reklam yok.<br>Banka <g>girişi yok.</g>",
+  "sub": "Hesap yok, banka bağlantısı yok. Verilerin iPhone'unda kalır.",
+  "icons": "Seviye atladıkça Altın, Zümrüt ve Gece Yarısı simgelerinin kilidini aç.",
+  "chips": [
+   "Hesap gerekmez",
+   "Asla banka bağlantısı yok",
+   "Verilerin iPhone'unda kalır"
+  ]
+ }
+}

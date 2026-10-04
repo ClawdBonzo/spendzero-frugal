@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Tahan belanja.<br><g>Panen emas.</g>",
+  "sub": "Setiap hari tanpa belanja jadi koin emas yang kamu simpan.",
+  "chip_streak": "24 hari beruntun",
+  "chip_kept": "+$40 hemat hari ini",
+  "trust": [
+   "Tanpa iklan",
+   "Tanpa login bank",
+   "100% privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Celengan Koin",
+  "h": "Lihat tabunganmu<br><g>terus menumpuk.</g>"
+ },
+ "f3": {
+  "kicker": "Proyeksimu",
+  "h": "Setahun bisa<br><g>nabung berapa?</g>"
+ },
+ "f4": {
+  "kicker": "Kalender Koin",
+  "h": "Isi setahunmu<br>dengan <g>emas.</g>"
+ },
+ "f5": {
+  "kicker": "Catatan Lapar Mata",
+  "h": "Lawan lapar mata.<br><g>Uang tetap aman.</g>"
+ },
+ "f6": {
+  "kicker": "Pohon Kekayaan",
+  "h": "Pohon ini tumbuh<br>bersama <g>streakmu.</g>",
+  "sub": "Siang dan malam, tiap musim, dan lampu hias di bulan Desember."
+ },
+ "f7": {
+  "kicker": "Rekap Bulanan",
+  "h": "Bulanmu,<br><g>tersegel.</g>"
+ },
+ "f8": {
+  "kicker": "Aktivitas Langsung",
+  "h": "Segel hari ini<br>dari <g>Layar Kunci.</g>",
+  "date": "Saturday, October 3",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Misi · XP · 25 level",
+  "h": "Naik level.<br>Raih <g>lencana.</g>"
+ },
+ "f10": {
+  "kicker": "Privat sejak awal",
+  "h": "Tanpa iklan.<br>Tanpa <g>login bank.</g>",
+  "sub": "Tanpa akun, tanpa menghubungkan bank. Datamu tetap di iPhone-mu.",
+  "icons": "Naik level untuk membuka ikon app Emas, Zamrud, dan Tengah Malam.",
+  "chips": [
+   "Bisa tanpa akun",
+   "Tak pernah terhubung ke bank",
+   "Datamu tetap di iPhone-mu"
+  ]
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Zero spese.<br><g>Solo oro.</g>",
+  "sub": "Ogni giorno senza spese diventa una moneta d’oro tutta tua.",
+  "chip_streak": "Serie di 24 giorni",
+  "chip_kept": "+40 € risparmiati oggi",
+  "trust": [
+   "Zero pubblicità",
+   "Zero dati bancari",
+   "100% privato"
+  ]
+ },
+ "f2": {
+  "kicker": "Salvadanaio",
+  "h": "I tuoi risparmi<br><g>si accumulano.</g>"
+ },
+ "f3": {
+  "kicker": "La tua previsione",
+  "h": "Quanto può valere<br><g>il tuo anno?</g>"
+ },
+ "f4": {
+  "kicker": "Calendario delle monete",
+  "h": "Il tuo anno,<br><g>tutto d’oro.</g>"
+ },
+ "f5": {
+  "kicker": "Diario degli impulsi",
+  "h": "Vinci l’impulso.<br><g>Tieniti i soldi.</g>"
+ },
+ "f6": {
+  "kicker": "Albero della ricchezza",
+  "h": "Cresce insieme<br>alla tua <g>serie.</g>",
+  "sub": "Giorno e notte, ogni stagione, e le luci a dicembre."
+ },
+ "f7": {
+  "kicker": "Riepilogo mensile",
+  "h": "Un mese chiuso<br><g>in bellezza.</g>"
+ },
+ "f8": {
+  "kicker": "Attività in tempo reale",
+  "h": "Chiudi la giornata<br><g>senza sbloccare.</g>",
+  "date": "Sabato 3 ottobre",
+  "la_left": "per chiudere la giornata",
+  "la_streak": "La tua serie di 23 giorni è in gioco",
+  "la_button": "Chiudi giornata"
+ },
+ "f9": {
+  "kicker": "Missioni · 25 livelli",
+  "h": "Sali di livello.<br>Vinci i <g>badge.</g>"
+ },
+ "f10": {
+  "kicker": "Privacy prima di tutto",
+  "h": "Zero pubblicità.<br>Zero <g>dati bancari.</g>",
+  "sub": "Niente account né banca collegata. I tuoi dati restano sul tuo iPhone.",
+  "icons": "Sali di livello e sblocca le icone Oro, Smeraldo e Mezzanotte.",
+  "chips": [
+   "Funziona senza account",
+   "Nessun collegamento alla banca",
+   "I tuoi dati restano sul tuo iPhone"
+  ]
+ }
+}

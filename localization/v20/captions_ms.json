@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Jangan belanja.<br><g>Kumpul emas.</g>",
+  "sub": "Setiap hari tanpa belanja menjadi syiling emas milik anda.",
+  "chip_streak": "24 hari berturut",
+  "chip_kept": "+$40 dijimat hari ini",
+  "trust": [
+   "Tiada iklan",
+   "Tiada log masuk bank",
+   "100% peribadi"
+  ]
+ },
+ "f2": {
+  "kicker": "Tabung Syiling",
+  "h": "Lihat simpanan<br><g>makin bertimbun.</g>"
+ },
+ "f3": {
+  "kicker": "Unjuran anda",
+  "h": "Setahun, berapa<br><g>boleh disimpan?</g>"
+ },
+ "f4": {
+  "kicker": "Kalendar Syiling",
+  "h": "Penuhi tahun anda<br>dengan <g>emas.</g>"
+ },
+ "f5": {
+  "kicker": "Log Nafsu Beli",
+  "h": "Lawan nafsu beli.<br><g>Duit selamat.</g>"
+ },
+ "f6": {
+  "kicker": "Pokok Kekayaan",
+  "h": "Pokok membesar<br>seiring <g>rentetan.</g>",
+  "sub": "Siang dan malam, setiap musim, dan lampu hiasan pada Disember."
+ },
+ "f7": {
+  "kicker": "Rumusan Bulanan",
+  "h": "Bulan anda,<br><g>dimeterai.</g>"
+ },
+ "f8": {
+  "kicker": "Aktiviti Langsung",
+  "h": "Meterai hari ini<br>dari <g>Skrin Kunci.</g>",
+  "date": "Saturday, October 3",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Misi · XP · 25 tahap",
+  "h": "Naik tahap.<br>Raih <g>lencana.</g>"
+ },
+ "f10": {
+  "kicker": "Privasi dari asas",
+  "h": "Tiada iklan.<br>Tiada <g>akses bank.</g>",
+  "sub": "Tiada akaun, tiada pautan bank. Data anda kekal di iPhone anda.",
+  "icons": "Naik tahap untuk membuka ikon apl Emas, Zamrud dan Tengah Malam.",
+  "chips": [
+   "Berfungsi tanpa akaun",
+   "Tidak sekali-kali pautkan bank",
+   "Data anda kekal di iPhone anda"
+  ]
+ }
+}
