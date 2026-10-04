@@ -1,0 +1,13 @@
+"Mark today a no-spend day in ${applicationName}" = "${applicationName}에서 오늘을 무지출 데이로 기록해 줘";
+"Log a no-spend day in ${applicationName}" = "${applicationName}에 무지출 데이 기록해 줘";
+"I didn't spend today in ${applicationName}" = "${applicationName}, 나 오늘 돈 안 썼어";
+"Log spending in ${applicationName}" = "${applicationName}에 지출 기록해 줘";
+"I spent money in ${applicationName}" = "${applicationName}, 나 오늘 돈 썼어";
+"Log an impulse in ${applicationName}" = "${applicationName}에 충동구매 기록해 줘";
+"I resisted an impulse in ${applicationName}" = "${applicationName}, 나 충동구매 참았어";
+"Seal today in ${applicationName}" = "${applicationName}에서 오늘 도장 찍어 줘";
+"Seal the day in ${applicationName}" = "${applicationName}에서 도장 찍어 줘";
+"Seal my day in ${applicationName}" = "${applicationName}에서 내 하루에 도장 찍어 줘";
+"I resisted buying something in ${applicationName}" = "${applicationName}, 나 사려다 참았어";
+"I didn't buy something in ${applicationName}" = "${applicationName}, 나 사고 싶은 거 안 샀어";
+"Log a resisted impulse in ${applicationName}" = "${applicationName}에 참은 충동구매 기록해 줘";

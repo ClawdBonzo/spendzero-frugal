@@ -224,7 +224,7 @@ struct BadgeDetailView: View {
                                 Text("Rarity")
                                     .font(AppTheme.smallFont)
                                     .foregroundColor(AppTheme.textTertiary)
-                                Text(badge.rarity.label.uppercased())
+                                Text(badge.rarity.label.uppercased(with: .current))
                                     .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(badge.rarity.foregroundColor)
                             }

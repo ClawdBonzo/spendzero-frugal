@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "Forsegl i dag i ${applicationName}",
+  "Seal the day in ${applicationName}": "Forsegl dagen i ${applicationName}",
+  "Seal my day in ${applicationName}": "Forsegl dagen min i ${applicationName}",
+  "I resisted buying something in ${applicationName}": "Jeg lot være å kjøpe noe i ${applicationName}",
+  "I didn't buy something in ${applicationName}": "Jeg droppet et kjøp i ${applicationName}",
+  "Log a resisted impulse in ${applicationName}": "Logg en fristelse jeg sto imot i ${applicationName}"
+}

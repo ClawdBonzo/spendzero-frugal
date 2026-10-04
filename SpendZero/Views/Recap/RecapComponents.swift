@@ -18,7 +18,7 @@ enum RecapStyle {
 struct RecapEyebrow: View {
     let text: String
     var body: some View {
-        Text(text.uppercased())
+        Text(text.uppercased(with: .current))
             .font(.app(size: 13, weight: .heavy, design: .rounded))
             .tracking(1.6)
             .foregroundStyle(RecapStyle.eyebrow)

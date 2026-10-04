@@ -343,7 +343,7 @@ struct SealMedallion: View {
             func arc(_ string: String, centeredAt mid: Double, upright bottom: Bool) {
                 let maxArc = ringR * 2.5
                 func glyphs(_ size: CGFloat) -> [(GraphicsContext.ResolvedText, CGFloat)] {
-                    Array(string.uppercased()).map { ch in
+                    Array(string.uppercased(with: .current)).map { ch in
                         let t = ctx.resolve(Text(String(ch)).font(.system(size: size, weight: .heavy, design: .rounded))
                             .foregroundColor(ink))
                         return (t, t.measure(in: CGSize(width: size * 4, height: size * 4)).width + size * 0.14)
@@ -380,7 +380,7 @@ struct SealMedallion: View {
             ctx.draw(Text(center).font(.system(size: r * 0.36, weight: .black, design: .rounded))
                         .foregroundColor(AppTheme.primaryGreen),
                      at: CGPoint(x: c.x, y: c.y - r * 0.04))
-            ctx.draw(Text(caption.uppercased()).font(.system(size: r * 0.1, weight: .bold, design: .rounded))
+            ctx.draw(Text(caption.uppercased(with: .current)).font(.system(size: r * 0.1, weight: .bold, design: .rounded))
                         .foregroundColor(Color(hex: "FFE082")),
                      at: CGPoint(x: c.x, y: c.y + r * 0.25))
 

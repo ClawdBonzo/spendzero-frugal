@@ -55,9 +55,11 @@ def validate(l, quiet=False):
     for k,v in t["Localizable"].items():
         if k not in loc: errs.append(f"missing: {k!r}"); continue
         tr = loc[k]
-        if not isinstance(tr,str) or not tr.strip(): errs.append(f"empty: {k!r}"); continue
+        if not isinstance(tr,str) or (not tr.strip() and k.strip()): errs.append(f"empty: {k!r}"); continue
         if fmts(tr) != fmts(v["en"] if v.get("en") else k): errs.append(f"format mismatch: {k!r} -> {tr!r}")
-        if "%" in tr and re.search(r"%(?!(?:\d+\$)?(?:lld|ld|d|@|\.?\d*f|li|i|u|llu|%))", tr): errs.append(f"stray %: {k!r} -> {tr!r}")
+        bare = tr.replace("%%", "")
+        if fmts(k) and "%" in bare and re.search(r"%(?!(?:\d+\$)?(?:lld|ld|d|@|\.?\d*f|li|i|u|llu))", bare): errs.append(f"stray %: {k!r} -> {tr!r}")
+        if k.count("%%") != tr.count("%%"): errs.append(f"literal %% count differs: {k!r} -> {tr!r}")
     for k,forms in o.get("plurals", {}).items():
         for c in t["plural_categories"]:
             if c not in forms: errs.append(f"plural {k!r} lacks {c}")
@@ -98,10 +100,17 @@ def merge(l):
             if "format" in forms: entry["NSStringLocalizedFormatKey"] = forms["format"]
             cur[k] = entry
         plistlib.dump(cur, open(sp,"wb"), fmt=plistlib.FMT_XML)
+    extra = {}
+    sp_ = f"{V}/out/shortcuts_{l}.json"
+    if os.path.exists(sp_): extra = json.load(open(sp_))
     for name in ("InfoPlist","AppShortcuts"):
-        if o.get(name):
-            with open(f"{d}/{name}.strings","w",encoding="utf-8") as f:
-                for k,v in o[name].items(): f.write(f'"{esc(k)}" = "{esc(v)}";\n')
+        add2 = dict(o.get(name) or {})
+        if name == "AppShortcuts": add2.update(extra)
+        if add2:
+            fp = f"{d}/{name}.strings"
+            cur = read_strings(fp); cur.update(add2)
+            with open(fp,"w",encoding="utf-8") as f:
+                for k,v in cur.items(): f.write(f'"{esc(k)}" = "{esc(v)}";\n')
     os.system(f'plutil -lint "{d}"/*.strings "{d}"/*.stringsdict 2>/dev/null | grep -v ": OK" || true')
     print(l, "merged", len(add), "strings")
 

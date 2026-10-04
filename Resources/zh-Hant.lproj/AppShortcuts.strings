@@ -1,0 +1,13 @@
+"Mark today a no-spend day in ${applicationName}" = "用${applicationName}把今天標記為零消費日";
+"Log a no-spend day in ${applicationName}" = "在${applicationName}記錄零消費日";
+"I didn't spend today in ${applicationName}" = "跟${applicationName}說我今天沒花錢";
+"Log spending in ${applicationName}" = "用${applicationName}記帳";
+"I spent money in ${applicationName}" = "跟${applicationName}說我花錢了";
+"Log an impulse in ${applicationName}" = "在${applicationName}記錄一次購物衝動";
+"I resisted an impulse in ${applicationName}" = "跟${applicationName}說我忍住了購物衝動";
+"Seal today in ${applicationName}" = "用${applicationName}幫今天蓋章";
+"Seal the day in ${applicationName}" = "在${applicationName}蓋今天的章";
+"Seal my day in ${applicationName}" = "用${applicationName}幫我今天蓋章";
+"I resisted buying something in ${applicationName}" = "跟${applicationName}說我忍住沒買東西";
+"I didn't buy something in ${applicationName}" = "跟${applicationName}說我少買了一樣東西";
+"Log a resisted impulse in ${applicationName}" = "在${applicationName}記錄一次忍住的衝動";

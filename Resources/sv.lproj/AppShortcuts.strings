@@ -1,0 +1,13 @@
+"Mark today a no-spend day in ${applicationName}" = "Markera idag som köpfri dag i ${applicationName}";
+"Log a no-spend day in ${applicationName}" = "Logga en köpfri dag i ${applicationName}";
+"I didn't spend today in ${applicationName}" = "Jag har inte handlat något idag i ${applicationName}";
+"Log spending in ${applicationName}" = "Logga en utgift i ${applicationName}";
+"I spent money in ${applicationName}" = "Jag har gjort av med pengar i ${applicationName}";
+"Log an impulse in ${applicationName}" = "Logga en impuls i ${applicationName}";
+"I resisted an impulse in ${applicationName}" = "Jag stod emot en impuls i ${applicationName}";
+"Seal today in ${applicationName}" = "Försegla idag i ${applicationName}";
+"Seal the day in ${applicationName}" = "Försegla dagen i ${applicationName}";
+"Seal my day in ${applicationName}" = "Försegla min dag i ${applicationName}";
+"I resisted buying something in ${applicationName}" = "Jag lät bli att köpa något i ${applicationName}";
+"I didn't buy something in ${applicationName}" = "Jag skippade ett köp i ${applicationName}";
+"Log a resisted impulse in ${applicationName}" = "Logga en frestelse jag stod emot i ${applicationName}";

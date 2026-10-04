@@ -15,7 +15,7 @@ struct RecapStoryCard: View {
                            center: UnitPoint(x: 0.9, y: 0.85), startRadius: 10, endRadius: 260)
 
             VStack(alignment: .leading, spacing: 0) {
-                Text(String(localized: "SpendZero · \(recap.monthName) recap").uppercased())
+                Text(String(localized: "SpendZero · \(recap.monthName) recap").uppercased(with: .current))
                     .font(.system(size: 12, weight: .heavy, design: .rounded))
                     .tracking(1.4)
                     .foregroundColor(RecapStyle.eyebrow)

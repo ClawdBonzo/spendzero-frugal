@@ -13,7 +13,7 @@ struct MonthlyRecapView: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
-    @State private var index = 0
+    @State private var index = Self.debugStartCard ?? 0
     @State private var replay = 0
     @State private var clock = StoryClock()
     @State private var held = false
@@ -21,6 +21,15 @@ struct MonthlyRecapView: View {
     @State private var shareImage: Image?
 
     private var autoAdvance: Bool { !reduceMotion && !voiceOver }
+
+    /// DEBUG `-RecapCard N`: open on card N and hold it (store screenshots).
+    private static var debugStartCard: Int? {
+        #if DEBUG
+        let a = ProcessInfo.processInfo.arguments
+        if let i = a.firstIndex(of: "-RecapCard"), i + 1 < a.count, let n = Int(a[i + 1]) { return min(max(n, 0), cardCount - 1) }
+        #endif
+        return nil
+    }
     private var isLast: Bool { index == Self.cardCount - 1 }
 
     var body: some View {
@@ -184,7 +193,7 @@ struct MonthlyRecapView: View {
 
     private func runClock() async {
         clock.restart(duration: Self.durations[min(index, Self.durations.count - 1)])
-        guard autoAdvance else { return }
+        guard autoAdvance, Self.debugStartCard == nil else { return }
         while !Task.isCancelled {
             try? await Task.sleep(for: .milliseconds(80))
             if clock.progress(at: Date()) >= 1 {

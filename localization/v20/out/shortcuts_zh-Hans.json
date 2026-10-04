@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "用${applicationName}封存今天",
+  "Seal the day in ${applicationName}": "用${applicationName}封存这一天",
+  "Seal my day in ${applicationName}": "用${applicationName}封存我的一天",
+  "I resisted buying something in ${applicationName}": "告诉${applicationName}我忍住没买东西",
+  "I didn't buy something in ${applicationName}": "告诉${applicationName}我少买了一样东西",
+  "Log a resisted impulse in ${applicationName}": "用${applicationName}记录一次忍住的冲动"
+}

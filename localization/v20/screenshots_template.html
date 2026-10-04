@@ -75,8 +75,10 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
 .gcoin::before { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: linear-gradient(135deg, #FFF3B0, #FFD740 50%, #FFA000); }
 .gcoin::after { content: ""; position: absolute; inset: 13%; border-radius: 50%; border: 3px solid rgba(74,51,0,.25); }
 .gcoin .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #4A3300; z-index: 2; }
+.rtl .h, .rtl .sub, .rtl .kicker, .rtl .chip { direction: rtl; unicode-bidi: plaintext; }
+.h { white-space: nowrap; }
 </style></head>
-<body>
+<body class="{{BODYCLASS}}">
 
 <!-- ============ BACKGROUNDS ============ -->
 <div class="bg bg-hero" style="left:0"><div class="rays"></div></div>
@@ -97,94 +99,94 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
 <!-- ============ F1 HERO ============ -->
 <div class="frame" style="left:0">
   <div class="row" style="top:150px; align-items:center; gap:30px">
-    <img src="assets/icon.png" style="width:132px; height:132px; border-radius:30px; box-shadow:0 10px 40px rgba(0,0,0,.5)">
+    <img src="{{SHARED}}/icon.png" style="width:132px; height:132px; border-radius:30px; box-shadow:0 10px 40px rgba(0,0,0,.5)">
     <span style="font:800 76px/1 SFR; letter-spacing:-1px">SpendZero</span>
   </div>
-  <div class="h" style="top:380px; font-size:150px">Don't spend.<br><span class="g">Mint gold.</span></div>
-  <div class="sub" style="top:735px">Every no-spend day becomes a gold coin you get to keep.</div>
+  <div class="h" style="top:380px; font-size:150px">{{f1.h}}</div>
+  <div class="sub" style="top:735px">{{f1.sub}}</div>
   <div style="position:absolute; left:160px; top:1010px; width:1000px; height:1000px; border-radius:50%; overflow:hidden;
        -webkit-mask: radial-gradient(circle, #000 64%, transparent 71%); filter: drop-shadow(0 30px 80px rgba(0,0,0,.6))">
-    <img src="raw/sealed_1.png" style="position:absolute; width:1860px; left:-415px; top:-806px">
+    <img src="{{RAW}}/sealed_1.png" style="position:absolute; width:1860px; left:-415px; top:-806px">
   </div>
-  <div class="row" style="top:2090px"><div class="chip" style="font-size:50px; padding:30px 48px">🔥 <span>24-day streak</span> · <b>+$40 kept today</b></div></div>
+  <div class="row" style="top:2090px"><div class="chip" style="font-size:50px; padding:30px 48px">🔥 <span>{{f1.chip_streak}}</span> · <b>{{f1.chip_kept}}</b></div></div>
   <div class="row" style="top:2560px; gap:18px">
-    <div class="chip" style="font-size:44px; padding:26px 40px">No ads</div>
-    <div class="chip" style="font-size:44px; padding:26px 40px">No bank login</div>
-    <div class="chip" style="font-size:44px; padding:26px 40px">100% private</div>
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.0}}</div>
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.1}}</div>
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.2}}</div>
   </div>
 </div>
 
 <!-- ============ F2 VAULT ============ -->
 <div class="frame" style="left:1320px">
-  <div class="kicker" style="top:200px">Coin Vault</div>
-  <div class="h" style="top:280px">Watch your savings<br><span class="g">pile up.</span></div>
+  <div class="kicker" style="top:200px">{{f2.kicker}}</div>
+  <div class="h" style="top:280px">{{f2.h}}</div>
   <div class="phone" style="left:190px; top:690px; transform: rotate(-3deg)">
     <div class="screen">
-      <img class="shot" src="raw/vault.png" style="margin-top:-250px">
+      <img class="shot" src="{{RAW}}/vault.png" style="margin-top:-250px">
       <div style="position:absolute; inset:0 0 auto 0; height:300px; background: linear-gradient(180deg, #0b1a13 0%, #0b1a13 62%, rgba(11,26,19,0) 100%)"></div>
       <div class="island"></div>
-      <div class="sb"><span>9:41</span><img src="assets/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
+      <div class="sb"><span>9:41</span><img src="{{SHARED}}/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
     </div>
   </div>
-  <div class="pop" style="left:70px; top:2240px; width:1180px; transform: rotate(-1.5deg)"><img src="assets/vault_stats.png"></div>
+  <div class="pop" style="left:70px; top:2240px; width:1180px; transform: rotate(-1.5deg)"><img src="{{ASSETS}}/vault_stats.png"></div>
 </div>
 
 <!-- ============ F3 FORECAST ============ -->
 <div class="frame" style="left:2640px">
-  <div class="kicker" style="top:200px">Your forecast</div>
-  <div class="h" style="top:280px">See what a year<br>could be <span class="g">worth.</span></div>
+  <div class="kicker" style="top:200px">{{f3.kicker}}</div>
+  <div class="h" style="top:280px">{{f3.h}}</div>
   <div class="phone" style="left:190px; top:760px">
-    <div class="screen"><img class="shot" src="raw/forecast_1.png"></div>
+    <div class="screen"><img class="shot" src="{{RAW}}/forecast_1.png"></div>
   </div>
-  <div class="pop" style="left:110px; top:1080px; width:1100px; transform: rotate(-2deg)"><img src="assets/forecast_big.png"></div>
+  <div class="pop" style="left:110px; top:1080px; width:1100px; transform: rotate(-2deg)"><img src="{{ASSETS}}/forecast_big.png"></div>
 </div>
 
 <!-- ============ F4 CALENDAR (cream) ============ -->
 <div class="frame on-cream" style="left:3960px">
-  <div class="kicker" style="top:200px">Mint Calendar</div>
-  <div class="h" style="top:280px">Fill your year<br>with <span class="g">gold.</span></div>
-  <div class="pop" style="left:60px; top:760px; width:1200px; border-radius:70px"><img src="assets/calendar_card.png"></div>
+  <div class="kicker" style="top:200px">{{f4.kicker}}</div>
+  <div class="h" style="top:280px">{{f4.h}}</div>
+  <div class="pop" style="left:60px; top:760px; width:1200px; border-radius:70px"><img src="{{ASSETS}}/calendar_card.png"></div>
 </div>
 
 <!-- ============ F5 IMPULSES ============ -->
 <div class="frame" style="left:5280px">
-  <div class="kicker" style="top:200px">Impulse Log</div>
-  <div class="h" style="top:280px">Beat the urge.<br><span class="g">Keep the cash.</span></div>
+  <div class="kicker" style="top:200px">{{f5.kicker}}</div>
+  <div class="h" style="top:280px">{{f5.h}}</div>
   <div class="phone" style="left:190px; top:760px">
-    <div class="screen"><img class="shot" src="raw/impulses.png"></div>
+    <div class="screen"><img class="shot" src="{{RAW}}/impulses.png"></div>
   </div>
-  <div class="pop" style="left:50px; top:1500px; width:1220px; transform: rotate(-2deg)"><img src="assets/impulse_rows.png"></div>
+  <div class="pop" style="left:50px; top:1500px; width:1220px; transform: rotate(-2deg)"><img src="{{ASSETS}}/impulse_rows.png"></div>
 </div>
 
 <!-- ============ F6 TREE (navy) ============ -->
 <div class="frame" style="left:6600px">
-  <div class="kicker" style="top:200px; color:#9FB4FF">Wealth Tree</div>
-  <div class="h" style="top:280px">A tree that grows<br>with your <span class="g">streak.</span></div>
-  <div class="sub" style="top:585px; font-size:46px">Day and night, every season, and lights in December.</div>
-  <div class="pop" style="left:70px; top:800px; width:1180px; border-radius:70px; box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.55), 0 0 100px rgba(90,120,255,.35)"><img src="assets/tree_dec_night.png"></div>
-  <div class="pop" style="left:70px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="assets/tree_spring_day.png"></div>
-  <div class="pop" style="left:680px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="assets/tree_autumn.png"></div>
+  <div class="kicker" style="top:200px; color:#9FB4FF">{{f6.kicker}}</div>
+  <div class="h" style="top:280px">{{f6.h}}</div>
+  <div class="sub" style="top:585px; font-size:46px">{{f6.sub}}</div>
+  <div class="pop" style="left:70px; top:800px; width:1180px; border-radius:70px; box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.55), 0 0 100px rgba(90,120,255,.35)"><img src="{{ASSETS}}/tree_dec_night.png"></div>
+  <div class="pop" style="left:70px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="{{ASSETS}}/tree_spring_day.png"></div>
+  <div class="pop" style="left:680px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="{{ASSETS}}/tree_autumn.png"></div>
   
 </div>
 
 <!-- ============ F7 RECAP ============ -->
 <div class="frame" style="left:7920px">
-  <div class="kicker" style="top:200px">Monthly Recap</div>
-  <div class="h" style="top:280px">Your month,<br><span class="g">sealed.</span></div>
-  <div class="pop" style="left:10px; top:1000px; width:560px; border-radius:56px; transform: rotate(-8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="raw/recapB.png"></div>
-  <div class="pop" style="left:750px; top:1000px; width:560px; border-radius:56px; transform: rotate(8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="raw/recapB_2.png"></div>
-  <div class="pop" style="left:290px; top:780px; width:740px; border-radius:70px"><img src="raw/recap.png"></div>
+  <div class="kicker" style="top:200px">{{f7.kicker}}</div>
+  <div class="h" style="top:280px">{{f7.h}}</div>
+  <div class="pop" style="left:10px; top:1000px; width:560px; border-radius:56px; transform: rotate(-8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recapB.png"></div>
+  <div class="pop" style="left:750px; top:1000px; width:560px; border-radius:56px; transform: rotate(8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recapB_2.png"></div>
+  <div class="pop" style="left:290px; top:780px; width:740px; border-radius:70px"><img src="{{RAW}}/recap.png"></div>
 </div>
 
 <!-- ============ F8 LOCK SCREEN ============ -->
 <div class="frame" style="left:9240px">
-  <div class="kicker" style="top:200px">Live Activity</div>
-  <div class="h" style="top:280px">Seal today from<br>your <span class="g">Lock Screen.</span></div>
+  <div class="kicker" style="top:200px">{{f8.kicker}}</div>
+  <div class="h" style="top:280px">{{f8.h}}</div>
   <div class="phone" style="left:190px; top:760px">
     <div class="screen" style="background: radial-gradient(900px 1100px at 50% 30%, #1b6b45 0%, #0b3322 45%, #04140c 100%)">
       <div class="island"></div>
-      <div class="sb" style="justify-content:flex-end"><img src="assets/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
-      <div style="position:absolute; top:190px; width:100%; text-align:center; font:600 46px/1 SFP; color:rgba(255,255,255,.85)">Friday, October 3</div>
+      <div class="sb" style="justify-content:flex-end"><img src="{{SHARED}}/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
+      <div style="position:absolute; top:190px; width:100%; text-align:center; font:600 46px/1 SFP; color:rgba(255,255,255,.85)">{{f8.date}}</div>
       <div style="position:absolute; top:250px; width:100%; text-align:center; font:700 290px/1 SFR; letter-spacing:-6px; color:rgba(255,255,255,.92)">9:41</div>
       <div style="position:absolute; bottom:110px; left:110px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.14)"></div>
       <div style="position:absolute; bottom:110px; right:110px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.14)"></div>
@@ -196,44 +198,60 @@ body { position: relative; font-family: "SFR", -apple-system, sans-serif; color:
        box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(255,215,64,.75), 0 0 80px rgba(255,200,40,.35)">
     <div class="gcoin" style="width:160px; height:160px; flex:none"><div class="face"><span style="font-size:36px">🔥</span><span style="font:900 54px/1 SFR">23</span></div></div>
     <div style="flex:1; display:flex; flex-direction:column; gap:12px">
-      <div style="display:flex; align-items:baseline; gap:16px"><span style="font:900 72px/1 SFR; color:#FFD740">2:47:12</span><span style="font:600 36px/1 SFP; color:rgba(255,255,255,.8)">left to seal today</span></div>
+      <div style="display:flex; align-items:baseline; gap:16px"><span style="font:900 72px/1 SFR; color:#FFD740">2:47:12</span><span style="font:600 36px/1 SFP; color:rgba(255,255,255,.8)">{{f8.la_left}}</span></div>
       <div style="height:12px; border-radius:6px; background:rgba(255,255,255,.18)"><div style="width:62%; height:100%; border-radius:6px; background:#FFD740"></div></div>
-      <div style="font:500 34px/1 SFP; color:rgba(255,255,255,.6)">23-day streak on the line</div>
+      <div style="font:500 34px/1 SFP; color:rgba(255,255,255,.6)">{{f8.la_streak}}</div>
     </div>
-    <div style="flex:none; padding:22px 38px; border-radius:999px; background:linear-gradient(135deg,#FFF3B0,#FFD740 50%,#FFA000); color:#4A3300; font:800 40px/1 SFP">✓ Seal</div>
+    <div style="flex:none; padding:22px 38px; border-radius:999px; background:linear-gradient(135deg,#FFF3B0,#FFD740 50%,#FFA000); color:#4A3300; font:800 40px/1 SFP">✓ {{f8.la_button}}</div>
   </div>
 </div>
 
 <!-- ============ F9 LEVELS ============ -->
 <div class="frame" style="left:10560px">
-  <div class="kicker" style="top:200px">Quests · XP · 25 levels</div>
-  <div class="h" style="top:280px">Level up.<br>Earn <span class="g">badges.</span></div>
+  <div class="kicker" style="top:200px">{{f9.kicker}}</div>
+  <div class="h" style="top:280px">{{f9.h}}</div>
   <div class="phone" style="left:190px; top:760px">
-    <div class="screen"><img class="shot" src="raw/levelup.png"></div>
+    <div class="screen"><img class="shot" src="{{RAW}}/levelup.png"></div>
   </div>
-  <div class="pop" style="left:60px; top:2100px; width:1200px; transform: rotate(-1.5deg)"><img src="assets/quest_rows.png"></div>
+  <div class="pop" style="left:60px; top:2100px; width:1200px; transform: rotate(-1.5deg)"><img src="{{ASSETS}}/quest_rows.png"></div>
 </div>
 
 <!-- ============ F10 PRIVATE / ICONS ============ -->
 <div class="frame" style="left:11880px">
-  <div class="kicker" style="top:200px">Private by design</div>
-  <div class="h" style="top:280px">No ads.<br>No bank <span class="g">login.</span></div>
-  <div class="sub" style="top:600px">No account, no linking your bank. Your data stays on your iPhone.</div>
+  <div class="kicker" style="top:200px">{{f10.kicker}}</div>
+  <div class="h" style="top:280px">{{f10.h}}</div>
+  <div class="sub" style="top:600px">{{f10.sub}}</div>
   <div style="position:absolute; left:0; right:0; top:1000px; height:900px">
-    <img src="assets/icon_midnight.png" style="position:absolute; left:120px; top:250px; width:340px; border-radius:76px; transform: rotate(-12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
-    <img src="assets/icon_emerald.png" style="position:absolute; right:120px; top:250px; width:340px; border-radius:76px; transform: rotate(12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
-    <img src="assets/icon_gold.png" style="position:absolute; left:250px; top:80px; width:380px; border-radius:86px; transform: rotate(-5deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
-    <img src="assets/icon.png" style="position:absolute; left:440px; top:120px; width:440px; border-radius:100px; box-shadow:0 40px 100px rgba(0,0,0,.7), 0 0 120px rgba(255,215,64,.45)">
+    <img src="{{SHARED}}/icon_midnight.png" style="position:absolute; left:120px; top:250px; width:340px; border-radius:76px; transform: rotate(-12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon_emerald.png" style="position:absolute; right:120px; top:250px; width:340px; border-radius:76px; transform: rotate(12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon_gold.png" style="position:absolute; left:250px; top:80px; width:380px; border-radius:86px; transform: rotate(-5deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon.png" style="position:absolute; left:440px; top:120px; width:440px; border-radius:100px; box-shadow:0 40px 100px rgba(0,0,0,.7), 0 0 120px rgba(255,215,64,.45)">
   </div>
-  <div class="sub" style="top:1880px; font-size:46px">Level up to unlock Gold, Emerald and Midnight app icons.</div>
+  <div class="sub" style="top:1880px; font-size:46px">{{f10.icons}}</div>
   <div class="row" style="top:2250px; flex-direction:column; align-items:center; gap:24px">
-    <div class="chip">✓ Works with no account</div>
-    <div class="chip">✓ No bank linking, ever</div>
-    <div class="chip">✓ Your data stays on your iPhone</div>
+    <div class="chip">✓ {{f10.chips.0}}</div>
+    <div class="chip">✓ {{f10.chips.1}}</div>
+    <div class="chip">✓ {{f10.chips.2}}</div>
   </div>
 </div>
 
 <script>
+// Fit every caption inside its frame: shrink until each line fits the width.
+document.querySelectorAll('.frame').forEach(fr => {
+  fr.querySelectorAll('.h, .kicker').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > el.clientWidth + 2 && size > 40) { size -= 3; el.style.fontSize = size + 'px'; }
+  });
+  fr.querySelectorAll('.sub').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize); const lh = parseFloat(getComputedStyle(el).lineHeight) || size * 1.25;
+    while (el.getBoundingClientRect().height > lh * 2.2 && size > 28) { size -= 2; el.style.fontSize = size + 'px'; }
+  });
+  fr.querySelectorAll('.chip').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > 1180 && size > 26) { size -= 2; el.style.fontSize = size + 'px'; }
+  });
+});
+
 // Gold coin trail: one continuous chain that weaves through all ten frames.
 const svg = document.getElementById('trail');
 const NS = 'http://www.w3.org/2000/svg';

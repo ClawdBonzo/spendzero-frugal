@@ -97,8 +97,8 @@ struct StreakShareCard: View {
 
     private var eyebrow: String {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? String(localized: "No-spend streak").uppercased()
-                               : String(localized: "\(trimmed)'s no-spend streak").uppercased()
+        return trimmed.isEmpty ? String(localized: "No-spend streak").uppercased(with: .current)
+                               : String(localized: "\(trimmed)'s no-spend streak").uppercased(with: .current)
     }
 
     @ViewBuilder private var medallion: some View {

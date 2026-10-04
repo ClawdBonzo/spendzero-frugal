@@ -61,6 +61,12 @@ targets:
           - it
           - ja
           - zh-Hans
+          - zh-Hant
+          - ko
+          - sv
+          - da
+          - nb
+          - fi
         UIApplicationShortcutItems:
           - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.markNoSpendDay
             UIApplicationShortcutItemTitle: Mark No-Spend Day

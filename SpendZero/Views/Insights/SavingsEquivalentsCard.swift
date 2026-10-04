@@ -303,7 +303,7 @@ private struct EquivalentsEditor: View {
                                     Image(systemName: item.icon)
                                         .foregroundStyle(item.tint)
                                         .frame(width: 24)
-                                    Text(item.plural.capitalized(with: .current))
+                                    Text(SavingsEquivalentsCard.sentenceCase(item.plural))
                                         .foregroundStyle(AppTheme.textPrimary)
                                 }
                             }
@@ -402,5 +402,14 @@ private struct EquivalentsEditor: View {
         if let v = Double.parseAmount(goalPriceText) { goalPrice = v } else if goalPriceText.isEmpty { goalPrice = 0 }
         CoinHaptics.tick()
         dismiss()
+    }
+}
+
+
+extension SavingsEquivalentsCard {
+    /// Capitalizes only the first letter ("Months of streaming", not "Months Of Streaming"), using the current locale.
+    static func sentenceCase(_ text: String) -> String {
+        guard let first = text.first else { return text }
+        return String(first).uppercased(with: .current) + text.dropFirst()
     }
 }

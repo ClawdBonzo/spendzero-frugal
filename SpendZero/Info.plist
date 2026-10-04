@@ -24,6 +24,12 @@
 		<string>it</string>
 		<string>ja</string>
 		<string>zh-Hans</string>
+		<string>zh-Hant</string>
+		<string>ko</string>
+		<string>sv</string>
+		<string>da</string>
+		<string>nb</string>
+		<string>fi</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>

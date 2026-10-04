@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: No Spend Challenge",
+ "subtitle": "Geld sparen & minder uitgeven",
+ "keywords": "spaaruitdaging,impulsaankopen,impulsief,kopen,stop,besparen,uitgaven,budget,streak,buy,tracker,dag",
+ "promotionalText": "Nieuw in 2.0: elke uitgavenvrije dag laat een gouden munt in je muntenkluis vallen. Vul je jaar met goud en verzegel je dag direct vanaf je toegangsscherm.",
+ "description": "Niets uitgeven is goud waard. SpendZero maakt van elke uitgavenvrije dag een gouden munt: zie ze zich opstapelen in je muntenkluis, vul je jaar in de muntenkalender en ontdek wat een jaar minder uitgeven je kan opleveren. Reeksen, XP, quests, badges en een levende vermogensboom maken van sparen een spel dat je wílt winnen.\n\nDoe je een no-buy-maand, een low-buy-jaar of wil je gewoon stoppen met impulsaankopen? Met SpendZero voelt elke dag zonder uitgaven als een overwinning.\n\nNIEUW IN 2.0\n• Muntenkluis: elke verzegelde dag laat een gouden munt in een glazen pot vallen die je kunt kantelen en schudden\n• Muntenkalender: je hele jaar in gouden munten, feller op de dagen dat je meer hebt gespaard\n• Spaarprognose, compleet nieuwe grafieken en wat je van je spaargeld zou kunnen doen\n• Maandterugblik: je maand als story, klaar om te delen\n• Verzegel je dag vanaf je toegangsscherm, in de Dynamic Island, via het bedieningspaneel of met Siri\n• Een levende vermogensboom: dag en nacht, de seizoenen en lichtjes in december\n• Ontgrendel de appsymbolen Goud, Smaragd en Middernacht naarmate je level stijgt\n\nEEN SPEL DAT JE WINT DOOR NIETS UIT TE GEVEN\nMarkeer een uitgavenvrije dag en hij wordt verzegeld met een gouden munt. Je reeks telt op, je beloningen verschijnen en je ziet hoe dicht je volgende mijlpaal is.\n• Reeksen met reeks-freezes die je redden op een slechte dag\n• Dagelijkse en wekelijkse quests die meegroeien met wat je echt doet\n• 25 levels, van Spaar-beginner tot Wealth King\n• Badges voor reeksen van 7, 30, 100 en 365 dagen en voor spaarmijlpalen\n• Uitdagingen zoals de 30-daagse no-spend-uitdaging, de koffie-detoxweek of seizoensuitdagingen als No-spend januari – of maak je eigen uitdaging\n\nLAAT JE VERMOGENSBOOM GROEIEN\nJouw boom is uniek. Hij groeit met elk level, krijgt meer gouden munten naarmate je spaart en leeft mee met jouw dag, van zonsopkomst tot maanverlichte nachten. Breekt je reeks, dan begint hij te verwelken – één uitgavenvrije dag en hij knapt weer op.\n\nVERSLA IMPULSAANKOPEN\nVoel je de drang om iets te kopen? Log het. Weersta je, dan telt het bedrag als gespaard – met XP als bewijs. Toch gekocht? Geen schaamte – log het en ga door. Boodschappen en vervoer breken je uitgavenvrije dag niet.\n\nVERBREEK NOOIT DE KETTING\n• Interactieve widgets: verzegel je dag zonder de app te openen\n• Optionele aftelling in de avond op je toegangsscherm, voordat de dag voorbij is\n• Eén tik in het bedieningspaneel, of vraag het gewoon aan Siri\n• Een vriendelijke check-in in de avond, en een herinnering in de ochtend als je gisteren vergat\n\nPRIVACY VOOROP\nAlles wat je logt blijft op je iPhone. Geen account, geen bankkoppeling, geen advertenties, geen tracking.\n\nBeschikbaar in het Nederlands, Engels, Chinees (vereenvoudigd en traditioneel), Deens, Duits, Fins, Frans, Italiaans, Japans, Koreaans, Noors, Portugees, Spaans, Turks en Zweeds.\n\nABONNEMENTEN\nSpendZero Pro is beschikbaar per week, maand of jaar, of als eenmalige lifetime-aankoop. Maand- en jaarabonnementen kunnen een gratis proefperiode van 3 dagen bevatten voor nieuwe abonnees die daarvoor in aanmerking komen. Prijzen zie je in de app in je eigen valuta. Abonnementen worden automatisch verlengd, tenzij je ten minste 24 uur voor het einde van de huidige periode opzegt; beheren of opzeggen kan altijd via de instellingen van je App Store-account.\n\nGebruiksvoorwaarden (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPrivacybeleid: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0 is er:\n• Muntenkluis: elke verzegelde dag laat een gouden munt in een glazen pot vallen die je kunt kantelen en schudden\n• Muntenkalender: je hele jaar in gouden munten, plus compleet nieuwe grafieken\n• Spaarprognose: zie wat een jaar vol uitgavenvrije dagen waard kan zijn\n• Maandterugblik: je maand als story om te delen\n• Aftelling in de avond op je toegangsscherm en in de Dynamic Island, en verzegel je dag via het bedieningspaneel of met Siri\n• Je vermogensboom leeft nu in realtime: dag en nacht, de seizoenen, lichtjes in december\n• Ontgrendel de appsymbolen Goud, Smaragd en Middernacht naarmate je level stijgt\n• Nieuwe geluidseffecten en haptische feedback\n• Nu ook in het Koreaans, Zweeds, Deens, Noors, Fins en traditioneel Chinees",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Wekelijks",
+   "description": "Alles van Pro, week na week"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Maandelijks",
+   "description": "Volledige Pro-toegang, per maand betaald"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Jaarlijks",
+   "description": "12 maanden Pro, één keer per jaar betaald"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Levenslang",
+   "description": "Eén keer betalen, Pro voor altijd"
+  }
+ }
+}

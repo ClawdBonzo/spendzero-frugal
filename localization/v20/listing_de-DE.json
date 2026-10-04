@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: No-Spend-Challenge",
+ "subtitle": "Geld sparen ohne Impulskäufe",
+ "keywords": "sparchallenge,kaufstopp,konsumverzicht,kaufsucht,impulskauf,stoppen,ausgaben,buy,streak,tracker,tag",
+ "promotionalText": "Neu in 2.0: Jeder No-Spend-Tag lässt eine Goldmünze in deinen Münztresor fallen. Füll dein Jahr mit Gold, sieh deine Sparprognose und besiegle den Tag am Sperrbildschirm.",
+ "description": "Nichts ausgeben, Gold sammeln. SpendZero macht aus jedem No-Spend-Tag eine Goldmünze: Sieh zu, wie sie sich in deinem Münztresor stapeln, füll dein Jahr im Münzkalender und finde heraus, was dir ein Jahr Konsumverzicht bringen könnte. Serien, XP, Quests, Abzeichen und ein lebendiger Vermögensbaum machen daraus ein Spiel, das du wirklich gewinnen willst.\n\nOb Kaufstopp, No-Buy-Monat, Low-Buy-Jahr oder einfach weniger Impulskäufe: Mit SpendZero fühlt sich jeder Tag ohne Ausgaben wie ein kleiner Sieg an.\n\nNEU IN 2.0\n• Münztresor: Jeder besiegelte Tag lässt eine Goldmünze in ein Glas fallen, das du kippen und schütteln kannst\n• Münzkalender: dein ganzes Jahr in Goldmünzen – je mehr du gespart hast, desto heller glänzt der Tag\n• Sparprognose, komplett neue Diagramme und was du dir von deinem Ersparten leisten könntest\n• Monatsrückblick: dein Monat als Story, fertig zum Teilen\n• Tag besiegeln direkt vom Sperrbildschirm, in der Dynamic Island, im Kontrollzentrum oder mit Siri\n• Ein lebendiger Vermögensbaum: Tag und Nacht, Jahreszeiten, Lichterglanz im Dezember\n• Mit jedem Level-up neue App-Icons freischalten: Gold, Smaragd und Mitternacht\n\nEIN SPIEL, DAS DU GEWINNST, INDEM DU NICHTS AUSGIBST\nMarkiere einen No-Spend-Tag und er wird mit einer Goldmünze besiegelt. Deine Serie zählt hoch, Belohnungen trudeln ein und du siehst, wie nah dein nächster Meilenstein ist.\n• Serien mit Serien-Freezes, die dich an einem schlechten Tag retten\n• Tages- und Wochenquests, die mit dem vorankommen, was du wirklich tust\n• 25 Level, vom Spar-Neuling bis zum Wealth King\n• Abzeichen für Serien von 7, 30, 100 und 365 Tagen und für Spar-Meilensteine\n• Challenges wie die 30-Tage-No-Spend-Challenge, die Kaffee-Detox-Woche oder saisonale wie der No-Spend-Januar – oder deine ganz eigene\n\nLASS DEINEN VERMÖGENSBAUM WACHSEN\nDein Baum ist einzigartig. Er wächst mit jedem Level, trägt mehr Goldmünzen, je mehr du sparst, und folgt deinem echten Tag, vom Sonnenaufgang bis zur Mondnacht. Reißt deine Serie, lässt er die Blätter hängen – ein No-Spend-Tag bringt ihn zurück.\n\nSTOPP DEINE IMPULSKÄUFE\nDu willst unbedingt etwas kaufen? Trag es ein. Widerstehst du, zählt das Geld als gespart – samt XP als Beweis. Schwach geworden? Kein Drama: eintragen und weitermachen. Lebensmittel und Fahrtkosten brechen deinen No-Spend-Tag nicht.\n\nLASS DIE KETTE NICHT REISSEN\n• Interaktive Widgets: Tag besiegeln, ohne die App zu öffnen\n• Optionaler Countdown am Abend auf dem Sperrbildschirm, bevor der Tag vorbei ist\n• Ein Tipp im Kontrollzentrum oder ein kurzes Wort an Siri\n• Ein sanfter Check-in am Abend und eine Erinnerung am Morgen, falls du gestern vergessen hast\n\nPRIVAT VON ANFANG AN\nAlles, was du einträgst, bleibt auf deinem iPhone. Kein Konto, kein Bank-Login, keine Werbung, kein Tracking.\n\nVerfügbar auf Deutsch, Englisch, Chinesisch (vereinfacht und traditionell), Dänisch, Finnisch, Französisch, Italienisch, Japanisch, Koreanisch, Niederländisch, Norwegisch, Portugiesisch, Schwedisch, Spanisch und Türkisch.\n\nABOS\nSpendZero Pro gibt es als Wochen-, Monats- oder Jahresabo oder als einmaligen Lifetime-Kauf. Monats- und Jahresabos können für berechtigte Neuabonnenten eine 3-tägige kostenlose Testphase enthalten. Die Preise siehst du in der App in deiner Landeswährung. Abos verlängern sich automatisch, sofern sie nicht mindestens 24 Stunden vor Ende des aktuellen Zeitraums gekündigt werden; verwalten oder kündigen kannst du sie jederzeit in den Einstellungen deines App-Store-Accounts.\n\nNutzungsbedingungen (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nDatenschutzrichtlinie: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0 ist da:\n• Münztresor: Jeder besiegelte Tag lässt eine Goldmünze in ein Glas fallen, das du kippen und schütteln kannst\n• Münzkalender: dein ganzes Jahr in Goldmünzen, dazu komplett neue Diagramme\n• Sparprognose: Sieh, was ein Jahr voller No-Spend-Tage wert sein könnte\n• Monatsrückblick: dein Monat als Story zum Teilen\n• Countdown am Abend auf dem Sperrbildschirm und in der Dynamic Island – oder den Tag direkt im Kontrollzentrum und mit Siri besiegeln\n• Dein Vermögensbaum lebt jetzt in Echtzeit: Tag und Nacht, Jahreszeiten, Lichter im Dezember\n• Mit jedem Level-up freischaltbar: die App-Icons Gold, Smaragd und Mitternacht\n• Neue Soundeffekte und Haptik\n• Jetzt auch auf Koreanisch, Schwedisch, Dänisch, Norwegisch, Finnisch und in traditionellem Chinesisch",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Wochenabo",
+   "description": "Alle Pro-Funktionen, Woche für Woche"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Monatsabo",
+   "description": "Voller Pro-Zugang, monatlich abgerechnet"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Jahresabo",
+   "description": "12 Monate Pro, einmal im Jahr bezahlt"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Lebenslang",
+   "description": "Einmal zahlen, Pro für immer behalten"
+  }
+ }
+}
