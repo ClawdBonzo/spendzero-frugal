@@ -68,6 +68,7 @@ struct ChallengeLibraryView: View {
                                     startChallenge(challenge)
                                 }
                                 .id(challenge.id)
+                                .scrollDepth()
                                 .overlay(
                                     RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                                         .stroke(AppTheme.accentGold, lineWidth: highlightedID == challenge.id ? 2 : 0)
@@ -81,7 +82,7 @@ struct ChallengeLibraryView: View {
                 .padding(.horizontal, AppTheme.paddingMedium)
                 .padding(.top, 8)
             }
-            .background(AppTheme.background.ignoresSafeArea())
+            .background(AppScreenBackground())
             .navigationTitle("Challenges")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -319,10 +320,7 @@ struct ChallengeCard: View {
             }
         }
         .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
     }
 }
 
@@ -357,7 +355,7 @@ struct CategoryFilterChip: View {
                     .stroke(isSelected ? .clear : AppTheme.textSecondary.opacity(0.18), lineWidth: 1)
             )
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
@@ -387,7 +385,7 @@ struct CreateChallengeView: View {
                                 .font(AppTheme.bodyFont)
                                 .foregroundColor(AppTheme.textPrimary)
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
+                                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                         }
 
                         VStack(alignment: .leading, spacing: 8) {
@@ -399,7 +397,7 @@ struct CreateChallengeView: View {
                                 .foregroundColor(AppTheme.textPrimary)
                                 .lineLimit(3...6)
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
+                                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                         }
 
                         VStack(alignment: .leading, spacing: 8) {
@@ -452,7 +450,7 @@ struct CreateChallengeView: View {
                                 .foregroundColor(AppTheme.textPrimary)
                                 .keyboardType(.decimalPad)
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
+                                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                         }
 
                         PrimaryButton(title: "Create Challenge", icon: "plus", isEnabled: !title.trimmingCharacters(in: .whitespaces).isEmpty) {

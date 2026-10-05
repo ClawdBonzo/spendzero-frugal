@@ -31,7 +31,7 @@ struct ExportView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.background.ignoresSafeArea()
+            AppScreenBackground()
 
             VStack(spacing: 24) {
                 // Preview card
@@ -66,10 +66,7 @@ struct ExportView: View {
                     ExportPreviewRow(title: "Impulses Resisted", value: "\(filteredImpulsesResisted)", icon: "bolt.slash.fill", color: AppTheme.info)
                 }
                 .padding(AppTheme.paddingMedium)
-                .background(
-                    RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                        .fill(AppTheme.cardBackground)
-                )
+                .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
 
                 Spacer()
 

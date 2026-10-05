@@ -122,7 +122,7 @@ struct StreakCalendarView: View {
                 .padding(.horizontal, AppTheme.paddingMedium)
                 .padding(.top, 8)
             }
-            .background(AppTheme.background.ignoresSafeArea())
+            .background(AppScreenBackground())
             .navigationTitle("Streak Calendar")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -266,10 +266,7 @@ struct StreakCalendarView: View {
             .frame(maxWidth: .infinity)
         }
         .padding(.vertical, 16)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
     }
 
     // MARK: - Calendar Grid
@@ -314,10 +311,7 @@ struct StreakCalendarView: View {
             }
         }
         .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
     }
 
     // MARK: - Savings Timeline
@@ -362,10 +356,7 @@ struct StreakCalendarView: View {
                             .foregroundColor(AppTheme.primaryGreen)
                     }
                     .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: AppTheme.cornerRadiusSmall)
-                            .fill(AppTheme.cardBackground)
-                    )
+                    .glassCard(cornerRadius: AppTheme.cornerRadiusSmall)
                 }
             }
         }
@@ -426,7 +417,7 @@ struct CalendarDayCell: View {
                     .stroke(isToday ? AppTheme.primaryGreen : Color.clear, lineWidth: 1.5)
             )
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
         .disabled(isFuture)
     }
 
@@ -512,7 +503,7 @@ struct DayDetailView: View {
                                         .foregroundColor(AppTheme.primaryGreen)
                                 }
                                 .padding(12)
-                                .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium).fill(AppTheme.cardBackground))
+                                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                             }
                         }
                     }
@@ -539,7 +530,7 @@ struct DayDetailView: View {
                 }
                 .padding(AppTheme.paddingMedium)
             }
-            .background(AppTheme.background.ignoresSafeArea())
+            .background(AppScreenBackground())
             .navigationTitle(Text(date, format: .dateTime.weekday(.wide).month().day()))
             .navigationBarTitleDisplayMode(.inline)
             .task { load() }

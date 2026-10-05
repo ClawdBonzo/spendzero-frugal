@@ -88,10 +88,7 @@ struct MoneyTreeView: View {
                              streak: streak, events: events)
                 .frame(height: 270)
                 .clipShape(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge))
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                    .fill(AppTheme.cardBackground)
-            )
+            .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
             .overlay(
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 1)
@@ -170,8 +167,7 @@ struct MoneyTreeView: View {
                 }
             }
             .padding(AppTheme.paddingMedium)
-            .background(AppTheme.cardBackground)
-            .cornerRadius(AppTheme.cornerRadiusMedium)
+            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
         }
         .padding(AppTheme.paddingLarge)
         .background(

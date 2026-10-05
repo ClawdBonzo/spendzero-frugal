@@ -88,7 +88,7 @@ struct DailyLoggerView: View {
                     }
                 }
             }
-            .background(AppTheme.background.ignoresSafeArea())
+            .background(AppScreenBackground())
             .navigationTitle("Daily Log")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -193,10 +193,7 @@ struct DailyLoggerView: View {
             }
         }
         .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
     }
 
     // MARK: - Spending Section
@@ -212,6 +209,7 @@ struct DailyLoggerView: View {
             } else {
                 ForEach(todaySpending) { log in
                     SpendingLogRow(log: log)
+                        .scrollDepth()
                         .contextMenu {
                             Button(role: .destructive) { spendingToDelete = log } label: {
                                 Label("Delete", systemImage: "trash")
@@ -239,6 +237,7 @@ struct DailyLoggerView: View {
             } else {
                 ForEach(todayImpulses) { impulse in
                     ImpulseLogRow(impulse: impulse)
+                        .scrollDepth()
                         .contextMenu {
                             Button(role: .destructive) { impulseToDelete = impulse } label: {
                                 Label("Delete", systemImage: "trash")
@@ -347,10 +346,7 @@ struct SpendingLogRow: View {
             }
         }
         .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
     }
 }
 
@@ -385,10 +381,7 @@ struct ImpulseLogRow: View {
             }
         }
         .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
-                .fill(AppTheme.cardBackground)
-        )
+        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
     }
 }
 
@@ -424,12 +417,9 @@ struct WinChecklistRow: View {
                     .foregroundColor(isChecked ? AppTheme.primaryGreen : AppTheme.textTertiary)
             }
             .padding(14)
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
-                    .fill(isChecked ? AppTheme.primaryGreen.opacity(0.08) : AppTheme.cardBackground)
-            )
+            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium, tint: isChecked ? AppTheme.primaryGreen : nil)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
     }
 }
 

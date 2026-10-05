@@ -369,7 +369,7 @@ struct PremiumSubscriptionCard: View {
                 }
             }
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
     }
 }
 

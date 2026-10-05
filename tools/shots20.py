@@ -124,8 +124,8 @@ def tree_panel_bottom(path):
     """Bottom edge of the wealth-tree panel: the longest run of rows where both side columns leave the background.
     (The night sky's top is too dark to find, but the lit ground at the bottom always is.)"""
     im = Image.open(path).convert("RGB")
-    bg = (10, 14, 20)
-    diff = lambda x, y: sum(abs(a - b) for a, b in zip(im.getpixel((x, y)), bg))
+    # Compare each row with its own background just outside the panel (the screen background is a living gradient).
+    diff = lambda x, y: sum(abs(a - b) for a, b in zip(im.getpixel((x, y)), im.getpixel((40, y))))
     best, start = (0, 0), None
     for y in range(250, 2000, 4):
         on = diff(170, y) > 30 and diff(1150, y) > 30

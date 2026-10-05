@@ -48,7 +48,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                AppTheme.background.ignoresSafeArea()
+                AppScreenBackground()
 
                 List {
                     // Profile Section

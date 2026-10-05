@@ -78,7 +78,7 @@ struct AppIconPicker: View {
 
     var body: some View {
         ZStack {
-            AppTheme.background.ignoresSafeArea()
+            AppScreenBackground()
             ScrollView {
                 VStack(spacing: 18) {
                     header
@@ -125,7 +125,7 @@ struct AppIconPicker: View {
             Spacer(minLength: 0)
         }
         .padding(AppTheme.paddingMedium)
-        .background(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge).fill(AppTheme.cardBackground))
+        .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
     }
 
     @ViewBuilder
@@ -172,10 +172,7 @@ struct AppIconPicker: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                    .fill(AppTheme.cardBackground)
-            )
+            .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
             .overlay(
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .stroke(isSelected ? option.accent.opacity(0.8) : Color.white.opacity(0.06), lineWidth: isSelected ? 1.5 : 1)

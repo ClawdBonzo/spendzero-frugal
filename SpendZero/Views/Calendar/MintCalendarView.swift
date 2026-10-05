@@ -107,7 +107,7 @@ struct MintCalendarView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(AppTheme.cardBackground))
+        .glassCard(cornerRadius: 18)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(a11y)
     }
@@ -149,7 +149,7 @@ struct MintCalendarView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
-        .background(RoundedRectangle(cornerRadius: 20, style: .continuous).fill(AppTheme.cardBackground))
+        .glassCard(cornerRadius: 20)
         .accessibilityElement(children: .combine)
     }
 
@@ -199,7 +199,7 @@ struct MintYearGrid: View {
         .padding(.horizontal, 12)
         .padding(.top, 16)
         .padding(.bottom, 14)
-        .background(RoundedRectangle(cornerRadius: 24, style: .continuous).fill(AppTheme.cardBackground))
+        .glassCard(cornerRadius: 24)
         .onAppear(perform: startRipple)
         .onChange(of: mint.year) { _, _ in startRipple() }
     }
