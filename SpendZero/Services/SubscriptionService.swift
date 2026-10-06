@@ -140,7 +140,9 @@ final class SubscriptionService {
         availableProducts = products
         availablePackages = []
         guard !products.isEmpty else {
-            errorMessage = fallbackError ?? String(localized: "Plans aren't available right now.")
+            // Never show SDK/configuration errors to customers; keep them in the log for us.
+            if let fallbackError { NSLog("SpendZero: offerings unavailable: \(fallbackError)") }
+            errorMessage = String(localized: "Plans aren't available right now.")
             return
         }
         let eligible = await trialEligibility(for: products)
