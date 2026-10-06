@@ -38,7 +38,7 @@ SHOTS = [  # name, args, wait seconds
     ("sealed", SEED + ["-ShowDaySealed"], 8.5),
     ("vault", SEED + ["-ScrollToVault"], 11),
     ("forecast", ["-hasCompletedOnboarding", "NO", "-ShowForecast"], 10),
-    ("calendar", SEED + ["-InitialTab", "calendar"], 9),
+    ("calendar", SEED + ["-InitialTab", "calendar", "-streakCalendarMode", "year"], 9),
     ("impulses", SEED + ["-InitialTab", "logger", "-LogSegment", "1"], 9),
     ("tree_dec_night", SEED + ["-InitialTab", "gamification", "-ScrollToTree", "-TreeSeason", "december", "-TreeHour", "20.5"], 11),
     ("tree_spring_day", SEED + ["-InitialTab", "gamification", "-ScrollToTree", "-TreeSeason", "spring", "-TreeHour", "10"], 11),
@@ -168,6 +168,11 @@ def fill(template, cap):
     return re.sub(r"\{\{([a-z0-9_.]+)\}\}", sub, template)
 
 
+def black_share(im):
+    px = list(im.resize((132, 287)).getdata())
+    return sum(1 for r, g, b in px if r + g + b < 6) / len(px)
+
+
 def render(locale):
     set_name = LOCALE_SET.get(locale, "en_US")
     cap = json.load(open(f"{ROOT}/localization/v20/captions_{'en' if locale == 'en-US' else locale}.json"))
@@ -180,10 +185,21 @@ def render(locale):
     png = f"{WORK}/full_{locale}.png"
     if os.path.exists(png):
         os.remove(png)
-    sh(CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files",
-       "--force-device-scale-factor=1", "--window-size=13200,2868", "--virtual-time-budget=8000",
-       f"--screenshot={png}", f"file://{page}", timeout=900)
-    im = Image.open(png).convert("RGB")
+    for attempt in range(5):  # headless Chrome sometimes drops tiles under load: re-render until no frame has black blocks
+        if os.path.exists(png):
+            os.remove(png)
+        sh(CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files",
+           "--force-device-scale-factor=1", "--window-size=13200,2868", "--virtual-time-budget=8000",
+           f"--screenshot={png}", f"file://{page}", timeout=900)
+        if not os.path.exists(png):
+            continue
+        im = Image.open(png).convert("RGB")
+        bad = [i + 1 for i in range(10) if black_share(im.crop((i * 1320, 0, (i + 1) * 1320, 2868))) > 0.06]
+        if not bad:
+            break
+        print(f"  {locale}: broken frames {bad}, re-rendering", flush=True)
+    else:
+        raise SystemExit(f"{locale}: render kept failing")
     dest = f"{ROOT}/screenshots/v20/{locale}"
     os.makedirs(dest, exist_ok=True)
     for i in range(10):
