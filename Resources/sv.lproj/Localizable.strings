@@ -942,3 +942,11 @@
 "Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't." = "Tolv köpfria dagar i rad före jul. Julklappar du redan har planerat är okej – extragrejerna är det inte.";
 "No-Spend January" = "Köpstopp i januari";
 "Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport." = "Börja året med 31 dagar där du bara lägger pengar på det nödvändiga: hyra, räkningar, mat och resor.";
+
+/* 2.0 paywall */
+"Unlimited challenges" = "Obegränsat köpstopp";
+"Spending insights" = "Utgiftsinsikter";
+"Impulse alerts" = "Impulsvarningar";
+"Badges & your tree" = "Märken & pengaträd";
+"Streak freezes" = "Svitskydd";
+"Share & export" = "Dela & exportera";

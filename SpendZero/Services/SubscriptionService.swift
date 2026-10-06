@@ -102,6 +102,18 @@ final class SubscriptionService {
     // MARK: - Fetch Offerings
 
     func fetchOfferings() async {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-DemoPlans") {  // simulator previews: the live plans and prices
+            offerings = [
+                SubscriptionOption(id: Self.monthlyID, title: String(localized: "Monthly"), price: "$7.99", pricePerWeek: "$1.85/wk", period: String(localized: "per month"), isBestValue: false, hasFreeTrial: true, trialDays: 3, weeklyEquivalent: 1.85),
+                SubscriptionOption(id: Self.weeklyID, title: String(localized: "Weekly"), price: "$4.99", pricePerWeek: "$4.99/wk", period: String(localized: "per week"), isBestValue: false, hasFreeTrial: false, weeklyEquivalent: 4.99),
+                SubscriptionOption(id: Self.yearlyID, title: String(localized: "Yearly"), price: "$49.99", pricePerWeek: "$0.96/wk", period: String(localized: "per year"), isBestValue: true, hasFreeTrial: true, trialDays: 3, weeklyEquivalent: 0.96),
+                SubscriptionOption(id: Self.lifetimeID, title: String(localized: "Lifetime"), price: "$79.99", pricePerWeek: "", period: String(localized: "one-time"), isBestValue: false, hasFreeTrial: false, isLifetime: true),
+            ]
+            loadState = .loaded
+            return
+        }
+        #endif
         if loadState == .loading { return }
         loadState = .loading
         errorMessage = nil

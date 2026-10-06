@@ -59,17 +59,15 @@ struct PaywallView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
+              // — URGENCY BANNER — pinned above the scroll view so it never slides under the status bar.
+              if let urgencyMessage {
+                  UrgencyBanner(text: urgencyMessage, isCritical: isHardPaywall)
+                      .padding(.horizontal, AppTheme.paddingLarge)
+                      .padding(.top, 8)
+                      .padding(.bottom, 2)
+              }
               ScrollView(showsIndicators: false) {
                VStack(spacing: 0) {
-                // — URGENCY BANNER —
-                // Renders the urgency/scarcity copy that every caller already passes in
-                // (previously dead — declared but never shown).
-                if let urgencyMessage {
-                    UrgencyBanner(text: urgencyMessage, isCritical: isHardPaywall)
-                        .padding(.horizontal, AppTheme.paddingLarge)
-                        .padding(.top, isHardPaywall ? 16 : 8)
-                        .padding(.bottom, 2)
-                }
 
                 // — HEADER —
                 ZStack(alignment: .topTrailing) {
@@ -81,7 +79,7 @@ struct PaywallView: View {
                             ? "Subscribe to keep going"
                             : "Keep everything you've built"
                     )
-                    .padding(.top, isHardPaywall ? 20 : 34)
+                    .padding(.top, isHardPaywall ? 10 : 30)
                     .padding(.horizontal, AppTheme.paddingLarge)
                     .frame(maxWidth: .infinity)
 
@@ -97,20 +95,21 @@ struct PaywallView: View {
                         .padding(.trailing, AppTheme.paddingLarge - 8)
                     }
                 }
-                .padding(.bottom, 18)
+                .padding(.bottom, 12)
 
-                // — FEATURES LIST —
-                VStack(alignment: .leading, spacing: 9) {
-                    FeatureRow(icon: "flame.fill",            color: AppTheme.warning,     text: "Unlimited no-spend challenges & streaks")
-                    FeatureRow(icon: "chart.bar.fill",        color: AppTheme.info,        text: "Spending analytics & insights")
-                    FeatureRow(icon: "bell.badge.fill",       color: AppTheme.accentGold,  text: "Impulse-purchase alerts")
-                    FeatureRow(icon: "rosette",               color: AppTheme.primaryGreen, text: "Level up, earn badges & grow your tree")
-                    FeatureRow(icon: "snowflake",             color: Color(hex: "60CFFF"), text: "Streak freezes to protect your progress")
-                    FeatureRow(icon: "square.and.arrow.up",   color: AppTheme.info,        text: "Shareable wins & data export")
+                // — FEATURES — a compact two-column grid so plans and the button fit on one screen.
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10, alignment: .leading), GridItem(.flexible(), alignment: .leading)],
+                          alignment: .leading, spacing: 10) {
+                    FeatureRow(icon: "flame.fill",          color: AppTheme.warning,      text: "Unlimited challenges")
+                    FeatureRow(icon: "chart.bar.fill",      color: AppTheme.info,         text: "Spending insights")
+                    FeatureRow(icon: "bell.badge.fill",     color: AppTheme.accentGold,   text: "Impulse alerts")
+                    FeatureRow(icon: "rosette",             color: AppTheme.primaryGreen, text: "Badges & your tree")
+                    FeatureRow(icon: "snowflake",           color: Color(hex: "60CFFF"),  text: "Streak freezes")
+                    FeatureRow(icon: "square.and.arrow.up", color: AppTheme.info,         text: "Share & export")
                 }
-                .padding(.horizontal, AppTheme.paddingLarge + 4)
+                .padding(.horizontal, AppTheme.paddingLarge)
 
-                Spacer().frame(height: 18)
+                Spacer().frame(height: 14)
 
                 // — SUBSCRIPTION CARDS —
                 VStack(spacing: 8) {
@@ -429,22 +428,22 @@ private struct FeatureRow: View {
     let text: LocalizedStringKey
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 8) {
             ZStack {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 7)
                     .fill(color.opacity(0.15))
-                    .frame(width: 32, height: 32)
+                    .frame(width: 26, height: 26)
                 Image(systemName: icon)
-                    .font(.app(size: 15, weight: .semibold))
+                    .font(.app(size: 13, weight: .semibold))
                     .foregroundColor(color)
             }
+            .accessibilityHidden(true)
             Text(text)
-                .font(.app(size: 14, weight: .medium))
+                .font(.app(size: 13, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
-            Spacer()
-            Image(systemName: "checkmark")
-                .font(.app(size: 12, weight: .bold))
-                .foregroundColor(AppTheme.primaryGreen)
+                .lineLimit(2)
+                .minimumScaleFactor(0.85)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

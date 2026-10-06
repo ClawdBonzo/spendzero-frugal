@@ -948,3 +948,11 @@
 "★" = "★";
 "✓" = "✓";
 "🐈" = "🐈";
+
+/* 2.0 paywall */
+"Unlimited challenges" = "Unbegrenzte Challenges";
+"Spending insights" = "Ausgaben-Einblicke";
+"Impulse alerts" = "Impuls-Alarme";
+"Badges & your tree" = "Abzeichen & Baum";
+"Streak freezes" = "Serien-Freezes";
+"Share & export" = "Teilen & Export";

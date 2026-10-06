@@ -10,7 +10,7 @@ settings:
     SWIFT_EMIT_LOC_STRINGS: "YES"
     DEVELOPMENT_TEAM: "3N9RY9EG8V"
     MARKETING_VERSION: "2.0"
-    CURRENT_PROJECT_VERSION: "15"
+    CURRENT_PROJECT_VERSION: "16"
 packages:
   RevenueCat:
     url: https://github.com/RevenueCat/purchases-ios-spm.git

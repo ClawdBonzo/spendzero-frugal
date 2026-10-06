@@ -948,3 +948,11 @@
 "★" = "★";
 "✓" = "✓";
 "🐈" = "🐈";
+
+/* 2.0 paywall */
+"Unlimited challenges" = "Sınırsız meydan okuma";
+"Spending insights" = "Harcama içgörüleri";
+"Impulse alerts" = "Anlık alım uyarısı";
+"Badges & your tree" = "Rozetler ve ağaç";
+"Streak freezes" = "Seri dondurma";
+"Share & export" = "Paylaş, dışa aktar";
