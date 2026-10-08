@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "Sellar hoy en ${applicationName}",
+  "Seal the day in ${applicationName}": "Sellar el día en ${applicationName}",
+  "Seal my day in ${applicationName}": "Sellar mi día en ${applicationName}",
+  "I resisted buying something in ${applicationName}": "Me resistí a comprar algo en ${applicationName}",
+  "I didn't buy something in ${applicationName}": "Evité una compra en ${applicationName}",
+  "Log a resisted impulse in ${applicationName}": "Registrar un impulso resistido en ${applicationName}"
+}

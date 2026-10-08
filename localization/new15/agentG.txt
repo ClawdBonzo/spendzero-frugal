@@ -1,0 +1,10 @@
+# More from GW Labs (MoreFromGWLabs.swift, SettingsView.swift): new Localizable.strings keys (English value = key)
+# Section header. "GW Labs" is the developer's name: never translate it. App names are never translated either.
+"More from GW Labs" = "More from GW Labs";
+# One-line pitches for the developer's other apps. Natural, warm, no medical or financial claims.
+"Dopamine detox and focus timer: less scrolling, fewer late-night carts." = "Dopamine detox and focus timer: less scrolling, fewer late-night carts.";
+"Pick one wish and practice it daily, like the thing you're saving for." = "Pick one wish and practice it daily, like the thing you're saving for.";
+"Color in every country you've been to, then save for the next one." = "Color in every country you've been to, then save for the next one.";
+"Breathing and grounding for anxious moments, money worries included." = "Breathing and grounding for anxious moments, money worries included.";
+# VoiceOver hint on each row
+"Opens the App Store page" = "Opens the App Store page";

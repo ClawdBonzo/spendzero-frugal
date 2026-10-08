@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Izazov štednje",
+ "subtitle": "Dani bez trošenja, više novca",
+ "keywords": "štednja,ušteda,štedjeti,budžet,troškovi,kasica,prasica,novac,kupovina,šoping,navike,financije,cilj",
+ "promotionalText": "Novo u 2.0: svaki dan bez trošenja ubacuje zlatnik u tvoju kasicu. Cijela godina u zlatu, prognoza ušteđevine i mjesečni pregled koji možeš podijeliti.",
+ "description": "Ne troši — kuj zlato. SpendZero svaki dan bez trošenja pretvara u zlatnik: zlatnik pada u tvoju kasicu, pozlaćuje tvoj kalendar i hrani tvoje stablo bogatstva. Nizovi, XP, misije i značke pretvaraju štednju u igru u kojoj pobjeđuješ ti.\n\nRadiš mjesec bez kupovine, želiš prestati s impulzivnom kupnjom ili štediš za nešto veliko? Uz SpendZero svaki dan u kojem novac ostane u džepu postaje pobjeda koju vidiš.\n\nNOVO U 2.0\n• Kasica zlatnika (Coin Vault): svaki zapečaćeni dan ubacuje zlatnik u staklenku — nagni iPhone i gledaj kako se zlatnici kotrljaju\n• Kalendar zlatnika (Mint Calendar): cijela tvoja godina u zlatnicima, uz nove grafikone\n• Prognoza ušteđevine: pogledaj koliko bi mogla vrijediti godina bez nepotrebnih troškova\n• Mjesečni pregled (Monthly Recap): priča o tvom mjesecu u obliku storyja, spremna za dijeljenje\n• Odbrojavanje na zaključanom zaslonu i u Dynamic Islandu, tipka u Kontrolnom centru i Siri\n\nZAPEČATI SVOJ DAN\nOznači dan bez trošenja i gledaj kako ga pečati zlatnik. Niz raste, nagrade stižu i točno vidiš koliko ti je ostalo do sljedećeg cilja. Jedan dodir i gotovo.\n\nUZGOJI STABLO BOGATSTVA\nTvoje stablo je jedinstveno. Raste sa svakom razinom, puni se zlatnicima kako raste tvoja ušteđevina, a sada živi u stvarnom vremenu: dan i noć, godišnja doba, lampice u prosincu. Ako se niz prekine, počinje venuti — jedan dan bez trošenja vraća ga u život.\n\nIGRA U KOJOJ POBJEĐUJEŠ KAD NE TROŠIŠ\n• Nizovi i zamrzavanja niza koja te spašavaju u teškom danu\n• Dnevne i tjedne misije\n• 25 razina i značke za nizove od 7, 30, 100 i 365 dana\n• Izazovi: 7 dana bez trošenja, tjedan bez kave za van, 30 dana bez trošenja, pregled pretplata i drugi — ili smisli svoj\n• Otključaj ikone aplikacije Gold, Emerald i Midnight kako napreduješ\n\nSTOP IMPULZIVNOJ KUPNJI\nNešto te čeka u košarici? Zabilježi to. Ako odoliš, iznos se računa kao ušteda, uz XP. Nije uspjelo? Nema veze — zabilježi i nastavi dalje. Osnovni troškovi, poput namirnica i prijevoza, ne kvare dan bez trošenja.\n\nNE PREKIDAJ NIZ\n• Interaktivni widgeti na početnom i zaključanom zaslonu\n• Live Activity s odbrojavanjem do kraja dana, Kontrolni centar, Siri i Prečaci\n• Nenametljiv večernji podsjetnik, a ujutro još stigneš označiti jučerašnji dan\n\nPRIVATNOST NA PRVOM MJESTU\nBez računa, bez povezivanja banke, bez oglasa. Sve što zabilježiš ostaje na tvom iPhoneu. PDF izvještaj izvezi kad god želiš.\n\nAplikacija je dostupna na engleskom i još 15 jezika: njemačkom, španjolskom, francuskom, talijanskom, nizozemskom, portugalskom, turskom, japanskom, kineskom (pojednostavljenom i tradicionalnom), korejskom, švedskom, danskom, norveškom i finskom. Nije dostupna na hrvatskom.\n\nPRETPLATE\nSpendZero Pro dostupan je uz tjednu, mjesečnu ili godišnju pretplatu ili kao jednokratna doživotna kupnja. Mjesečni i godišnji paketi mogu uključivati besplatno probno razdoblje od 3 dana za nove pretplatnike koji ispunjavaju uvjete. Cijene su prikazane u aplikaciji u lokalnoj valuti. Pretplate se automatski obnavljaju ako se ne otkažu najmanje 24 sata prije kraja tekućeg razdoblja; upravljaj njima ili ih otkaži bilo kada u postavkama računa za App Store.\n\nUvjeti korištenja (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPravila o privatnosti: https://gwlabs.app/privacy",
+ "whatsNew": "Novo u SpendZero 2.0:\n• Kasica zlatnika: svaki zapečaćeni dan ubacuje zlatnik u staklenku koju možeš nagnuti\n• Kalendar zlatnika: cijela godina u zlatnicima, uz nove grafikone\n• Prognoza ušteđevine za sljedećih 12 mjeseci\n• Mjesečni pregled u obliku storyja za dijeljenje\n• Odbrojavanje do pečaćenja današnjeg dana na zaključanom zaslonu i u Dynamic Islandu, plus Kontrolni centar i Siri\n• Stablo bogatstva živi u stvarnom vremenu: dan i noć, godišnja doba, lampice u prosincu\n• Otključaj ikone Gold, Emerald i Midnight kako napreduješ\n• Zvučni efekti i haptika\n• Aplikacija je sada na 16 jezika, uključujući engleski; hrvatski nije među njima",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro tjedno",
+   "description": "Sve Pro značajke, plaćanje svaki tjedan"
+  },
+  "monthly": {
+   "name": "SpendZero Pro mjesečno",
+   "description": "Sve Pro značajke, plaćanje svaki mjesec"
+  },
+  "yearly": {
+   "name": "SpendZero Pro godišnje",
+   "description": "Pro 12 mjeseci, jedno plaćanje godišnje"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro zauvijek",
+   "description": "Jednokratna kupnja, Pro bez pretplate"
+  }
+ }
+}

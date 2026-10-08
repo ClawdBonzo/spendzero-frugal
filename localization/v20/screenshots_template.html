@@ -1,0 +1,280 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: "SFR"; src: url("file:///System/Library/Fonts/SFNSRounded.ttf"); font-weight: 100 1000; }
+@font-face { font-family: "SFP"; src: url("file:///System/Library/Fonts/SFNS.ttf"); font-weight: 100 1000; }
+:root {
+  --W: 1320px; --H: 2868px;
+  --gold-l: #FFF3B0; --gold: #FFD740; --gold-d: #FFA000; --ink: #4A3300;
+  --green: #00E676; --bg: #0A0E14;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 13200px; height: 2868px; overflow: hidden; background: #000; }
+body { position: relative; font-family: "SFR", -apple-system, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+
+.bg, .frame { position: absolute; top: 0; width: var(--W); height: var(--H); }
+.bg { z-index: 0; overflow: hidden; }
+.frame { z-index: 2; }
+#trail { position: absolute; left: 0; top: 0; z-index: 1; pointer-events: none; }
+
+/* backgrounds */
+.bg-emerald { background:
+  radial-gradient(1100px 900px at 50% 58%, rgba(0,230,118,.20), transparent 70%),
+  linear-gradient(180deg, #0B2C1E 0%, #06180F 55%, #030C08 100%); }
+.bg-hero { background:
+  radial-gradient(900px 900px at 50% 60%, rgba(255,200,40,.42), rgba(255,170,0,.10) 45%, transparent 70%),
+  linear-gradient(180deg, #0E3A26 0%, #072015 55%, #030C08 100%); }
+.bg-cream { background:
+  radial-gradient(1000px 800px at 50% 30%, #FFFBEA, transparent 70%),
+  linear-gradient(180deg, #FFF3CF 0%, #FBE3A2 100%); }
+.bg-navy { background:
+  radial-gradient(1000px 900px at 50% 55%, rgba(80,110,255,.22), transparent 70%),
+  linear-gradient(180deg, #0D1640 0%, #070C26 60%, #04071A 100%); }
+.bg-gold { background:
+  radial-gradient(900px 700px at 50% 45%, rgba(255,215,64,.30), transparent 70%),
+  linear-gradient(180deg, #123A27 0%, #07190F 100%); }
+.rays { position: absolute; left: 50%; top: 60%; width: 3200px; height: 3200px; transform: translate(-50%,-50%);
+  background: repeating-conic-gradient(from 0deg, rgba(255,215,64,.10) 0deg 6deg, transparent 6deg 15deg);
+  -webkit-mask: radial-gradient(circle, #000 0%, rgba(0,0,0,.6) 30%, transparent 62%); }
+.sparkle { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #FFF3B0; box-shadow: 0 0 18px 6px rgba(255,215,64,.55); }
+
+/* type */
+.kicker { position: absolute; left: 0; right: 0; text-align: center; font: 800 46px/1 "SFR"; letter-spacing: 9px; color: var(--green); text-transform: uppercase; }
+.h { position: absolute; left: 60px; right: 60px; text-align: center; font: 850 128px/1.02 "SFR"; letter-spacing: -2.5px; color: #fff; text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+.g { background: linear-gradient(180deg, #FFF6C2 0%, #FFD740 45%, #FFA000 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 4px 18px rgba(255,190,0,.35)); }
+.sub { position: absolute; left: 110px; right: 110px; text-align: center; font: 600 52px/1.25 "SFP"; color: rgba(255,255,255,.78); }
+.on-cream .h { color: #0B2A1B; text-shadow: none; }
+.on-cream .g { background: linear-gradient(180deg, #E8A600 0%, #B86E00 100%); -webkit-background-clip: text; background-clip: text; filter: none; }
+.on-cream .kicker { color: #0E7A45; }
+.on-cream .sub { color: rgba(11,42,27,.75); }
+
+/* phone */
+.phone { position: absolute; width: 940px; height: 1996px; border-radius: 150px; padding: 20px;
+  background: linear-gradient(145deg, #4b524e 0%, #1b1f1d 18%, #0b0d0c 50%, #2a302d 85%, #555c58 100%);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.10) inset, 0 60px 140px rgba(0,0,0,.65), 0 0 120px rgba(255,200,40,.12); }
+.phone .screen { position: relative; width: 900px; height: 1956px; border-radius: 130px; overflow: hidden; background: #0A0E14; }
+.phone .screen > img.shot { width: 900px; height: 1956px; display: block; }
+.on-cream .phone { box-shadow: 0 0 0 3px rgba(255,255,255,.12) inset, 0 60px 120px rgba(60,40,0,.40); }
+
+/* pop-out cards (enlarged crops) */
+.pop { position: absolute; border-radius: 56px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.60), 0 0 0 4px rgba(255,215,64,.75), 0 0 80px rgba(255,200,40,.35); }
+.pop img { display: block; width: 100%; height: auto; }
+.on-cream .pop { box-shadow: 0 40px 100px rgba(70,45,0,.40), 0 0 0 4px rgba(255,190,0,.9); }
+
+.chip { display: inline-flex; align-items: center; gap: 18px; padding: 26px 40px; border-radius: 999px; font: 700 44px/1 "SFP";
+  background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(10px); }
+.chip b { color: var(--gold); }
+.row { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+
+/* status bar (drawn) */
+.sb { position: absolute; left: 0; right: 0; top: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 22px 92px 0 120px; font: 600 40px/1 "SFP"; color: #fff; z-index: 3; }
+.island { position: absolute; top: 24px; left: 50%; width: 252px; height: 74px; margin-left: -126px; border-radius: 40px; background: #000; z-index: 4; }
+
+/* gold coin (GoldCoin.swift replica) */
+.gcoin { position: relative; border-radius: 50%; background: conic-gradient(#FFA000, #FFF3B0, #FFD740, #FFA000, #FFF3B0, #FFA000); box-shadow: 0 0 24px rgba(255,215,64,.55); }
+.gcoin::before { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: linear-gradient(135deg, #FFF3B0, #FFD740 50%, #FFA000); }
+.gcoin::after { content: ""; position: absolute; inset: 13%; border-radius: 50%; border: 3px solid rgba(74,51,0,.25); }
+.gcoin .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #4A3300; z-index: 2; }
+.rtl .h, .rtl .sub, .rtl .kicker, .rtl .chip { direction: rtl; unicode-bidi: plaintext; }
+.rtl .kicker, .nospace .kicker { letter-spacing: 0; }
+.rtl .h { letter-spacing: 0; }
+.h { white-space: nowrap; }
+</style></head>
+<body class="{{BODYCLASS}}">
+
+<!-- ============ BACKGROUNDS ============ -->
+<div class="bg bg-hero" style="left:0"><div class="rays"></div></div>
+<div class="bg bg-emerald" style="left:1320px"></div>
+<div class="bg bg-emerald" style="left:2640px"></div>
+<div class="bg bg-cream" style="left:3960px"></div>
+<div class="bg bg-emerald" style="left:5280px"></div>
+<div class="bg bg-navy" style="left:6600px"></div>
+<div class="bg bg-emerald" style="left:7920px"></div>
+<div class="bg bg-emerald" style="left:9240px; background: radial-gradient(1000px 800px at 50% 60%, rgba(255,215,64,.16), transparent 70%), linear-gradient(180deg,#0B2C1E,#030C08)"></div>
+<div class="bg bg-emerald" style="left:10560px"></div>
+<div class="bg bg-gold" style="left:11880px"><div class="rays" style="top:58%"></div></div>
+<!-- glow bridging frames 1-3 -->
+<div style="position:absolute; z-index:0; left:900px; top:1100px; width:2200px; height:1500px; background: radial-gradient(closest-side, rgba(255,200,40,.16), transparent); pointer-events:none"></div>
+
+<svg id="trail" width="13200" height="2868" viewBox="0 0 13200 2868"></svg>
+
+<!-- ============ F1 HERO ============ -->
+<div class="frame" style="left:0">
+  <div class="row" style="top:150px; align-items:center; gap:30px">
+    <img src="{{SHARED}}/icon.png" style="width:132px; height:132px; border-radius:30px; box-shadow:0 10px 40px rgba(0,0,0,.5)">
+    <span style="font:800 76px/1 SFR; letter-spacing:-1px">SpendZero</span>
+  </div>
+  <div class="h" style="top:380px; font-size:150px">{{f1.h}}</div>
+  <div class="sub" style="top:735px">{{f1.sub}}</div>
+  <div style="position:absolute; left:160px; top:1010px; width:1000px; height:1000px; border-radius:50%; overflow:hidden;
+       -webkit-mask: radial-gradient(circle, #000 64%, transparent 71%); filter: drop-shadow(0 30px 80px rgba(0,0,0,.6))">
+    <img src="{{RAW}}/sealed.png" style="position:absolute; width:1860px; left:-415px; top:-806px">
+  </div>
+  <div class="row" style="top:2090px"><div class="chip" style="font-size:50px; padding:30px 48px">🔥 <span>{{f1.chip_streak}}</span> · <b>{{f1.chip_kept}}</b></div></div>
+  <div class="row" style="top:2560px; gap:18px">
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.0}}</div>
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.1}}</div>
+    <div class="chip" style="font-size:44px; padding:26px 40px">{{f1.trust.2}}</div>
+  </div>
+</div>
+
+<!-- ============ F2 VAULT ============ -->
+<div class="frame" style="left:1320px">
+  <div class="kicker" style="top:200px">{{f2.kicker}}</div>
+  <div class="h" style="top:280px">{{f2.h}}</div>
+  <div class="phone" style="left:190px; top:690px; transform: rotate(-3deg)">
+    <div class="screen">
+      <img class="shot" src="{{RAW}}/vault.png" style="margin-top:-250px">
+      <div style="position:absolute; inset:0 0 auto 0; height:300px; background: linear-gradient(180deg, #0b1a13 0%, #0b1a13 62%, rgba(11,26,19,0) 100%)"></div>
+      <div class="island"></div>
+      <div class="sb"><span>9:41</span><img src="{{SHARED}}/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
+    </div>
+  </div>
+  <div class="pop" style="left:70px; top:2240px; width:1180px; transform: rotate(-1.5deg)"><img src="{{ASSETS}}/vault_stats.png"></div>
+</div>
+
+<!-- ============ F3 FORECAST ============ -->
+<div class="frame" style="left:2640px">
+  <div class="kicker" style="top:200px">{{f3.kicker}}</div>
+  <div class="h" style="top:280px">{{f3.h}}</div>
+  <div class="phone" style="left:190px; top:760px">
+    <div class="screen"><img class="shot" src="{{RAW}}/forecast.png"></div>
+  </div>
+  <div class="pop" style="left:110px; top:1080px; width:1100px; transform: rotate(-2deg)"><img src="{{ASSETS}}/forecast_big.png"></div>
+</div>
+
+<!-- ============ F4 CALENDAR (cream) ============ -->
+<div class="frame on-cream" style="left:3960px">
+  <div class="kicker" style="top:200px">{{f4.kicker}}</div>
+  <div class="h" style="top:280px">{{f4.h}}</div>
+  <div class="pop" style="left:60px; top:760px; width:1200px; border-radius:70px"><img src="{{ASSETS}}/calendar_card.png"></div>
+</div>
+
+<!-- ============ F5 IMPULSES ============ -->
+<div class="frame" style="left:5280px">
+  <div class="kicker" style="top:200px">{{f5.kicker}}</div>
+  <div class="h" style="top:280px">{{f5.h}}</div>
+  <div class="phone" style="left:190px; top:760px">
+    <div class="screen"><img class="shot" src="{{RAW}}/impulses.png"></div>
+  </div>
+  <div class="pop" style="left:50px; top:1500px; width:1220px; transform: rotate(-2deg)"><img src="{{ASSETS}}/impulse_rows.png"></div>
+</div>
+
+<!-- ============ F6 TREE (navy) ============ -->
+<div class="frame" style="left:6600px">
+  <div class="kicker" style="top:200px; color:#9FB4FF">{{f6.kicker}}</div>
+  <div class="h" style="top:280px">{{f6.h}}</div>
+  <div class="sub" style="top:585px; font-size:46px">{{f6.sub}}</div>
+  <div class="pop" style="left:70px; top:800px; width:1180px; border-radius:70px; box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.55), 0 0 100px rgba(90,120,255,.35)"><img src="{{ASSETS}}/tree_dec_night.png"></div>
+  <div class="pop" style="left:70px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="{{ASSETS}}/tree_spring_day.png"></div>
+  <div class="pop" style="left:680px; top:1810px; width:570px; border-radius:48px; box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(160,180,255,.45)"><img src="{{ASSETS}}/tree_autumn.png"></div>
+  
+</div>
+
+<!-- ============ F7 RECAP ============ -->
+<div class="frame" style="left:7920px">
+  <div class="kicker" style="top:200px">{{f7.kicker}}</div>
+  <div class="h" style="top:280px">{{f7.h}}</div>
+  <div class="pop" style="left:10px; top:1000px; width:560px; border-radius:56px; transform: rotate(-8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recap1.png"></div>
+  <div class="pop" style="left:750px; top:1000px; width:560px; border-radius:56px; transform: rotate(8deg); box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 0 4px rgba(255,255,255,.18)"><img src="{{RAW}}/recap3.png"></div>
+  <div class="pop" style="left:290px; top:780px; width:740px; border-radius:70px"><img src="{{RAW}}/recap0.png"></div>
+</div>
+
+<!-- ============ F8 LOCK SCREEN ============ -->
+<div class="frame" style="left:9240px">
+  <div class="kicker" style="top:200px">{{f8.kicker}}</div>
+  <div class="h" style="top:280px">{{f8.h}}</div>
+  <div class="phone" style="left:190px; top:760px">
+    <div class="screen" style="background: radial-gradient(900px 1100px at 50% 30%, #1b6b45 0%, #0b3322 45%, #04140c 100%)">
+      <div class="island"></div>
+      <div class="sb" style="justify-content:flex-end"><img src="{{SHARED}}/sb_icons.png" style="height:70px; margin-top:-6px; mix-blend-mode:screen"></div>
+      <div style="position:absolute; top:190px; width:100%; text-align:center; font:600 46px/1 SFP; color:rgba(255,255,255,.85)">{{f8.date}}</div>
+      <div style="position:absolute; top:250px; width:100%; text-align:center; font:700 290px/1 SFR; letter-spacing:-6px; color:rgba(255,255,255,.92)">9:41</div>
+      <div style="position:absolute; bottom:110px; left:110px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.14)"></div>
+      <div style="position:absolute; bottom:110px; right:110px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.14)"></div>
+      <div style="position:absolute; bottom:22px; left:50%; width:300px; margin-left:-150px; height:10px; border-radius:6px; background:rgba(255,255,255,.7)"></div>
+    </div>
+  </div>
+  <!-- enlarged pop-out of the Live Activity -->
+  <div style="position:absolute; left:30px; right:30px; top:1930px; border-radius:90px; background:rgba(10,14,20,.96); padding:44px; display:flex; align-items:center; gap:36px;
+       box-shadow:0 40px 100px rgba(0,0,0,.6), 0 0 0 4px rgba(255,215,64,.75), 0 0 80px rgba(255,200,40,.35)">
+    <div class="gcoin" style="width:160px; height:160px; flex:none"><div class="face"><span style="font-size:36px">🔥</span><span style="font:900 54px/1 SFR">23</span></div></div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:12px">
+      <div style="display:flex; align-items:baseline; flex-wrap:wrap; column-gap:16px; row-gap:6px"><span style="font:900 72px/1 SFR; color:#FFD740">2:47:12</span><span style="font:600 36px/1 SFP; color:rgba(255,255,255,.8)">{{f8.la_left}}</span></div>
+      <div style="height:12px; border-radius:6px; background:rgba(255,255,255,.18)"><div style="width:62%; height:100%; border-radius:6px; background:#FFD740"></div></div>
+      <div style="font:500 34px/1 SFP; color:rgba(255,255,255,.6)">{{f8.la_streak}}</div>
+    </div>
+    <div style="flex:none; padding:22px 38px; border-radius:999px; background:linear-gradient(135deg,#FFF3B0,#FFD740 50%,#FFA000); color:#4A3300; font:800 40px/1 SFP">✓ {{f8.la_button}}</div>
+  </div>
+</div>
+
+<!-- ============ F9 LEVELS ============ -->
+<div class="frame" style="left:10560px">
+  <div class="kicker" style="top:200px">{{f9.kicker}}</div>
+  <div class="h" style="top:280px">{{f9.h}}</div>
+  <div class="phone" style="left:190px; top:760px">
+    <div class="screen"><img class="shot" src="{{RAW}}/levelup.png"></div>
+  </div>
+  <div class="pop" style="left:60px; top:2100px; width:1200px; transform: rotate(-1.5deg)"><img src="{{ASSETS}}/quest_rows.png"></div>
+</div>
+
+<!-- ============ F10 PRIVATE / ICONS ============ -->
+<div class="frame" style="left:11880px">
+  <div class="kicker" style="top:200px">{{f10.kicker}}</div>
+  <div class="h" style="top:280px">{{f10.h}}</div>
+  <div class="sub" style="top:600px">{{f10.sub}}</div>
+  <div style="position:absolute; left:0; right:0; top:1000px; height:900px">
+    <img src="{{SHARED}}/icon_midnight.png" style="position:absolute; left:120px; top:250px; width:340px; border-radius:76px; transform: rotate(-12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon_emerald.png" style="position:absolute; right:120px; top:250px; width:340px; border-radius:76px; transform: rotate(12deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon_gold.png" style="position:absolute; left:250px; top:80px; width:380px; border-radius:86px; transform: rotate(-5deg); box-shadow:0 30px 80px rgba(0,0,0,.6)">
+    <img src="{{SHARED}}/icon.png" style="position:absolute; left:440px; top:120px; width:440px; border-radius:100px; box-shadow:0 40px 100px rgba(0,0,0,.7), 0 0 120px rgba(255,215,64,.45)">
+  </div>
+  <div class="sub" style="top:1880px; font-size:46px">{{f10.icons}}</div>
+  <div class="row" style="top:2250px; flex-direction:column; align-items:center; gap:24px">
+    <div class="chip">✓ {{f10.chips.0}}</div>
+    <div class="chip">✓ {{f10.chips.1}}</div>
+    <div class="chip">✓ {{f10.chips.2}}</div>
+  </div>
+</div>
+
+<script>
+// Fit every caption inside its frame: shrink until each line fits the width.
+document.querySelectorAll('.frame').forEach(fr => {
+  fr.querySelectorAll('.h, .kicker').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > el.clientWidth + 2 && size > 40) { size -= 3; el.style.fontSize = size + 'px'; }
+  });
+  fr.querySelectorAll('.sub').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize); const lh = parseFloat(getComputedStyle(el).lineHeight) || size * 1.25;
+    while (el.getBoundingClientRect().height > lh * 2.2 && size > 28) { size -= 2; el.style.fontSize = size + 'px'; }
+  });
+  fr.querySelectorAll('.chip').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > 1180 && size > 26) { size -= 2; el.style.fontSize = size + 'px'; }
+  });
+});
+
+// Gold coin trail: one continuous chain that weaves through all ten frames.
+const svg = document.getElementById('trail');
+const NS = 'http://www.w3.org/2000/svg';
+const pts = [[640,1520],[1080,1830],[1320,1960],[1700,1900],[2640,1480],[3150,1650],[3960,2660],[4650,2780],[5280,1700],[5900,1300],[6600,2660],[7200,2780],[7920,1600],[8500,1400],[9240,1500],[9800,1350],[10560,1460],[11100,1500],[11880,1480],[12320,1380],[12540,1350]];
+function catmull(p){ let d=`M${p[0][0]},${p[0][1]}`; for(let i=0;i<p.length-1;i++){const p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2; const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6], c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6]; d+=` C${c1[0]},${c1[1]} ${c2[0]},${c2[1]} ${p2[0]},${p2[1]}`;} return d; }
+svg.innerHTML = `<defs>
+  <radialGradient id="cg" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#FFF7C8"/><stop offset=".45" stop-color="#FFD740"/><stop offset=".85" stop-color="#E08F00"/><stop offset="1" stop-color="#A86400"/></radialGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="sh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".45"/></filter></defs>`;
+const d = catmull(pts);
+const glow = document.createElementNS(NS,'path'); glow.setAttribute('d',d); glow.setAttribute('fill','none'); glow.setAttribute('stroke','#FFC21A'); glow.setAttribute('stroke-width','26'); glow.setAttribute('opacity','.35'); glow.setAttribute('filter','url(#glow)'); svg.appendChild(glow);
+const line = document.createElementNS(NS,'path'); line.setAttribute('d',d); line.setAttribute('fill','none'); line.setAttribute('stroke','#FFE07A'); line.setAttribute('stroke-width','6'); line.setAttribute('stroke-dasharray','2 26'); line.setAttribute('stroke-linecap','round'); line.setAttribute('opacity','.85'); svg.appendChild(line);
+const L = line.getTotalLength();
+let i = 0;
+for (let s = 380; s < L - 40; s += 150) {
+  const p = line.getPointAtLength(s); const r = 30 + 12*Math.abs(Math.sin(i*1.7)); i++;
+  const g = document.createElementNS(NS,'g'); g.setAttribute('transform',`translate(${p.x},${p.y}) rotate(${(i*37)%360}) scale(1, ${0.55+0.45*Math.abs(Math.cos(i*0.9))})`); g.setAttribute('filter','url(#sh)');
+  g.innerHTML = `<circle r="${r}" fill="url(#cg)" stroke="#9A5E00" stroke-width="2.5"/><circle r="${r*0.74}" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="3"/><circle r="${r*0.74}" fill="none" stroke="rgba(120,70,0,.35)" stroke-width="2" transform="translate(1.5,2)"/>`;
+  svg.appendChild(g);
+}
+// sparkles
+for (let k = 0; k < 90; k++) { const s = document.createElement('div'); s.className='sparkle'; const x=(k*1471)%13200, y=200+((k*733)%2400); s.style.left=x+'px'; s.style.top=y+'px'; s.style.opacity=(0.25+((k*37)%60)/100).toFixed(2); s.style.transform=`scale(${0.5+((k*13)%10)/10})`; s.style.zIndex=1; if (x%13200>3960 && x%13200<5280) s.style.display='none'; document.body.appendChild(s); }
+</script>
+</body></html>

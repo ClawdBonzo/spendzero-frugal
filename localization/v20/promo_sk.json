@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Novinka na sezónu bez míňania: tri výzvy len na obmedzený čas.\n• Black Friday bez nákupov (Black Friday No-Buy Weekend): vynechajte každú zľavu od piatka do Cyber Monday.\n• 12 dní bez míňania (12 Days of No-Spend): dvanásť dní po sebe pred Vianocami.\n• Január bez míňania (No-Spend January): začnite rok 31 dňami len s nevyhnutnými výdavkami.\nKaždá výzva sa vo svojej sezóne objaví v sekcii Challenges (aplikácia je v angličtine).\nKódy ponúk pre SpendZero Pro uplatníte priamo v aplikácii – v nastaveniach alebo na obrazovke Pro.",
+ "promo": {
+  "now": "Nové výzvy na obmedzený čas: Black Friday bez nákupov, 12 dní bez míňania pred Vianocami a január bez míňania. Každý deň spečatíte zlatou mincou.",
+  "bf": "Láka vás Black Friday? Dajte si nákupný pôst: vynechajte každú zľavu od piatka do Cyber Monday a namiesto toho pestujte svoj strom bohatstva.",
+  "dec": "12 dní bez míňania pred Vianocami: dvanásť dní po sebe. Plánované darčeky áno, nákupy z rozmaru nie. Výzvu nájdete v sekcii Challenges.",
+  "jan": "Január bez míňania: 31 dní len s tým najnutnejším. Spečaťte každý deň zlatou mincou a začnite nový rok s väčšími úsporami."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday bez nákupov",
+   "short": "Žiadne zľavy od piatka do Cyber Monday",
+   "long": "4-dňová výzva: žiadne zbytočné nákupy od Black Friday do Cyber Monday. Každý deň spečatíte zlatou mincou."
+  },
+  "twelve-days": {
+   "name": "12 dní bez míňania",
+   "short": "Dvanásť dní bez míňania pred Vianocami",
+   "long": "Dvanásť dní po sebe bez zbytočných výdavkov pred Vianocami. Plánované darčeky áno, všetko navyše nie."
+  },
+  "no-spend-january": {
+   "name": "Január bez míňania",
+   "short": "31 dní len s nevyhnutnými výdavkami",
+   "long": "Začnite rok 2027 31 dňami bez míňania: plaťte len za to nevyhnutné a každý deň spečaťte zlatou mincou."
+  }
+ }
+}

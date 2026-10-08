@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Nytt inför köpstoppssäsongen: tre utmaningar under begränsad tid.\n• Köpfri Black Friday-helg: hoppa över varje erbjudande från fredag till Cyber Monday.\n• 12 köpfria dagar före jul: tolv dagar i rad innan julafton.\n• Köpstopp i januari: klara långa januari med 31 dagar av bara det nödvändiga.\nVarje utmaning dyker upp under Utmaningar när det är dags.\nDu kan också lösa in erbjudandekoder för SpendZero Pro i appen, under Inställningar eller på uppgraderingsskärmen.",
+ "promo": {
+  "now": "Nytt: tidsbegränsade utmaningar för Black Friday, de 12 dagarna före jul och köpstopp i januari. Försegla varje köpfri dag med ett guldmynt.",
+  "bf": "Black Week lockar? Kör en köpfri Black Friday-helg: hoppa över varje erbjudande från fredag till Cyber Monday och låt pengaträdet växa i stället.",
+  "dec": "12 köpfria dagar före jul: tolv dagar i rad. Planerade julklappar är okej – det extra är det inte. Starta utmaningen under Utmaningar.",
+  "jan": "Köpstopp i januari: klara långa januari med 31 dagar av bara det nödvändiga. Försegla varje dag med ett guldmynt och börja året med mer kvar."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Köpfri Black Friday-helg",
+   "short": "Inga fynd från fredag till Cyber Monday",
+   "long": "En 4-dagarsutmaning: inga onödiga köp från Black Friday till Cyber Monday. Försegla varje dag med ett guldmynt."
+  },
+  "twelve-days": {
+   "name": "12 köpfria dagar före jul",
+   "short": "Tolv köpfria dagar i rad före jul",
+   "long": "Tolv dagar i rad utan onödiga utgifter före jul. Planerade julklappar är okej – det extra är det inte."
+  },
+  "no-spend-january": {
+   "name": "Köpstopp i januari",
+   "short": "31 dagar med bara det nödvändiga",
+   "long": "Börja 2027 med 31 köpfria dagar: lägg pengar på det nödvändiga och försegla varje dag med ett guldmynt."
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Novinka na sezónu bez utrácení: tři výzvy jen na omezenou dobu.\n• Black Friday bez nákupů (Black Friday No-Buy Weekend): vynechte každou slevu od pátku do Cyber Monday.\n• 12 dní bez utrácení (12 Days of No-Spend): dvanáct dní v řadě před Vánoci.\n• Leden bez utrácení (No-Spend January): začněte rok 31 dny jen s nezbytnými výdaji.\nKaždá výzva se ve své sezóně objeví v sekci Challenges (aplikace je v angličtině).\nKódy nabídek pro SpendZero Pro uplatníte přímo v aplikaci – v nastavení nebo na obrazovce Pro.",
+ "promo": {
+  "now": "Nové výzvy na omezenou dobu: Black Friday bez nákupů, 12 dní bez utrácení před Vánoci a leden bez utrácení. Každý den zpečetíte zlatou mincí.",
+  "bf": "Láká vás Black Friday? Dejte si nákupní půst: vynechte každou slevu od pátku do Cyber Monday a místo toho pěstujte svůj strom bohatství.",
+  "dec": "12 dní bez utrácení před Vánoci: dvanáct dní v řadě. Plánované dárky ano, nákupy z rozmaru ne. Výzvu najdete v sekci Challenges.",
+  "jan": "Leden bez utrácení: 31 dní jen s tím nejnutnějším. Zpečeťte každý den zlatou mincí a začněte nový rok s většími úsporami."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday bez nákupů",
+   "short": "Žádné slevy od pátku do Cyber Monday",
+   "long": "4denní výzva: žádné zbytečné nákupy od Black Friday do Cyber Monday. Každý den zpečetíte zlatou mincí."
+  },
+  "twelve-days": {
+   "name": "12 dní bez utrácení",
+   "short": "Dvanáct dní bez utrácení před Vánoci",
+   "long": "Dvanáct dní v řadě bez zbytečných výdajů před Vánoci. Plánované dárky ano, všechno navíc ne."
+  },
+  "no-spend-january": {
+   "name": "Leden bez utrácení",
+   "short": "31 dní jen s nezbytnými výdaji",
+   "long": "Začněte rok 2027 31 dny bez utrácení: plaťte jen za to nezbytné a každý den zpečeťte zlatou mincí."
+  }
+ }
+}

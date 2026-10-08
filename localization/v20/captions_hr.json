@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Ne troši.<br><g>Skupljaj zlato.</g>",
+  "sub": "Svaki dan bez trošenja postaje zlatnik koji ostaje tvoj.",
+  "chip_streak": "Niz od 24 dana",
+  "chip_kept": "+$40 ušteđeno danas",
+  "trust": [
+   "Bez oglasa",
+   "Bez prijave u banku",
+   "100% privatno"
+  ]
+ },
+ "f2": {
+  "kicker": "Kasica",
+  "h": "Ušteđevina ti<br><g>raste pred očima.</g>"
+ },
+ "f3": {
+  "kicker": "Tvoja prognoza",
+  "h": "Koliko ti godina<br><g>može donijeti?</g>"
+ },
+ "f4": {
+  "kicker": "Kalendar zlatnika",
+  "h": "Ispuni godinu<br><g>zlatom.</g>"
+ },
+ "f5": {
+  "kicker": "Dnevnik iskušenja",
+  "h": "Pobijedi poriv.<br><g>Zadrži novac.</g>"
+ },
+ "f6": {
+  "kicker": "Stablo bogatstva",
+  "h": "Stablo koje raste<br>s tvojim <g>nizom.</g>",
+  "sub": "Danju i noću, u svakom godišnjem dobu, i lampice u prosincu."
+ },
+ "f7": {
+  "kicker": "Mjesečni pregled",
+  "h": "Tvoj mjesec,<br><g>zapečaćen.</g>"
+ },
+ "f8": {
+  "kicker": "Aktivnost uživo",
+  "h": "Zapečati dan<br><g>bez otključavanja.</g>",
+  "date": "Tuesday, October 6",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Misije · XP · 25 razina",
+  "h": "Napreduj.<br>Osvoji <g>značke.</g>"
+ },
+ "f10": {
+  "kicker": "Privatnost u temelju",
+  "h": "Oglasi? Ne.<br><g>Banka? Isto ne.</g>",
+  "sub": "Bez računa, bez povezivanja s bankom. Tvoji podaci ostaju na iPhoneu.",
+  "icons": "Napreduj i otključaj zlatnu, smaragdnu i ponoćnu ikonu aplikacije.",
+  "chips": [
+   "Radi bez računa",
+   "Nikad se ne povezuje s bankom",
+   "Tvoji podaci ostaju na iPhoneu"
+  ]
+ }
+}

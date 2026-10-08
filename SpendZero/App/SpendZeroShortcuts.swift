@@ -1,8 +1,20 @@
 import AppIntents
 
 /// Surfaces the app's intents to Siri, Spotlight and the Shortcuts app with spoken phrases.
+/// Every phrase must contain `\(.applicationName)`. English phrases live here; translations go
+/// in Resources/*.lproj/AppShortcuts.strings (keys use `${applicationName}`).
 struct SpendZeroShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: SealTodayIntent(),
+            phrases: [
+                "Seal today in \(.applicationName)",
+                "Seal the day in \(.applicationName)",
+                "Seal my day in \(.applicationName)",
+            ],
+            shortTitle: "Seal Today",
+            systemImageName: "checkmark.seal.fill"
+        )
         AppShortcut(
             intent: MarkNoSpendDayIntent(),
             phrases: [
@@ -11,7 +23,17 @@ struct SpendZeroShortcuts: AppShortcutsProvider {
                 "I didn't spend today in \(.applicationName)",
             ],
             shortTitle: "No-Spend Day",
-            systemImageName: "checkmark.seal.fill"
+            systemImageName: "checkmark.circle.fill"
+        )
+        AppShortcut(
+            intent: ResistedImpulseIntent(),
+            phrases: [
+                "I resisted buying something in \(.applicationName)",
+                "I didn't buy something in \(.applicationName)",
+                "Log a resisted impulse in \(.applicationName)",
+            ],
+            shortTitle: "I Resisted Buying…",
+            systemImageName: "hand.raised.fill"
         )
         AppShortcut(
             intent: LogSpendingIntent(),
@@ -23,7 +45,7 @@ struct SpendZeroShortcuts: AppShortcutsProvider {
             intent: ResistImpulseIntent(),
             phrases: ["Log an impulse in \(.applicationName)", "I resisted an impulse in \(.applicationName)"],
             shortTitle: "Log Impulse",
-            systemImageName: "hand.raised.fill"
+            systemImageName: "hand.raised"
         )
     }
 }

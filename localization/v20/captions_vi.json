@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Đừng tiêu.<br><g>Gom vàng.</g>",
+  "sub": "Mỗi ngày không chi tiêu là một đồng vàng thuộc về bạn.",
+  "chip_streak": "Chuỗi 24 ngày",
+  "chip_kept": "+$40 để dành hôm nay",
+  "trust": [
+   "Không quảng cáo",
+   "Không cần ngân hàng",
+   "Riêng tư"
+  ]
+ },
+ "f2": {
+  "kicker": "Hũ tiền vàng",
+  "h": "Tiền tiết kiệm<br><g>chất cao dần.</g>"
+ },
+ "f3": {
+  "kicker": "Dự báo của bạn",
+  "h": "Một năm để dành<br><g>được bao nhiêu?</g>"
+ },
+ "f4": {
+  "kicker": "Lịch đồng vàng",
+  "h": "Lấp đầy năm<br>bằng <g>vàng.</g>"
+ },
+ "f5": {
+  "kicker": "Nhật ký cám dỗ",
+  "h": "Cưỡng lại cám dỗ.<br><g>Giữ lấy tiền.</g>"
+ },
+ "f6": {
+  "kicker": "Cây tài lộc",
+  "h": "Cây lớn dần<br>theo <g>chuỗi ngày.</g>",
+  "sub": "Ngày và đêm, đủ bốn mùa, và đèn lấp lánh vào tháng 12."
+ },
+ "f7": {
+  "kicker": "Tổng kết tháng",
+  "h": "Tháng của bạn,<br><g>đã đóng dấu.</g>"
+ },
+ "f8": {
+  "kicker": "Hoạt động trực tiếp",
+  "h": "Đóng dấu ngày<br>từ <g>Màn hình khóa.</g>",
+  "date": "Tuesday, October 6",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Nhiệm vụ · XP · 25 cấp",
+  "h": "Lên cấp.<br>Nhận <g>huy hiệu.</g>"
+ },
+ "f10": {
+  "kicker": "Riêng tư từ gốc",
+  "h": "Không quảng cáo.<br><g>Ngân hàng? Không.</g>",
+  "sub": "Không tài khoản, không liên kết ngân hàng. Dữ liệu ở lại trên iPhone của bạn.",
+  "icons": "Lên cấp để mở khóa biểu tượng ứng dụng Vàng, Ngọc lục bảo và Nửa đêm.",
+  "chips": [
+   "Dùng không cần tài khoản",
+   "Không bao giờ liên kết ngân hàng",
+   "Dữ liệu ở lại trên iPhone của bạn"
+  ]
+ }
+}

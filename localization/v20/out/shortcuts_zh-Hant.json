@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "用${applicationName}幫今天蓋章",
+  "Seal the day in ${applicationName}": "在${applicationName}蓋今天的章",
+  "Seal my day in ${applicationName}": "用${applicationName}幫我今天蓋章",
+  "I resisted buying something in ${applicationName}": "跟${applicationName}說我忍住沒買東西",
+  "I didn't buy something in ${applicationName}": "跟${applicationName}說我少買了一樣東西",
+  "Log a resisted impulse in ${applicationName}": "在${applicationName}記錄一次忍住的衝動"
+}

@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Cero gastos.<br><g>Puro oro.</g>",
+  "sub": "Cada día sin gastos se vuelve una moneda de oro que es tuya.",
+  "chip_streak": "Racha de 24 días",
+  "chip_kept": "+$40 ahorrados hoy",
+  "trust": [
+   "Sin anuncios",
+   "Sin datos bancarios",
+   "100% privado"
+  ]
+ },
+ "f2": {
+  "kicker": "Alcancía",
+  "h": "Tus ahorros,<br><g>moneda a moneda.</g>"
+ },
+ "f3": {
+  "kicker": "Tu proyección",
+  "h": "Descubre cuánto<br><g>vale tu año.</g>"
+ },
+ "f4": {
+  "kicker": "Calendario de monedas",
+  "h": "Llena tu año<br>de <g>oro.</g>"
+ },
+ "f5": {
+  "kicker": "Registro de antojos",
+  "h": "Vence el antojo.<br><g>Cuida tu lana.</g>"
+ },
+ "f6": {
+  "kicker": "Árbol de la riqueza",
+  "h": "Un árbol que crece<br>con tu <g>racha.</g>",
+  "sub": "De día y de noche, en cada estación y con luces en diciembre."
+ },
+ "f7": {
+  "kicker": "Resumen del mes",
+  "h": "Tu mes,<br><g>sellado.</g>"
+ },
+ "f8": {
+  "kicker": "Actividad en vivo",
+  "h": "Sella el día sin<br><g>desbloquear.</g>",
+  "date": "Martes, 6 de octubre",
+  "la_left": "para sellar hoy",
+  "la_streak": "Tu racha de 23 días está en juego",
+  "la_button": "Sellar"
+ },
+ "f9": {
+  "kicker": "Misiones · 25 niveles",
+  "h": "Sube de nivel.<br>Gana <g>insignias.</g>"
+ },
+ "f10": {
+  "kicker": "Privacidad total",
+  "h": "Cero anuncios.<br>Cero <g>bancos.</g>",
+  "sub": "Sin cuenta y sin conectar tu banco. Tus datos se quedan en tu iPhone.",
+  "icons": "Sube de nivel y desbloquea los íconos Oro, Esmeralda y Medianoche.",
+  "chips": [
+   "Funciona sin cuenta",
+   "Nunca conectas tu banco",
+   "Tus datos se quedan en tu iPhone"
+  ]
+ }
+}

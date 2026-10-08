@@ -107,8 +107,7 @@ struct QuestPanelView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding(AppTheme.paddingLarge)
-                        .background(AppTheme.cardBackground)
-                        .cornerRadius(AppTheme.cornerRadiusMedium)
+                        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                         .padding(.horizontal, AppTheme.paddingLarge)
                     }
 
@@ -191,8 +190,7 @@ struct QuestCardView: View {
                 }
             }
             .padding(AppTheme.paddingMedium)
-            .background(AppTheme.cardBackground)
-            .cornerRadius(AppTheme.cornerRadiusMedium)
+            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
             .overlay(
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
                     .stroke(

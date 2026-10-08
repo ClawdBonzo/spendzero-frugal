@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Nichts kaufen.<br><g>Gold prägen.</g>",
+  "sub": "Jeder ausgabefreie Tag wird zur Goldmünze, die du behältst.",
+  "chip_streak": "24-Tage-Serie",
+  "chip_kept": "+40 € heute gespart",
+  "trust": [
+   "Werbefrei",
+   "Kein Bank-Login",
+   "100 % privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Münztresor",
+  "h": "Dein Erspartes<br><g>türmt sich auf.</g>"
+ },
+ "f3": {
+  "kicker": "Deine Prognose",
+  "h": "Was dein Jahr<br><g>wert sein kann.</g>"
+ },
+ "f4": {
+  "kicker": "Münzkalender",
+  "h": "Füll dein Jahr<br>mit <g>Gold.</g>"
+ },
+ "f5": {
+  "kicker": "Impuls-Tagebuch",
+  "h": "Impuls besiegt.<br><g>Geld bleibt.</g>"
+ },
+ "f6": {
+  "kicker": "Vermögensbaum",
+  "h": "Dein Baum wächst<br>mit deiner <g>Serie.</g>",
+  "sub": "Tag und Nacht, alle Jahreszeiten – und Lichter im Dezember."
+ },
+ "f7": {
+  "kicker": "Monatsrückblick",
+  "h": "Dein Monat,<br><g>besiegelt.</g>"
+ },
+ "f8": {
+  "kicker": "Live-Aktivität",
+  "h": "Tag besiegeln am<br><g>Sperrbildschirm.</g>",
+  "date": "Dienstag, 6. Oktober",
+  "la_left": "bleiben zum Besiegeln",
+  "la_streak": "23-Tage-Serie steht auf dem Spiel",
+  "la_button": "Besiegeln"
+ },
+ "f9": {
+  "kicker": "Quests · XP · 25 Level",
+  "h": "Aufsteigen.<br><g>Abzeichen holen.</g>"
+ },
+ "f10": {
+  "kicker": "Privat von Grund auf",
+  "h": "Keine Werbung.<br>Kein <g>Bank-Login.</g>",
+  "sub": "Kein Konto, kein Bankzugang. Deine Daten bleiben auf deinem iPhone.",
+  "icons": "Steig auf und schalte die App-Icons Gold, Smaragd und Mitternacht frei.",
+  "chips": [
+   "Funktioniert ohne Konto",
+   "Garantiert ohne Bankzugang",
+   "Deine Daten bleiben auf deinem iPhone"
+  ]
+ }
+}

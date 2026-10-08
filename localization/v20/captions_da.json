@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Købestop.<br><g>Saml guld.</g>",
+  "sub": "Hver købefri dag bliver til en guldmønt, du får lov at beholde.",
+  "chip_streak": "24 dage i træk",
+  "chip_kept": "+40 kr. sparet i dag",
+  "trust": [
+   "Ingen reklamer",
+   "Intet bank-login",
+   "100 % privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Sparekrukken",
+  "h": "Se pengene<br><g>hobe sig op.</g>"
+ },
+ "f3": {
+  "kicker": "Din prognose",
+  "h": "Se, hvad et år<br>kan være <g>værd.</g>"
+ },
+ "f4": {
+  "kicker": "Møntkalender",
+  "h": "Fyld dit år<br>med <g>guld.</g>"
+ },
+ "f5": {
+  "kicker": "Impulsloggen",
+  "h": "Stå imod trangen.<br><g>Behold pengene.</g>"
+ },
+ "f6": {
+  "kicker": "Pengetræet",
+  "h": "Træet vokser<br>med din <g>stime.</g>",
+  "sub": "Dag og nat, alle årstider – og julelys i december."
+ },
+ "f7": {
+  "kicker": "Månedens tilbageblik",
+  "h": "Din måned,<br><g>forseglet.</g>"
+ },
+ "f8": {
+  "kicker": "Live-aktivitet",
+  "h": "Forsegl dagen<br>fra <g>låseskærmen.</g>",
+  "date": "Tirsdag 6. oktober",
+  "la_left": "tilbage til at forsegle",
+  "la_streak": "Stime på spil: 23",
+  "la_button": "Forsegl"
+ },
+ "f9": {
+  "kicker": "Missioner · 25 niveauer",
+  "h": "Stig i niveau.<br>Saml <g>mærker.</g>"
+ },
+ "f10": {
+  "kicker": "Privat fra bunden",
+  "h": "Ingen reklamer.<br>Intet <g>bank-login.</g>",
+  "sub": "Ingen konto, ingen kobling til din bank. Dine data bliver på din iPhone.",
+  "icons": "Stig i niveau, og lås app-ikonerne Guld, Smaragd og Midnat op.",
+  "chips": [
+   "Virker uden konto",
+   "Aldrig koblet til banken",
+   "Dine data bliver på din iPhone"
+  ]
+ }
+}

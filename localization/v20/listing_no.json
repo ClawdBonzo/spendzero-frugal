@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Kjøpestopp",
+ "subtitle": "Spar penger, stopp impulskjøp",
+ "keywords": "sparing,sparemål,utfordring,spareutfordring,kjøpefri,budsjett,økonomi,forbruk,rekke,streak,vane",
+ "promotionalText": "Nytt i 2.0: Hver kjøpefri dag blir en gullmynt i Myntkrukka. Fyll året med gull, se spareprognosen din og forsegl dagen rett fra låst skjerm. Nå på norsk!",
+ "description": "La være å bruke penger – og vinn likevel. SpendZero gjør hver kjøpefri dag til en gullmynt: se dem hope seg opp i Myntkrukka, fyll året i Myntkalenderen og se hva et år uten unødvendige kjøp kan være verdt. Rekker, XP, oppdrag, merker og et levende pengetre gjør kjøpestoppen til et spill du faktisk har lyst til å vinne.\n\nTar du kjøpestopp en måned, et helt år eller vil du bare slutte med impulskjøp? Med SpendZero føles hver dag pengene blir i lommeboka, som en seier.\n\nNYTT I 2.0 – NÅ PÅ NORSK\n• Myntkrukka: Hver forseglede dag slipper en gullmynt ned i en glasskrukke du kan vippe og riste\n• Myntkalenderen: hele året ditt i gullmynter, pluss helt nye grafer\n• Spareprognose: se hva et år med kjøpefrie dager kan være verdt\n• Månedsoppsummering: måneden din som en story du kan dele\n• Forsegl dagen fra låst skjerm, Dynamic Island, Kontrollsenter eller Siri\n• Et levende pengetre: dag og natt, årstider og julelys i desember\n• Lås opp appikonene Gull, Smaragd og Midnatt når du går opp i nivå\n\nET SPILL DU VINNER VED Å IKKE BRUKE PENGER\nMarker en kjøpefri dag, så blir den forseglet med en gullmynt. Rekka teller oppover, belønningene spretter fram, og du ser hvor nær neste milepæl du er.\n• Rekker, med rekkefrys som redder deg på en dårlig dag\n• Daglige og ukentlige oppdrag som følger det du faktisk gjør\n• 25 nivåer, fra Sparerekrutt til Pengekonge\n• Merker for rekker på 7, 30, 100 og 365 dager og for sparemilepæler\n• Utfordringer som 30 dagers kjøpestopp, kaffedetox-uke og sesongutfordringer som Kjøpestopp i januar – eller lag din egen\n\nLA PENGETREET VOKSE\nTreet ditt er helt unikt. Det vokser for hvert nivå, bærer flere gullmynter jo mer du sparer, og følger den virkelige dagen din, fra soloppgang til månelyse netter. Ryker rekka, begynner det å visne – én kjøpefri dag, så kvikner det til igjen.\n\nSTOPP IMPULSKJØPENE\nLigger det noe i handlekurven og frister? Logg fristelsen. Står du imot, teller beløpet som spart – med XP som bevis. Ga du etter? Ingen skam – logg det og fortsett. Nødvendigheter som dagligvarer og transport bryter ikke den kjøpefrie dagen din.\n\nIKKE BRYT REKKA\n• Interaktive widgeter: forsegl dagen uten å åpne appen\n• Valgfri nedtelling om kvelden på låst skjerm før dagen er omme\n• Forsegl med Siri eller med ett trykk i Kontrollsenter\n• En vennlig kveldspåminnelse – og en morgenpåminnelse hvis du glemte i går\n\nPRIVAT FRA BUNNEN AV\nAlt du logger, blir på iPhonen din. Ingen konto, ingen bankinnlogging, ingen reklame, ingen sporing.\n\nTilgjengelig på 16 språk: norsk, engelsk, svensk, dansk, finsk, tysk, nederlandsk, fransk, spansk, italiensk, portugisisk, tyrkisk, japansk, koreansk samt forenklet og tradisjonell kinesisk.\n\nABONNEMENT\nSpendZero Pro fås som ukentlig, månedlig eller årlig abonnement, eller som et engangskjøp for livstid. Måneds- og årsabonnement kan inkludere en gratis prøveperiode på 3 dager for nye abonnenter som oppfyller vilkårene. Prisene vises i appen i din lokale valuta. Abonnementet fornyes automatisk med mindre det sies opp minst 24 timer før gjeldende periode utløper. Administrer eller si opp når som helst i innstillingene for App Store-kontoen din.\n\nBruksvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPersonvernerklæring: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0 – nå på norsk!\n• Myntkrukka: Hver forseglede dag slipper en gullmynt ned i en glasskrukke du kan vippe og riste\n• Myntkalenderen: hele året i gullmynter, pluss helt nye grafer\n• Spareprognose: se hva et år med kjøpefrie dager kan være verdt\n• Månedsoppsummering: måneden din som en story du kan dele\n• Forsegl dagen fra låst skjerm og Dynamic Island med nedtelling om kvelden, eller via Kontrollsenter og Siri\n• Pengetreet lever i sanntid: dag og natt, årstider og julelys i desember\n• Lås opp appikonene Gull, Smaragd og Midnatt når du går opp i nivå\n• Nye lydeffekter og haptikk\n• Nå på 16 språk – nye er norsk, svensk, dansk, finsk, koreansk og tradisjonell kinesisk",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Uke",
+   "description": "Alle Pro-funksjoner, uke for uke"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Måned",
+   "description": "Alle Pro-funksjoner, fornyes hver måned"
+  },
+  "yearly": {
+   "name": "SpendZero Pro År",
+   "description": "Et helt år med alle Pro-funksjoner"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Livstid",
+   "description": "Betal én gang – Pro for alltid"
+  }
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Zéro dépense.<br><g>Frappe de l’or.</g>",
+  "sub": "Chaque journée sans dépense devient une pièce d’or à garder.",
+  "chip_streak": "Série de 24 jours",
+  "chip_kept": "+40 € gardés aujourd’hui",
+  "trust": [
+   "Zéro pub",
+   "Sans accès bancaire",
+   "100 % privé"
+  ]
+ },
+ "f2": {
+  "kicker": "Coffre à pièces",
+  "h": "Tes économies<br><g>s’empilent.</g>"
+ },
+ "f3": {
+  "kicker": "Ta prévision",
+  "h": "Découvre ce que<br>vaut <g>ton année.</g>"
+ },
+ "f4": {
+  "kicker": "Calendrier des pièces",
+  "h": "Ton année,<br><g>tout en or.</g>"
+ },
+ "f5": {
+  "kicker": "Journal des envies",
+  "h": "Ne craque pas.<br><g>Garde tes sous.</g>"
+ },
+ "f6": {
+  "kicker": "Arbre de richesse",
+  "h": "Ton arbre pousse<br>avec ta <g>série.</g>",
+  "sub": "Jour et nuit, à chaque saison, et illuminé en décembre."
+ },
+ "f7": {
+  "kicker": "Bilan du mois",
+  "h": "Ton mois,<br><g>scellé.</g>"
+ },
+ "f8": {
+  "kicker": "Activité en direct",
+  "h": "Journée scellée,<br>écran <g>verrouillé.</g>",
+  "date": "Mardi 6 octobre",
+  "la_left": "pour sceller ta journée",
+  "la_streak": "Ta série de 23 jours est en jeu",
+  "la_button": "Sceller"
+ },
+ "f9": {
+  "kicker": "Quêtes · XP · 25 niveaux",
+  "h": "Monte de niveau.<br>Gagne des <g>badges.</g>"
+ },
+ "f10": {
+  "kicker": "Privé par nature",
+  "h": "Ni pub,<br>ni <g>accès bancaire.</g>",
+  "sub": "Sans compte ni lien bancaire. Tes données restent sur ton iPhone.",
+  "icons": "Monte de niveau pour débloquer les icônes Or, Émeraude et Minuit.",
+  "chips": [
+   "Fonctionne sans compte",
+   "Jamais de lien bancaire",
+   "Tes données restent sur ton iPhone"
+  ]
+ }
+}

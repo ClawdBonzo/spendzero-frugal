@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Dni bez wydatków",
+ "subtitle": "Oszczędzanie i mniej zakupów",
+ "keywords": "wyzwanie,impulsywne,zakupy,zakupoholizm,budżet,wydatki,oszczędności,skarbonka,nawyk,seria,no,spend",
+ "promotionalText": "Nowe w 2.0: każdy dzień bez wydatków to złota moneta w słoiku Coin Vault, a ekran blokady odlicza czas do końca dnia. Bez reklam, bez konta. Interfejs po angielsku.",
+ "description": "Nie wydawaj – i wygrywaj. SpendZero zamienia każdy dzień bez wydatków w złotą monetę: patrz, jak przybywa ich w słoiku Coin Vault, wypełnij złotem cały rok w Mint Calendar i sprawdź, ile może być wart rok bez zbędnych zakupów. Serie, XP, zadania, odznaki i żywe drzewko bogactwa zmieniają wyzwanie no spend w grę, którą chcesz wygrać.\n\nWAŻNE: aplikacja nie ma polskiej wersji językowej. Jest dostępna po angielsku i w 15 innych językach (lista niżej), dlatego przy funkcjach podajemy też angielskie nazwy.\n\nNOWOŚCI W WERSJI 2.0\n• Coin Vault: każdy przypieczętowany dzień wrzuca złotą monetę do szklanego słoika, który możesz przechylać\n• Mint Calendar: cały rok w złotych monetach i nowe wykresy\n• Prognoza oszczędności: ile może być wart rok dni bez wydatków\n• Monthly Recap: podsumowanie miesiąca jako relacja do udostępnienia\n• Przypieczętuj dzień z ekranu blokady, Dynamic Island, Centrum sterowania lub przez Siri\n• Żywe drzewko: dzień i noc, pory roku, światełka w grudniu\n• Ikony Gold, Emerald i Midnight do odblokowania z kolejnymi poziomami\n\nGRA, KTÓRĄ WYGRYWASZ, NIE WYDAJĄC\nOznacz dzień bez wydatków, a przypieczętuje go złota moneta. Seria rośnie, wpadają nagrody i widzisz, ile brakuje do kolejnego progu.\n• Serie z zamrożeniami, które ratują cię w gorszy dzień\n• Codzienne i cotygodniowe zadania oparte na tym, co naprawdę robisz\n• 25 poziomów, od Frugal Novice do Wealth King\n• Odznaki za serie 7, 30, 100 i 365 dni oraz progi oszczędności\n• Wyzwania, m.in. 30-Day No-Spend Challenge i sezonowe No-Spend January – albo własne\n\nDRZEWKO BOGACTWA\nTwoje drzewko (Wealth Tree) jest jedyne w swoim rodzaju. Rośnie z każdym poziomem, obrasta złotymi monetami i żyje w rytmie twojego dnia. Gdy seria się urwie, więdnie – jeden dzień bez wydatków i znów odżywa.\n\nPOKONAJ IMPULSYWNE ZAKUPY\nCoś kusi w koszyku? Zapisz to w Impulse Log. Odpuścisz – kwota liczy się jako zaoszczędzona, z XP na dowód. Nie udało się? Bez wstydu – zapisz i działaj dalej. Zakupy spożywcze czy dojazdy nie przerywają dnia bez wydatków.\n\nNIE PRZERYWAJ SERII\n• Interaktywne widżety: przypieczętuj dzień bez otwierania aplikacji\n• Opcjonalne wieczorne odliczanie na ekranie blokady\n• Siri (po angielsku, np. „Log a no-spend day in SpendZero”) lub jedno dotknięcie w Centrum sterowania\n• Wieczorne przypomnienie – i poranne, jeśli wczoraj coś umknęło\n\nPRYWATNOŚĆ\nWszystko zostaje na twoim iPhonie. Bez konta, bez logowania do banku, bez reklam, bez śledzenia.\n\nAplikacja jest dostępna w 16 językach: angielski, niemiecki, hiszpański, francuski, włoski, niderlandzki, portugalski, turecki, japoński, chiński (uproszczony i tradycyjny), koreański, szwedzki, duński, norweski i fiński. Polskiej wersji nie ma.\n\nSUBSKRYPCJE\nSpendZero Pro jest dostępne w subskrypcji tygodniowej, miesięcznej lub rocznej albo jako jednorazowy zakup dożywotni. Plany miesięczny i roczny mogą obejmować 3-dniowy bezpłatny okres próbny dla uprawnionych nowych subskrybentów. Ceny są wyświetlane w aplikacji w lokalnej walucie. Subskrypcja odnawia się automatycznie, jeśli nie zostanie anulowana co najmniej 24 godziny przed końcem bieżącego okresu. Możesz nią zarządzać lub ją anulować w dowolnym momencie w ustawieniach konta App Store.\n\nWarunki korzystania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPolityka prywatności: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0:\n• Coin Vault: każdy przypieczętowany dzień wrzuca złotą monetę do szklanego słoika, który możesz przechylać\n• Mint Calendar: cały rok w złotych monetach i nowe wykresy\n• Prognoza oszczędności: ile może być wart rok dni bez wydatków\n• Monthly Recap: podsumowanie miesiąca jako relacja do udostępnienia\n• Wieczorne odliczanie na ekranie blokady i w Dynamic Island, a także Centrum sterowania i Siri\n• Drzewko bogactwa żyje w czasie rzeczywistym: dzień i noc, pory roku, grudniowe światełka\n• Ikony Gold, Emerald i Midnight do odblokowania z poziomami\n• Nowe efekty dźwiękowe i haptyka\n• Aplikacja działa teraz w 16 językach (polskiego wśród nich nie ma – interfejs jest po angielsku)",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro – tydzień",
+   "description": "Wszystkie funkcje Pro, tydzień po tygodniu"
+  },
+  "monthly": {
+   "name": "SpendZero Pro – miesiąc",
+   "description": "Wszystkie funkcje Pro, odnawiane co miesiąc"
+  },
+  "yearly": {
+   "name": "SpendZero Pro – rok",
+   "description": "Cały rok ze wszystkimi funkcjami Pro"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro – dożywotnio",
+   "description": "Płacisz raz, Pro masz na zawsze"
+  }
+ }
+}

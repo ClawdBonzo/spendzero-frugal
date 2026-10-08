@@ -1,4 +1,3 @@
-/* Siri / Shortcuts phrases */
 "Mark today a no-spend day in ${applicationName}" = "${applicationName}で今日を節約デーにして";
 "Log a no-spend day in ${applicationName}" = "${applicationName}で節約デーを記録して";
 "I didn't spend today in ${applicationName}" = "${applicationName}で今日はお金を使わなかったと記録して";
@@ -6,3 +5,9 @@
 "I spent money in ${applicationName}" = "${applicationName}でお金を使ったと記録して";
 "Log an impulse in ${applicationName}" = "${applicationName}で衝動を記録して";
 "I resisted an impulse in ${applicationName}" = "${applicationName}で衝動をガマンしたと記録して";
+"Seal today in ${applicationName}" = "${applicationName}で今日を締めくくって";
+"Seal the day in ${applicationName}" = "${applicationName}で一日を締めくくって";
+"Seal my day in ${applicationName}" = "${applicationName}で今日一日を締めくくって";
+"I resisted buying something in ${applicationName}" = "${applicationName}で買うのをガマンしたと記録して";
+"I didn't buy something in ${applicationName}" = "${applicationName}で買わずに済んだと記録して";
+"Log a resisted impulse in ${applicationName}" = "${applicationName}でガマンした衝動を記録して";

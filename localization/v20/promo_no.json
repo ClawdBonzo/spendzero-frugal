@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Nytt til kjøpestopp-sesongen: tre utfordringer for en begrenset periode.\n• Kjøpestopp i Black Friday-helgen: hopp over alle tilbud fra fredag til Cyber Monday.\n• 12 kjøpefrie dager før jul: tolv dager på rad før julaften.\n• Kjøpestopp i januar: start året med 31 dager med bare det nødvendige.\nHver utfordring dukker opp under Utfordringer når sesongen er der.\nDu kan også løse inn tilbudskoder for SpendZero Pro i appen – under Innstillinger eller på oppgraderingsskjermen.",
+ "promo": {
+  "now": "Nytt: tidsbegrensede utfordringer for Black Friday, de 12 dagene før jul og kjøpestopp i januar. Forsegl hver kjøpefri dag med en gullmynt.",
+  "bf": "Frister Black Week? Bli med på kjøpestopp i Black Friday-helgen: hopp over alle tilbud fra fredag til Cyber Monday, og la pengetreet vokse i stedet.",
+  "dec": "12 kjøpefrie dager før jul: tolv dager på rad. Planlagte julegaver er greit – ekstrakjøpene er det ikke. Start under Utfordringer.",
+  "jan": "Kjøpestopp i januar: 31 dager med bare det nødvendige. Forsegl hver dag med en gullmynt, og start det nye året med mer penger på konto."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday-kjøpestopp",
+   "short": "Ingen tilbud fra fredag til Cyber Monday",
+   "long": "En 4-dagers utfordring: ingen unødvendige kjøp fra Black Friday til Cyber Monday. Forsegl hver dag med en gullmynt."
+  },
+  "twelve-days": {
+   "name": "12 kjøpefrie dager før jul",
+   "short": "Tolv kjøpefrie dager på rad før jul",
+   "long": "Tolv dager på rad uten unødvendige utgifter før jul. Planlagte julegaver er greit – ekstrakjøpene er det ikke."
+  },
+  "no-spend-january": {
+   "name": "Kjøpestopp i januar",
+   "short": "31 dager med bare det nødvendige",
+   "long": "Start 2027 med 31 kjøpefrie dager: bruk penger bare på det nødvendige, og forsegl hver dag med en gullmynt."
+  }
+ }
+}

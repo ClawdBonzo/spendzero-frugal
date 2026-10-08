@@ -22,6 +22,12 @@ struct SettingsView: View {
     @AppStorage("impulseAlertsEnabled") private var impulseAlertsEnabled = false
     @AppStorage("impulseAlertHour") private var impulseAlertHour = 18
     @State private var showNotificationDeniedAlert = false
+    /// Same key and default as `SoundEffects.isEnabled`.
+    @AppStorage("soundEffectsEnabled") private var soundEffectsEnabled = true
+    @AppStorage(LiveActivityCoordinator.enabledKey) private var eveningCountdownEnabled = true
+    @Environment(\.scenePhase) private var scenePhase
+    /// GW Labs apps not on this iPhone yet (More from GW Labs). Rechecked whenever SpendZero comes back.
+    @State private var promotedApps: [CrossPromoApp] = []
 
     private var profile: UserProfile? { profiles.first }
 
@@ -42,7 +48,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                AppTheme.background.ignoresSafeArea()
+                AppScreenBackground()
 
                 List {
                     // Profile Section
@@ -220,6 +226,61 @@ struct SettingsView: View {
                     }
                     .listRowBackground(AppTheme.cardBackground)
 
+                    // Evening check-in: the Lock Screen / Dynamic Island countdown
+                    Section {
+                        Toggle(isOn: Binding(
+                            get: { eveningCountdownEnabled },
+                            set: { newValue in
+                                eveningCountdownEnabled = newValue
+                                LiveActivityCoordinator.shared.refresh(profile: profile, context: modelContext)
+                            }
+                        )) {
+                            HStack {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("Evening countdown")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                        .tint(AppTheme.primaryGreen)
+                    } header: {
+                        Text("Evening check-in")
+                    } footer: {
+                        Text("In the evening, shows how long you have left to seal today on the Lock Screen and in the Dynamic Island. Needs notifications.")
+                    }
+                    .listRowBackground(AppTheme.cardBackground)
+
+                    // Personalize: app icon + sound
+                    Section("Personalize") {
+                        NavigationLink {
+                            AppIconPicker()
+                        } label: {
+                            HStack {
+                                Image(systemName: "app.badge.fill")
+                                    .foregroundColor(AppTheme.accentGold)
+                                Text("App Icon")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+
+                        Toggle(isOn: Binding(
+                            get: { soundEffectsEnabled },
+                            set: { newValue in
+                                soundEffectsEnabled = newValue
+                                if newValue { SoundEffects.play(.clink, volume: 0.4) }
+                            }
+                        )) {
+                            HStack {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .foregroundColor(AppTheme.info)
+                                Text("Sound effects")
+                                    .foregroundColor(AppTheme.textPrimary)
+                            }
+                        }
+                        .tint(AppTheme.primaryGreen)
+                    }
+                    .listRowBackground(AppTheme.cardBackground)
+
                     // Tools Section
                     Section("Tools") {
                         NavigationLink {
@@ -245,6 +306,16 @@ struct SettingsView: View {
                         }
                     }
                     .listRowBackground(AppTheme.cardBackground)
+
+                    // Other GW Labs apps (4+ only), hidden once installed
+                    if !promotedApps.isEmpty {
+                        Section("More from GW Labs") {
+                            ForEach(promotedApps) { app in
+                                CrossPromoRow(app: app)
+                            }
+                        }
+                        .listRowBackground(AppTheme.cardBackground)
+                    }
 
                     // Data Section
                     Section("Data") {
@@ -318,6 +389,10 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear { promotedApps = CrossPromoApp.notInstalled }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { promotedApps = CrossPromoApp.notInstalled }
+            }
             .sheet(isPresented: $showPaywall) {
                 PaywallView(onContinue: { showPaywall = false }, urgencyMessage: "Upgrade to unlock all features")
             }

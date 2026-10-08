@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "${applicationName}에서 오늘 도장 찍어 줘",
+  "Seal the day in ${applicationName}": "${applicationName}에서 도장 찍어 줘",
+  "Seal my day in ${applicationName}": "${applicationName}에서 내 하루에 도장 찍어 줘",
+  "I resisted buying something in ${applicationName}": "${applicationName}, 나 사려다 참았어",
+  "I didn't buy something in ${applicationName}": "${applicationName}, 나 사고 싶은 거 안 샀어",
+  "Log a resisted impulse in ${applicationName}": "${applicationName}에 참은 충동구매 기록해 줘"
+}

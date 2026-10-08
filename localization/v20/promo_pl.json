@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Nowość na sezon bez wydatków: trzy wyzwania dostępne przez ograniczony czas.\n• Black Friday bez zakupów (Black Friday No-Buy Weekend): omiń każdą promocję od piątku do Cyber Monday.\n• 12 dni bez wydatków (12 Days of No-Spend): dwanaście dni z rzędu przed świętami.\n• Styczeń bez wydatków (No-Spend January): zacznij rok od 31 dni tylko z niezbędnymi wydatkami.\nKażde wyzwanie pojawia się w sekcji Challenges w swoim sezonie (aplikacja jest po angielsku).\nKody promocyjne SpendZero Pro zrealizujesz w aplikacji – w ustawieniach lub na ekranie Pro.",
+ "promo": {
+  "now": "Nowe wyzwania na ograniczony czas: Black Friday bez zakupów, 12 dni bez wydatków przed świętami i styczeń bez wydatków. Każdy dzień pieczętujesz złotą monetą.",
+  "bf": "Black Week kusi? Weź udział w Black Friday bez zakupów: omiń każdą promocję od piątku do Cyber Monday i zamiast tego hoduj drzewko bogactwa.",
+  "dec": "12 dni bez wydatków przed świętami: dwanaście dni z rzędu. Zaplanowane prezenty – tak, zakupy pod wpływem chwili – nie. Wyzwanie znajdziesz w Challenges.",
+  "jan": "Styczeń bez wydatków: 31 dni tylko z tym, co niezbędne. Przypieczętuj każdy dzień złotą monetą i zacznij nowy rok z większymi oszczędnościami."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday bez zakupów",
+   "short": "Żadnych promocji od piątku do Cyber Monday",
+   "long": "4-dniowe wyzwanie: zero zbędnych zakupów od Black Friday do Cyber Monday. Każdy dzień pieczętujesz złotą monetą."
+  },
+  "twelve-days": {
+   "name": "12 dni bez wydatków",
+   "short": "Dwanaście dni bez wydatków przed świętami",
+   "long": "Dwanaście dni z rzędu bez zbędnych wydatków przed Bożym Narodzeniem. Zaplanowane prezenty – tak, reszta – nie."
+  },
+  "no-spend-january": {
+   "name": "Styczeń bez wydatków",
+   "short": "31 dni tylko z niezbędnymi wydatkami",
+   "long": "Zacznij 2027 rok od 31 dni bez zbędnych wydatków: kupuj tylko to, co niezbędne, i pieczętuj każdy dzień złotą monetą."
+  }
+ }
+}

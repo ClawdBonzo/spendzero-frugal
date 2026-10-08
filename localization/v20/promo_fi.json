@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Uutta ostolakkokauteen: kolme haastetta rajoitetun ajan.\n• Ostolakko Black Friday -viikonloppuna: ohita kaikki tarjoukset perjantaista Cyber Mondayhin.\n• 12 ostotonta päivää ennen joulua: kaksitoista päivää putkeen ennen jouluaattoa.\n• Tammikuun ostolakko: aloita vuosi 31 päivällä, jolloin ostat vain välttämättömän.\nJokainen haaste näkyy Haasteissa oman kautensa aikana.\nVoit nyt myös lunastaa SpendZero Pron tarjouskoodeja sovelluksessa – Asetuksista tai päivitysnäkymästä.",
+ "promo": {
+  "now": "Uutta: rajoitetun ajan haasteet Black Fridayhin, joulua edeltäviin 12 päivään ja tammikuun ostolakkoon. Sinetöi jokainen ostoton päivä kultakolikolla.",
+  "bf": "Black Week houkuttelee? Ryhdy Black Friday -ostolakkoon: ohita kaikki tarjoukset perjantaista Cyber Mondayhin ja kasvata rahapuuta sen sijaan.",
+  "dec": "12 ostotonta päivää ennen joulua: kaksitoista päivää putkeen. Suunnitellut joululahjat ovat ok – ylimääräiset ostokset eivät. Aloita Haasteista.",
+  "jan": "Tammikuun ostolakko: 31 päivää vain välttämättömillä ostoksilla. Sinetöi jokainen päivä kultakolikolla ja aloita vuosi isommalla säästöllä."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday -ostolakko",
+   "short": "Ei tarjouksia perjantaista Cyber Mondayhin",
+   "long": "4 päivän haaste: ei turhia ostoksia Black Fridaysta Cyber Mondayhin. Sinetöi jokainen päivä kultakolikolla."
+  },
+  "twelve-days": {
+   "name": "Joulun 12 ostotonta päivää",
+   "short": "12 ostotonta päivää putkeen ennen joulua",
+   "long": "12 päivää putkeen ilman turhia ostoksia ennen joulua. Suunnitellut lahjat ovat ok – ylimääräiset ostokset eivät."
+  },
+  "no-spend-january": {
+   "name": "Tammikuun ostolakko",
+   "short": "31 päivää vain välttämättömillä ostoksilla",
+   "long": "Aloita vuosi 2027 ostolakolla: 31 päivää, jolloin ostat vain välttämättömän ja sinetöit jokaisen päivän kultakolikolla."
+  }
+ }
+}

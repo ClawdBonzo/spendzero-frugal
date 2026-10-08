@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Nie wydawaj.<br><g>Zbieraj złoto.</g>",
+  "sub": "Każdy dzień bez wydatków to złota moneta, która zostaje u ciebie.",
+  "chip_streak": "Seria 24 dni",
+  "chip_kept": "Dziś +$40 w kieszeni",
+  "trust": [
+   "Bez reklam",
+   "Bez danych z banku",
+   "100% prywatnie"
+  ]
+ },
+ "f2": {
+  "kicker": "Skarbonka",
+  "h": "Oszczędności<br><g>rosną w oczach.</g>"
+ },
+ "f3": {
+  "kicker": "Twoja prognoza",
+  "h": "Zobacz, ile może<br><g>dać ci rok.</g>"
+ },
+ "f4": {
+  "kicker": "Kalendarz monet",
+  "h": "Wypełnij rok<br><g>złotem.</g>"
+ },
+ "f5": {
+  "kicker": "Dziennik pokus",
+  "h": "Pokonaj pokusę.<br><g>Zatrzymaj kasę.</g>"
+ },
+ "f6": {
+  "kicker": "Drzewo bogactwa",
+  "h": "Rośnie razem<br>z twoją <g>serią.</g>",
+  "sub": "Dzień i noc, każda pora roku, a w grudniu świąteczne lampki."
+ },
+ "f7": {
+  "kicker": "Podsumowanie miesiąca",
+  "h": "Twój miesiąc,<br><g>zamknięty.</g>"
+ },
+ "f8": {
+  "kicker": "Aktywność na żywo",
+  "h": "Zamknij dzień<br>z <g>ekranu blokady.</g>",
+  "date": "Tuesday, October 6",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Misje · XP · 25 poziomów",
+  "h": "Awansuj.<br>Zdobywaj <g>odznaki.</g>"
+ },
+ "f10": {
+  "kicker": "Prywatność od podstaw",
+  "h": "Reklamy? Nie.<br><g>Bank? Też nie.</g>",
+  "sub": "Bez konta i bez łączenia z bankiem. Twoje dane zostają na iPhonie.",
+  "icons": "Awansuj, by odblokować złotą, szmaragdową i nocną ikonę aplikacji.",
+  "chips": [
+   "Działa bez konta",
+   "Żadnego podpinania banku",
+   "Twoje dane zostają na iPhonie"
+  ]
+ }
+}

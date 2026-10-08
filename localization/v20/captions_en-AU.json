@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Don't spend.<br><g>Mint gold.</g>",
+  "sub": "Every no-spend day becomes a gold coin you get to keep.",
+  "chip_streak": "24-day streak",
+  "chip_kept": "+$40 kept today",
+  "trust": [
+   "No ads",
+   "No bank login",
+   "100% private"
+  ]
+ },
+ "f2": {
+  "kicker": "Coin Vault",
+  "h": "Watch your savings<br><g>pile up.</g>"
+ },
+ "f3": {
+  "kicker": "Your forecast",
+  "h": "See what a year<br>could be <g>worth.</g>"
+ },
+ "f4": {
+  "kicker": "Mint Calendar",
+  "h": "Fill your year<br>with <g>gold.</g>"
+ },
+ "f5": {
+  "kicker": "Impulse Log",
+  "h": "Beat the urge.<br><g>Keep the cash.</g>"
+ },
+ "f6": {
+  "kicker": "Wealth Tree",
+  "h": "A tree that grows<br>with your <g>streak.</g>",
+  "sub": "Day and night, every season, and lights in December."
+ },
+ "f7": {
+  "kicker": "Monthly Recap",
+  "h": "Your month,<br><g>sealed.</g>"
+ },
+ "f8": {
+  "kicker": "Live Activity",
+  "h": "Seal today from<br>your <g>Lock Screen.</g>",
+  "date": "Tuesday 6 October",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Quests · XP · 25 levels",
+  "h": "Level up.<br>Earn <g>badges.</g>"
+ },
+ "f10": {
+  "kicker": "Private by design",
+  "h": "No ads.<br>No bank <g>login.</g>",
+  "sub": "No account, no linking your bank. Your data stays on your iPhone.",
+  "icons": "Level up to unlock Gold, Emerald and Midnight app icons.",
+  "chips": [
+   "Works with no account",
+   "No bank linking, ever",
+   "Your data stays on your iPhone"
+  ]
+ }
+}

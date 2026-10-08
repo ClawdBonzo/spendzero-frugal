@@ -9,8 +9,8 @@ settings:
   base:
     SWIFT_EMIT_LOC_STRINGS: "YES"
     DEVELOPMENT_TEAM: "3N9RY9EG8V"
-    MARKETING_VERSION: "1.4.1"
-    CURRENT_PROJECT_VERSION: "13"
+    MARKETING_VERSION: "2.0"
+    CURRENT_PROJECT_VERSION: "16"
 packages:
   RevenueCat:
     url: https://github.com/RevenueCat/purchases-ios-spm.git
@@ -35,10 +35,15 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
+        NSSupportsLiveActivities: true
         CFBundleURLTypes:
           - CFBundleURLName: com.clawdbonzo.SpendZero
             CFBundleURLSchemes:
               - spendzero
+        LSApplicationQueriesSchemes:
+          - wishlock
+          - placesivevisited
+          - calmanchor
         UILaunchScreen:
           UIColorName: AccentColor
         UISupportedInterfaceOrientations:
@@ -56,6 +61,12 @@ targets:
           - it
           - ja
           - zh-Hans
+          - zh-Hant
+          - ko
+          - sv
+          - da
+          - nb
+          - fi
         UIApplicationShortcutItems:
           - UIApplicationShortcutItemType: com.clawdbonzo.SpendZero.markNoSpendDay
             UIApplicationShortcutItemTitle: Mark No-Spend Day
@@ -76,6 +87,8 @@ targets:
       CODE_SIGN_IDENTITY: "Apple Distribution"
       PROVISIONING_PROFILE_SPECIFIER: "SpendZero AppStore Manual"
       TARGETED_DEVICE_FAMILY: "1"
+      ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: "AppIcon-Gold AppIcon-Emerald AppIcon-Midnight"
+      ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: "YES"
     dependencies:
       - package: RevenueCat
         product: RevenueCat
@@ -93,6 +106,7 @@ targets:
       - path: SpendZeroWidget/PrivacyInfo.xcprivacy
       - path: SpendZero/Assets.xcassets
       - path: SpendZero/Shared
+      - path: SpendZero/Intents/Shared
       - path: Resources
         excludes:
           - "**/AppShortcuts.strings"
@@ -126,6 +140,7 @@ targets:
       - path: SpendZeroTests
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.clawdbonzo.SpendZeroTests
+      GENERATE_INFOPLIST_FILE: YES
       SWIFT_VERSION: "5.0"
       CODE_SIGN_STYLE: Automatic
       CODE_SIGN_IDENTITY: "Apple Development"

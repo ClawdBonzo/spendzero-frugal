@@ -6,296 +6,216 @@ struct ProgressChartsView: View {
     @Query(sort: \SavingsEntry.date) private var savings: [SavingsEntry]
     @Query(sort: \SpendingLog.date) private var spending: [SpendingLog]
     @Query(sort: \ImpulseLog.date) private var impulses: [ImpulseLog]
-    @State private var selectedTimeRange: TimeRange = .week
+    @Query(sort: \DailyRecord.date) private var records: [DailyRecord]
+    @Query private var profiles: [UserProfile]
+    @State private var selectedTimeRange: TimeRange = .month
 
     enum TimeRange: String, CaseIterable {
         case week = "7D"
         case month = "30D"
         case threeMonths = "90D"
-    }
+        case year = "1Y"
 
-    private var filteredSavings: [SavingsEntry] {
-        let cutoff = Calendar.current.date(byAdding: .day, value: -daysForRange, to: Date()) ?? Date()
-        return savings.filter { $0.date >= cutoff }
-    }
-
-    private var filteredSpending: [SpendingLog] {
-        let cutoff = Calendar.current.date(byAdding: .day, value: -daysForRange, to: Date()) ?? Date()
-        return spending.filter { $0.date >= cutoff }
-    }
-
-    private var daysForRange: Int {
-        switch selectedTimeRange {
-        case .week: return 7
-        case .month: return 30
-        case .threeMonths: return 90
+        var days: Int {
+            switch self {
+            case .week: return 7
+            case .month: return 30
+            case .threeMonths: return 90
+            case .year: return 365
+            }
         }
     }
 
-    private var totalSavedInRange: Double {
-        filteredSavings.reduce(0) { $0 + $1.amount }
+    private var calendar: Calendar { .current }
+    private var today: Date { calendar.startOfDay(for: Date()) }
+    private var windowStart: Date { calendar.date(byAdding: .day, value: -(selectedTimeRange.days - 1), to: today) ?? today }
+    private var window: DateInterval {
+        DateInterval(start: windowStart, end: calendar.date(byAdding: .day, value: 1, to: today) ?? today)
     }
 
-    private var totalSpentInRange: Double {
-        filteredSpending.reduce(0) { $0 + $1.amount }
+    private var ledger: DayLedger {
+        DayLedger(records: records, savings: savings, spending: spending,
+                  profileCreated: profiles.first?.createdAt, lastNoSpendDate: profiles.first?.lastNoSpendDate)
     }
 
-    private var impulsesResistedCount: Int {
-        let cutoff = Calendar.current.date(byAdding: .day, value: -daysForRange, to: Date()) ?? Date()
-        return impulses.filter { $0.date >= cutoff && $0.wasResisted }.count
+    private var totalSavedAllTime: Double {
+        profiles.first?.totalSaved ?? savings.reduce(0) { $0 + $1.amount }
     }
 
     var body: some View {
-        Group {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    // Time range picker
-                    Picker("Range", selection: $selectedTimeRange) {
-                        ForEach(TimeRange.allCases, id: \.self) { range in
-                            Text(LocalizedStringKey(range.rawValue)).tag(range)
-                        }
+        let ledger = ledger
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 18) {
+                Picker(selection: $selectedTimeRange.animation(.snappy)) {
+                    ForEach(TimeRange.allCases, id: \.self) { range in
+                        Text(LocalizedStringKey(range.rawValue)).tag(range)
                     }
-                    .pickerStyle(.segmented)
-
-                    // Summary cards
-                    HStack(spacing: 12) {
-                        MiniStatCard(title: "Saved", value: totalSavedInRange.currencyFormatted, color: AppTheme.primaryGreen)
-                        MiniStatCard(title: "Spent", value: totalSpentInRange.currencyFormatted, color: AppTheme.destructive)
-                        MiniStatCard(title: "Resisted", value: "\(impulsesResistedCount)", color: AppTheme.info)
-                    }
-
-                    // Savings Growth Chart
-                    savingsGrowthChart
-
-                    // Spending by Category
-                    spendingByCategoryChart
-
-                    // Impulse Trend
-                    impulseTrendChart
-
-                    Spacer(minLength: 100)
+                } label: {
+                    Text("Range")
                 }
-                .padding(.horizontal, AppTheme.paddingMedium)
-                .padding(.top, 8)
+                .pickerStyle(.segmented)
+                .onChange(of: selectedTimeRange) { _, _ in CoinHaptics.tick() }
+
+                savingsCard
+                SavingsEquivalentsCard(totalSaved: totalSavedAllTime)
+                spendCard(ledger)
+                bestWeekCard(ledger)
+                urgesCard
+
+                Spacer(minLength: 100)
             }
-            .background(AppTheme.background.ignoresSafeArea())
-            .navigationTitle("Progress")
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal, AppTheme.paddingMedium)
+            .padding(.top, 8)
+        }
+        .background(AppTheme.background.ignoresSafeArea())
+        .navigationTitle("Progress")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    // MARK: - (a) Cumulative savings
+
+    @ViewBuilder
+    private var savingsCard: some View {
+        let ledger = ledger
+        let points = InsightsSeries.cumulative(savings: savings, from: windowStart, through: today)
+        let baseline = InsightsSeries.cumulative(savings: savings,
+                                                 from: calendar.date(byAdding: .day, value: -1, to: windowStart) ?? windowStart,
+                                                 through: calendar.date(byAdding: .day, value: -1, to: windowStart) ?? windowStart)
+            .first?.value ?? 0
+        let best = InsightsSeries.bestWeek(ledger: ledger, in: window)
+        let bestInterval = best.flatMap { week -> DateInterval? in
+            guard let end = calendar.date(byAdding: .day, value: 6, to: week.start) else { return nil }
+            let s = max(week.start, windowStart), e = min(end, today)
+            return s < e ? DateInterval(start: s, end: e) : nil
+        }
+        InsightCard(Text("Savings growth")) {
+            if savings.isEmpty {
+                ChartEmptyState(icon: "chart.line.uptrend.xyaxis", title: Text("Your line starts here"),
+                                message: Text("Seal a no-spend day or resist an urge and watch your total climb."))
+            } else {
+                CumulativeSavingsChart(points: points,
+                                       milestones: InsightsSeries.milestones(in: points, baseline: baseline),
+                                       bestWeek: selectedTimeRange == .week ? nil : bestInterval,
+                                       rangeLabel: Text(LocalizedStringKey(selectedTimeRange.rawValue)))
+                    .id(selectedTimeRange)
+            }
         }
     }
 
-    // MARK: - Savings Growth Chart
+    // MARK: - (b) Spend vs budget
 
-    private var savingsGrowthChart: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Savings Growth")
-                .font(AppTheme.headlineFont)
-                .foregroundColor(AppTheme.textPrimary)
-
-            if filteredSavings.isEmpty {
-                chartEmptyState
+    private func spendCard(_ ledger: DayLedger) -> some View {
+        let days = min(selectedTimeRange.days, 30)
+        let bars = InsightsSeries.dailyBars(ledger: ledger, days: days)
+        let sealed = bars.filter(\.sealed).count
+        let hasData = bars.contains { $0.spent > 0 || $0.sealed }
+        return InsightCard(Text("Spending vs budget"),
+                           subtitle: days == 7 ? Text("Last 7 days · \(sealed) no-spend") : Text("Last 30 days · \(sealed) no-spend")) {
+            if hasData {
+                SpendVsBudgetChart(bars: bars, budget: profiles.first?.dailyBudget ?? 0)
+                    .id(days)
             } else {
-                Chart {
-                    ForEach(cumulativeSavingsData, id: \.date) { point in
-                        AreaMark(
-                            x: .value("Date", point.date),
-                            y: .value("Saved", point.amount)
-                        )
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [AppTheme.primaryGreen.opacity(0.3), AppTheme.primaryGreen.opacity(0.05)],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+                ChartEmptyState(icon: "chart.bar.fill", title: Text("Nothing logged yet"),
+                                message: Text("Log spending or seal a day and your bars appear here."))
+            }
+        }
+    }
 
-                        LineMark(
-                            x: .value("Date", point.date),
-                            y: .value("Saved", point.amount)
-                        )
-                        .foregroundStyle(AppTheme.primaryGreen)
-                        .lineStyle(StrokeStyle(lineWidth: 2))
-                    }
+    // MARK: - (c) Urges ring
+
+    private var urgesCard: some View {
+        let inWindow = impulses.filter { $0.date >= windowStart }
+        let data = InsightsSeries.urgesByCategory(inWindow)
+        let givenIn = inWindow.filter { !$0.wasResisted }.count
+        return InsightCard(Text("Urges resisted")) {
+            if data.isEmpty {
+                ChartEmptyState(icon: "bolt.slash.fill", title: Text("No urges logged in this period"),
+                                message: Text("When you resist an impulse buy, log it: each one lands in this ring."))
+            } else {
+                UrgeRingChart(data: data, givenIn: givenIn)
+                    .id(selectedTimeRange)
+            }
+        }
+    }
+
+    // MARK: - (d) Best week
+
+    private func bestWeekCard(_ ledger: DayLedger) -> some View {
+        let lookback = DateInterval(start: calendar.date(byAdding: .day, value: -365, to: today) ?? today, end: today)
+        let best = InsightsSeries.bestWeek(ledger: ledger, in: lookback)
+        return InsightCard(Text("Your best week")) {
+            if let best {
+                BestWeekView(week: best, today: today)
+            } else {
+                ChartEmptyState(icon: "trophy.fill", title: Text("Your best week is ahead"),
+                                message: Text("Keep money in your pocket for a few days and we'll crown it here."))
+            }
+        }
+    }
+}
+
+// MARK: - Best week
+
+private struct BestWeekView: View {
+    let week: InsightsSeries.Week
+    let today: Date
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown = false
+
+    private var end: Date { Calendar.current.date(byAdding: .day, value: 6, to: week.start) ?? week.start }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(week.start.formatted(.dateTime.month(.abbreviated).day()) + " – "
+                         + end.formatted(.dateTime.month(.abbreviated).day()))
+                        .font(.app(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(AppTheme.textSecondary)
+                    RollingMoney(value: shown ? week.kept : 0,
+                                 font: .app(size: 30, weight: .black, design: .rounded),
+                                 color: AppTheme.accentGold)
+                        .goldSheen()
                 }
-                .frame(height: 200)
-                .chartYAxis {
-                    AxisMarks(position: .leading) { value in
-                        AxisValueLabel {
-                            if let val = value.as(Double.self) {
-                                Text(val.currencyFormatted)
-                                    .font(.app(size: 10))
-                                    .foregroundColor(AppTheme.textTertiary)
+                Spacer()
+                Text("\(week.sealedCount)/7 sealed")
+                    .font(.app(size: 13, weight: .heavy, design: .rounded))
+                    .foregroundStyle(AppTheme.textPrimary)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Capsule().fill(AppTheme.accentGold.opacity(0.14)))
+            }
+            HStack(spacing: 0) {
+                ForEach(0..<7, id: \.self) { i in
+                    let day = Calendar.current.date(byAdding: .day, value: i, to: week.start) ?? week.start
+                    VStack(spacing: 6) {
+                        Group {
+                            if week.sealedDays[i] {
+                                MintCoin(size: 26, level: 2, glow: true)
+                            } else if day > today {
+                                Circle().strokeBorder(MintPalette.missed, lineWidth: 1.5).frame(width: 22, height: 22)
+                            } else {
+                                Circle().fill(MintPalette.missed).frame(width: 18, height: 18)
                             }
                         }
+                        .frame(height: 30)
+                        .scaleEffect(shown ? 1 : 0.3)
+                        .opacity(shown ? 1 : 0)
+                        .animation(reduceMotion ? nil : .spring(duration: 0.45, bounce: 0.5).delay(0.25 + Double(i) * 0.06),
+                                   value: shown)
+                        Text(day, format: .dateTime.weekday(.narrow))
+                            .font(.app(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(AppTheme.textTertiary)
                     }
-                }
-                .chartXAxis {
-                    AxisMarks { value in
-                        AxisValueLabel {
-                            if let date = value.as(Date.self) {
-                                Text(date, format: .dateTime.month(.abbreviated).day())
-                                    .font(.app(size: 10))
-                                    .foregroundColor(AppTheme.textTertiary)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
-    }
-
-    // MARK: - Spending by Category
-
-    private var spendingByCategoryChart: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Spending by Category")
-                .font(AppTheme.headlineFont)
-                .foregroundColor(AppTheme.textPrimary)
-
-            if filteredSpending.isEmpty {
-                chartEmptyState
-            } else {
-                let categoryData = Dictionary(grouping: filteredSpending, by: \.category)
-                    .map { (category: $0.key, total: $0.value.reduce(0) { $0 + $1.amount }) }
-                    .sorted { $0.total > $1.total }
-
-                Chart(categoryData, id: \.category) { item in
-                    SectorMark(
-                        angle: .value("Amount", item.total),
-                        innerRadius: .ratio(0.6),
-                        angularInset: 2
-                    )
-                    .foregroundStyle(Color(hex: item.category.color))
-                    .cornerRadius(4)
-                }
-                .frame(height: 200)
-
-                // Legend
-                VStack(spacing: 6) {
-                    ForEach(categoryData.prefix(5), id: \.category) { item in
-                        HStack(spacing: 8) {
-                            Circle()
-                                .fill(Color(hex: item.category.color))
-                                .frame(width: 8, height: 8)
-                            Text(LocalizedStringKey(item.category.rawValue))
-                                .font(AppTheme.captionFont)
-                                .foregroundColor(AppTheme.textSecondary)
-                            Spacer()
-                            Text(item.total.currencyFormatted)
-                                .font(.app(size: 13, weight: .semibold, design: .rounded))
-                                .foregroundColor(AppTheme.textPrimary)
-                        }
-                    }
+                    .frame(maxWidth: .infinity)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text(day, format: .dateTime.weekday(.wide)))
+                    .accessibilityValue(week.sealedDays[i] ? Text("Sealed") : Text("Not sealed"))
                 }
             }
         }
-        .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
-    }
-
-    // MARK: - Impulse Trend
-
-    private var impulseTrendChart: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Impulse Control")
-                .font(AppTheme.headlineFont)
-                .foregroundColor(AppTheme.textPrimary)
-
-            let cutoff = Calendar.current.date(byAdding: .day, value: -daysForRange, to: Date()) ?? Date()
-            let filtered = impulses.filter { $0.date >= cutoff }
-            let resisted = filtered.filter(\.wasResisted).count
-            let total = filtered.count
-
-            if total == 0 {
-                chartEmptyState
-            } else {
-                HStack(spacing: 20) {
-                    // Ring chart
-                    ZStack {
-                        Circle()
-                            .stroke(AppTheme.destructive.opacity(0.2), lineWidth: 12)
-                            .frame(width: 100, height: 100)
-
-                        Circle()
-                            .trim(from: 0, to: total > 0 ? Double(resisted) / Double(total) : 0)
-                            .stroke(AppTheme.primaryGreen, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                            .frame(width: 100, height: 100)
-                            .rotationEffect(.degrees(-90))
-
-                        VStack(spacing: 0) {
-                            Text("\(total > 0 ? Int(Double(resisted) / Double(total) * 100) : 0)%")
-                                .font(.app(size: 22, weight: .bold, design: .rounded))
-                                .foregroundColor(AppTheme.primaryGreen)
-                            Text("Resisted")
-                                .font(.app(size: 10, weight: .medium))
-                                .foregroundColor(AppTheme.textSecondary)
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 12) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("\(resisted)")
-                                .font(.app(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(AppTheme.primaryGreen)
-                            Text("Impulses Resisted")
-                                .font(AppTheme.smallFont)
-                                .foregroundColor(AppTheme.textSecondary)
-                        }
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("\(total - resisted)")
-                                .font(.app(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(AppTheme.destructive)
-                            Text("Given In")
-                                .font(AppTheme.smallFont)
-                                .foregroundColor(AppTheme.textSecondary)
-                        }
-                    }
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .padding(AppTheme.paddingMedium)
-        .background(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                .fill(AppTheme.cardBackground)
-        )
-    }
-
-    // MARK: - Helpers
-
-    private var chartEmptyState: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "chart.line.uptrend.xyaxis")
-                .font(.app(size: 32))
-                .foregroundColor(AppTheme.textTertiary)
-            Text("No data yet")
-                .font(AppTheme.captionFont)
-                .foregroundColor(AppTheme.textTertiary)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 150)
-    }
-
-    /// One point per calendar day (so the chart never has duplicate x values).
-    private var cumulativeSavingsData: [(date: Date, amount: Double)] {
-        let cal = Calendar.current
-        var perDay: [Date: Double] = [:]
-        for entry in filteredSavings {
-            perDay[cal.startOfDay(for: entry.date), default: 0] += entry.amount
-        }
-        var cumulative = 0.0
-        return perDay.keys.sorted().map { day in
-            cumulative += perDay[day] ?? 0
-            return (date: day, amount: cumulative)
+        .onAppear {
+            if reduceMotion { shown = true } else { withAnimation(.snappy) { shown = true } }
         }
     }
 }

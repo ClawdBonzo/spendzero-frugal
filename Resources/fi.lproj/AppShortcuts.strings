@@ -1,0 +1,13 @@
+"Mark today a no-spend day in ${applicationName}" = "${applicationName}, merkitse tämä päivä ostottomaksi";
+"Log a no-spend day in ${applicationName}" = "${applicationName}, kirjaa ostoton päivä";
+"I didn't spend today in ${applicationName}" = "${applicationName}, en ostanut tänään mitään";
+"Log spending in ${applicationName}" = "${applicationName}, kirjaa ostos";
+"I spent money in ${applicationName}" = "${applicationName}, käytin rahaa";
+"Log an impulse in ${applicationName}" = "${applicationName}, kirjaa ostohimo";
+"I resisted an impulse in ${applicationName}" = "${applicationName}, vastustin ostohimoa";
+"Seal today in ${applicationName}" = "${applicationName}, sinetöi tämä päivä";
+"Seal the day in ${applicationName}" = "${applicationName}, sinetöi päivä";
+"Seal my day in ${applicationName}" = "${applicationName}, sinetöi päiväni";
+"I resisted buying something in ${applicationName}" = "${applicationName}, jätin jotain ostamatta";
+"I didn't buy something in ${applicationName}" = "${applicationName}, en sortunut heräteostokseen";
+"Log a resisted impulse in ${applicationName}" = "${applicationName}, kirjaa voitettu ostohimo";

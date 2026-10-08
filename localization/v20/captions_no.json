@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Kjøpestopp.<br><g>Saml gull.</g>",
+  "sub": "Hver kjøpefri dag blir en gullmynt du får beholde.",
+  "chip_streak": "24 dager på rad",
+  "chip_kept": "+40 kr spart i dag",
+  "trust": [
+   "Ingen reklame",
+   "Ingen bankkobling",
+   "100 % privat"
+  ]
+ },
+ "f2": {
+  "kicker": "Myntkrukka",
+  "h": "Se sparepengene<br><g>hope seg opp.</g>"
+ },
+ "f3": {
+  "kicker": "Prognosen din",
+  "h": "Se hva et år<br>kan være <g>verdt.</g>"
+ },
+ "f4": {
+  "kicker": "Myntkalender",
+  "h": "Fyll året ditt<br>med <g>gull.</g>"
+ },
+ "f5": {
+  "kicker": "Fristelser",
+  "h": "Stå imot suget.<br><g>Behold pengene.</g>"
+ },
+ "f6": {
+  "kicker": "Pengetreet",
+  "h": "Et tre som vokser<br>med <g>rekka di.</g>",
+  "sub": "Dag og natt, alle årstider – og julelys i desember."
+ },
+ "f7": {
+  "kicker": "Månedsoppsummering",
+  "h": "Måneden din,<br><g>forseglet.</g>"
+ },
+ "f8": {
+  "kicker": "Live-aktivitet",
+  "h": "Forsegl dagen<br>fra <g>låst skjerm.</g>",
+  "date": "Tirsdag 6. oktober",
+  "la_left": "igjen til å forsegle dagen",
+  "la_streak": "23-dagers rekke står på spill",
+  "la_button": "Forsegl"
+ },
+ "f9": {
+  "kicker": "Oppdrag · XP · 25 nivåer",
+  "h": "Gå opp i nivå.<br>Samle <g>merker.</g>"
+ },
+ "f10": {
+  "kicker": "Privat fra grunnen av",
+  "h": "Ingen reklame.<br>Ingen <g>bankkobling.</g>",
+  "sub": "Ingen konto, ingen kobling til banken. Dataene dine blir på iPhonen din.",
+  "icons": "Gå opp i nivå og lås opp appikonene Gull, Smaragd og Midnatt.",
+  "chips": [
+   "Funker uten konto",
+   "Aldri koblet til banken",
+   "Dataene dine blir på iPhonen"
+  ]
+ }
+}

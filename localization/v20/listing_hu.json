@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Spórolós kihívás",
+ "subtitle": "Költésmentes napok, több pénz",
+ "keywords": "spórolás,megtakarítás,takarékosság,költségvetés,kiadások,persely,malacpersely,vásárlás,szokás,cél",
+ "promotionalText": "Új a 2.0-ban: minden költésmentes nap aranyérmét ejt a perselyedbe. Az egész éved aranyban, megtakarítási előrejelzés és megosztható havi összefoglaló.",
+ "description": "Ne költs – verj aranyat. A SpendZero minden költésmentes napodat aranyérmévé változtatja: az érme a perselyedbe hullik, bearanyozza a naptáradat, és növeszti a vagyonfádat. Sorozatok, XP, küldetések és jelvények – így lesz a spórolás olyan játék, amit te nyersz meg.\n\nVásárlásmentes hónapot tartasz, le akarsz szokni az impulzusvásárlásról, vagy valami nagyobbra gyűjtesz? A SpendZero-ban minden nap, amikor a pénz a zsebedben marad, látható győzelem.\n\nÚJ A 2.0-BAN\n• Érmetartó (Coin Vault): minden lepecsételt nap egy aranyérmét ejt egy üvegbe – döntsd meg az iPhone-t, és nézd, ahogy gurulnak\n• Érmenaptár (Mint Calendar): az egész éved aranyérmékben, új grafikonokkal\n• Megtakarítási előrejelzés: nézd meg, mennyit érhet egy év felesleges költések nélkül\n• Havi összefoglaló (Monthly Recap): a hónapod története story formában, megosztásra készen\n• Visszaszámlálás a zárolási képernyőn és a Dynamic Islanden, gomb a Vezérlőközpontban, és Siri\n\nPECSÉTELD LE A NAPOD\nJelölj meg egy költésmentes napot, és nézd, ahogy aranyérmével lepecsételődik. Nő a sorozatod, jönnek a jutalmak, és pontosan látod, milyen közel a következő cél. Egyetlen koppintás.\n\nNÖVESZD A VAGYONFÁDAT\nA fád egyedi, nincs még egy ilyen. Minden szinttel nő, a megtakarításaiddal aranyérmék teremnek rajta, és mostantól valós időben él: nappal és éjszaka, évszakok, decemberi fények. Ha megszakad a sorozat, hervadni kezd – egy költésmentes nap, és újra él.\n\nJÁTÉK, AMIT ÚGY NYERSZ, HOGY NEM KÖLTESZ\n• Sorozatok és sorozatfagyasztók a nehezebb napokra\n• Napi és heti küldetések\n• 25 szint és jelvények a 7, 30, 100 és 365 napos sorozatokért\n• Kihívások: 7 nap költés nélkül, egy hét elvitelos kávé nélkül, 30 nap költés nélkül, előfizetések átnézése és még sok más – vagy alkosd meg a sajátodat\n• Szintlépéssel feloldhatod a Gold, Emerald és Midnight alkalmazásikonokat\n\nÁLLJ ELLEN AZ IMPULZUSVÁSÁRLÁSNAK\nValami ott lapul a kosaradban? Jegyezd fel. Ha ellenállsz, az összeg megtakarításnak számít, és XP is jár érte. Mégis megvetted? Semmi baj – jegyezd fel, és menj tovább. Az alapvető kiadások, mint a bevásárlás vagy a közlekedés, nem rontják el a költésmentes napot.\n\nNE SZAKADJON MEG A SOROZAT\n• Interaktív widgetek a Főképernyőn és a zárolási képernyőn\n• Live Activity visszaszámlálással a nap végéig, Vezérlőközpont, Siri és Parancsok\n• Kíméletes esti emlékeztető, reggel pedig még bepótolhatod a tegnapi napot\n\nAZ ADATAID NÁLAD MARADNAK\nNincs fiók, nincs bankkapcsolat, nincsenek hirdetések. Minden, amit rögzítesz, az iPhone-odon marad. PDF-jelentést bármikor exportálhatsz.\n\nAz alkalmazás angolul és további 15 nyelven érhető el: németül, spanyolul, franciául, olaszul, hollandul, portugálul, törökül, japánul, kínaiul (egyszerűsített és hagyományos), koreaiul, svédül, dánul, norvégul és finnül. Magyar nyelven nem érhető el.\n\nELŐFIZETÉS\nA SpendZero Pro heti, havi vagy éves előfizetéssel, illetve egyszeri, élethosszig tartó vásárlással érhető el. A havi és az éves csomag tartalmazhat 3 napos ingyenes próbaidőszakot a jogosult új előfizetők számára. Az árakat az alkalmazás a helyi pénznemben mutatja. Az előfizetés automatikusan megújul, hacsak legalább 24 órával az aktuális időszak vége előtt le nem mondod; bármikor kezelheted vagy lemondhatod az App Store-fiókod beállításaiban.\n\nFelhasználási feltételek (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nAdatvédelmi irányelvek: https://gwlabs.app/privacy",
+ "whatsNew": "Újdonságok a SpendZero 2.0-ban:\n• Érmetartó: minden lepecsételt nap aranyérmét ejt egy üvegbe, amit meg is dönthetsz\n• Érmenaptár: az egész év aranyérmékben, új grafikonokkal\n• Megtakarítási előrejelzés a következő 12 hónapra\n• Havi összefoglaló story formában, megosztáshoz\n• Visszaszámlálás a mai nap lepecsételéséig a zárolási képernyőn és a Dynamic Islanden, plusz Vezérlőközpont és Siri\n• A vagyonfa valós időben él: nappal és éjjel, évszakok, decemberi fények\n• Szintlépéssel feloldható Gold, Emerald és Midnight ikonok\n• Hangeffektek és haptikus visszajelzés\n• Az alkalmazás már 16 nyelven érhető el, köztük angolul; magyarul nem",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro heti",
+   "description": "Minden Pro funkció, heti fizetéssel"
+  },
+  "monthly": {
+   "name": "SpendZero Pro havi",
+   "description": "Minden Pro funkció, havi fizetéssel"
+  },
+  "yearly": {
+   "name": "SpendZero Pro éves",
+   "description": "12 hónap Pro, évente egyszeri fizetéssel"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro örökre",
+   "description": "Egyszeri fizetés, Pro előfizetés nélkül"
+  }
+ }
+}

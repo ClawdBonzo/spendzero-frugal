@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: No Spend Challenge",
+ "subtitle": "Money Saving Game & Streaks",
+ "keywords": "shopaholic,quit,jar,detox,coffee,wealth,reward,journal,calendar,urge,cut,underconsumption,splurge",
+ "promotionalText": "New in 2.0: every no-spend day drops a gold coin into your Coin Vault. Fill your year with gold, check your savings forecast and seal the day from your Lock Screen.",
+ "description": "Don't spend. Mint gold. SpendZero turns every no-spend day into a gold coin: watch them stack up in your Coin Vault, fill your year on the Mint Calendar and see what a year of not spending could be worth. Streaks, XP, quests, badges and a living wealth tree make it a game you'll actually want to win.\n\nDoing a no-spend month, a low-buy year or No-Spend January, or just sick of your pay disappearing before the next payday? SpendZero makes every day you don't spend feel like a win, because every dollar you keep counts.\n\nNEW IN 2.0\n• Coin Vault: each sealed day drops a gold coin into a glass jar you can tilt and shake\n• Mint Calendar: your whole year in gold coins, brighter on the days you saved more\n• Savings forecast, brand-new charts, and what your savings could buy\n• Monthly Recap: your month as a story, ready to share\n• Seal the day from your Lock Screen, the Dynamic Island, Control Centre or Siri\n• A living wealth tree: day and night, the seasons, Christmas lights in December\n• Unlock Gold, Emerald and Midnight app icons as you level up\n\nA GAME YOU WIN BY NOT SPENDING\nMark a no-spend day and it's sealed with a gold coin. Your streak ticks up, rewards pop in, and you can see how close your next milestone is.\n• Streaks, with streak freezes that cover you on a rough day\n• Daily and weekly quests that progress from what you actually do\n• 25 levels, from Frugal Novice to Wealth King\n• Badges for 7-, 30-, 100- and 365-day streaks and savings milestones\n• Challenges like the 30-Day No-Spend Challenge, Coffee Detox Week and seasonal ones such as No-Spend January, or make your own\n\nGROW YOUR WEALTH TREE\nYour tree is one of a kind. It grows with every level, hangs gold coins as your savings add up and follows your real day, from sunrise to moonlit nights. Let your streak lapse and it starts to wilt; one no-spend day brings it back.\n\nCRUSH IMPULSE BUYS\nTempted to splurge on something in your cart? Log it. Walk away and the money counts as saved, with XP to prove it. Gave in? No worries: log it and keep going. Essentials like groceries and transport don't break your no-spend day.\n\nNEVER BREAK THE CHAIN\n• Interactive widgets: seal the day without opening the app\n• An optional evening countdown on your Lock Screen before the day runs out\n• \"Seal today in SpendZero\" with Siri, or one tap in Control Centre\n• A gentle evening check-in, plus a morning reminder if you forgot yesterday\n\nPRIVATE BY DESIGN\nEverything you log stays on your iPhone. No account, no bank login, no ads, no tracking.\n\nAvailable in English, Chinese (Simplified and Traditional), Danish, Dutch, Finnish, French, German, Italian, Japanese, Korean, Norwegian, Portuguese, Spanish, Swedish and Turkish.\n\nSUBSCRIPTIONS\nSpendZero Pro is available weekly, monthly or yearly, or as a one-off lifetime purchase. Monthly and yearly plans may include a 3-day free trial for eligible new subscribers. Prices are shown in the app in your local currency. Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period; manage or cancel at any time in your App Store account settings.\n\nTerms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPrivacy Policy: https://gwlabs.app/privacy",
+ "whatsNew": "SpendZero 2.0 is here:\n• Coin Vault: every sealed day drops a gold coin into a glass jar you can tilt and shake\n• Mint Calendar: your whole year in gold coins, plus brand-new charts\n• Savings forecast: see what a year of no-spend days could be worth\n• Monthly Recap: your month as a story, made for sharing\n• An evening countdown on your Lock Screen and in the Dynamic Island, or seal the day from Control Centre and Siri\n• Your wealth tree now lives in real time: day and night, the seasons, Christmas lights in December\n• Unlock Gold, Emerald and Midnight app icons as you level up\n• New sound effects and haptics\n• Now also in Korean, Swedish, Danish, Norwegian, Finnish and Traditional Chinese",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Weekly",
+   "description": "All Pro features, week by week"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Monthly",
+   "description": "Full Pro access, billed every month"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Yearly",
+   "description": "12 months of Pro, paid once a year"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Lifetime",
+   "description": "Pay once, keep Pro for good"
+  }
+ }
+}

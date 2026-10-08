@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Neutrácej.<br><g>Sbírej zlato.</g>",
+  "sub": "Každý den bez utrácení je zlatá mince, kterou si necháš.",
+  "chip_streak": "Série 24 dní",
+  "chip_kept": "+$40 dnes ušetřeno",
+  "trust": [
+   "Bez reklam",
+   "Bez přístupu k bance",
+   "Plné soukromí"
+  ]
+ },
+ "f2": {
+  "kicker": "Pokladnička",
+  "h": "Sleduj, jak úspory<br><g>přibývají.</g>"
+ },
+ "f3": {
+  "kicker": "Tvoje předpověď",
+  "h": "Kolik ti může<br><g>vynést rok?</g>"
+ },
+ "f4": {
+  "kicker": "Mincovní kalendář",
+  "h": "Naplň svůj rok<br><g>zlatem.</g>"
+ },
+ "f5": {
+  "kicker": "Deník pokušení",
+  "h": "Odolej nutkání.<br><g>Nech si peníze.</g>"
+ },
+ "f6": {
+  "kicker": "Strom bohatství",
+  "h": "Strom, který roste<br>s tvou <g>sérií.</g>",
+  "sub": "Den i noc, každé roční období a v prosinci světýlka."
+ },
+ "f7": {
+  "kicker": "Měsíční shrnutí",
+  "h": "Tvůj měsíc,<br><g>zpečetěný.</g>"
+ },
+ "f8": {
+  "kicker": "Živá aktivita",
+  "h": "Zpečeť den<br><g>bez odemykání.</g>",
+  "date": "Tuesday, October 6",
+  "la_left": "left to seal today",
+  "la_streak": "23-day streak on the line",
+  "la_button": "Seal"
+ },
+ "f9": {
+  "kicker": "Úkoly · XP · 25 úrovní",
+  "h": "Postupuj výš.<br>Získávej <g>odznaky.</g>"
+ },
+ "f10": {
+  "kicker": "Soukromí v základu",
+  "h": "Reklamy? Ne.<br><g>Banka? Taky ne.</g>",
+  "sub": "Žádný účet, žádné napojení na banku. Tvá data zůstávají v iPhonu.",
+  "icons": "Postupuj výš a odemkni zlatou, smaragdovou a půlnoční ikonu aplikace.",
+  "chips": [
+   "Funguje bez účtu",
+   "Nikdy žádné napojení na banku",
+   "Tvá data zůstávají v iPhonu"
+  ]
+ }
+}

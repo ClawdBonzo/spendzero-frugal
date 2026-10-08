@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Pentru sezonul reducerilor: trei provocări pentru o perioadă limitată.\n• Weekend fără cumpărături de Black Friday: treci pe lângă toate ofertele, de vineri până în Cyber Monday.\n• 12 zile fără cheltuieli: douăsprezece zile la rând înainte de Crăciun.\n• Ianuarie fără cheltuieli: începe anul cu 31 de zile doar pentru strictul necesar.\nFiecare apare în Challenges în sezonul ei.\nÎn plus, acum poți folosi coduri de ofertă SpendZero Pro direct în aplicație, din Settings sau din ecranul de upgrade.",
+ "promo": {
+  "now": "Nou: provocări pentru o perioadă limitată de Black Friday, în cele 12 zile dinainte de Crăciun și în Ianuarie fără cheltuieli. Sigilează fiecare zi cu o monedă de aur.",
+  "bf": "Reducerile de Black Friday sunt peste tot. Încearcă weekendul fără cumpărături: nicio ofertă de vineri până în Cyber Monday, doar copacul tău care crește.",
+  "dec": "12 zile fără cheltuieli: douăsprezece zile la rând înainte de Crăciun. Cadourile deja plănuite sunt în regulă; extrele, nu. Pornește provocarea din Challenges.",
+  "jan": "Ianuarie fără cheltuieli: 31 de zile doar pentru strictul necesar. Sigilează fiecare zi cu o monedă de aur și începe anul cu mai mulți bani."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday fără cumpărături",
+   "short": "Nicio ofertă de vineri până luni",
+   "long": "Provocare de 4 zile: nicio cumpărătură inutilă de la Black Friday până la Cyber Monday. Sigilează fiecare zi cu aur."
+  },
+  "twelve-days": {
+   "name": "12 zile fără cheltuieli",
+   "short": "12 zile la rând înainte de Crăciun",
+   "long": "Douăsprezece zile la rând fără cheltuieli inutile înainte de Crăciun. Cadourile plănuite sunt în regulă; extrele, nu."
+  },
+  "no-spend-january": {
+   "name": "Ianuarie fără cheltuieli",
+   "short": "31 de zile doar pentru strictul necesar",
+   "long": "Începe 2027 cu o provocare de 31 de zile: doar strictul necesar și fiecare zi sigilată cu o monedă de aur."
+  }
+ }
+}

@@ -5,6 +5,7 @@ struct BadgeShowcaseView: View {
     let gameProfile: GameProfile
 
     @State private var selectedBadge: BadgeInstance?
+    @Namespace private var badgeZoom
 
     let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -64,8 +65,7 @@ struct BadgeShowcaseView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(AppTheme.paddingLarge)
-                .background(AppTheme.cardBackground)
-                .cornerRadius(AppTheme.cornerRadiusMedium)
+                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                 .padding(.horizontal, AppTheme.paddingLarge)
             } else {
                 LazyVGrid(columns: columns, spacing: 12) {
@@ -75,7 +75,8 @@ struct BadgeShowcaseView: View {
                         } label: {
                             BadgeItemView(badge: badge)
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(.pressable)
+                        .matchedTransitionSource(id: badge.id, in: badgeZoom)
                         .accessibilityLabel(Text(verbatim: "\(badge.badgeID.localizedName), \(badge.rarity.label)"))
                         .accessibilityHint(Text("Shows badge details"))
                     }
@@ -86,9 +87,10 @@ struct BadgeShowcaseView: View {
             Spacer()
         }
         .padding(.vertical, AppTheme.paddingLarge)
-        .background(AppTheme.background)
+        .background(AppScreenBackground())
         .sheet(item: $selectedBadge) { badge in
             BadgeDetailView(badge: badge)
+                .navigationTransition(.zoom(sourceID: badge.id, in: badgeZoom))
         }
     }
 }
@@ -224,14 +226,13 @@ struct BadgeDetailView: View {
                                 Text("Rarity")
                                     .font(AppTheme.smallFont)
                                     .foregroundColor(AppTheme.textTertiary)
-                                Text(badge.rarity.label.uppercased())
+                                Text(badge.rarity.label.uppercased(with: .current))
                                     .font(.app(size: 12, weight: .semibold))
                                     .foregroundColor(badge.rarity.foregroundColor)
                             }
                         }
                         .padding(AppTheme.paddingMedium)
-                        .background(AppTheme.cardBackground)
-                        .cornerRadius(AppTheme.cornerRadiusMedium)
+                        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                     }
                     .padding(.horizontal, AppTheme.paddingLarge)
 

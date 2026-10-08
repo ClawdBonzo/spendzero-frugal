@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 // MARK: - Pressable buttons
 
@@ -90,5 +91,18 @@ extension View {
                 .opacity(phase.isIdentity ? 1 : 0.55)
                 .blur(radius: phase.isIdentity ? 0 : 1.5)
         }
+    }
+}
+
+// MARK: - Screen background
+
+/// The living emerald background every main screen shares (the Dashboard's): it warms toward gold as the
+/// streak grows, and gives Liquid Glass cards something to refract.
+struct AppScreenBackground: View {
+    @Query private var profiles: [UserProfile]
+
+    var body: some View {
+        let streak = profiles.first?.currentStreak ?? 0
+        LivingBackground(warmth: pow(min(1, Double(streak) / 60), 0.7))
     }
 }

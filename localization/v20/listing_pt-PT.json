@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Poupar Dinheiro",
+ "subtitle": "Desafio de Poupança Sem Gastos",
+ "keywords": "despesas,orçamento,controlo,mealheiro,finanças,pessoais,impulso,compras,hábito,guardar,juntar,gastar",
+ "promotionalText": "Novidade na 2.0: cada dia sem gastos faz cair uma moeda de ouro no teu mealheiro. Enche o teu ano de ouro e sela o dia diretamente a partir do ecrã bloqueado.",
+ "description": "Não gastar vale ouro. O SpendZero transforma cada dia sem gastos numa moeda de ouro: vê-as acumular no teu mealheiro, enche o ano no calendário de moedas e descobre quanto podes poupar num ano. Sequências, XP, missões, medalhas e uma árvore da riqueza cheia de vida fazem de poupar um jogo que dá mesmo vontade de ganhar.\n\nQueres poupar dinheiro, travar as compras por impulso ou controlar as despesas de uma vez por todas? Com o SpendZero, cada dia sem gastar é uma vitória.\n\nNOVIDADES DA 2.0\n• Mealheiro: cada dia selado faz cair uma moeda de ouro num frasco de vidro que podes inclinar e abanar\n• Calendário de moedas: o teu ano inteiro em moedas de ouro, mais brilhantes nos dias em que poupaste mais\n• Previsão de poupança, gráficos totalmente novos e aquilo que as tuas poupanças podiam pagar\n• Resumo do mês: o teu mês em formato de stories, pronto a partilhar\n• Sela o dia a partir do ecrã bloqueado, da Dynamic Island, da central de controlo ou com a Siri\n• Uma árvore da riqueza viva: dia e noite, estações do ano e luzes em dezembro\n• Desbloqueia os ícones Ouro, Esmeralda e Meia-noite à medida que sobes de nível\n\nUM JOGO QUE GANHAS SEM GASTAR\nMarca um dia sem gastos e ele fica selado com uma moeda de ouro. A sequência sobe, as recompensas aparecem e vês quanto te falta para o próximo marco.\n• Sequências com congelamentos que te salvam num dia mau\n• Missões diárias e semanais que avançam com o que realmente fazes\n• 25 níveis, de Novato Poupado a Rei da Riqueza\n• Medalhas para sequências de 7, 30, 100 e 365 dias e para marcos de poupança\n• Desafios como o de 30 dias sem gastos, a Semana de detox de café ou os sazonais, como Janeiro sem gastos — ou cria o teu\n\nFAZ CRESCER A TUA ÁRVORE DA RIQUEZA\nA tua árvore é única: cresce a cada nível, enche-se de moedas de ouro à medida que poupas e acompanha o ritmo do teu dia, do nascer do sol às noites de luar. Se perderes a sequência, começa a murchar — um dia sem gastos devolve-lhe a vida.\n\nACABA COM AS COMPRAS POR IMPULSO\nDeu-te vontade de comprar? Regista. Resististe? O valor conta como poupado e ganhas XP. Cedeste? Sem dramas — regista e segue em frente. Os gastos essenciais, como supermercado e transportes, não estragam o teu dia sem gastos.\n\nNUNCA QUEBRES A SEQUÊNCIA\n• Widgets interativos: sela o dia sem abrir a app\n• Contagem decrescente opcional ao fim do dia no ecrã bloqueado\n• Um toque na central de controlo, ou pede simplesmente à Siri\n• Um lembrete simpático ao fim do dia e outro de manhã, se te esqueceste de ontem\n\nPRIVADO DE RAIZ\nTudo o que registas fica no teu iPhone. Sem conta, sem ligação ao banco, sem anúncios, sem rastreio.\n\nDisponível em português, inglês, alemão, chinês (simplificado e tradicional), coreano, dinamarquês, espanhol, finlandês, francês, italiano, japonês, neerlandês, norueguês, sueco e turco.\n\nSUBSCRIÇÕES\nO SpendZero Pro está disponível com subscrição semanal, mensal ou anual, ou como compra vitalícia única. Os planos mensal e anual podem incluir 3 dias de avaliação gratuita para novos subscritores elegíveis. Os preços são apresentados na app na tua moeda local. As subscrições renovam-se automaticamente, exceto se forem canceladas pelo menos 24 horas antes do fim do período atual; gere ou cancela a qualquer momento nas definições da tua conta da App Store.\n\nTermos de Utilização (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPolítica de Privacidade: https://gwlabs.app/privacy",
+ "whatsNew": "Chegou o SpendZero 2.0:\n• Mealheiro: cada dia selado faz cair uma moeda de ouro num frasco de vidro que podes inclinar e abanar\n• Calendário de moedas: o teu ano inteiro em moedas de ouro, com gráficos totalmente novos\n• Previsão de poupança: descobre quanto pode valer um ano de dias sem gastos\n• Resumo do mês: o teu mês em stories, para partilhar\n• Contagem decrescente ao fim do dia no ecrã bloqueado e na Dynamic Island, e sela o dia a partir da central de controlo ou com a Siri\n• A tua árvore da riqueza agora vive em tempo real: dia e noite, estações do ano e luzes em dezembro\n• Desbloqueia os ícones Ouro, Esmeralda e Meia-noite ao subir de nível\n• Novos efeitos sonoros e vibrações\n• Agora também em coreano, sueco, dinamarquês, norueguês, finlandês e chinês tradicional",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Semanal",
+   "description": "Todo o Pro, semana a semana"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Mensal",
+   "description": "Acesso total ao Pro, cobrado todos os meses"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Anual",
+   "description": "12 meses de Pro num único pagamento anual"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Vitalício",
+   "description": "Pagas uma vez e o Pro é teu para sempre"
+  }
+ }
+}

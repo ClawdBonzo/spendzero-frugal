@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Za sezonu sniženja: tri izazova u ograničenom trajanju.\n• Vikend bez kupovine za Black Friday: preskoči sve ponude od petka do Cyber Mondayja.\n• 12 dana bez trošenja: dvanaest dana zaredom prije Božića.\n• Siječanj bez trošenja: započni godinu s 31 danom trošenja samo na nužno.\nSvaki se izazov pojavljuje u Challenges u svojoj sezoni.\nUz to, kodove ponude za SpendZero Pro sada možeš iskoristiti u aplikaciji, u Settings ili na zaslonu za nadogradnju.",
+ "promo": {
+  "now": "Novo: izazovi u ograničenom trajanju za Black Friday, 12 dana prije Božića i Siječanj bez trošenja. Zapečati svaki dan bez trošenja zlatnikom.",
+  "bf": "Stigao je vikend bez kupovine za Black Friday: preskoči sve ponude od petka do Cyber Mondayja i umjesto košarice uzgajaj svoje stablo bogatstva.",
+  "dec": "12 dana bez trošenja: dvanaest dana zaredom prije Božića. Već planirani pokloni su u redu, dodaci nisu. Pokreni izazov u Challenges.",
+  "jan": "Siječanj bez trošenja: 31 dan samo za nužno, čak i usred sniženja. Zapečati svaki dan zlatnikom i započni godinu s više novca."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday bez kupovine",
+   "short": "Nijedna ponuda od petka do ponedjeljka",
+   "long": "Izazov od 4 dana: nema nepotrebnih kupnji od Black Fridayja do Cyber Mondayja. Zapečati svaki dan zlatnikom."
+  },
+  "twelve-days": {
+   "name": "12 dana bez trošenja",
+   "short": "12 dana zaredom prije Božića",
+   "long": "Dvanaest dana zaredom bez nepotrebnog trošenja prije Božića. Već planirani pokloni su u redu, dodaci nisu."
+  },
+  "no-spend-january": {
+   "name": "Siječanj bez trošenja",
+   "short": "31 dan trošenja samo na nužno",
+   "long": "Započni 2027. izazovom od 31 dana: troši samo na nužno i zapečati svaki dan zlatnikom."
+  }
+ }
+}

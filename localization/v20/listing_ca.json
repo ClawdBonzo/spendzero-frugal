@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Repte sense gastar",
+ "subtitle": "Estalvia diners, compra menys",
+ "keywords": "estalvi,estalviar,guardiola,pressupost,despeses,finances,hàbits,consum,impulsives,objectiu,ratxa",
+ "promotionalText": "Novetat de la 2.0: cada dia sense despeses deixa caure una moneda d'or a la guardiola. Tot l'any en or, previsió d'estalvi i un resum del mes per compartir.",
+ "description": "No gastis: encunya or. SpendZero converteix cada dia sense despeses en una moneda d'or: cau a la teva guardiola, daura el teu calendari i fa créixer el teu arbre de la riquesa. Ratxes, XP, missions i insígnies fan de l'estalvi un joc que guanyes tu.\n\nFas un mes sense compres, vols deixar les compres impulsives o estalvies per a alguna cosa gran? Amb SpendZero, cada dia que els diners es queden a la butxaca és una victòria que es veu.\n\nNOVETATS DE LA 2.0\n• Guardiola de monedes (Coin Vault): cada dia segellat deixa caure una moneda d'or en un pot de vidre; inclina l'iPhone i mira com rodolen\n• Calendari de monedes (Mint Calendar): tot el teu any en monedes d'or, amb gràfics nous\n• Previsió d'estalvi: mira quant pot valer un any sense despeses innecessàries\n• Resum del mes (Monthly Recap): la història del teu mes en format story, a punt per compartir\n• Compte enrere a la pantalla bloquejada i a la Dynamic Island, botó al centre de control i Siri\n\nSEGELLA EL TEU DIA\nMarca un dia sense despeses i mira com se segella amb una moneda d'or. La ratxa puja, arriben les recompenses i veus exactament quant et falta per al proper objectiu. Un sol toc.\n\nFES CRÉIXER L'ARBRE DE LA RIQUESA\nEl teu arbre és únic. Creix amb cada nivell, s'omple de monedes d'or a mesura que estalvies i ara viu en temps real: dia i nit, estacions, llumetes al desembre. Si perds la ratxa, comença a marcir-se; un sol dia sense despeses el torna a la vida.\n\nUN JOC QUE GUANYES SENSE GASTAR\n• Ratxes, amb congelacions que et salven en un mal dia\n• Missions diàries i setmanals\n• 25 nivells i insígnies per ratxes de 7, 30, 100 i 365 dies\n• Reptes: 7 dies sense despeses, una setmana sense cafè per emportar, 30 dies sense despeses, revisió de subscripcions i més; o crea el teu\n• Desbloqueja les icones Gold, Emerald i Midnight a mesura que puges de nivell\n\nATURA LES COMPRES IMPULSIVES\nTens alguna cosa al carretó? Anota-la. Si aguantes, l'import compta com a estalviat, amb XP inclosa. Has caigut? Cap problema: anota-ho i continua. Les despeses essencials, com el súper o el transport, no trenquen el dia sense despeses.\n\nNO TRENQUIS LA RATXA\n• Widgets interactius a la pantalla d'inici i a la pantalla bloquejada\n• Live Activity amb compte enrere fins al final del dia, centre de control, Siri i Dreceres\n• Un recordatori suau al vespre i, al matí, encara pots comptar el dia d'ahir\n\nPRIVACITAT PER DISSENY\nSense compte, sense connectar el banc, sense anuncis. Tot el que anotes es queda al teu iPhone. Exporta un informe en PDF quan vulguis.\n\nL'app està disponible en anglès i en 15 idiomes més: alemany, castellà, francès, italià, neerlandès, portuguès, turc, japonès, xinès (simplificat i tradicional), coreà, suec, danès, noruec i finès. No està disponible en català, però sí en castellà.\n\nSUBSCRIPCIONS\nSpendZero Pro està disponible amb subscripció setmanal, mensual o anual, o com a compra única de per vida. Els plans mensual i anual poden incloure una prova gratuïta de 3 dies per a subscriptors nous que compleixin els requisits. Els preus es mostren a l'app en la moneda local. Les subscripcions es renoven automàticament tret que es cancel·lin com a mínim 24 hores abans del final del període actual; pots gestionar-les o cancel·lar-les quan vulguis a la configuració del compte de l'App Store.\n\nCondicions d'ús (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nPolítica de privacitat: https://gwlabs.app/privacy",
+ "whatsNew": "Novetats de SpendZero 2.0:\n• Guardiola de monedes: cada dia segellat deixa caure una moneda d'or en un pot de vidre que pots inclinar\n• Calendari de monedes: tot l'any en monedes d'or, amb gràfics nous\n• Previsió d'estalvi per als pròxims 12 mesos\n• Resum del mes en format story per compartir\n• Compte enrere per segellar el dia a la pantalla bloquejada i a la Dynamic Island, a més del centre de control i Siri\n• L'arbre de la riquesa viu en temps real: dia i nit, estacions i llumetes al desembre\n• Desbloqueja les icones Gold, Emerald i Midnight quan puges de nivell\n• Efectes de so i resposta hàptica\n• L'app ja és en 16 idiomes, inclosos l'anglès i el castellà; el català no hi és",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro setmanal",
+   "description": "Totes les funcions Pro, pagament setmanal"
+  },
+  "monthly": {
+   "name": "SpendZero Pro mensual",
+   "description": "Totes les funcions Pro, pagament mensual"
+  },
+  "yearly": {
+   "name": "SpendZero Pro anual",
+   "description": "Pro durant 12 mesos, un pagament l'any"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro per sempre",
+   "description": "Un sol pagament, Pro sense subscripció"
+  }
+ }
+}

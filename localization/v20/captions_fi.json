@@ -1,0 +1,61 @@
+{
+ "f1": {
+  "h": "Ostolakko.<br><g>Kultaa käteen.</g>",
+  "sub": "Jokainen ostoton päivä muuttuu kultakolikoksi, joka jää sinulle.",
+  "chip_streak": "24 päivän putki",
+  "chip_kept": "+40 € säästöön tänään",
+  "trust": [
+   "Ei mainoksia",
+   "Ei pankkitunnuksia",
+   "100% yksityinen"
+  ]
+ },
+ "f2": {
+  "kicker": "Kolikkopurkki",
+  "h": "Katso säästöjesi<br><g>kertyvän.</g>"
+ },
+ "f3": {
+  "kicker": "Säästöennuste",
+  "h": "Paljonko vuosi<br><g>voi tuoda?</g>"
+ },
+ "f4": {
+  "kicker": "Kolikkokalenteri",
+  "h": "Täytä vuotesi<br><g>kullalla.</g>"
+ },
+ "f5": {
+  "kicker": "Ostohimot",
+  "h": "Voita ostohimo.<br><g>Pidä rahat.</g>"
+ },
+ "f6": {
+  "kicker": "Rahapuu",
+  "h": "Puu, joka kasvaa<br>putkesi <g>mukana.</g>",
+  "sub": "Päivä ja yö, kaikki vuodenajat – ja jouluvalot joulukuussa."
+ },
+ "f7": {
+  "kicker": "Kuukausikooste",
+  "h": "Kuukautesi,<br><g>sinetöity.</g>"
+ },
+ "f8": {
+  "kicker": "Lähtölaskenta",
+  "h": "Sinetöi päivä<br><g>lukitusnäytöltä.</g>",
+  "date": "Tiistai 6. lokakuuta",
+  "la_left": "aikaa sinetöidä päivä",
+  "la_streak": "23 päivän putki vaakalaudalla",
+  "la_button": "Sinetöi"
+ },
+ "f9": {
+  "kicker": "Tehtävät · XP · 25 tasoa",
+  "h": "Tasonnousu!<br>Kerää <g>merkkejä.</g>"
+ },
+ "f10": {
+  "kicker": "Yksityinen alusta asti",
+  "h": "Ei mainoksia.<br>Ei <g>pankkiyhteyttä.</g>",
+  "sub": "Ei tiliä, ei pankkiyhteyttä. Tietosi pysyvät iPhonessasi.",
+  "icons": "Nousemalla tasoissa avaat Kulta-, Smaragdi- ja Keskiyö-kuvakkeet.",
+  "chips": [
+   "Toimii ilman tiliä",
+   "Ei koskaan pankkiyhteyttä",
+   "Tietosi pysyvät iPhonessasi"
+  ]
+ }
+}

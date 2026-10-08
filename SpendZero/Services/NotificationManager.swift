@@ -124,9 +124,14 @@ final class NotificationManager {
 
     /// Re-arm the streak-protection notifications. Safe to call on every app open and
     /// after logging a no-spend day. No-ops silently if notifications aren't authorized.
+    static let notificationsAuthorizedKey = "notifications.authorized"
+
     func refreshRetentionNotifications(currentStreak: Int, loggedToday: Bool) {
         Task {
-            guard await authorizationStatus() == .authorized else { return }
+            let authorized = await authorizationStatus() == .authorized
+            // The evening Live Activity is offered only to people who get the evening reminder.
+            UserDefaults.standard.set(authorized, forKey: Self.notificationsAuthorizedKey)
+            guard authorized else { return }
             scheduleStreakGuard(streak: currentStreak, loggedToday: loggedToday)
             scheduleMorningFollowUp(streak: currentStreak, loggedToday: loggedToday)
             scheduleLapseReengagement(currentStreak: currentStreak)

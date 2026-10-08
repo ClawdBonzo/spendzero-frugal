@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Sfida Risparmio",
+ "subtitle": "No spend: giorni senza spese",
+ "keywords": "risparmiare,soldi,spendere,meno,acquisti,impulsivi,compulsivo,budget,abitudini,streak,tracker,buy",
+ "promotionalText": "Novità 2.0: ogni giorno senza spese fa cadere una moneta d'oro nel tuo salvadanaio. Riempi l'anno d'oro e chiudi la giornata direttamente dalla schermata di blocco.",
+ "description": "Non spendere vale oro. SpendZero trasforma ogni giorno senza spese in una moneta d'oro: guardale accumularsi nel tuo salvadanaio, riempi l'anno nel calendario delle monete e scopri quanto potresti mettere da parte in un anno. Serie, XP, missioni, badge e un albero della ricchezza che vive con te rendono il risparmio un gioco che hai davvero voglia di vincere.\n\nVuoi risparmiare soldi, spendere meno o dire basta agli acquisti impulsivi? Con SpendZero ogni giorno senza spese è una piccola vittoria.\n\nLE NOVITÀ DELLA 2.0\n• Salvadanaio: ogni giornata chiusa fa cadere una moneta d'oro in un barattolo di vetro che puoi inclinare e scuotere\n• Calendario delle monete: tutto il tuo anno in monete d'oro, più brillanti nei giorni in cui hai risparmiato di più\n• Previsione di risparmio, grafici tutti nuovi e cosa potresti permetterti con ciò che hai messo da parte\n• Riepilogo del mese: il tuo mese raccontato come una storia, pronto da condividere\n• Chiudi la giornata dalla schermata di blocco, dalla Dynamic Island, dal Centro di Controllo o con Siri\n• Un albero della ricchezza vivo: giorno e notte, stagioni e lucine a dicembre\n• Sblocca le icone Oro, Smeraldo e Mezzanotte salendo di livello\n\nUN GIOCO CHE VINCI NON SPENDENDO\nSegna un giorno senza spese e si chiude con una moneta d'oro. La serie sale, arrivano le ricompense e vedi quanto manca al prossimo traguardo.\n• Serie con congelamenti che ti salvano nelle giornate storte\n• Missioni giornaliere e settimanali che avanzano con quello che fai davvero\n• 25 livelli, da Novizio parsimonioso a Re della ricchezza\n• Badge per serie di 7, 30, 100 e 365 giorni e per i traguardi di risparmio\n• Sfide come la Sfida di 30 giorni senza spese, la Settimana detox dal bar o quelle di stagione come Gennaio senza spese, oppure una tutta tua\n\nFAI CRESCERE IL TUO ALBERO DELLA RICCHEZZA\nIl tuo albero è unico. Cresce a ogni livello, si riempie di monete d'oro mentre risparmi e segue il ritmo della tua giornata, dall'alba alle notti di luna. Se la serie si interrompe inizia ad appassire: un giorno senza spese lo rimette in forma.\n\nSTOP AGLI ACQUISTI IMPULSIVI\nTi è venuta voglia di comprare qualcosa? Registralo. Se resisti, quei soldi contano come risparmiati, con tanto di XP a dimostrarlo. Hai ceduto? Nessun senso di colpa: registralo e vai avanti. La spesa alimentare e i trasporti non interrompono il tuo giorno senza spese.\n\nNON SPEZZARE MAI LA CATENA\n• Widget interattivi: chiudi la giornata senza aprire l'app\n• Conto alla rovescia serale facoltativo sulla schermata di blocco, prima che la giornata finisca\n• Un tocco nel Centro di Controllo, oppure chiedilo a Siri\n• Un check-in serale discreto e un promemoria al mattino se ieri te ne sei dimenticato\n\nPRIVACY PRIMA DI TUTTO\nTutto ciò che registri resta sul tuo iPhone. Nessun account, nessun collegamento alla banca, nessuna pubblicità, nessun tracciamento.\n\nDisponibile in italiano, inglese, cinese (semplificato e tradizionale), coreano, danese, finlandese, francese, giapponese, norvegese, olandese, portoghese, spagnolo, svedese, tedesco e turco.\n\nABBONAMENTI\nSpendZero Pro è disponibile con abbonamento settimanale, mensile o annuale, oppure come acquisto a vita una tantum. I piani mensile e annuale possono includere una prova gratuita di 3 giorni per i nuovi abbonati idonei. I prezzi sono indicati nell'app nella tua valuta locale. Gli abbonamenti si rinnovano automaticamente se non vengono disdetti almeno 24 ore prima della fine del periodo in corso; puoi gestirli o disdirli in qualsiasi momento dalle impostazioni del tuo account App Store.\n\nTermini di utilizzo (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nInformativa sulla privacy: https://gwlabs.app/privacy",
+ "whatsNew": "Ecco SpendZero 2.0:\n• Salvadanaio: ogni giornata chiusa fa cadere una moneta d'oro in un barattolo di vetro che puoi inclinare e scuotere\n• Calendario delle monete: tutto il tuo anno in monete d'oro, con grafici tutti nuovi\n• Previsione di risparmio: scopri quanto potrebbe valere un anno di giorni senza spese\n• Riepilogo del mese: il tuo mese in formato storia, da condividere\n• Conto alla rovescia serale sulla schermata di blocco e nella Dynamic Island, e chiudi la giornata dal Centro di Controllo o con Siri\n• Il tuo albero della ricchezza ora vive in tempo reale: giorno e notte, stagioni e lucine a dicembre\n• Sblocca le icone Oro, Smeraldo e Mezzanotte salendo di livello\n• Nuovi effetti sonori e feedback aptico\n• Ora anche in coreano, svedese, danese, norvegese, finlandese e cinese tradizionale",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Settimanale",
+   "description": "Tutto Pro, una settimana alla volta"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Mensile",
+   "description": "Accesso completo a Pro, addebito mensile"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Annuale",
+   "description": "12 mesi di Pro con un solo pagamento"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro A vita",
+   "description": "Paghi una volta e Pro resta tuo per sempre"
+  }
+ }
+}

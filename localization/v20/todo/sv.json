@@ -1,0 +1,4739 @@
+{
+ "lang": "sv",
+ "new_language": true,
+ "plural_categories": [
+  "one",
+  "other"
+ ],
+ "Localizable": {
+  "": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": ""
+  },
+  "%@ %@, auto-renews until cancelled. Cancel anytime in App Store settings.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "%@ %@, auto-renews until cancelled. Cancel anytime in App Store settings."
+  },
+  "%@ complete": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "%@ complete"
+  },
+  "%@ is your best month yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "%@ is your best month yet"
+  },
+  "%@ kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "%@ kept"
+  },
+  "%@ kept is enough for…": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "%@ kept is enough for…"
+  },
+  "%@ not spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "%@ not spent"
+  },
+  "%@ recap": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "%@ recap"
+  },
+  "%@ spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "%@ spent"
+  },
+  "%@ spent, over budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "%@ spent, over budget"
+  },
+  "%@ was your best month": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "%@ was your best month"
+  },
+  "%@'s no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/ShareCardView.swift",
+   "en": "%@'s no-spend streak"
+  },
+  "%@, a top day": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "%@, a top day"
+  },
+  "%@/wk": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "%@/wk"
+  },
+  "%@: %lld resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "%@: %lld resisted"
+  },
+  "%lld": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "%lld"
+  },
+  "%lld Days": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "%lld Days"
+  },
+  "%lld XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "%lld XP"
+  },
+  "%lld day streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "%lld day streak"
+  },
+  "%lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "%lld days"
+  },
+  "%lld days ago": {
+   "comment": "",
+   "source": "SpendZero/Extensions/DateExtensions.swift",
+   "en": "%lld days ago"
+  },
+  "%lld days no unnecessary spending": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "%lld days no unnecessary spending"
+  },
+  "%lld days sealed": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "%lld days sealed"
+  },
+  "%lld days sealed.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "%lld days sealed."
+  },
+  "%lld days to a %lld-day streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "%lld days to a %lld-day streak"
+  },
+  "%lld full jars": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "%lld full jars"
+  },
+  "%lld gold coins": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "%lld gold coins"
+  },
+  "%lld no-spend days and %lld days over budget.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "%lld no-spend days and %lld days over budget."
+  },
+  "%lld no-spend days total": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "%lld no-spend days total"
+  },
+  "%lld no-spend days × %@ a day × 12 months = %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "%lld no-spend days × %@ a day × 12 months = %@"
+  },
+  "%lld of %lld coins in this jar": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "%lld of %lld coins in this jar"
+  },
+  "%lld of %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "%lld of %lld days"
+  },
+  "%lld of %lld days kept spend-free": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "%lld of %lld days kept spend-free"
+  },
+  "%lld of %lld streak flames lit": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/StreakFlamesView.swift",
+   "en": "%lld of %lld streak flames lit"
+  },
+  "%lld resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "%lld resisted"
+  },
+  "%lld selected": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCategoriesView.swift",
+   "en": "%lld selected"
+  },
+  "%lld streak freezes available": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "%lld streak freezes available"
+  },
+  "%lld urges resisted, %@ not spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "%lld urges resisted, %@ not spent"
+  },
+  "%lld%%": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "%lld%%"
+  },
+  "%lld%% %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "%lld%% %@"
+  },
+  "%lld%% there · %@ to go": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "%lld%% there · %@ to go"
+  },
+  "%lld-DAY FREE": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "%lld-DAY FREE"
+  },
+  "%lld-Day": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "%lld-Day"
+  },
+  "%lld-Day Streak! 🔥": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "%lld-Day Streak! 🔥"
+  },
+  "%lld-day free trial, then %@ %@. Auto-renews until cancelled; cancel anytime in App Store settings.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "%lld-day free trial, then %@ %@. Auto-renews until cancelled; cancel anytime in App Store settings."
+  },
+  "%lld-day milestone reached!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "%lld-day milestone reached!"
+  },
+  "%lld-day no-spend streak, %@ kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/ShareCardView.swift",
+   "en": "%lld-day no-spend streak, %@ kept"
+  },
+  "%lld-day streak": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "%lld-day streak"
+  },
+  "%lld-day streak on the line": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "%lld-day streak on the line"
+  },
+  "%lld-day streak. See you tomorrow.": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "%lld-day streak. See you tomorrow."
+  },
+  "%lld/%lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "%lld/%lld"
+  },
+  "%lld/%lld XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelCard.swift",
+   "en": "%lld/%lld XP"
+  },
+  "%lld/%lld challenges": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "%lld/%lld challenges"
+  },
+  "%lld/%lld done": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "%lld/%lld done"
+  },
+  "%lld/%lld impulses": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "%lld/%lld impulses"
+  },
+  "%lld/%lld resisted": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "%lld/%lld resisted"
+  },
+  "%lld/7 sealed": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "%lld/7 sealed"
+  },
+  "%lldh left to seal today": {
+   "comment": "",
+   "source": "SpendZero/Services/LiveActivityCoordinator.swift",
+   "en": "%lldh left to seal today"
+  },
+  "+%@": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "+%@"
+  },
+  "+%@ saved": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "+%@ saved"
+  },
+  "+%lld XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "+%lld XP"
+  },
+  "+%lld in %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "+%lld in %@"
+  },
+  "-%@": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "-%@"
+  },
+  "0": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/VaultArt.swift",
+   "en": "0"
+  },
+  "0.00": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "0.00"
+  },
+  "0:00": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "0:00"
+  },
+  "1 day": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "1 day"
+  },
+  "1 day sealed.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "1 day sealed."
+  },
+  "1 day to a %lld-day streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "1 day to a %lld-day streak"
+  },
+  "100": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "100"
+  },
+  "A bike, a trip, a new laptop: set its price and watch your savings close in.": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "A bike, a trip, a new laptop: set its price and watch your savings close in."
+  },
+  "ACTIVE CHALLENGE": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "ACTIVE CHALLENGE"
+  },
+  "About": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "About"
+  },
+  "About how much it would have cost.": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "About how much it would have cost."
+  },
+  "Achieved maximum savings goal": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Achieved maximum savings goal"
+  },
+  "Add a goal of your own": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Add a goal of your own"
+  },
+  "Add entry": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Add entry"
+  },
+  "Aegis": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Aegis"
+  },
+  "Ahead": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Ahead"
+  },
+  "Alcohol": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Alcohol"
+  },
+  "All": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "All"
+  },
+  "All data reset": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "All data reset"
+  },
+  "All data stored locally": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "All data stored locally"
+  },
+  "All quests completed!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "All quests completed!"
+  },
+  "Almost there!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelCard.swift",
+   "en": "Almost there!"
+  },
+  "Amazing consistency!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Amazing consistency!"
+  },
+  "Amount": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Amount"
+  },
+  "An estimate from your answers, not a guarantee.": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "An estimate from your answers, not a guarantee."
+  },
+  "Analyzing spending patterns": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "Analyzing spending patterns"
+  },
+  "Any savings credited for it will be removed.": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Any savings credited for it will be removed."
+  },
+  "Apex": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Apex"
+  },
+  "App Icon": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "App Icon"
+  },
+  "Ascendant": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Ascendant"
+  },
+  "Awesome!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "Awesome!"
+  },
+  "BEST VALUE": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "BEST VALUE"
+  },
+  "Badge Unlocked": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Badge Unlocked"
+  },
+  "Badge Unlocked!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeUnlockCelebrationView.swift",
+   "en": "Badge Unlocked!"
+  },
+  "Badges": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Badges"
+  },
+  "Base": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Base"
+  },
+  "Be honest — we'll personalize your strategy": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSpendingQuizView.swift",
+   "en": "Be honest — we'll personalize your strategy"
+  },
+  "Beat the urge ⚡️": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Beat the urge ⚡️"
+  },
+  "Beauty & Care": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Beauty & Care"
+  },
+  "Before": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "Before"
+  },
+  "Before you started": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Before you started"
+  },
+  "Begin Your Journey": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSplashView.swift",
+   "en": "Begin Your Journey"
+  },
+  "Best streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Best streak"
+  },
+  "Best streak: %lld days in a row.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Best streak: %lld days in a row."
+  },
+  "Best streak: 1 day.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Best streak: 1 day."
+  },
+  "Best week": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Best week"
+  },
+  "Biggest walk-away": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Biggest walk-away"
+  },
+  "Biggest walk-away: %@, %@.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Biggest walk-away: %@, %@."
+  },
+  "Breathing and grounding for anxious moments, money worries included.": {
+   "comment": "One-line pitch for CalmAnchor, a separate calm and grounding app by the same developer. Gentle, no medical claims.",
+   "source": "SpendZero/Views/Settings/MoreFromGWLabs.swift",
+   "en": "Breathing and grounding for anxious moments, money worries included."
+  },
+  "Budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Budget"
+  },
+  "Budget %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "Budget %@"
+  },
+  "Budget Warden": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Budget Warden"
+  },
+  "Build Financial Freedom": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Build Financial Freedom"
+  },
+  "Building Momentum": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "Building Momentum"
+  },
+  "Building your %@\nNo-Spend Plan": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "Building your %@\\nNo-Spend Plan"
+  },
+  "Buy Lifetime — %@": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Buy Lifetime — %@"
+  },
+  "Calculating savings potential": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "Calculating savings potential"
+  },
+  "Calendar view": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Calendar view"
+  },
+  "Can %@ beat it?": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Can %@ beat it?"
+  },
+  "Cancel": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Cancel"
+  },
+  "Card %lld of %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Card %lld of %lld"
+  },
+  "Category": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Category"
+  },
+  "Challenge Complete!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Challenge Complete!"
+  },
+  "Challenge Library": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Challenge Library"
+  },
+  "Challenge Name": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Challenge Name"
+  },
+  "Challenges": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Challenges"
+  },
+  "Champion": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Champion"
+  },
+  "Check back soon — your first quests are loading": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "Check back soon — your first quests are loading"
+  },
+  "Check off today's wins to earn XP & log savings": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Check off today's wins to earn XP & log savings"
+  },
+  "Choose items": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Choose items"
+  },
+  "Classic": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Classic"
+  },
+  "Close": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Close"
+  },
+  "Close out day %lld? 🔥": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Close out day %lld? 🔥"
+  },
+  "Close recap": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Close recap"
+  },
+  "Clothing": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Clothing"
+  },
+  "Coffee & Drinks": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Coffee & Drinks"
+  },
+  "Coin Vault": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Coin Vault"
+  },
+  "Color in every country you've been to, then save for the next one.": {
+   "comment": "One-line pitch for Places I've Visited, a separate travel-map app by the same developer.",
+   "source": "SpendZero/Views/Settings/MoreFromGWLabs.swift",
+   "en": "Color in every country you've been to, then save for the next one."
+  },
+  "Complete %lld challenges": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Complete %lld challenges"
+  },
+  "Complete %lld no-spend days this week": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Complete %lld no-spend days this week"
+  },
+  "Complete 1 challenge": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Complete 1 challenge"
+  },
+  "Complete active challenges": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Complete active challenges"
+  },
+  "Complete days without spending": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Complete days without spending"
+  },
+  "Complete milestones and challenges to earn badges": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Complete milestones and challenges to earn badges"
+  },
+  "Complete milestones to earn badges": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Complete milestones to earn badges"
+  },
+  "Complete quests to earn XP and level up": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "Complete quests to earn XP and level up"
+  },
+  "Complete your first no-spend day to start!": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Complete your first no-spend day to start!"
+  },
+  "Completed 5 challenges": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Completed 5 challenges"
+  },
+  "Completed 7 consecutive no-spend days": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Completed 7 consecutive no-spend days"
+  },
+  "Completed a challenge 2x faster than expected": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Completed a challenge 2x faster than expected"
+  },
+  "Configuration": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Configuration"
+  },
+  "Continue": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": "Continue"
+  },
+  "Control spending in a category": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Control spending in a category"
+  },
+  "Couldn't load plans.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Couldn't load plans."
+  },
+  "Couldn't save the report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Couldn't save the report"
+  },
+  "Couldn’t Change Icon": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Couldn’t Change Icon"
+  },
+  "Covers one missed day so your streak survives.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Covers one missed day so your streak survives."
+  },
+  "Create Challenge": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Create Challenge"
+  },
+  "Creating personalized challenges": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "Creating personalized challenges"
+  },
+  "Current Level": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelProgressView.swift",
+   "en": "Current Level"
+  },
+  "Current Stage": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Current Stage"
+  },
+  "Current Streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Current Streak"
+  },
+  "Current Streak: %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Current Streak: %lld days"
+  },
+  "Customer Info": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Customer Info"
+  },
+  "Daily Budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Daily Budget"
+  },
+  "Daily Log": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Daily Log"
+  },
+  "Daily Quests": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Daily Quests"
+  },
+  "Daily budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "Daily budget"
+  },
+  "Daily impulse reminder": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Daily impulse reminder"
+  },
+  "Dashboard": {
+   "comment": "",
+   "source": "SpendZero/Views/Main/MainTabView.swift",
+   "en": "Dashboard"
+  },
+  "Data": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Data"
+  },
+  "Date": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/InsightCard.swift",
+   "en": "Date"
+  },
+  "Day": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "Day"
+  },
+  "Day %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Day %lld"
+  },
+  "Day %lld of %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Day %lld of %lld"
+  },
+  "Day 100:": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/StreakFlamesView.swift",
+   "en": "Day 100:"
+  },
+  "Day 10:": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/StreakFlamesView.swift",
+   "en": "Day 10:"
+  },
+  "Day 25:": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/StreakFlamesView.swift",
+   "en": "Day 25:"
+  },
+  "Day 5:": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/StreakFlamesView.swift",
+   "en": "Day 5:"
+  },
+  "Day Streak": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Day Streak"
+  },
+  "Day closed": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "Day closed"
+  },
+  "Day sealed.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "Day sealed."
+  },
+  "Default": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Default"
+  },
+  "Delete": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Delete"
+  },
+  "Delete this impulse?": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Delete this impulse?"
+  },
+  "Delete this purchase?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Delete this purchase?"
+  },
+  "Describe your spending habits": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSpendingQuizView.swift",
+   "en": "Describe your spending habits"
+  },
+  "Description": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Description"
+  },
+  "Diagnostics": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Diagnostics"
+  },
+  "Diamond Defender": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Diamond Defender"
+  },
+  "Did you keep your %lld-day streak alive today? One tap and it's logged.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Did you keep your %lld-day streak alive today? One tap and it's logged."
+  },
+  "Difficulty": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Difficulty"
+  },
+  "Display StoreView": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Display StoreView"
+  },
+  "Display SubscriptionStoreView": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Display SubscriptionStoreView"
+  },
+  "Don't break the chain. A no-spend day keeps your momentum alive.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Don't break the chain. A no-spend day keeps your momentum alive."
+  },
+  "Done": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Done"
+  },
+  "Dopamine detox and focus timer: less scrolling, fewer late-night carts.": {
+   "comment": "One-line pitch for Lighthouse, a separate dopamine-detox and focus-timer app by the same developer. 'Late-night carts' = online shopping carts filled while scrolling at night.",
+   "source": "SpendZero/Views/Settings/MoreFromGWLabs.swift",
+   "en": "Dopamine detox and focus timer: less scrolling, fewer late-night carts."
+  },
+  "Duration: %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Duration: %lld days"
+  },
+  "Earn XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Earn XP"
+  },
+  "Earn XP through real no-spend wins": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Earn XP through real no-spend wins"
+  },
+  "Earn XP to unlock new icons. Your choice applies on the Home Screen right away.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Earn XP to unlock new icons. Your choice applies on the Home Screen right away."
+  },
+  "Earned": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Earned"
+  },
+  "Eating Out": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Eating Out"
+  },
+  "Electronics": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Electronics"
+  },
+  "Emerald": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Emerald"
+  },
+  "Enable notifications for SpendZero in Settings to receive impulse-purchase reminders.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Enable notifications for SpendZero in Settings to receive impulse-purchase reminders."
+  },
+  "Enough for %lld %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Enough for %lld %@"
+  },
+  "Enough for it %lld× over": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Enough for it %lld× over"
+  },
+  "Enter an amount greater than zero": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "Enter an amount greater than zero"
+  },
+  "Entertainment": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Entertainment"
+  },
+  "Entitlement Verification Mode": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Entitlement Verification Mode"
+  },
+  "Entitlements": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Entitlements"
+  },
+  "Error": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Error"
+  },
+  "Error loading customer info: %@": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Error loading customer info: %@"
+  },
+  "Error loading offerings: %@": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Error loading offerings: %@"
+  },
+  "Essentials don't break your no-spend day": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "Essentials don't break your no-spend day"
+  },
+  "Est. savings: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Est. savings: %@"
+  },
+  "Estimated Savings (%@)": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Estimated Savings (%@)"
+  },
+  "Estimated cost": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "Estimated cost"
+  },
+  "Evening check-in": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Evening check-in"
+  },
+  "Evening countdown": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Evening countdown"
+  },
+  "Every dollar not spent is a dollar saved. Resist the impulse and log your win.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Every dollar not spent is a dollar saved. Resist the impulse and log your win."
+  },
+  "Every gold coin is a day you didn't spend.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Every gold coin is a day you didn't spend."
+  },
+  "Every sealed day mints a coin.": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Every sealed day mints a coin."
+  },
+  "Every streak starts with one sealed day.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Every streak starts with one sealed day."
+  },
+  "Export": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Export"
+  },
+  "Export PDF Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Export PDF Report"
+  },
+  "Export Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Export Report"
+  },
+  "Financial Guardian": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Financial Guardian"
+  },
+  "Food Delivery": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Food Delivery"
+  },
+  "Fortune Weaver": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Fortune Weaver"
+  },
+  "Free access ends tomorrow — lock in your savings": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Free access ends tomorrow — lock in your savings"
+  },
+  "Free access: %lld days left": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Free access: %lld days left"
+  },
+  "Fresh quests on the way": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "Fresh quests on the way"
+  },
+  "Freshly planted — every no-spend day helps it grow": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Freshly planted — every no-spend day helps it grow"
+  },
+  "Frugal Novice": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Frugal Novice"
+  },
+  "Full Palm": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Full Palm"
+  },
+  "Full Progression": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Full Progression"
+  },
+  "Full Transformation": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "Full Transformation"
+  },
+  "Gave In": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "Gave In"
+  },
+  "Generate PDF Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Generate PDF Report"
+  },
+  "Generate a beautiful PDF report\nof your financial progress": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Generate a beautiful PDF report\\nof your financial progress"
+  },
+  "Generated %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Generated %@"
+  },
+  "Generating...": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Generating..."
+  },
+  "Goal: %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Goal: %lld days"
+  },
+  "Gold": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Gold"
+  },
+  "Gold Gatherer": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Gold Gatherer"
+  },
+  "Good afternoon": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Good afternoon"
+  },
+  "Good evening": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Good evening"
+  },
+  "Good morning": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Good morning"
+  },
+  "Good night": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Good night"
+  },
+  "Got it!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Got it!"
+  },
+  "Great job staying on track!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Great job staying on track!"
+  },
+  "Growing with your financial wisdom": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Growing with your financial wisdom"
+  },
+  "Grows to %@ over the next 12 months": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Grows to %@ over the next 12 months"
+  },
+  "Habit Former": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "Habit Former"
+  },
+  "Have a code? Redeem it": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Have a code? Redeem it"
+  },
+  "Here's what you could keep": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Here's what you could keep"
+  },
+  "Here's what you could keep, %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Here's what you could keep, %@"
+  },
+  "How did today go? 💚": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "How did today go? 💚"
+  },
+  "How did you resist?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "How did you resist?"
+  },
+  "How many days can you go no-spend?": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "How many days can you go no-spend?"
+  },
+  "How much did you spend?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "How much did you spend?"
+  },
+  "How the estimate works": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "How the estimate works"
+  },
+  "I Resisted Buying…": {
+   "comment": "",
+   "source": "SpendZero/App/SpendZeroShortcuts.swift",
+   "en": "I Resisted Buying…"
+  },
+  "I just hit Level %lld — %@ — on my no-spend journey with SpendZero! 💪 Building real savings one day at a time.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "I just hit Level %lld — %@ — on my no-spend journey with SpendZero! 💪 Building real savings one day at a time."
+  },
+  "I just unlocked the \"%@\" badge on SpendZero! 🏆 Crushing my no-spend challenge.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeUnlockCelebrationView.swift",
+   "en": "I just unlocked the \\\"%@\\\" badge on SpendZero! 🏆 Crushing my no-spend challenge."
+  },
+  "I resisted buying ${item} for ${amount}": {
+   "comment": "",
+   "source": "SpendZero/App/SpendZeroShortcuts.swift",
+   "en": "I resisted buying ${item} for ${amount}"
+  },
+  "I spent…": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "I spent…"
+  },
+  "I'm Committed!": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "I'm Committed!"
+  },
+  "Identifier": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Identifier"
+  },
+  "Imperial": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Imperial"
+  },
+  "Impulse": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Impulse"
+  },
+  "Impulse Alerts": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Impulse Alerts"
+  },
+  "Impulse Resisted! ⚡️": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Impulse Resisted! ⚡️"
+  },
+  "Impulse buys fade in minutes. Open SpendZero and remind yourself why you started.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Impulse buys fade in minutes. Open SpendZero and remind yourself why you started."
+  },
+  "Impulse deleted": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Impulse deleted"
+  },
+  "Impulse-purchase alerts": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Impulse-purchase alerts"
+  },
+  "Impulses": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Impulses"
+  },
+  "Impulses Resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Impulses Resisted"
+  },
+  "Impulses Resisted: %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Impulses Resisted: %lld"
+  },
+  "In %@ you kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "In %@ you kept"
+  },
+  "In %@ you kept %@, not spent.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "In %@ you kept %@, not spent."
+  },
+  "In the evening, shows how long you have left to seal today on the Lock Screen and in the Dynamic Island. Needs notifications.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "In the evening, shows how long you have left to seal today on the Lock Screen and in the Dynamic Island. Needs notifications."
+  },
+  "Increased streak by 10+ days": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Increased streak by 10+ days"
+  },
+  "Item": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Item"
+  },
+  "JSON": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "JSON"
+  },
+  "Jump back in — log a no-spend day and start a fresh streak today.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Jump back in — log a no-spend day and start a fresh streak today."
+  },
+  "Keep everything you've built": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Keep everything you've built"
+  },
+  "Keep going": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "Keep going"
+  },
+  "Keep it going.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Keep it going."
+  },
+  "Keep money in your pocket for a few days and we'll crown it here.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Keep money in your pocket for a few days and we'll crown it here."
+  },
+  "Kept this year: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Kept this year: %@"
+  },
+  "LEVEL UP!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "LEVEL UP!"
+  },
+  "Last 30 days · %lld no-spend": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Last 30 days · %lld no-spend"
+  },
+  "Last 7 days · %lld no-spend": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Last 7 days · %lld no-spend"
+  },
+  "Last free day": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Last free day"
+  },
+  "Last free day — don't lose your streak!": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Last free day — don't lose your streak!"
+  },
+  "Last free day — subscribe to keep your progress": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Last free day — subscribe to keep your progress"
+  },
+  "Latest Expiration Date": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Latest Expiration Date"
+  },
+  "Legend: brighter coins kept more. Small dark dots are missed days, outlines are days ahead.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Legend: brighter coins kept more. Small dark dots are missed days, outlines are days ahead."
+  },
+  "Less": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Less"
+  },
+  "Level": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Level"
+  },
+  "Level %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "Level %lld"
+  },
+  "Level %lld for next stage": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Level %lld for next stage"
+  },
+  "Level %lld, %@.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Level %lld, %@."
+  },
+  "Level %lld: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelCard.swift",
+   "en": "Level %lld: %@"
+  },
+  "Level Progression": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelProgressView.swift",
+   "en": "Level Progression"
+  },
+  "Level up! You reached Level %lld: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "Level up! You reached Level %lld: %@"
+  },
+  "Level up, earn badges & grow your tree": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Level up, earn badges & grow your tree"
+  },
+  "Lifetime": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Lifetime"
+  },
+  "Limited time · ends %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Limited time · ends %@"
+  },
+  "Loading gamification profile...": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Loading gamification profile..."
+  },
+  "Loading plans": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Loading plans"
+  },
+  "Loading plans…": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Loading plans…"
+  },
+  "Loading...": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Loading..."
+  },
+  "Locale": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Locale"
+  },
+  "Lock in your savings before free access ends": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Lock in your savings before free access ends"
+  },
+  "Log": {
+   "comment": "",
+   "source": "SpendZero/Views/Main/MainTabView.swift",
+   "en": "Log"
+  },
+  "Log Impulse": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Log Impulse"
+  },
+  "Log Spending": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Log Spending"
+  },
+  "Log Victory!": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "Log Victory!"
+  },
+  "Log a Purchase": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Log a Purchase"
+  },
+  "Log a Resisted Impulse": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Log a Resisted Impulse"
+  },
+  "Log a no-spend day to start your streak — one tap is all it takes.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Log a no-spend day to start your streak — one tap is all it takes."
+  },
+  "Log an Impulse": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Log an Impulse"
+  },
+  "Log spending or seal a day and your bars appear here.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Log spending or seal a day and your bars appear here."
+  },
+  "Log the urges you resist next month and watch this number grow.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Log the urges you resist next month and watch this number grow."
+  },
+  "Log today as a no-spend day": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Log today as a no-spend day"
+  },
+  "Log your first no-spend day to start your streak and earn +100 XP.": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Log your first no-spend day to start your streak and earn +100 XP."
+  },
+  "Logged ✓": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Logged ✓"
+  },
+  "Logs today as a no-spend day and extends your streak.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Logs today as a no-spend day and extends your streak."
+  },
+  "Longest Streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Longest Streak"
+  },
+  "Longest Streak: %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Longest Streak: %lld days"
+  },
+  "Longest streak: %lld days": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Longest streak: %lld days"
+  },
+  "Lucky Bonus! 🍀": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Lucky Bonus! 🍀"
+  },
+  "Lucky ×2": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "Lucky ×2"
+  },
+  "Luminary": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Luminary"
+  },
+  "Lv. %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Lv. %lld"
+  },
+  "Maintain your no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Maintain your no-spend streak"
+  },
+  "Maintained a 1-year no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Maintained a 1-year no-spend streak"
+  },
+  "Maintained a 100-day no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Maintained a 100-day no-spend streak"
+  },
+  "Maintained a 30-day no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Maintained a 30-day no-spend streak"
+  },
+  "Maintained a 7-day no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Maintained a 7-day no-spend streak"
+  },
+  "Make SpendZero yours": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Make SpendZero yours"
+  },
+  "Manage Subscription": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Manage Subscription"
+  },
+  "Mark Today a No-Spend Day": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Mark Today a No-Spend Day"
+  },
+  "Mark Win": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Mark Win"
+  },
+  "Member since %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Member since %@"
+  },
+  "Metadata": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Metadata"
+  },
+  "Midnight": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Midnight"
+  },
+  "Milestone %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Milestone %@"
+  },
+  "Mint Calendar %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Mint Calendar %@"
+  },
+  "Missed": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Missed"
+  },
+  "Money Mindful": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Money Mindful"
+  },
+  "Money kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Money kept"
+  },
+  "Month": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Month"
+  },
+  "Month Saved": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Month Saved"
+  },
+  "Monthly": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Monthly"
+  },
+  "Monument": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Monument"
+  },
+  "More from GW Labs": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "More from GW Labs"
+  },
+  "More kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "More kept"
+  },
+  "My %@ on SpendZero": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "My %@ on SpendZero"
+  },
+  "My Challenge": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "My Challenge"
+  },
+  "My no-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "My no-spend streak"
+  },
+  "NO-SPEND DAY": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/Delight.swift",
+   "en": "NO-SPEND DAY"
+  },
+  "Net Savings: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Net Savings: %@"
+  },
+  "New Challenge": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "New Challenge"
+  },
+  "New Unlocks": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "New Unlocks"
+  },
+  "New quests arrive tomorrow": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "New quests arrive tomorrow"
+  },
+  "New quests will appear tomorrow": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "New quests will appear tomorrow"
+  },
+  "Next": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Next"
+  },
+  "Next Level": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelCard.swift",
+   "en": "Next Level"
+  },
+  "Next card": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Next card"
+  },
+  "Next month": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Next month"
+  },
+  "Next year": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Next year"
+  },
+  "Nice. You resisted %@. That's a win logged.": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Nice. You resisted %@. That's a win logged."
+  },
+  "Nice. You skipped %@ and kept %@.": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Nice. You skipped %@ and kept %@."
+  },
+  "No Spending Yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "No Spending Yet"
+  },
+  "No active SpendZero purchase was found for this Apple ID.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "No active SpendZero purchase was found for this Apple ID."
+  },
+  "No badges yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "No badges yet"
+  },
+  "No challenges yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "No challenges yet"
+  },
+  "No entries were recorded on this day.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "No entries were recorded on this day."
+  },
+  "No impulses logged": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "No impulses logged"
+  },
+  "No offerings configured": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "No offerings configured"
+  },
+  "No savings yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "No savings yet"
+  },
+  "No spending data for this period": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "No spending data for this period"
+  },
+  "No spending today": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "No spending today"
+  },
+  "No urges logged in this period": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "No urges logged in this period"
+  },
+  "No-Spend Day": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "No-Spend Day"
+  },
+  "No-Spend Day so far! Keep it up!": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "No-Spend Day so far! Keep it up!"
+  },
+  "No-Spend Day ✓": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "No-Spend Day ✓"
+  },
+  "No-Spend Day!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "No-Spend Day!"
+  },
+  "No-Spend Days": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "No-Spend Days"
+  },
+  "No-Spend Days: %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "No-Spend Days: %lld"
+  },
+  "No-spend day": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "No-spend day"
+  },
+  "No-spend day completed!": {
+   "comment": "",
+   "source": "SpendZero/Services/ProgressEngine.swift",
+   "en": "No-spend day completed!"
+  },
+  "No-spend day logged.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "No-spend day logged."
+  },
+  "No-spend day logged. You're on a %lld-day streak.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "No-spend day logged. You're on a %lld-day streak."
+  },
+  "No-spend day sealed. %lld-day streak.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "No-spend day sealed. %lld-day streak."
+  },
+  "No-spend day ✓": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "No-spend day ✓"
+  },
+  "No-spend streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/ShareCardView.swift",
+   "en": "No-spend streak"
+  },
+  "Not logged": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Not logged"
+  },
+  "Not ready? Close this and use everything free for 3 days.": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Not ready? Close this and use everything free for 3 days."
+  },
+  "Not sealed": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Not sealed"
+  },
+  "Note (optional)": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "Note (optional)"
+  },
+  "Nothing logged": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Nothing logged"
+  },
+  "Nothing logged yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Nothing logged yet"
+  },
+  "Nothing to Restore": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Nothing to Restore"
+  },
+  "Notifications Off": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Notifications Off"
+  },
+  "Now": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelUpCelebrationView.swift",
+   "en": "Now"
+  },
+  "OK": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "OK"
+  },
+  "Observer mode": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Observer mode"
+  },
+  "Offering": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offering"
+  },
+  "Offering Metadata": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offering Metadata"
+  },
+  "Offering Validation Issues": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offering Validation Issues"
+  },
+  "Offerings": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offerings"
+  },
+  "Offerings must have at least one package": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offerings must have at least one package"
+  },
+  "Offline Customer Info": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Offline Customer Info"
+  },
+  "One-time payment of %@. No subscription.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "One-time payment of %@. No subscription."
+  },
+  "Open SpendZero to check in.": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "Open SpendZero to check in."
+  },
+  "Open SpendZero to finish setting up first.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Open SpendZero to finish setting up first."
+  },
+  "Open SpendZero to log today.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Open SpendZero to log today."
+  },
+  "Open SpendZero to seal today.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Open SpendZero to seal today."
+  },
+  "Opens SpendZero to record a purchase.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Opens SpendZero to record a purchase."
+  },
+  "Opens SpendZero to record an impulse you resisted (or didn't).": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Opens SpendZero to record an impulse you resisted (or didn't)."
+  },
+  "Opens the App Store page": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/MoreFromGWLabs.swift",
+   "en": "Opens the App Store page"
+  },
+  "Original User ID": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Original User ID"
+  },
+  "Other": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Other"
+  },
+  "Over budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "Over budget"
+  },
+  "PAY ONCE": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "PAY ONCE"
+  },
+  "POPULAR": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "POPULAR"
+  },
+  "PRO": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallHero.swift",
+   "en": "PRO"
+  },
+  "Package": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Package"
+  },
+  "Packages": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Packages"
+  },
+  "Paramount": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Paramount"
+  },
+  "Pause before you spend 🧘": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Pause before you spend 🧘"
+  },
+  "Paywalls": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Paywalls"
+  },
+  "Penny Pincher": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Penny Pincher"
+  },
+  "Personalize": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Personalize"
+  },
+  "Pick one wish and practice it daily, like the thing you're saving for.": {
+   "comment": "One-line pitch for WishLock, a separate manifestation journal app by the same developer: you choose one wish and practice it on a schedule.",
+   "source": "SpendZero/Views/Settings/MoreFromGWLabs.swift",
+   "en": "Pick one wish and practice it daily, like the thing you're saving for."
+  },
+  "Plans aren't available right now.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Plans aren't available right now."
+  },
+  "Platinum Master": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Platinum Master"
+  },
+  "Premium": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Premium"
+  },
+  "Premium Access": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Premium Access"
+  },
+  "Premium Active": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Premium Active"
+  },
+  "Premium is active on this device.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Premium is active on this device."
+  },
+  "Prepared for: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Prepared for: %@"
+  },
+  "Previous card": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Previous card"
+  },
+  "Previous month": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Previous month"
+  },
+  "Previous year": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Previous year"
+  },
+  "Price": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Price"
+  },
+  "Prices are your own estimates. Tap a price to change it.": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Prices are your own estimates. Tap a price to change it."
+  },
+  "Privacy Policy": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Privacy Policy"
+  },
+  "Product": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Product"
+  },
+  "Product Validation Issues": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Product Validation Issues"
+  },
+  "Products %@ in the offering have issues, check the products list above for more details.": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Products %@ in the offering have issues, check the products list above for more details."
+  },
+  "Progress": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Progress"
+  },
+  "Progress charts": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Progress charts"
+  },
+  "Protect your streak 🔥": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Protect your streak 🔥"
+  },
+  "Purchase Failed": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Purchase Failed"
+  },
+  "Purchase deleted": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Purchase deleted"
+  },
+  "Purchase with RevenueCat": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Purchase with RevenueCat"
+  },
+  "Purchase with StoreKit": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Purchase with StoreKit"
+  },
+  "Purchases Restored": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Purchases Restored"
+  },
+  "Purchasing": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Purchasing"
+  },
+  "Quest Complete!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Quest Complete!"
+  },
+  "Quest done: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "Quest done: %@"
+  },
+  "Quests": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "Quests"
+  },
+  "Quick Actions": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Quick Actions"
+  },
+  "Radiant": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Radiant"
+  },
+  "Range": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Range"
+  },
+  "Rarity": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Rarity"
+  },
+  "Rate SpendZero": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Rate SpendZero"
+  },
+  "Reach Level 25 to become the Wealth King": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelProgressView.swift",
+   "en": "Reach Level 25 to become the Wealth King"
+  },
+  "Reach a %lld-day streak": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Reach a %lld-day streak"
+  },
+  "Reached Level 10": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Reached Level 10"
+  },
+  "Reached ultimate Wealth King status": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Reached ultimate Wealth King status"
+  },
+  "Receipt URL": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Receipt URL"
+  },
+  "Receipt status": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Receipt status"
+  },
+  "Recent Badges": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Recent Badges"
+  },
+  "Recent Impulses": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Recent Impulses"
+  },
+  "Records something you wanted to buy but didn't, and credits what you would have spent to your savings.": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Records something you wanted to buy but didn't, and credits what you would have spent to your savings."
+  },
+  "Redeem Code": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Redeem Code"
+  },
+  "Reminder time": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Reminder time"
+  },
+  "Remove goal": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Remove goal"
+  },
+  "Reset": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Reset"
+  },
+  "Reset All Data": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Reset All Data"
+  },
+  "Reset All Data?": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Reset All Data?"
+  },
+  "Resist %lld impulses": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Resist %lld impulses"
+  },
+  "Resist %lld impulses in your leak categories": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Resist %lld impulses in your leak categories"
+  },
+  "Resist 1 impulse": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Resist 1 impulse"
+  },
+  "Resist 1 impulse in a leak category": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Resist 1 impulse in a leak category"
+  },
+  "Resist impulse purchases": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Resist impulse purchases"
+  },
+  "Resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Resisted"
+  },
+  "Resisted 50 total impulses": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Resisted 50 total impulses"
+  },
+  "Resisted!": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "Resisted!"
+  },
+  "Resisted: %@": {
+   "comment": "",
+   "source": "SpendZero/Services/ProgressEngine.swift",
+   "en": "Resisted: %@"
+  },
+  "Restore Failed": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Restore Failed"
+  },
+  "Restore Purchases": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Restore Purchases"
+  },
+  "RevenueCat Debug": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "RevenueCat Debug"
+  },
+  "RevenueCat Demo Paywall": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "RevenueCat Demo Paywall"
+  },
+  "RevenueCatUI": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "RevenueCatUI"
+  },
+  "RevenueCatUI Paywall": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "RevenueCatUI Paywall"
+  },
+  "RevenueCatUI paywall": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "RevenueCatUI paywall"
+  },
+  "Running total of everything you've saved, with gold coins at each savings milestone.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Running total of everything you've saved, with gold coins at each savings milestone."
+  },
+  "SAVE %lld%%": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "SAVE %lld%%"
+  },
+  "SDK version": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "SDK version"
+  },
+  "Sandbox": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Sandbox"
+  },
+  "Save %@": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Save %@"
+  },
+  "Save a target amount": {
+   "comment": "",
+   "source": "SpendZero/Models/Quest.swift",
+   "en": "Save a target amount"
+  },
+  "Save ~%@": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Save ~%@"
+  },
+  "Saved": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Saved"
+  },
+  "Saved %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Saved %@"
+  },
+  "Saved %@ total": {
+   "comment": "",
+   "source": "SpendZero/Models/BadgeInstance.swift",
+   "en": "Saved %@ total"
+  },
+  "Saved Today": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Saved Today"
+  },
+  "Savings Glance": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Savings Glance"
+  },
+  "Savings Recorded!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Savings Recorded!"
+  },
+  "Savings Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Savings Report"
+  },
+  "Savings Sentinel": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Savings Sentinel"
+  },
+  "Savings Timeline": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Savings Timeline"
+  },
+  "Savings forecast": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Savings forecast"
+  },
+  "Savings growth": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Savings growth"
+  },
+  "Seal": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "Seal"
+  },
+  "Seal Today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Seal Today"
+  },
+  "Seal a no-spend day or resist an urge and watch your total climb.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Seal a no-spend day or resist an urge and watch your total climb."
+  },
+  "Seal a no-spend day to mint it.": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Seal a no-spend day to mint it."
+  },
+  "Seal today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Seal today"
+  },
+  "Seal today as a no-spend day without opening SpendZero.": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayControl.swift",
+   "en": "Seal today as a no-spend day without opening SpendZero."
+  },
+  "Seal today. %lld-day streak": {
+   "comment": "",
+   "source": "SpendZeroWidget/GoldCoin.swift",
+   "en": "Seal today. %lld-day streak"
+  },
+  "Seal your first no-spend day to mint a coin.": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Seal your first no-spend day to mint a coin."
+  },
+  "Sealed": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayControl.swift",
+   "en": "Sealed"
+  },
+  "Sealed no-spend day medallion": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Sealed no-spend day medallion"
+  },
+  "Sealed ✓": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Sealed ✓"
+  },
+  "Sealed, %@ kept": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Sealed, %@ kept"
+  },
+  "Sealing…": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayControl.swift",
+   "en": "Sealing…"
+  },
+  "Seals today as a no-spend day and extends your streak, without opening SpendZero.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Seals today as a no-spend day and extends your streak, without opening SpendZero."
+  },
+  "See Your Plan": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "See Your Plan"
+  },
+  "Seedling": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Seedling"
+  },
+  "Select all that apply": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCategoriesView.swift",
+   "en": "Select all that apply"
+  },
+  "Selected": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Selected"
+  },
+  "Settings": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Settings"
+  },
+  "Share": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Share"
+  },
+  "Share Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Share Report"
+  },
+  "Share to Stories": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/MonthlyRecapView.swift",
+   "en": "Share to Stories"
+  },
+  "Share your %lld-day streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/ShareCardView.swift",
+   "en": "Share your %lld-day streak"
+  },
+  "Share your win": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/ShareCardView.swift",
+   "en": "Share your win"
+  },
+  "Shareable wins & data export": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Shareable wins & data export"
+  },
+  "Shopping": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Shopping"
+  },
+  "Show up to three": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Show up to three"
+  },
+  "Shows badge details": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Shows badge details"
+  },
+  "Small wins add up.": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Small wins add up."
+  },
+  "Snacks & Treats": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Snacks & Treats"
+  },
+  "Sound effects": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Sound effects"
+  },
+  "Sovereign": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Sovereign"
+  },
+  "SpendZero": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "SpendZero"
+  },
+  "SpendZero - Your data stays on your device. Always private.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "SpendZero - Your data stays on your device. Always private."
+  },
+  "SpendZero Pro": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallHero.swift",
+   "en": "SpendZero Pro"
+  },
+  "SpendZero Savings Report": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "SpendZero Savings Report"
+  },
+  "SpendZero · %@ recap": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "SpendZero · %@ recap"
+  },
+  "SpendZero · No Spend Challenge": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "SpendZero · No Spend Challenge"
+  },
+  "Spending": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Spending"
+  },
+  "Spending analytics & insights": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Spending analytics & insights"
+  },
+  "Spending vs budget": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/SpendVsBudgetChart.swift",
+   "en": "Spending vs budget"
+  },
+  "Spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Spent"
+  },
+  "Spent Today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayControl.swift",
+   "en": "Spent Today"
+  },
+  "Spent today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Spent today"
+  },
+  "Sprout": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Sprout"
+  },
+  "Start": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Start"
+  },
+  "Start %lld-Day Free Trial": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Start %lld-Day Free Trial"
+  },
+  "Start Your Wealth Journey": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSplashView.swift",
+   "en": "Start Your Wealth Journey"
+  },
+  "Start comfortable — you can always level up": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "Start comfortable — you can always level up"
+  },
+  "Start keeping it": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Start keeping it"
+  },
+  "Start your first challenge to begin saving!": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "Start your first challenge to begin saving!"
+  },
+  "Starter": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCommitView.swift",
+   "en": "Starter"
+  },
+  "Status": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Status"
+  },
+  "Stay on track today 💚": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Stay on track today 💚"
+  },
+  "StoreKit 2": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "StoreKit 2"
+  },
+  "Streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Main/MainTabView.swift",
+   "en": "Streak"
+  },
+  "Streak Calendar": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Streak Calendar"
+  },
+  "Streak Freeze Earned 🧊": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Streak Freeze Earned 🧊"
+  },
+  "Streak Freeze Used 🧊": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Streak Freeze Used 🧊"
+  },
+  "Streak freeze": {
+   "comment": "",
+   "source": "SpendZero/Services/ReviewPrompter.swift",
+   "en": "Streak freeze"
+  },
+  "Streak freeze earned": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "Streak freeze earned"
+  },
+  "Streak freezes to protect your progress": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Streak freezes to protect your progress"
+  },
+  "Subscribe to keep going": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Subscribe to keep going"
+  },
+  "Subscribe — %@ %@": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Subscribe — %@ %@"
+  },
+  "Subscriptions": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "Subscriptions"
+  },
+  "Summary (%@)": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Summary (%@)"
+  },
+  "Summit": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Summit"
+  },
+  "Supreme": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Supreme"
+  },
+  "Take a breath. Is this a need or an impulse? Your streak is worth protecting.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Take a breath. Is this a need or an impulse? Your streak is worth protecting."
+  },
+  "Tall Tree": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Tall Tree"
+  },
+  "Tap Seal to lock in today as a no-spend day.": {
+   "comment": "",
+   "source": "SpendZero/Services/LiveActivityCoordinator.swift",
+   "en": "Tap Seal to lock in today as a no-spend day."
+  },
+  "Tap a coin for its day": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Tap a coin for its day"
+  },
+  "Tap coin to seal": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Tap coin to seal"
+  },
+  "Tap to count it and start your streak.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Tap to count it and start your streak."
+  },
+  "Tap to seal": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Tap to seal"
+  },
+  "Tap to upgrade and keep your progress": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Tap to upgrade and keep your progress"
+  },
+  "Terms of Use": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Terms of Use"
+  },
+  "That plan isn't available right now. Please try again.": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "That plan isn't available right now. Please try again."
+  },
+  "This Week": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "This Week"
+  },
+  "This device doesn’t support alternate app icons.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "This device doesn’t support alternate app icons."
+  },
+  "This is the beginning of your financial transformation": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": "This is the beginning of your financial transformation"
+  },
+  "This will permanently delete all your data including streaks, savings, and challenge progress. This cannot be undone.": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "This will permanently delete all your data including streaks, savings, and challenge progress. This cannot be undone."
+  },
+  "This will un-mark today as a no-spend day": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "This will un-mark today as a no-spend day"
+  },
+  "Thriving · %lld-day streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Thriving · %lld-day streak"
+  },
+  "Tilt to shake": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "Tilt to shake"
+  },
+  "Time Range": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Time Range"
+  },
+  "Titan": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Titan"
+  },
+  "Today": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "Today"
+  },
+  "Today already has spending logged.": {
+   "comment": "",
+   "source": "SpendZero/App/AppDelegate.swift",
+   "en": "Today already has spending logged."
+  },
+  "Today is already logged.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Today is already logged."
+  },
+  "Today is already logged. Nice work.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "Today is already logged. Nice work."
+  },
+  "Today is already sealed.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Today is already sealed."
+  },
+  "Today is already sealed. Nice work.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Today is already sealed. Nice work."
+  },
+  "Today is sealed": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Today is sealed"
+  },
+  "Today is sealed.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Today is sealed."
+  },
+  "Today is sealed. %lld-day streak": {
+   "comment": "",
+   "source": "SpendZeroWidget/GoldCoin.swift",
+   "en": "Today is sealed. %lld-day streak"
+  },
+  "Today is sealed. See you tomorrow.": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "Today is sealed. See you tomorrow."
+  },
+  "Today is sealed. You're on a %lld-day streak.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "Today is sealed. You're on a %lld-day streak."
+  },
+  "Today's Spending": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Today's Spending"
+  },
+  "Today's Status": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Today's Status"
+  },
+  "Today's totals will be updated.": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Today's totals will be updated."
+  },
+  "Today, not sealed yet": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Today, not sealed yet"
+  },
+  "Today: On Track": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Today: On Track"
+  },
+  "Today: Sealed": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Today: Sealed"
+  },
+  "Today: Spent": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Today: Spent"
+  },
+  "Tools": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Tools"
+  },
+  "Top Spending Categories": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Top Spending Categories"
+  },
+  "Total Saved": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Total Saved"
+  },
+  "Total Saved: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Total Saved: %@"
+  },
+  "Total Spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Total Spent"
+  },
+  "Total Spent: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/ExportView.swift",
+   "en": "Total Spent: %@"
+  },
+  "Total XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelProgressView.swift",
+   "en": "Total XP"
+  },
+  "Total saved": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Total saved"
+  },
+  "Track no-spend days, crush impulse buys,\nand watch your savings grow": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSplashView.swift",
+   "en": "Track no-spend days, crush impulse buys,\\nand watch your savings grow"
+  },
+  "Track urges to spend — resisting builds your savings muscle": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Track urges to spend — resisting builds your savings muscle"
+  },
+  "Treasure Hunter": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Treasure Hunter"
+  },
+  "Try Again": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Try Again"
+  },
+  "Type": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Type"
+  },
+  "Un-mark today's no-spend day?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "Un-mark today's no-spend day?"
+  },
+  "Unknown": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelProgressView.swift",
+   "en": "Unknown"
+  },
+  "Unlimited access to premium content.": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "Unlimited access to premium content."
+  },
+  "Unlimited no-spend challenges & streaks": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "Unlimited no-spend challenges & streaks"
+  },
+  "Unlock badges by achieving milestones": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Unlock badges by achieving milestones"
+  },
+  "Unlocked": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeShowcaseView.swift",
+   "en": "Unlocked"
+  },
+  "Unlocks": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/LevelCard.swift",
+   "en": "Unlocks"
+  },
+  "Unlocks at level %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "Unlocks at level %lld"
+  },
+  "Up %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Up %@"
+  },
+  "Upgrade": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Upgrade"
+  },
+  "Upgrade to Premium": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Upgrade to Premium"
+  },
+  "Upgrade to unlock all features": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Upgrade to unlock all features"
+  },
+  "Urges": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "Urges"
+  },
+  "Urges beaten": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Urges beaten"
+  },
+  "Urges resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Urges resisted"
+  },
+  "User": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "User"
+  },
+  "User ID": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "User ID"
+  },
+  "Version": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Version"
+  },
+  "View": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "View"
+  },
+  "View & export my data": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallView.swift",
+   "en": "View & export my data"
+  },
+  "View All": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "View All"
+  },
+  "View Badges": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/BadgeUnlockCelebrationView.swift",
+   "en": "View Badges"
+  },
+  "View all 25 levels and unlock features": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GamificationHubView.swift",
+   "en": "View all 25 levels and unlock features"
+  },
+  "Was this an impulse buy?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "Was this an impulse buy?"
+  },
+  "Was yesterday a no-spend day?": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Was yesterday a no-spend day?"
+  },
+  "We covered %lld missed days for you": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "We covered %lld missed days for you"
+  },
+  "We saved your streak from a missed day": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "We saved your streak from a missed day"
+  },
+  "Wealth Builder": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Wealth Builder"
+  },
+  "Wealth King": {
+   "comment": "",
+   "source": "SpendZero/Models/GameProfile.swift",
+   "en": "Wealth King"
+  },
+  "Wealth King — Ultimate status achieved!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Wealth King — Ultimate status achieved!"
+  },
+  "Wealth tree at stage %lld: %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Wealth tree at stage %lld: %@"
+  },
+  "Week end": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Week end"
+  },
+  "Week start": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/CumulativeSavingsChart.swift",
+   "en": "Week start"
+  },
+  "Weekly": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Weekly"
+  },
+  "Weekly Quest": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "Weekly Quest"
+  },
+  "Welcome, %@! Let's build wealth together.": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": "Welcome, %@! Let's build wealth together."
+  },
+  "What are you saving for?": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "What are you saving for?"
+  },
+  "What did you resist buying?": {
+   "comment": "",
+   "source": "SpendZero/Intents/App/ResistedImpulseIntent.swift",
+   "en": "What did you resist buying?"
+  },
+  "What should we call your wealthy future self?": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": "What should we call your wealthy future self?"
+  },
+  "What triggered it? (optional)": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "What triggered it? (optional)"
+  },
+  "What was it for?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "What was it for?"
+  },
+  "What was the impulse?": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "What was the impulse?"
+  },
+  "What your savings could buy": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "What your savings could buy"
+  },
+  "What's the challenge?": {
+   "comment": "",
+   "source": "SpendZero/Views/Challenges/ChallengeLibraryView.swift",
+   "en": "What's the challenge?"
+  },
+  "When you resist an impulse buy, log it: each one lands in this ring.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "When you resist an impulse buy, log it: each one lands in this ring."
+  },
+  "Where does your money leak?": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingCategoriesView.swift",
+   "en": "Where does your money leak?"
+  },
+  "While offerings are not mandatory, they are the way to 'offer' products to your customers on your paywalls.": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "While offerings are not mandatory, they are the way to 'offer' products to your customers on your paywalls."
+  },
+  "Win Logged!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Win Logged!"
+  },
+  "Wins": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "Wins"
+  },
+  "XP": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/QuestPanelView.swift",
+   "en": "XP"
+  },
+  "Year": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/StreakCalendarView.swift",
+   "en": "Year"
+  },
+  "Year one": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Year one"
+  },
+  "Yearly": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "Yearly"
+  },
+  "Yesterday": {
+   "comment": "",
+   "source": "SpendZero/Extensions/DateExtensions.swift",
+   "en": "Yesterday"
+  },
+  "Yesterday was a win ✓": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Yesterday was a win ✓"
+  },
+  "You already marked today as a win. Logging non-essential spending will remove today from your streak.": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddSpendingView.swift",
+   "en": "You already marked today as a win. Logging non-essential spending will remove today from your streak."
+  },
+  "You beat %lld urges to spend.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "You beat %lld urges to spend."
+  },
+  "You beat 1 urge to spend.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "You beat 1 urge to spend."
+  },
+  "You beat the urge — money saved!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "You beat the urge — money saved!"
+  },
+  "You didn't log it. Tap to keep your %lld-day streak going.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "You didn't log it. Tap to keep your %lld-day streak going."
+  },
+  "You gave in %lld times in this period. Every urge you log teaches you your triggers.": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "You gave in %lld times in this period. Every urge you log teaches you your triggers."
+  },
+  "You haven't checked in. Log a no-spend day to keep your streak alive.": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "You haven't checked in. Log a no-spend day to keep your streak alive."
+  },
+  "You logged spending today, so today can't be a no-spend day.": {
+   "comment": "",
+   "source": "SpendZero/Shared/AppActions.swift",
+   "en": "You logged spending today, so today can't be a no-spend day."
+  },
+  "You logged spending today, so today can't be sealed.": {
+   "comment": "",
+   "source": "SpendZero/Intents/Shared/SealTodayIntent.swift",
+   "en": "You logged spending today, so today can't be sealed."
+  },
+  "You're on track for a no-spend day!": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/DailyLoggerView.swift",
+   "en": "You're on track for a no-spend day!"
+  },
+  "You've kept enough for it": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "You've kept enough for it"
+  },
+  "Young Tree": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Young Tree"
+  },
+  "Your %@, sealed.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your %@, sealed."
+  },
+  "Your %@, sealed. %lld of %lld days were no-spend days.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your %@, sealed. %lld of %lld days were no-spend days."
+  },
+  "Your %lld-day streak is waiting 🔥": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Your %lld-day streak is waiting 🔥"
+  },
+  "Your 12-month forecast": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallHero.swift",
+   "en": "Your 12-month forecast"
+  },
+  "Your 3 free days are up": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Your 3 free days are up"
+  },
+  "Your 3 free days are up — don't lose your %lld-day streak and %@ saved.": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Your 3 free days are up — don't lose your %lld-day streak and %@ saved."
+  },
+  "Your 3 free days are up — keep building on the %@ you've saved.": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Your 3 free days are up — keep building on the %@ you've saved."
+  },
+  "Your 3 free days are up — keep your %lld-day streak alive.": {
+   "comment": "",
+   "source": "SpendZero/App/RootView.swift",
+   "en": "Your 3 free days are up — keep your %lld-day streak alive."
+  },
+  "Your Stats": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/SettingsView.swift",
+   "en": "Your Stats"
+  },
+  "Your Wealth Tree": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Your Wealth Tree"
+  },
+  "Your XP was doubled!": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/GameEventToastView.swift",
+   "en": "Your XP was doubled!"
+  },
+  "Your best week": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Your best week"
+  },
+  "Your best week is ahead": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Your best week is ahead"
+  },
+  "Your first coin is waiting": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "Your first coin is waiting"
+  },
+  "Your forecast": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/PaywallHero.swift",
+   "en": "Your forecast"
+  },
+  "Your goal": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "Your goal"
+  },
+  "Your journey starts today": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "Your journey starts today"
+  },
+  "Your line starts here": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/ProgressChartsView.swift",
+   "en": "Your line starts here"
+  },
+  "Your longest no-spend run, %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your longest no-spend run, %@"
+  },
+  "Your name": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingNameView.swift",
+   "en": "Your name"
+  },
+  "Your plan is ready": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "Your plan is ready"
+  },
+  "Your savings and streak. Tap the gold coin to seal today.": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "Your savings and streak. Tap the gold coin to seal today."
+  },
+  "Your savings are waiting 💚": {
+   "comment": "",
+   "source": "SpendZero/Services/NotificationManager.swift",
+   "en": "Your savings are waiting 💚"
+  },
+  "Your tree grew %lld levels.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your tree grew %lld levels."
+  },
+  "Your tree grew 1 level.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your tree grew 1 level."
+  },
+  "Your tree held strong.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your tree held strong."
+  },
+  "Your tree is thirsty — log a no-spend day to revive it": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/MoneyTreeView.swift",
+   "en": "Your tree is thirsty — log a no-spend day to revive it"
+  },
+  "Your wealth tree": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "Your wealth tree"
+  },
+  "You’re level %lld": {
+   "comment": "",
+   "source": "SpendZero/Views/Settings/AppIconPicker.swift",
+   "en": "You’re level %lld"
+  },
+  "at %@ each": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "at %@ each"
+  },
+  "best streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "best streak"
+  },
+  "by %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "by %@"
+  },
+  "coffee": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "coffee"
+  },
+  "coffees": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "coffees"
+  },
+  "coins minted": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "coins minted"
+  },
+  "concert ticket": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "concert ticket"
+  },
+  "concert tickets": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "concert tickets"
+  },
+  "day in a row": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "day in a row"
+  },
+  "day streak": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "day streak"
+  },
+  "day without spending": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "day without spending"
+  },
+  "days": {
+   "comment": "",
+   "source": "SpendZero/Views/Dashboard/DashboardView.swift",
+   "en": "days"
+  },
+  "days in a row": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "days in a row"
+  },
+  "days in a row without spending": {
+   "comment": "",
+   "source": "SpendZero/Views/Gamification/DaySealedView.swift",
+   "en": "days in a row without spending"
+  },
+  "days sealed": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "days sealed"
+  },
+  "dinner out": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "dinner out"
+  },
+  "dinners out": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "dinners out"
+  },
+  "e.g., New sneakers, latte, Amazon order": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "e.g., New sneakers, latte, Amazon order"
+  },
+  "e.g., Stress, boredom, a sale email": {
+   "comment": "",
+   "source": "SpendZero/Views/Logger/AddImpulseView.swift",
+   "en": "e.g., Stress, boredom, a sale email"
+  },
+  "for %@": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingLoadingView.swift",
+   "en": "for %@"
+  },
+  "forever": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "forever"
+  },
+  "kept on sealed days": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "kept on sealed days"
+  },
+  "kept this year": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "kept this year"
+  },
+  "kept, not spent": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "kept, not spent"
+  },
+  "left to seal today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "left to seal today"
+  },
+  "left today": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "left today"
+  },
+  "longest streak": {
+   "comment": "",
+   "source": "SpendZero/Views/Calendar/MintCalendarView.swift",
+   "en": "longest streak"
+  },
+  "month of streaming": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "month of streaming"
+  },
+  "months of streaming": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "months of streaming"
+  },
+  "no-spend\nday": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "no-spend\nday"
+  },
+  "no-spend\ndays": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "no-spend\ndays"
+  },
+  "no-spend days a month, based on your goal": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "no-spend days a month, based on your goal"
+  },
+  "of a coffee": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a coffee"
+  },
+  "of a concert ticket": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a concert ticket"
+  },
+  "of a dinner out": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a dinner out"
+  },
+  "of a month of streaming": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a month of streaming"
+  },
+  "of a return flight": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a return flight"
+  },
+  "of a week of groceries": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a week of groceries"
+  },
+  "of a weekend away": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "of a weekend away"
+  },
+  "one-time": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "one-time"
+  },
+  "per month": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "per month"
+  },
+  "per week": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "per week"
+  },
+  "per year": {
+   "comment": "",
+   "source": "SpendZero/Services/SubscriptionService.swift",
+   "en": "per year"
+  },
+  "return flight": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "return flight"
+  },
+  "return flights": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "return flights"
+  },
+  "sealed": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "sealed"
+  },
+  "time you felt the pull and walked away.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "time you felt the pull and walked away."
+  },
+  "times you felt the pull and walked away.": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapCards.swift",
+   "en": "times you felt the pull and walked away."
+  },
+  "until it's full": {
+   "comment": "",
+   "source": "SpendZero/Views/Vault/CoinVaultView.swift",
+   "en": "until it's full"
+  },
+  "urges beaten": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "urges beaten"
+  },
+  "urges resisted": {
+   "comment": "",
+   "source": "SpendZero/Views/Charts/UrgeRingChart.swift",
+   "en": "urges resisted"
+  },
+  "week of groceries": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "week of groceries"
+  },
+  "weekend away": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "weekend away"
+  },
+  "weekends away": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "weekends away"
+  },
+  "weeks of groceries": {
+   "comment": "",
+   "source": "SpendZero/Views/Insights/SavingsEquivalentsCard.swift",
+   "en": "weeks of groceries"
+  },
+  "you usually spend on extras each day": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/SavingsForecastView.swift",
+   "en": "you usually spend on extras each day"
+  },
+  "your tree grew %lld levels": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "your tree grew %lld levels"
+  },
+  "your tree grew 1 level": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "your tree grew 1 level"
+  },
+  "your tree held strong": {
+   "comment": "",
+   "source": "SpendZero/Views/Recap/RecapStoryCard.swift",
+   "en": "your tree held strong"
+  },
+  "~%@/day on non-essentials": {
+   "comment": "",
+   "source": "SpendZero/Views/Onboarding/OnboardingSpendingQuizView.swift",
+   "en": "~%@/day on non-essentials"
+  },
+  "★": {
+   "comment": "",
+   "source": "SpendZero/Views/Shared/Delight.swift",
+   "en": "★"
+  },
+  "✓": {
+   "comment": "",
+   "source": "SpendZeroWidget/SealTodayLiveActivity.swift",
+   "en": "✓"
+  },
+  "🐈": {
+   "comment": "",
+   "source": "../../../../private/tmp/claude-501/-Users-robgoldstein-Desktop-SpendZero-NoSpend/90a4176c-9a65-4381-a41e-1315d75484c2/scratchpad/dd/SourcePackages/checkouts/purchases-ios-spm/Sources/Support/DebugUI/DebugContentViews.swift",
+   "en": "🐈"
+  },
+  "🔥 %lld-day streak · %@ saved": {
+   "comment": "",
+   "source": "SpendZeroWidget/SpendZeroWidget.swift",
+   "en": "🔥 %lld-day streak · %@ saved"
+  },
+  "$1,000 Saved": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "$1,000 Saved"
+  },
+  "$10,000 Saved": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "$10,000 Saved"
+  },
+  "$5,000 Saved": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "$5,000 Saved"
+  },
+  "$500 Saved": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "$500 Saved"
+  },
+  "%@ is crushing it 💪": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "%@ is crushing it 💪"
+  },
+  "1-Year Streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "1-Year Streak"
+  },
+  "100-Day Streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "100-Day Streak"
+  },
+  "127,000+ users saved $2.3M last month": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "127,000+ users saved $2.3M last month"
+  },
+  "14-Day Meal Prep Master": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "14-Day Meal Prep Master"
+  },
+  "30-Day": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "30-Day"
+  },
+  "30-Day No-Spend Challenge": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "30-Day No-Spend Challenge"
+  },
+  "30-Day Streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "30-Day Streak"
+  },
+  "30D": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "30D"
+  },
+  "7-Day No-Spend Sprint": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "7-Day No-Spend Sprint"
+  },
+  "7-Day Streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "7-Day Streak"
+  },
+  "7D": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "7D"
+  },
+  "90D": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "90D"
+  },
+  "92% of users report fewer impulse purchases": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "92% of users report fewer impulse purchases"
+  },
+  "Achievements": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Achievements"
+  },
+  "Advanced Badges": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Advanced Badges"
+  },
+  "Advanced Features": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Advanced Features"
+  },
+  "All daily quests complete!": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "All daily quests complete!"
+  },
+  "All Features": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "All Features"
+  },
+  "All Features Unlocked": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "All Features Unlocked"
+  },
+  "All Quest Types": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "All Quest Types"
+  },
+  "All Time": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "All Time"
+  },
+  "Average user saves $847 in their first 30 days": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Average user saves $847 in their first 30 days"
+  },
+  "Called a friend": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Called a friend"
+  },
+  "Category Control": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Category Control"
+  },
+  "Challenge Bonus": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Challenge Bonus"
+  },
+  "Challenge Bonuses": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Challenge Bonuses"
+  },
+  "Challenge Champion": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Challenge Champion"
+  },
+  "Checked my savings goal": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Checked my savings goal"
+  },
+  "Coffee Detox Week": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Coffee Detox Week"
+  },
+  "Common": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Common"
+  },
+  "Complete Challenge": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Complete Challenge"
+  },
+  "Custom": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Custom"
+  },
+  "day no-spend streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "day no-spend streak"
+  },
+  "days no-spend streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "days no-spend streak"
+  },
+  "Digital Detox Shopping": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Digital Detox Shopping"
+  },
+  "Don't buy anything non-essential for 7 days. Focus on using what you already have.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Don't buy anything non-essential for 7 days. Focus on using what you already have."
+  },
+  "Download SpendZero →": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Download SpendZero →"
+  },
+  "Easy": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Easy"
+  },
+  "Epic": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Epic"
+  },
+  "Estimated Savings ($)": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Estimated Savings ($)"
+  },
+  "Exclusive Cosmetics": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Exclusive Cosmetics"
+  },
+  "Extreme": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Extreme"
+  },
+  "Free entertainment": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Free entertainment"
+  },
+  "Given In": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Given In"
+  },
+  "Go 7 days without any unnecessary spending. Essentials like groceries and bills are OK.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Go 7 days without any unnecessary spending. Essentials like groceries and bills are OK."
+  },
+  "Good": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Good"
+  },
+  "Great": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Great"
+  },
+  "Groceries": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Groceries"
+  },
+  "Hall of Fame": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Hall of Fame"
+  },
+  "Hard": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Hard"
+  },
+  "Heavy Spender": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Heavy Spender"
+  },
+  "Impulse Buyer": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Impulse Buyer"
+  },
+  "Impulse Control": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Impulse Control"
+  },
+  "Impulse Control Bootcamp": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Impulse Control Bootcamp"
+  },
+  "Impulse Expert": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Impulse Expert"
+  },
+  "Impulse Resisted": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Impulse Resisted"
+  },
+  "Last 30 Days": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Last 30 Days"
+  },
+  "Last 7 Days": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Last 7 Days"
+  },
+  "Legendary": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Legendary"
+  },
+  "Legendary Status": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Legendary Status"
+  },
+  "Level 10": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Level 10"
+  },
+  "Log every impulse for 21 days. Aim to resist 80% of them.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Log every impulse for 21 days. Aim to resist 80% of them."
+  },
+  "Logged": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Logged"
+  },
+  "Made coffee at home": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Made coffee at home"
+  },
+  "Maintain Streak": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Maintain Streak"
+  },
+  "Manual Entry": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Manual Entry"
+  },
+  "Mark No-Spend": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Mark No-Spend"
+  },
+  "Mark today a no-spend day": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Mark today a no-spend day"
+  },
+  "Meal Prep": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Meal Prep"
+  },
+  "Meal Prepped": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Meal Prepped"
+  },
+  "Medium": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Medium"
+  },
+  "Milestones": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Milestones"
+  },
+  "Minimal Spender": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Minimal Spender"
+  },
+  "Minimalist": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Minimalist"
+  },
+  "Minimalist Week": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Minimalist Week"
+  },
+  "Moderate Spender": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Moderate Spender"
+  },
+  "Momentum": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Momentum"
+  },
+  "Money Tree Visualization": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Money Tree Visualization"
+  },
+  "Neutral": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Neutral"
+  },
+  "No data yet": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No data yet"
+  },
+  "No food delivery apps for an entire month. Cook or pick up instead.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No food delivery apps for an entire month. Cook or pick up instead."
+  },
+  "No recurring charges": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No recurring charges"
+  },
+  "No-Delivery Month": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No-Delivery Month"
+  },
+  "No-Spend": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No-Spend"
+  },
+  "No-Spend Challenge": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No-Spend Challenge"
+  },
+  "On Track": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "On Track"
+  },
+  "Packed lunch": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Packed lunch"
+  },
+  "Perfect Week": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Perfect Week"
+  },
+  "Premium Flames": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Premium Flames"
+  },
+  "Prepare all your meals at home for 14 days. No eating out or delivery.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Prepare all your meals at home for 14 days. No eating out or delivery."
+  },
+  "Privacy": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Privacy"
+  },
+  "Rare": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Rare"
+  },
+  "Reminded myself why I'm doing this": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Reminded myself why I'm doing this"
+  },
+  "Resist Impulses": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Resist Impulses"
+  },
+  "Review and cancel all subscriptions you don't actively use.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Review and cancel all subscriptions you don't actively use."
+  },
+  "Save an extra $50/day for 14 days by cutting all discretionary spending.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Save an extra $50/day for 14 days by cutting all discretionary spending."
+  },
+  "saved": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "saved"
+  },
+  "Saving Sprint": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Saving Sprint"
+  },
+  "Savings Goal": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Savings Goal"
+  },
+  "Savings Growth": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Savings Growth"
+  },
+  "Savings Master": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Savings Master"
+  },
+  "See All": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "See All"
+  },
+  "Skip the coffee shop for a full week. Make your coffee at home instead.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Skip the coffee shop for a full week. Make your coffee at home instead."
+  },
+  "Skipped online shopping": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Skipped online shopping"
+  },
+  "Special Badges": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Special Badges"
+  },
+  "Speed Saver": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Speed Saver"
+  },
+  "Spending by Category": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Spending by Category"
+  },
+  "Statistics": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Statistics"
+  },
+  "Statistics Pro": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Statistics Pro"
+  },
+  "Struggling": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Struggling"
+  },
+  "Subscription Audit": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Subscription Audit"
+  },
+  "Subscription Canceled": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Subscription Canceled"
+  },
+  "Terms": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Terms"
+  },
+  "The ultimate challenge: 30 days of only essential spending.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "The ultimate challenge: 30 days of only essential spending."
+  },
+  "Today already logged": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Today already logged"
+  },
+  "Tough": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Tough"
+  },
+  "Track progress, complete quests, unlock badges": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Track progress, complete quests, unlock badges"
+  },
+  "Transport": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Transport"
+  },
+  "Uninstall all shopping apps for 14 days. Remove saved cards from browsers.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Uninstall all shopping apps for 14 days. Remove saved cards from browsers."
+  },
+  "Users who complete 30 days save 3x more": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Users who complete 30 days save 3x more"
+  },
+  "Waited 24 hours": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Waited 24 hours"
+  },
+  "Walked away": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Walked away"
+  },
+  "Walked instead of Uber": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Walked instead of Uber"
+  },
+  "Weekly Quests": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Weekly Quests"
+  },
+  "Your Gamification Hub": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Your Gamification Hub"
+  },
+  "Your savings and streak, with a one-tap no-spend day button.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Your savings and streak, with a one-tap no-spend day button."
+  },
+  "Black Friday No-Buy Weekend": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Black Friday No-Buy Weekend"
+  },
+  "Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Skip the Black Friday and Cyber Monday deals: no non-essential purchases from Friday through Monday."
+  },
+  "12 Days of No-Spend": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "12 Days of No-Spend"
+  },
+  "Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Twelve no-spend days in a row before Christmas. Gifts you already planned are fine; the extras aren't."
+  },
+  "No-Spend January": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "No-Spend January"
+  },
+  "Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport.": {
+   "comment": "",
+   "source": "(dynamic)",
+   "en": "Start the year with 31 days of spending only on essentials like rent, bills, groceries and transport."
+  }
+ },
+ "plurals": {
+  "%lld/%lld days": {
+   "format": "%1$lld/%2$#@days@",
+   "en": {
+    "many": "%2$lld days",
+    "one": "%2$lld day",
+    "other": "%2$lld days"
+   }
+  }
+ },
+ "InfoPlist": {
+  "Mark No-Spend Day": "Mark No-Spend Day",
+  "Log Spending": "Log Spending",
+  "Resist an Impulse": "Resist an Impulse"
+ },
+ "AppShortcuts": {
+  "Mark today a no-spend day in ${applicationName}": "Mark today a no-spend day in ${applicationName}",
+  "Log a no-spend day in ${applicationName}": "Log a no-spend day in ${applicationName}",
+  "I didn't spend today in ${applicationName}": "I didn't spend today in ${applicationName}",
+  "Log spending in ${applicationName}": "Log spending in ${applicationName}",
+  "I spent money in ${applicationName}": "I spent money in ${applicationName}",
+  "Log an impulse in ${applicationName}": "Log an impulse in ${applicationName}",
+  "I resisted an impulse in ${applicationName}": "I resisted an impulse in ${applicationName}"
+ }
+}

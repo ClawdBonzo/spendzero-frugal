@@ -151,6 +151,10 @@ enum DemoSeeder {
         challenge.completedDays = 23
         context.insert(challenge)
 
+        // A year of history for the Mint Calendar and Progress charts (1.5).
+        InsightsDemoSeeder.seedHistory(into: context, profile: profile)
+        InsightsDemoSeeder.reconcileTotal(into: context, profile: profile)
+
         try? context.save()
         ProgressEngine.shared.reconcileOnActivate(profile: profile, context: context)
     }

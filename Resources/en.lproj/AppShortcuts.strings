@@ -6,3 +6,9 @@
 "I spent money in ${applicationName}" = "I spent money in ${applicationName}";
 "Log an impulse in ${applicationName}" = "Log an impulse in ${applicationName}";
 "I resisted an impulse in ${applicationName}" = "I resisted an impulse in ${applicationName}";
+"Seal today in ${applicationName}" = "Seal today in ${applicationName}";
+"Seal the day in ${applicationName}" = "Seal the day in ${applicationName}";
+"Seal my day in ${applicationName}" = "Seal my day in ${applicationName}";
+"I resisted buying something in ${applicationName}" = "I resisted buying something in ${applicationName}";
+"I didn't buy something in ${applicationName}" = "I didn't buy something in ${applicationName}";
+"Log a resisted impulse in ${applicationName}" = "Log a resisted impulse in ${applicationName}";

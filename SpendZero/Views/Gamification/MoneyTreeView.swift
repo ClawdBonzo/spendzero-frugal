@@ -1,8 +1,9 @@
 import SwiftUI
+import SwiftData
 
-/// Visual money tree that grows through level progression.
-/// Uses Canvas with GeometryReader for adaptive sizing, particle overlay,
-/// and accessibilityReduceMotion support.
+/// Visual money tree that grows through level progression, living in the user's real time of day
+/// and season. Plays a falling leaf for spending logged since the last visit and a coin pop for a
+/// sealed day (detected here from the store, or queued by the app via `WealthTreeEvents`).
 struct MoneyTreeView: View {
     let gameProfile: GameProfile
     var streak: Int = 0
@@ -19,6 +20,26 @@ struct MoneyTreeView: View {
     private var coins: Int { min(18, Int(totalSaved / 50)) }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    // Read-only: the newest spending logs and savings, to notice what happened since the last visit.
+    @Query(MoneyTreeView.spendingDescriptor) private var recentSpending: [SpendingLog]
+    @Query(MoneyTreeView.savingsDescriptor) private var recentSavings: [SavingsEntry]
+    @AppStorage("wealthTreeLastSeen") private var lastSeen: Double = 0
+    @State private var treeEvents = WealthTreeEvents.shared
+    @State private var events: [WealthTreeEvent] = []
+    @State private var nextEventID = 1
+    @State private var visible = false
+
+    static var spendingDescriptor: FetchDescriptor<SpendingLog> {
+        var d = FetchDescriptor<SpendingLog>(sortBy: [SortDescriptor(\.date, order: .reverse)])
+        d.fetchLimit = 3
+        return d
+    }
+    static var savingsDescriptor: FetchDescriptor<SavingsEntry> {
+        var d = FetchDescriptor<SavingsEntry>(sortBy: [SortDescriptor(\.date, order: .reverse)])
+        d.fetchLimit = 8
+        return d
+    }
 
     var treeStage: Int {
         switch gameProfile.currentLevel {
@@ -63,13 +84,11 @@ struct MoneyTreeView: View {
                     .foregroundColor(AppTheme.textSecondary)
             }
 
-            WealthTreeCanvas(seed: gameProfile.id.seed64, growth: growth, vitality: vitality, coins: coins)
-                .frame(height: 250)
+            WealthTreeCanvas(seed: gameProfile.id.seed64, growth: growth, vitality: vitality, coins: coins,
+                             streak: streak, events: events)
+                .frame(height: 270)
                 .clipShape(RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge))
-            .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
-                    .fill(AppTheme.cardBackground)
-            )
+            .glassCard(cornerRadius: AppTheme.cornerRadiusLarge)
             .overlay(
                 RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                     .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 1)
@@ -148,17 +167,72 @@ struct MoneyTreeView: View {
                 }
             }
             .padding(AppTheme.paddingMedium)
-            .background(AppTheme.cardBackground)
-            .cornerRadius(AppTheme.cornerRadiusMedium)
+            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
         }
         .padding(AppTheme.paddingLarge)
         .background(
             RoundedRectangle(cornerRadius: AppTheme.cornerRadiusLarge)
                 .fill(AppTheme.background)
         )
-
+        .onAppear {
+            visible = true
+            collectEvents()
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("-TreeEvents") { schedule(leafFalls: 1, coinPops: 1) }
+            #endif
+        }
+        .onDisappear {
+            visible = false
+            lastSeen = Date().timeIntervalSinceReferenceDate
+        }
+        .onChange(of: recentSpending.first?.date) { if visible { collectEvents() } }
+        .onChange(of: latestSeal) { if visible { collectEvents() } }
+        .onChange(of: treeEvents.pendingLeafFalls + treeEvents.pendingCoinPops) { if visible { collectEvents() } }
     }
 
+    private var latestSeal: Date? { recentSavings.first { $0.source == .noSpendDay }?.date }
+
+    /// Turns what happened since the last visit (plus anything the app queued) into tree moments.
+    private func collectEvents() {
+        var leaves = 0, coins = 0
+        if lastSeen > 0 {
+            let since = Date(timeIntervalSinceReferenceDate: lastSeen)
+            leaves = recentSpending.filter { $0.date > since }.count
+            if let seal = latestSeal, seal > since { coins = 1 }
+        }
+        let queued = treeEvents.drain()
+        lastSeen = Date().timeIntervalSinceReferenceDate
+        schedule(leafFalls: max(leaves, queued.leafFalls), coinPops: max(coins, queued.coinPops))
+    }
+
+    private func schedule(leafFalls: Int, coinPops: Int) {
+        guard leafFalls + coinPops > 0 else { return }
+        // Give the card a beat to settle on screen before anything moves.
+        let now = Date().timeIntervalSinceReferenceDate
+        let leadIn = 0.9
+        for k in 0..<min(3, leafFalls) {
+            events.append(WealthTreeEvent(id: nextEventID, kind: .leafFall, start: now + leadIn + Double(k) * 1.4))
+            nextEventID += 1
+        }
+        if coinPops > 0 {
+            let delay = leadIn + (leafFalls > 0 ? 0.6 : 0)
+            events.append(WealthTreeEvent(id: nextEventID, kind: .coinPop, start: now + delay))
+            nextEventID += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                guard visible else { return }
+                CoinHaptics.tick()
+                SoundEffects.play(.clink, volume: 0.35)
+            }
+        }
+        // Keep what's still playing, plus the newest finished coin pop (it keeps a first coin shown).
+        let horizon = now - 10
+        var keptPop = false
+        events = Array(events.reversed().filter { ev in
+            if ev.start + ev.duration > horizon { return true }
+            if ev.kind == .coinPop, !keptPop { keptPop = true; return true }
+            return false
+        }.reversed())
+    }
 }
 
 #Preview {

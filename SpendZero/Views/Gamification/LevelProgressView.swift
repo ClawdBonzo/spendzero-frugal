@@ -46,8 +46,7 @@ struct LevelProgressView: View {
                 Spacer()
             }
             .padding(AppTheme.paddingMedium)
-            .background(AppTheme.cardBackground)
-            .cornerRadius(AppTheme.cornerRadiusMedium)
+            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
             .padding(.horizontal, AppTheme.paddingLarge)
 
             // Levels Grid
@@ -106,7 +105,7 @@ struct LevelProgressView: View {
             Spacer(minLength: 20)
         }
         .padding(.vertical, AppTheme.paddingLarge)
-        .background(AppTheme.background)
+        .background(AppScreenBackground())
     }
 }
 
@@ -193,8 +192,7 @@ struct LevelRowView: View {
                     Spacer()
                 }
                 .padding(AppTheme.paddingMedium)
-                .background(AppTheme.cardBackground)
-                .cornerRadius(AppTheme.cornerRadiusMedium)
+                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
             }
         }
         .buttonStyle(.plain)

@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Tantangan Menabung",
+ "subtitle": "Hemat & stop belanja impulsif",
+ "keywords": "tabungan,celengan,keuangan,catatan,anggaran,pengeluaran,uang,boros,jajan,nabung,irit,kebiasaan,duit",
+ "promotionalText": "Baru di 2.0: setiap hari tanpa belanja menjatuhkan koin emas ke celengan. Lihat setahun penuh dalam emas, prediksi tabungan, dan rekap bulanan untuk dibagikan.",
+ "description": "Tahan belanja, kumpulkan emas. SpendZero mengubah setiap hari tanpa belanja jadi koin emas: koinnya jatuh ke celengan, mengisi kalendermu, dan menumbuhkan pohon kekayaanmu. Streak, XP, misi, dan lencana bikin menabung terasa seperti game yang kamu menangkan.\n\nLagi ikut tantangan sebulan tanpa belanja, mau berhenti belanja impulsif, atau sedang menabung untuk sesuatu yang besar? Di SpendZero, setiap hari uangmu tetap di dompet adalah kemenangan yang kelihatan.\n\nBARU DI VERSI 2.0\n• Celengan Koin (Coin Vault): setiap hari yang disegel menjatuhkan koin emas ke toples kaca — miringkan iPhone dan lihat koinnya menggelinding\n• Kalender Koin (Mint Calendar): setahun penuh dalam koin emas, plus grafik baru\n• Prediksi tabungan: lihat berapa nilai setahun tanpa belanja yang tidak perlu\n• Rekap Bulanan (Monthly Recap): cerita bulanmu dalam format story, siap dibagikan\n• Hitung mundur di Layar Terkunci dan Dynamic Island, tombol di Pusat Kontrol, dan Siri\n\nSEGEL HARIMU\nTandai hari tanpa belanja dan lihat hari itu disegel dengan koin emas. Streak bertambah, hadiah bermunculan, dan kamu tahu persis seberapa dekat target berikutnya. Cukup satu ketukan.\n\nTUMBUHKAN POHON KEKAYAAN\nPohonmu satu-satunya di dunia. Pohon tumbuh setiap kamu naik level, berbuah koin emas seiring tabunganmu bertambah, dan kini hidup secara real time: siang dan malam, berganti musim, lampu hias di bulan Desember. Kalau streak putus, pohonnya mulai layu — satu hari tanpa belanja sudah cukup untuk menghidupkannya lagi.\n\nGAME YANG DIMENANGKAN DENGAN TIDAK BELANJA\n• Streak, plus pembeku streak yang menyelamatkanmu di hari yang berat\n• Misi harian dan mingguan\n• 25 level dan lencana untuk streak 7, 30, 100, dan 365 hari\n• Tantangan seperti 7 hari tanpa belanja, seminggu tanpa beli kopi, 30 hari tanpa belanja, cek langganan, dan lainnya — atau buat tantanganmu sendiri\n• Buka ikon aplikasi Gold, Emerald, dan Midnight seiring naik level\n\nLAWAN BELANJA IMPULSIF\nAda barang nangkring di keranjang? Catat. Kalau berhasil menahan diri, uangnya dihitung sebagai tabungan, plus XP. Terlanjur beli? Nggak apa-apa — catat dan lanjut lagi. Kebutuhan pokok seperti belanja dapur dan transportasi tidak merusak hari tanpa belanja.\n\nJANGAN SAMPAI PUTUS\n• Widget interaktif di Layar Utama dan Layar Terkunci\n• Live Activity hitung mundur sampai akhir hari, Pusat Kontrol, Siri, dan Pintasan\n• Pengingat ringan di malam hari, dan paginya masih bisa mencatat hari kemarin\n\nPRIVASI NOMOR SATU\nTanpa akun, tanpa sambungan ke bank, tanpa iklan. Semua datamu tersimpan di iPhone. Ekspor laporan PDF kapan saja.\n\nAplikasi ini tersedia dalam bahasa Inggris dan 15 bahasa lain: Jerman, Spanyol, Prancis, Italia, Belanda, Portugis, Turki, Jepang, Mandarin (Sederhana dan Tradisional), Korea, Swedia, Denmark, Norwegia, dan Finlandia. Bahasa Indonesia tidak termasuk.\n\nLANGGANAN\nSpendZero Pro tersedia sebagai langganan mingguan, bulanan, atau tahunan, atau pembelian sekali untuk seumur hidup. Paket bulanan dan tahunan bisa mencakup uji coba gratis 3 hari untuk pelanggan baru yang memenuhi syarat. Harga ditampilkan di aplikasi dalam mata uang lokal. Langganan diperpanjang otomatis kecuali dibatalkan setidaknya 24 jam sebelum periode berjalan berakhir; kelola atau batalkan kapan saja di pengaturan akun App Store.\n\nKetentuan Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nKebijakan Privasi: https://gwlabs.app/privacy",
+ "whatsNew": "Yang baru di SpendZero 2.0:\n• Celengan Koin: setiap hari yang disegel menjatuhkan koin emas ke toples kaca yang bisa kamu miringkan\n• Kalender Koin: setahun penuh dalam koin emas, plus grafik baru\n• Prediksi tabungan untuk 12 bulan ke depan\n• Rekap Bulanan dalam format story untuk dibagikan\n• Hitung mundur untuk menyegel hari ini di Layar Terkunci dan Dynamic Island, plus Pusat Kontrol dan Siri\n• Pohon kekayaan kini hidup real time: siang dan malam, musim, lampu Desember\n• Buka ikon Gold, Emerald, dan Midnight saat naik level\n• Efek suara dan getaran haptik\n• Aplikasi kini tersedia dalam 16 bahasa, termasuk bahasa Inggris; bahasa Indonesia tidak termasuk",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Mingguan",
+   "description": "Semua fitur Pro, bayar tiap minggu"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Bulanan",
+   "description": "Semua fitur Pro, bayar tiap bulan"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Tahunan",
+   "description": "Pro selama 12 bulan, bayar setahun sekali"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Seumur Hidup",
+   "description": "Sekali bayar, Pro tanpa langganan"
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "name": "SpendZero: Cabaran Jimat Duit",
+ "subtitle": "Menabung, elak belanja boros",
+ "keywords": "simpan,tabung,simpanan,bajet,perbelanjaan,kewangan,wang,hemat,tabiat,sasaran,impulsif,kawal,cermat",
+ "promotionalText": "Baharu dalam 2.0: setiap hari tanpa belanja menjatuhkan syiling emas ke dalam tabung. Lihat setahun dalam emas, ramalan simpanan dan ringkasan bulanan untuk dikongsi.",
+ "description": "Tak berbelanja, dapat emas. SpendZero menukar setiap hari tanpa belanja kepada syiling emas: syiling jatuh ke dalam tabung, mengisi kalendar anda dan membesarkan pokok kekayaan anda. Streak, XP, misi dan lencana menjadikan simpan duit satu permainan yang anda menangi.\n\nSedang buat cabaran sebulan tanpa membeli-belah, mahu berhenti belanja ikut nafsu atau menyimpan untuk sesuatu yang besar? Dengan SpendZero, setiap hari duit kekal dalam poket ialah kemenangan yang boleh dilihat.\n\nBAHARU DALAM 2.0\n• Tabung Syiling (Coin Vault): setiap hari yang dimeterai menjatuhkan syiling emas ke dalam balang kaca — sengetkan iPhone dan lihat syiling bergolek\n• Kalendar Syiling (Mint Calendar): setahun penuh dalam syiling emas, serta carta baharu\n• Ramalan simpanan: lihat berapa nilai setahun tanpa belanja yang tidak perlu\n• Ringkasan Bulanan (Monthly Recap): kisah bulan anda dalam format story, sedia untuk dikongsi\n• Kiraan detik di Skrin Kunci dan Dynamic Island, butang di Pusat Kawalan, serta Siri\n\nMETERAI HARI ANDA\nTandakan hari tanpa belanja dan lihat ia dimeterai dengan syiling emas. Streak bertambah, ganjaran muncul dan anda tahu tepat berapa jauh lagi ke sasaran seterusnya. Satu ketikan sahaja.\n\nBESARKAN POKOK KEKAYAAN\nPokok anda hanya satu di dunia. Ia membesar setiap kali naik tahap, berbuah syiling emas apabila simpanan bertambah, dan kini hidup secara masa nyata: siang dan malam, musim berganti, lampu hiasan pada bulan Disember. Jika streak terputus, pokok mula layu — satu hari tanpa belanja sudah cukup untuk menghidupkannya semula.\n\nPERMAINAN YANG DIMENANGI DENGAN TIDAK BERBELANJA\n• Streak, serta pembeku streak untuk hari yang sukar\n• Misi harian dan mingguan\n• 25 tahap dan lencana untuk streak 7, 30, 100 dan 365 hari\n• Cabaran seperti 7 hari tanpa belanja, seminggu tanpa beli kopi, 30 hari tanpa belanja, semakan langganan dan banyak lagi — atau cipta cabaran sendiri\n• Buka ikon aplikasi Gold, Emerald dan Midnight apabila naik tahap\n\nLAWAN BELANJA IKUT NAFSU\nAda barang dalam troli? Catat. Jika anda berjaya menahan diri, duit itu dikira sebagai simpanan, berserta XP. Terbeli juga? Tak apa — catat dan teruskan. Keperluan asas seperti barang dapur dan pengangkutan tidak merosakkan hari tanpa belanja.\n\nJANGAN PUTUSKAN RANTAI\n• Widget interaktif di Skrin Utama dan Skrin Kunci\n• Live Activity mengira detik hingga hujung hari, Pusat Kawalan, Siri dan Pintasan\n• Peringatan lembut pada waktu petang, dan pada waktu pagi masih sempat tandakan semalam\n\nPRIVASI DIUTAMAKAN\nTiada akaun, tiada pautan bank, tiada iklan. Semua data kekal di iPhone anda. Eksport laporan PDF bila-bila masa.\n\nAplikasi ini tersedia dalam bahasa Inggeris dan 15 bahasa lain: Jerman, Sepanyol, Perancis, Itali, Belanda, Portugis, Turki, Jepun, Cina (Ringkas dan Tradisional), Korea, Sweden, Denmark, Norway dan Finland. Bahasa Melayu tidak termasuk.\n\nLANGGANAN\nSpendZero Pro tersedia secara mingguan, bulanan atau tahunan, atau sebagai pembelian sekali untuk seumur hayat. Pelan bulanan dan tahunan mungkin termasuk percubaan percuma 3 hari untuk pelanggan baharu yang layak. Harga dipaparkan dalam aplikasi dalam mata wang tempatan. Langganan diperbaharui secara automatik melainkan dibatalkan sekurang-kurangnya 24 jam sebelum tempoh semasa tamat; urus atau batalkan bila-bila masa dalam tetapan akaun App Store anda.\n\nTerma Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/\nDasar Privasi: https://gwlabs.app/privacy",
+ "whatsNew": "Apa yang baharu dalam SpendZero 2.0:\n• Tabung Syiling: setiap hari yang dimeterai menjatuhkan syiling emas ke dalam balang kaca yang boleh disengetkan\n• Kalendar Syiling: setahun penuh dalam syiling emas, serta carta baharu\n• Ramalan simpanan untuk 12 bulan akan datang\n• Ringkasan Bulanan dalam format story untuk dikongsi\n• Kiraan detik untuk memeterai hari ini di Skrin Kunci dan Dynamic Island, serta Pusat Kawalan dan Siri\n• Pokok kekayaan kini hidup masa nyata: siang dan malam, musim, lampu Disember\n• Buka ikon Gold, Emerald dan Midnight apabila naik tahap\n• Kesan bunyi dan haptik\n• Aplikasi kini dalam 16 bahasa termasuk bahasa Inggeris; bahasa Melayu tidak termasuk",
+ "iap": {
+  "group": "SpendZero Pro",
+  "weekly": {
+   "name": "SpendZero Pro Mingguan",
+   "description": "Semua ciri Pro, bayar setiap minggu"
+  },
+  "monthly": {
+   "name": "SpendZero Pro Bulanan",
+   "description": "Semua ciri Pro, bayar setiap bulan"
+  },
+  "yearly": {
+   "name": "SpendZero Pro Tahunan",
+   "description": "Pro selama 12 bulan, bayar setahun sekali"
+  },
+  "lifetime": {
+   "name": "SpendZero Pro Seumur Hayat",
+   "description": "Bayar sekali, Pro tanpa langganan"
+  }
+ }
+}

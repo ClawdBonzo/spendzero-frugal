@@ -105,8 +105,7 @@ struct GamificationHubView: View {
                                     Spacer()
                                 }
                                 .padding(AppTheme.paddingMedium)
-                                .background(AppTheme.cardBackground)
-                                .cornerRadius(AppTheme.cornerRadiusMedium)
+                                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                                 .padding(.horizontal, AppTheme.paddingLarge)
                             } else {
                                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
@@ -144,8 +143,7 @@ struct GamificationHubView: View {
                                     .foregroundColor(AppTheme.textTertiary)
                             }
                             .padding(AppTheme.paddingMedium)
-                            .background(AppTheme.cardBackground)
-                            .cornerRadius(AppTheme.cornerRadiusMedium)
+                            .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                         }
                         .padding(.horizontal, AppTheme.paddingLarge)
 
@@ -169,7 +167,7 @@ struct GamificationHubView: View {
                         .foregroundColor(AppTheme.textSecondary)
                 }
             }
-            .background(AppTheme.background.ignoresSafeArea())
+            .background(AppScreenBackground())
             #if DEBUG
             .onAppear {
                 // Screenshot hook: -ScrollToTree
@@ -214,13 +212,13 @@ extension GamificationHubView {
                     Spacer()
                 }
                 .padding(AppTheme.paddingMedium)
-                .background(AppTheme.cardBackground)
-                .cornerRadius(AppTheme.cornerRadiusMedium)
+                .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
                 .padding(.horizontal, AppTheme.paddingLarge)
             } else {
                 ForEach(daily, id: \.id) { quest in
                     QuestQuickView(quest: quest)
                         .padding(.horizontal, AppTheme.paddingLarge)
+                        .scrollDepth()
                 }
             }
 
@@ -234,6 +232,7 @@ extension GamificationHubView {
                 ForEach(weekly, id: \.id) { quest in
                     QuestQuickView(quest: quest)
                         .padding(.horizontal, AppTheme.paddingLarge)
+                        .scrollDepth()
                 }
             }
         }
@@ -265,8 +264,7 @@ struct StatTile: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
-        .background(AppTheme.cardBackground)
-        .cornerRadius(AppTheme.cornerRadiusMedium)
+        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
     }
 }
 
@@ -300,9 +298,17 @@ struct QuestQuickView: View {
 
                 Spacer()
 
-                Image(systemName: quest.isCompleted ? "checkmark.circle.fill" : "circle")
-                    .font(.app(size: 20))
-                    .foregroundColor(quest.isCompleted ? AppTheme.primaryGreen : AppTheme.textTertiary)
+                ZStack {
+                    Circle()
+                        .fill(quest.isCompleted ? AppTheme.primaryGreen : .clear)
+                    Circle()
+                        .strokeBorder(quest.isCompleted ? .clear : AppTheme.textTertiary, lineWidth: 1.5)
+                    DrawnCheckmark(isOn: quest.isCompleted, color: AppTheme.background, lineWidth: 2.5)
+                        .padding(5.5)
+                }
+                .frame(width: 22, height: 22)
+                .animation(.spring(duration: 0.35), value: quest.isCompleted)
+                .accessibilityHidden(true)
             }
 
             if quest.targetValue > 0 {
@@ -321,8 +327,7 @@ struct QuestQuickView: View {
             }
         }
         .padding(AppTheme.paddingMedium)
-        .background(AppTheme.cardBackground)
-        .cornerRadius(AppTheme.cornerRadiusMedium)
+        .glassCard(cornerRadius: AppTheme.cornerRadiusMedium)
         .overlay(
             RoundedRectangle(cornerRadius: AppTheme.cornerRadiusMedium)
                 .stroke(AppTheme.primaryGreen.opacity(0.2), lineWidth: 1)

@@ -1,0 +1,26 @@
+{
+ "whatsNew": "Per a la temporada de rebaixes: tres reptes per temps limitat.\n• Cap de setmana sense compres de Black Friday: passa de totes les ofertes de divendres a Cyber Monday.\n• 12 dies sense despeses: dotze dies seguits abans de Nadal.\n• Gener sense despeses: comença l'any amb 31 dies gastant només en l'essencial.\nCada repte apareix a Challenges durant la seva temporada.\nA més, ara pots bescanviar codis d'oferta de SpendZero Pro a l'app, des de Settings o des de la pantalla de subscripció.",
+ "promo": {
+  "now": "Novetat: reptes per temps limitat per al Black Friday, els 12 dies abans de Nadal i el Gener sense despeses. Segella cada dia sense despeses amb una moneda d'or.",
+  "bf": "Arriba el cap de setmana sense compres de Black Friday: passa de totes les ofertes de divendres a Cyber Monday i fes créixer el teu arbre de la riquesa.",
+  "dec": "12 dies sense despeses: dotze dies seguits abans de Nadal. Els regals que ja tenies previstos compten; els extres, no. Comença el repte a Challenges.",
+  "jan": "Gener sense despeses: 31 dies només per a l'essencial, rebaixes incloses. Segella cada dia amb una moneda d'or i comença l'any amb més diners."
+ },
+ "events": {
+  "black-friday": {
+   "name": "Black Friday sense compres",
+   "short": "Cap oferta de divendres a dilluns",
+   "long": "Repte de 4 dies: cap compra innecessària del Black Friday al Cyber Monday. Segella cada dia amb una moneda d'or."
+  },
+  "twelve-days": {
+   "name": "12 dies sense despeses",
+   "short": "12 dies seguits sense despeses abans de Nadal",
+   "long": "Dotze dies seguits sense despeses innecessàries abans de Nadal. Els regals ja previstos compten; els extres, no."
+  },
+  "no-spend-january": {
+   "name": "Gener sense despeses",
+   "short": "31 dies gastant només en l'essencial",
+   "long": "Comença el 2027 amb un repte de 31 dies: gasta només en l'essencial i segella cada dia amb una moneda d'or."
+  }
+ }
+}

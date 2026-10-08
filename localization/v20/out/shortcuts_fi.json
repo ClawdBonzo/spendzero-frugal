@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "${applicationName}, sinetöi tämä päivä",
+  "Seal the day in ${applicationName}": "${applicationName}, sinetöi päivä",
+  "Seal my day in ${applicationName}": "${applicationName}, sinetöi päiväni",
+  "I resisted buying something in ${applicationName}": "${applicationName}, jätin jotain ostamatta",
+  "I didn't buy something in ${applicationName}": "${applicationName}, en sortunut heräteostokseen",
+  "Log a resisted impulse in ${applicationName}": "${applicationName}, kirjaa voitettu ostohimo"
+}

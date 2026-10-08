@@ -1,0 +1,8 @@
+{
+  "Seal today in ${applicationName}": "${applicationName} ile bugünü mühürle",
+  "Seal the day in ${applicationName}": "${applicationName} ile günü mühürle",
+  "Seal my day in ${applicationName}": "${applicationName} ile günümü mühürle",
+  "I resisted buying something in ${applicationName}": "${applicationName} bir şey almaktan vazgeçtim",
+  "I didn't buy something in ${applicationName}": "${applicationName} bir alışverişi pas geçtim",
+  "Log a resisted impulse in ${applicationName}": "${applicationName} ile direnilen bir dürtü kaydet"
+}

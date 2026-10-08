@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import SwiftData
 
 struct PaywallView: View {
     let onContinue: () -> Void
@@ -14,6 +15,12 @@ struct PaywallView: View {
     @State private var alert: PaywallAlert?
     @State private var showRedeemCode = false
     @State private var showExport = false
+    /// Bumped only when the user taps a different plan; flips the hero coin.
+    @State private var heroFlips = 0
+    @Query private var profiles: [UserProfile]
+
+    /// The user's own 12-month estimate (same math as the onboarding forecast), when available.
+    private var forecast: SavingsForecast? { profiles.first.flatMap { SavingsForecast(profile: $0) } }
 
     private struct PaywallAlert: Identifiable {
         let id = UUID()
@@ -44,66 +51,36 @@ struct PaywallView: View {
 
     var body: some View {
         ZStack {
-            // Deep dark background with subtle green tint
-            LinearGradient(
-                colors: [
-                    Color(hex: "0A0F0A"),
-                    AppTheme.background,
-                    Color(hex: "0A100A")
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-
-            // Subtle ambient glow top
-            Circle()
-                .fill(RadialGradient(
-                    colors: [AppTheme.primaryGreen.opacity(0.12), Color.clear],
-                    center: .center, startRadius: 0, endRadius: 200
-                ))
-                .frame(width: 400, height: 400)
-                .offset(y: -280)
+            // Living mesh of deep greens warming toward gold, faded out behind the plans and CTA.
+            AppTheme.background.ignoresSafeArea()
+            LivingBackground(warmth: 0.4)
+                .mask(LinearGradient(colors: [.white, .white.opacity(0.55), .white.opacity(0.15)],
+                                     startPoint: .top, endPoint: .bottom))
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
+              // — URGENCY BANNER — pinned above the scroll view so it never slides under the status bar.
+              if let urgencyMessage {
+                  UrgencyBanner(text: urgencyMessage, isCritical: isHardPaywall)
+                      .padding(.horizontal, AppTheme.paddingLarge)
+                      .padding(.top, 8)
+                      .padding(.bottom, 2)
+              }
               ScrollView(showsIndicators: false) {
                VStack(spacing: 0) {
-                // — URGENCY BANNER —
-                // Renders the urgency/scarcity copy that every caller already passes in
-                // (previously dead — declared but never shown).
-                if let urgencyMessage {
-                    UrgencyBanner(text: urgencyMessage, isCritical: isHardPaywall)
-                        .padding(.horizontal, AppTheme.paddingLarge)
-                        .padding(.top, isHardPaywall ? 16 : 8)
-                        .padding(.bottom, 2)
-                }
 
                 // — HEADER —
                 ZStack(alignment: .topTrailing) {
-                    VStack(spacing: 12) {
-                        Spacer().frame(height: 20)
-
-                        Image("BrandIcon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 64, height: 64)
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
-                            .shadow(color: AppTheme.primaryGreen.opacity(0.5), radius: 10, y: 3)
-
-                        VStack(spacing: 4) {
-                            Text("SpendZero Pro")
-                                .font(.app(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(AppTheme.textPrimary)
-                                Text(isHardPaywall
-                                ? "Subscribe to keep going"
-                                : "Keep everything you've built")
-                                .font(.app(size: 14))
-                                .foregroundColor(AppTheme.textSecondary)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding(.horizontal, AppTheme.paddingLarge)
-
-                    }
+                    PaywallHero(
+                        forecast: forecast,
+                        plan: selectedPlan,
+                        flipTrigger: heroFlips,
+                        subtitle: isHardPaywall
+                            ? "Subscribe to keep going"
+                            : "Keep everything you've built"
+                    )
+                    .padding(.top, isHardPaywall ? 10 : 30)
+                    .padding(.horizontal, AppTheme.paddingLarge)
                     .frame(maxWidth: .infinity)
 
                     // Close button — only shown on soft paywall (during trial)
@@ -114,24 +91,25 @@ struct PaywallView: View {
                                 .foregroundColor(AppTheme.textTertiary.opacity(0.7))
                         }
                         .accessibilityLabel(Text("Close"))
-                        .padding(.top, 16)
-                        .padding(.trailing, AppTheme.paddingLarge)
+                        .padding(.top, 8)
+                        .padding(.trailing, AppTheme.paddingLarge - 8)
                     }
                 }
-                .padding(.bottom, 18)
+                .padding(.bottom, 12)
 
-                // — FEATURES LIST —
-                VStack(alignment: .leading, spacing: 9) {
-                    FeatureRow(icon: "flame.fill",            color: AppTheme.warning,     text: "Unlimited no-spend challenges & streaks")
-                    FeatureRow(icon: "chart.bar.fill",        color: AppTheme.info,        text: "Spending analytics & insights")
-                    FeatureRow(icon: "bell.badge.fill",       color: AppTheme.accentGold,  text: "Impulse-purchase alerts")
-                    FeatureRow(icon: "rosette",               color: AppTheme.primaryGreen, text: "Level up, earn badges & grow your tree")
-                    FeatureRow(icon: "snowflake",             color: Color(hex: "60CFFF"), text: "Streak freezes to protect your progress")
-                    FeatureRow(icon: "square.and.arrow.up",   color: AppTheme.info,        text: "Shareable wins & data export")
+                // — FEATURES — a compact two-column grid so plans and the button fit on one screen.
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10, alignment: .leading), GridItem(.flexible(), alignment: .leading)],
+                          alignment: .leading, spacing: 10) {
+                    FeatureRow(icon: "flame.fill",          color: AppTheme.warning,      text: "Unlimited challenges")
+                    FeatureRow(icon: "chart.bar.fill",      color: AppTheme.info,         text: "Spending insights")
+                    FeatureRow(icon: "bell.badge.fill",     color: AppTheme.accentGold,   text: "Impulse alerts")
+                    FeatureRow(icon: "rosette",             color: AppTheme.primaryGreen, text: "Badges & your tree")
+                    FeatureRow(icon: "snowflake",           color: Color(hex: "60CFFF"),  text: "Streak freezes")
+                    FeatureRow(icon: "square.and.arrow.up", color: AppTheme.info,         text: "Share & export")
                 }
-                .padding(.horizontal, AppTheme.paddingLarge + 4)
+                .padding(.horizontal, AppTheme.paddingLarge)
 
-                Spacer().frame(height: 18)
+                Spacer().frame(height: 14)
 
                 // — SUBSCRIPTION CARDS —
                 VStack(spacing: 8) {
@@ -158,6 +136,7 @@ struct PaywallView: View {
                                 savingsPercent: savingsPercent(for: option)
                             ) {
                                 HapticManager.shared.trigger(.cardSelect)
+                                if option.id != selectedOption { heroFlips += 1 }
                                 withAnimation(.spring(response: 0.25)) {
                                     selectedOption = option.id
                                 }
@@ -389,7 +368,7 @@ struct PremiumSubscriptionCard: View {
                 }
             }
         }
-        .buttonStyle(.plain)
+        .buttonStyle(.pressable)
     }
 }
 
@@ -449,22 +428,22 @@ private struct FeatureRow: View {
     let text: LocalizedStringKey
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 8) {
             ZStack {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 7)
                     .fill(color.opacity(0.15))
-                    .frame(width: 32, height: 32)
+                    .frame(width: 26, height: 26)
                 Image(systemName: icon)
-                    .font(.app(size: 15, weight: .semibold))
+                    .font(.app(size: 13, weight: .semibold))
                     .foregroundColor(color)
             }
+            .accessibilityHidden(true)
             Text(text)
-                .font(.app(size: 14, weight: .medium))
+                .font(.app(size: 13, weight: .semibold))
                 .foregroundColor(AppTheme.textPrimary)
-            Spacer()
-            Image(systemName: "checkmark")
-                .font(.app(size: 12, weight: .bold))
-                .foregroundColor(AppTheme.primaryGreen)
+                .lineLimit(2)
+                .minimumScaleFactor(0.85)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
